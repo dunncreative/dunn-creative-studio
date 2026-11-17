@@ -16,8 +16,8 @@ images:
     alt: "The same Ironwood Homes logo system in Bone White on Iron Black"
     caption: "The same system reversed, in Bone White on Iron Black."
   - src: "/work/ironwood-homes/logo-on-backgrounds.jpg"
-    alt: "The vertical Ironwood Homes logo on six brand colours"
-    caption: "Logo on backgrounds, using only the colour pairings set in the brand guidelines."
+    alt: "The vertical Ironwood Homes logo on six brand colors"
+    caption: "Logo on backgrounds, using only the color pairings set in the brand guidelines."
   - src: "/work/ironwood-homes/mockup-truck-door.jpg"
     alt: "Ironwood Homes horizontal logo on the door of a dark pickup truck"
     caption: "Truck door. AI-directed mockup."
@@ -41,7 +41,7 @@ serviceTags: ["brand-identity"]
 order: 7
 draft: false
 spec:
-  deliverables: ["Logo system", "Colour palette", "Typography", "Brand guidelines", "Business cards", "Brand mockups"]
+  deliverables: ["Logo system", "Color palette", "Typography", "Brand guidelines", "Business cards", "Brand mockups"]
   channels: ["Branding", "Logo", "Brand Guidelines", "Brand Collateral"]
   aiUsed: "AI-directed mockups of the logo in use"
 results: null
@@ -53,10 +53,10 @@ Ironwood Homes is a custom home builder based in Afton, Wyoming, building custom
 
 ## The identity
 
-Dunn Creative built the Ironwood Homes brand identity: a logo system with a vertical primary logo, a horizontal logo, an IH monogram and a circular badge. The six-colour palette comes from the materials Ironwood builds with: iron, steel, timber and stone. Crimson Pro carries the headlines and Work Sans the everyday text.
+Dunn Creative built the Ironwood Homes brand identity: a logo system with a vertical primary logo, a horizontal logo, an IH monogram and a circular badge. The six-color palette comes from the materials Ironwood builds with: iron, steel, timber and stone. Crimson Pro carries the headlines and Work Sans the everyday text.
 
 The voice rests on three ideas from Ironwood's own story: attainable by design, forged before framing, and rooted right here. It signs off with one line: Built for life here.
 
-A short guidelines document keeps it consistent: clear space, approved colours, and which version of the logo goes on which background.
+A short guidelines document keeps it consistent: clear space, approved colors, and which version of the logo goes on which background.
 
 The photographs of the logo in use on this page are AI-directed mockups, made to show how the mark holds up on signs, trucks, timber and gear.
