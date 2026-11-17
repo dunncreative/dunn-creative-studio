@@ -34,7 +34,7 @@ const specItems = [
 ].filter(Boolean) as [string, string][];
 const liveHost = d.liveUrl ? new URL(d.liveUrl).hostname.replace(/^www\./, '') : null;
 ---
-<Work title={`${d.title} · Work · Dunn Creative`} description={d.summary}>
+<Work title={`${d.title} · Work · Dunn Creative`} description={d.summary} navCta={isCase ? 'ghost' : 'solid'}>
   {isCase ? (
     <header slot="head" class="local">
       <div class="wrap">

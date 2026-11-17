@@ -1,7 +1,8 @@
 ---
 // Plain, light-first layout for the Work section previews. Greyscale; teal only on links and one CTA.
-interface Props { title: string; description?: string }
-const { title, description } = Astro.props;
+import SiteHeader from '../components/SiteHeader.astro';
+interface Props { title: string; description?: string; navCta?: 'solid' | 'ghost' }
+const { title, description, navCta = 'solid' } = Astro.props;
 ---
 <!doctype html>
 <html lang="en">
@@ -39,22 +40,12 @@ const { title, description } = Astro.props;
       .label { font-size: 13px; font-weight: 600; letter-spacing: .04em; color: var(--grey-500); }
       .btn { display:inline-block; padding: 12px 20px; border-radius: 999px; background: var(--teal); color: var(--ink); border: 1px solid var(--ink); font-weight: 600; text-decoration: none; font-size: 15px; }
       .textcta { font-weight: 600; text-decoration: none; }
-      .site-head { border-bottom: 1px solid var(--grey-200); }
-      .site-head .wrap { display:flex; align-items:center; justify-content:space-between; height: 60px; gap: 16px; }
-      .site-head a { color: var(--ink); text-decoration: none; font-weight: 600; }
-      .site-head nav { display:flex; gap: 20px; font-size: 15px; }
       .site-foot { padding: 32px 0; font-size: 14px; color: var(--grey-500); border-top: 1px solid var(--grey-200); }
     </style>
   </head>
   <body>
-    <slot name="head">
-      <header class="site-head">
-        <div class="wrap">
-          <a href="/">Dunn Creative</a>
-          <nav aria-label="Main"><a href="/work/">Work</a></nav>
-        </div>
-      </header>
-    </slot>
+    <SiteHeader cta={navCta} />
+    <slot name="head" />
     <main><slot /></main>
     <footer class="site-foot"><div class="wrap">Dunn Creative · Jackson, WY · Preview, not indexed</div></footer>
   </body>
