@@ -7,6 +7,8 @@ Task #39. Screenshots of the live client sites at the repo paths below.
 
 The overnight run's notes (Playwright Chromium, deviceScaleFactor 1) are kept in the last column for reference.
 
+**On the Work page (17 Nov 2026):** these seven entries now use the screenshots instead of the Squarespace device mockups. Each image shows the desktop and phone shot of one page side by side (`mobile` field on the image). Case studies (Peace Park, Mountain Mind Project) show home and inner pages; snapshots show the home page only, since a snapshot has one asset. The inner-page shots of the five snapshots are committed but not shown.
+
 Then run `node scripts/fetch-work-images.mjs` to pull the picked Squarespace images into `public/work/<slug>/`.
 
 | Site | Page | Width (planned) | Source URL | Repo path | Retake (1440 + 485) | Overnight run notes |

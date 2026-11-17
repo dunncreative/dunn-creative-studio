@@ -7,12 +7,14 @@ services: ["Web design", "Development", "Photography", "Digital marketing consul
 summary: "A full redesign for a mindfulness training company, with our own photography."
 liveUrl: "https://mountainmindproject.com/"
 images:
-  - src: "https://images.squarespace-cdn.com/content/v1/5faa1246c94542301efd0f02/1605231741308-WLX77LE44VQIQ3UT4IRL/mmp-devices.png?format=1500w"
-    alt: "The Mountain Mind Project website on desktop, laptop, tablet and phone"
-    caption: "The redesign across devices."
-  - src: "https://images.squarespace-cdn.com/content/v1/5faa1246c94542301efd0f02/1605325070490-P0K0Q08V7Q0NRX14EMQU/mmp-laptop.png?format=1500w"
-    alt: "Mountain Mind Project About page on a laptop, with a row of course photos"
-    caption: "About page, with course photography by Dunn Creative."
+  - src: "/work/mountain-mind-project/screen-home-1440.png"
+    mobile: "/work/mountain-mind-project/screen-home-485.png"
+    alt: "Mountain Mind Project home page"
+    caption: "Home page."
+  - src: "/work/mountain-mind-project/screen-inner-1440.png"
+    mobile: "/work/mountain-mind-project/screen-inner-485.png"
+    alt: "Mountain Mind Project About page"
+    caption: "About page."
 featured: false
 serviceTags: ["websites"]
 order: 5

@@ -7,12 +7,14 @@ services: ["Website design", "Website development"]
 summary: "Website for an annual gathering of the world's best snowboarders."
 liveUrl: "https://www.thepeacepark.co/"
 images:
-  - src: "https://images.squarespace-cdn.com/content/v1/5faa1246c94542301efd0f02/c38105ec-855e-4fed-ab37-41b7eefeba51/peace-park-snowboarding-annual-event-website-design-development.png?format=1500w"
-    alt: "The Peace Park website on desktop, laptop, tablet and phone"
-    caption: "The site across devices."
-  - src: "https://images.squarespace-cdn.com/content/v1/5faa1246c94542301efd0f02/1605511479468-I0V8K6KITAXKROTGWTNR/peacepark-website-laptop.png?format=1500w"
-    alt: "Peace Park home page on a laptop"
+  - src: "/work/peace-park/screen-home-1440.png"
+    mobile: "/work/peace-park/screen-home-485.png"
+    alt: "Peace Park home page"
     caption: "Home page."
+  - src: "/work/peace-park/screen-inner-1440.png"
+    mobile: "/work/peace-park/screen-inner-485.png"
+    alt: "Peace Park Annual Gathering page"
+    caption: "Annual Gathering page."
 featured: true
 serviceTags: ["websites"]
 order: 4

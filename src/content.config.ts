@@ -9,6 +9,9 @@ const image = z.object({
   caption: z.string().optional(),
   // Ground behind the image when it has transparency (e.g. a white logo needs 'dark').
   ground: z.enum(['light', 'grey', 'dark']).optional(),
+  // Optional phone-width screenshot of the same page, shown beside `src` (desktop).
+  // `alt` then names the page; the template adds "on desktop" / "on a phone".
+  mobile: z.string().optional(),
 });
 
 const work = defineCollection({
