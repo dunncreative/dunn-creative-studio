@@ -2,9 +2,9 @@
 title: "Ironwood Homes"
 client: "Ironwood Homes"
 kind: "case-study"
-disciplines: ["Branding", "Websites"]
-services: ["Brand identity", "Web design"]
-summary: "Brand and web for a custom home builder in Star Valley, WY."
+disciplines: ["Branding"]
+services: ["Brand identity"]
+summary: "Brand identity for a custom home builder serving Star Valley, Wyoming."
 images:
   - src: "/work/ironwood-homes/mockup-wood-wall.jpg"
     alt: "Ironwood Homes vertical logo in iron letters on a weathered wood wall"
@@ -42,18 +42,20 @@ order: 7
 draft: false
 spec:
   deliverables: ["Logo system", "Colour palette", "Typography", "Brand guidelines", "Business cards", "Brand mockups"]
-  channels: ["Print", "Merchandise", "Signage"]
+  channels: ["Branding", "Logo", "Brand Guidelines", "Brand Collateral"]
   aiUsed: "AI-directed mockups of the logo in use"
 results: null
 ---
 
 ## Challenge
 
-[Freeman: one or two sentences on what Ironwood Homes needed and why.]
+Ironwood Homes is a custom home builder based in Afton, Wyoming, building custom homes, remodels and additions across Star Valley. Its promise is plain: "Most builders can build you a house. We build yours." Modern ranch design, honest materials and real respect for the budget, with one builder from the first conversation to the last finish detail. The brand had to carry that, and feel as rooted in the valley as the company is.
 
 ## The identity
 
-Ironwood Homes is a custom home builder in Star Valley, Wyoming. Dunn Creative built its brand identity: a logo system with a vertical primary logo, a horizontal logo, an IH monogram and a circular badge. The six-colour palette comes from the materials Ironwood builds with: iron, steel, timber and stone. Crimson Pro carries the headlines and Work Sans the everyday text.
+Dunn Creative built the Ironwood Homes brand identity: a logo system with a vertical primary logo, a horizontal logo, an IH monogram and a circular badge. The six-colour palette comes from the materials Ironwood builds with: iron, steel, timber and stone. Crimson Pro carries the headlines and Work Sans the everyday text.
+
+The voice rests on three ideas from Ironwood's own story: attainable by design, forged before framing, and rooted right here. It signs off with one line: Built for life here.
 
 A short guidelines document keeps it consistent: clear space, approved colours, and which version of the logo goes on which background.
 
