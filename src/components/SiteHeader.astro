@@ -6,10 +6,10 @@
 interface Props { cta?: 'solid' | 'ghost' }
 const { cta = 'solid' } = Astro.props;
 const path = Astro.url.pathname;
-// Only Work exists so far; the rest are planned pages and render as plain text until built.
+// Work and Services exist so far; the rest are planned pages and render as plain text until built.
 const links = [
   { label: 'Work', href: '/work/' },
-  { label: 'Services' },
+  { label: 'Services', href: '/services/' },
   { label: 'AI' },
   { label: 'Lab' },
   { label: 'About' },
