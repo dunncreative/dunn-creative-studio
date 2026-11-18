@@ -65,7 +65,7 @@ The voice rests on three ideas from Ironwood's own story: attainable by design, 
 
 A short guidelines document keeps it consistent: clear space, approved colors, and which version of the logo goes on which background.
 
-The photographs of the logo in use on this page are AI-directed mockups, made to show how the mark holds up on signs, trucks, timber and gear.
+The images of the logo in use on this page are AI-directed mockups, made to show how the mark holds up on signs, trucks, timber and gear.
 
 ## About the mockups
 
