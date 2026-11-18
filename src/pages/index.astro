@@ -14,8 +14,8 @@ import hero from '../assets/studio/hero-mountain-ai-bw.webp';
 import portrait from '../assets/studio/chris-dunn-portrait-bw.webp';
 import Texture from '../components/Texture.astro';
 
-// Featured three in the order drawn: Deeper, Peace Park, GU Energy. Ironwood swap waits on Freeman.
-const FEATURED = ['jeremy-jones-deeper', 'peace-park', 'gu-energy'];
+// Featured three: Deeper, Peace Park, Ironwood Homes (Freeman: Ironwood replaces GU Energy).
+const FEATURED = ['jeremy-jones-deeper', 'peace-park', 'ironwood-homes'];
 const all = await getCollection('work', ({ data }) => !data.draft);
 const featured = FEATURED.map((id) => all.find((e) => e.id === id)).filter((e) => e !== undefined);
 const clients = ['Teton Gravity Research', 'Brain Farm', 'GU Energy', 'Stio', 'Peace Park', 'Asymbol', 'Ironwood Homes'];
@@ -64,7 +64,7 @@ const lab = [
     <div class="wrap">
       <div class="sec-head"><h2>Recent work</h2></div>
       <div class="grid">{featured.map((e) => <WorkCard entry={e} large />)}</div>
-      <div class="actions"><a class="textcta" href="/work/">All work +</a><Held id="ironwood-swap" /></div>
+      <div class="actions"><a class="textcta" href="/work/">All work +</a></div>
     </div>
   </section>
 

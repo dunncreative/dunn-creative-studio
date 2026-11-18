@@ -88,12 +88,6 @@ export const held = {
     pages: ['Home'],
     meanwhile: 'Client names set as type.',
   },
-  'ironwood-swap': {
-    label: 'Ironwood in Recent work',
-    ask: 'Should Ironwood Homes replace GU Energy in the three Home featured projects?',
-    pages: ['Home'],
-    meanwhile: 'Deeper, Peace Park and GU Energy, as drawn.',
-  },
   network: {
     label: 'describe the network',
     ask: 'How should the specialist network be described (who, roughly how many, which crafts)?',
