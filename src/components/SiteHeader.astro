@@ -1,0 +1,91 @@
+---
+// Global header, per Client Zero low-fi wireframe v02 (Blueprint Home band 01):
+// logo left (black on light), nav links right, "Let's talk" as the one teal element.
+// cta="ghost" when a solid button is already in view (e.g. the case-study local bar).
+// Nav dark vs light is still an open decision in Brand Guidelines v1; this is the light preview.
+interface Props { cta?: 'solid' | 'ghost' }
+const { cta = 'solid' } = Astro.props;
+const path = Astro.url.pathname;
+// Work and Services exist so far; the rest are planned pages and render as plain text until built.
+const links = [
+  { label: 'Work', href: '/work/' },
+  { label: 'Services', href: '/services/' },
+  { label: 'AI' },
+  { label: 'Lab' },
+  { label: 'About' },
+];
+const talk = 'mailto:chris@dunncreative.com';
+---
+<header class="gh">
+  <div class="wrap gh-row">
+    <a class="gh-logo" href="/" aria-label="Dunn Creative, home">
+      <img src="/brand/dunn-creative-logo-black.png" alt="Dunn Creative" width="968" height="461" />
+    </a>
+    <nav class="gh-nav" aria-label="Main">
+      <ul>
+        {links.map((l) => (
+          <li>
+            {l.href
+              ? <a href={l.href} aria-current={path.startsWith(l.href) ? 'page' : undefined}>{l.label}</a>
+              : <span title="Page coming soon">{l.label}</span>}
+          </li>
+        ))}
+      </ul>
+      <a class:list={['gh-cta', cta]} href={talk}>Let's talk</a>
+    </nav>
+    <details class="gh-menu">
+      <summary>Menu <span aria-hidden="true">≡</span></summary>
+      <div class="gh-panel">
+        <ul>
+          {links.map((l) => (
+            <li>
+              {l.href
+                ? <a href={l.href} aria-current={path.startsWith(l.href) ? 'page' : undefined}>{l.label}</a>
+                : <span>{l.label} <small>soon</small></span>}
+            </li>
+          ))}
+        </ul>
+        <a class:list={['gh-cta', cta]} href={talk}>Let's talk</a>
+      </div>
+    </details>
+  </div>
+</header>
+
+<style>
+  .gh { position: relative; z-index: 20; background: var(--white); border-bottom: 1px solid var(--grey-200); }
+  .gh-row { display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 68px; }
+  .gh-logo { display: block; flex: none; line-height: 0; }
+  .gh-logo img { height: 40px; width: auto; }
+  .gh a, .gh span { color: var(--ink); text-decoration: none; }
+
+  .gh-nav { display: none; align-items: center; gap: 32px; }
+  .gh-nav ul { display: flex; align-items: center; list-style: none; margin: 0; padding: 0; font-size: 15px; }
+  .gh-nav li { margin: 0; }
+  .gh-nav li + li::before { content: '·'; color: var(--grey-500); padding: 0 10px; }
+  .gh-nav a:hover, .gh-nav a[aria-current='page'] { text-decoration: underline; text-underline-offset: 6px; text-decoration-thickness: 1.5px; }
+  .gh-nav span { cursor: default; }
+
+  .gh-cta { display: inline-block; padding: 12px 22px; border-radius: 999px; font-weight: 600; font-size: 15px; white-space: nowrap; border: 1.5px solid var(--ink); }
+  .gh .gh-cta.solid { background: var(--teal); color: var(--ink); }
+  .gh .gh-cta.ghost { background: transparent; color: var(--ink); }
+  .gh .gh-cta:hover { text-decoration: none; filter: brightness(.96); }
+
+  .gh-menu { position: static; }
+  .gh-menu summary { list-style: none; cursor: pointer; font-weight: 600; font-size: 17px; color: var(--ink); padding: 8px 0; }
+  .gh-menu summary::-webkit-details-marker { display: none; }
+  .gh-menu summary span { font-size: 20px; margin-left: 2px; }
+  .gh-panel { position: absolute; left: 0; right: 0; top: 100%; background: var(--white); border-bottom: 1px solid var(--grey-200); padding: 8px 16px 24px; box-shadow: 0 12px 24px rgba(0,0,0,.06); }
+  .gh-panel ul { list-style: none; margin: 0 0 16px; padding: 0; }
+  .gh-panel li { margin: 0; border-bottom: 1px solid var(--grey-200); }
+  .gh-panel li a, .gh-panel li span { display: block; padding: 14px 0; font-size: 20px; font-weight: 600; }
+  .gh-panel li span { color: var(--grey-500); }
+  .gh-panel small { font-size: 13px; font-weight: 400; margin-left: 6px; }
+
+  @media (min-width: 720px) { .gh-panel { padding: 8px 32px 24px; } }
+  @media (min-width: 880px) {
+    .gh-row { height: 88px; }
+    .gh-logo img { height: 48px; }
+    .gh-nav { display: flex; }
+    .gh-menu { display: none; }
+  }
+</style>

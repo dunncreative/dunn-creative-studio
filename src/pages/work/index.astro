@@ -1,0 +1,83 @@
+---
+import { getCollection } from 'astro:content';
+import Work from '../../layouts/Work.astro';
+import WorkCard from '../../components/WorkCard.astro';
+
+const entries = (await getCollection('work', ({ data }) => !data.draft)).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+const disciplines = [...new Set(entries.flatMap((e) => e.data.disciplines))];
+---
+<Work title="Work · Dunn Creative" description="Brand work, websites and campaigns from Dunn Creative, a senior-led studio in Jackson, WY.">
+  <section class="band">
+    <div class="wrap">
+      <h1>Work</h1>
+      <p class="lede">Brand work, websites and campaigns. Client work only.</p>
+      <div class="filters" role="group" aria-label="Filter work">
+        <div class="row" data-filter="kind">
+          <button type="button" aria-pressed="true" data-value="all">All</button>
+          <button type="button" aria-pressed="false" data-value="case-study">Case studies</button>
+          <button type="button" aria-pressed="false" data-value="snapshot">Snapshots</button>
+        </div>
+        <div class="row" data-filter="disc">
+          <button type="button" aria-pressed="true" data-value="all">Any service</button>
+          {disciplines.map((d) => <button type="button" aria-pressed="false" data-value={d}>{d}</button>)}
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="band grey">
+    <div class="wrap grid" id="grid">
+      {entries.map((e, i) => <WorkCard entry={e} feature={i === 0 && e.data.kind === 'case-study'} large={e.data.kind === 'case-study'} />)}
+    </div>
+    <p class="wrap empty" id="empty" hidden>Nothing here yet for that combination.</p>
+  </section>
+  <section class="band ctaband">
+    <div class="wrap">
+      <div class="ctabox">
+        <h2>Have a project in mind?</h2>
+        <p><a class="textcta" href="mailto:chris@dunncreative.com">Let's talk +</a></p>
+      </div>
+    </div>
+  </section>
+</Work>
+
+<script>
+  const state: Record<string, string> = { kind: 'all', disc: 'all' };
+  const cards = [...document.querySelectorAll<HTMLElement>('#grid .card')];
+  const empty = document.getElementById('empty')!;
+  function apply() {
+    let shown = 0;
+    for (const c of cards) {
+      const ok = (state.kind === 'all' || c.dataset.kind === state.kind) &&
+        (state.disc === 'all' || (c.dataset.disc ?? '').split('|').includes(state.disc));
+      c.hidden = !ok;
+      if (ok) shown++;
+    }
+    empty.hidden = shown > 0;
+  }
+  document.querySelectorAll<HTMLElement>('[data-filter]').forEach((row) => {
+    row.addEventListener('click', (ev) => {
+      const b = (ev.target as HTMLElement).closest('button');
+      if (!b) return;
+      row.querySelectorAll('button').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+      state[row.dataset.filter!] = b.dataset.value!;
+      apply();
+    });
+  });
+</script>
+
+<style>
+  .lede { font-size: 20px; margin: 16px 0 28px; }
+  .filters { display:flex; flex-direction:column; gap: 10px; }
+  .row { display:flex; flex-wrap:wrap; gap: 8px; }
+  button { font: inherit; font-size: 15px; padding: 8px 16px; border-radius: 999px; border: 1px solid var(--grey-200); background: var(--white); color: var(--body); cursor: pointer; }
+  button[aria-pressed="true"] { background: var(--ink); color: #fff; border-color: var(--ink); }
+  button:focus-visible { outline: 2px solid var(--teal-deep); outline-offset: 2px; }
+  /* minmax(0, 1fr) keeps wide images from pushing cards past the container. */
+  .grid { display:grid; grid-template-columns: minmax(0, 1fr); gap: 40px 24px; }
+  .grid :global(.feature) { grid-column: 1 / -1; }
+  @media (min-width: 720px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (min-width: 1040px) { .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  .empty { color: var(--grey-500); }
+</style>

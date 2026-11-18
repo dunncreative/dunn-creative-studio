@@ -1,0 +1,135 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import Work from '../../layouts/Work.astro';
+import WorkFigure from '../../components/WorkFigure.astro';
+import { clean, cleanList, isAiImage } from '../../lib/placeholders';
+
+export async function getStaticPaths() {
+  const entries = (await getCollection('work', ({ data }) => !data.draft)).sort(
+    (a, b) => a.data.order - b.data.order,
+  );
+  const cases = entries.filter((e) => e.data.kind === 'case-study');
+  return entries.map((entry) => {
+    let next: CollectionEntry<'work'> | undefined;
+    if (entry.data.kind === 'case-study') {
+      const i = cases.findIndex((c) => c.id === entry.id);
+      next = cases[(i + 1) % cases.length];
+    } else {
+      next = cases[0];
+    }
+    return { params: { slug: entry.id }, props: { entry, next } };
+  });
+}
+
+const { entry, next } = Astro.props as { entry: CollectionEntry<'work'>; next?: CollectionEntry<'work'> };
+const d = entry.data;
+const isCase = d.kind === 'case-study';
+const { Content } = await render(entry);
+const [hero, ...media] = d.images;
+const spec = d.spec ?? {};
+// Unanswered studio notes ("[confirm]", "[held: …]") are stripped; an empty field hides its row.
+const deliverables = cleanList(spec.deliverables);
+const channels = cleanList(spec.channels);
+const specItems = [
+  clean(spec.timeline) && ['Timeline', clean(spec.timeline)],
+  deliverables.length && ['Deliverables', deliverables.join(' · ')],
+  channels.length && ['Channels', channels.join(' · ')],
+  clean(spec.aiUsed) && ['AI used', clean(spec.aiUsed)],
+].filter(Boolean) as [string, string][];
+const liveHost = d.liveUrl ? new URL(d.liveUrl).hostname.replace(/^www\./, '') : null;
+---
+<Work title={`${d.title} · Work · Dunn Creative`} description={d.summary} navCta={isCase ? 'ghost' : 'solid'}>
+  {isCase ? (
+    <header slot="head" class="local">
+      <div class="wrap">
+        <a href="/work/" class="crumb">Work</a>
+        <strong>{d.title}</strong>
+        <a class="btn" href="mailto:chris@dunncreative.com?subject=Start%20a%20project">Start a project</a>
+      </div>
+    </header>
+  ) : null}
+
+  {isCase ? (
+    <>
+      <section class="band dark hero">
+        <div class="wrap">
+          <p class="label">Case study · {d.client}</p>
+          <h1>{d.title}</h1>
+          <p class="lede">{d.summary}</p>
+        </div>
+        <WorkFigure class="wrap heroimg" image={hero} ground="dark" />
+      </section>
+
+      <section class="band">
+        <dl class="wrap spec">
+          {specItems.map(([k, v]) => <div><dt class="label">{k}</dt><dd>{v}</dd></div>)}
+          {d.liveUrl && <div><dt class="label">Live site</dt><dd><a href={d.liveUrl} rel="noopener">{liveHost}</a></dd></div>}
+        </dl>
+      </section>
+
+      <section class="band grey">
+        <div class="wrap prose"><Content /></div>
+      </section>
+
+      {media.map((m, i) => (
+        <section class:list={['band', 'mediaband', i % 2 === 0 ? 'light' : 'dark']}>
+          <WorkFigure class="wrap" image={m} ground={i % 2 === 0 ? 'light' : 'dark'} lazy />
+        </section>
+      ))}
+
+      {d.results && (
+        <section class="band grey">
+          <div class="wrap">
+            <h2>Results</h2>
+            <p class="lede">{d.results.text}</p>
+            {d.results.source && <p class="label">{d.results.source}</p>}
+          </div>
+        </section>
+      )}
+    </>
+  ) : (
+    <section class="band">
+      <div class="wrap snap">
+        <p class="label">Snapshot · {d.disciplines.join(' · ')}</p>
+        <h1>{d.title}</h1>
+        <p class="lede">{d.summary}</p>
+        <p class="label">{d.services.join(' · ')}{d.liveUrl && <> · <a href={d.liveUrl} rel="noopener">{liveHost}</a></>}</p>
+        <WorkFigure class="snapfig" image={hero} ground="grey" />
+      </div>
+    </section>
+  )}
+
+  {next && next.id !== entry.id && (
+    <section class="band grey">
+      <div class="wrap">
+        <p class="label">{isCase ? 'Next project' : 'See a case study'}</p>
+        <a class="nexttile" href={`/work/${next.id}/`}>
+          <img src={next.data.images[0].src} alt={next.data.images[0].alt} loading="lazy" />
+          <span><h2>{next.data.title}</h2>{isAiImage(next.data.images[0].caption) && <span class="label">Image: AI-directed mockup</span>}<span class="textcta">View +</span></span>
+        </a>
+      </div>
+    </section>
+  )}
+</Work>
+
+<style>
+  .local { position: sticky; top: 0; z-index: 10; background: rgba(255,255,255,.94); backdrop-filter: blur(8px); border-bottom: 1px solid var(--grey-200); }
+  .local .wrap { display:flex; align-items:center; gap: 16px; height: 60px; }
+  .local strong { color: var(--ink); flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .crumb { color: var(--grey-500); text-decoration: none; font-size: 15px; }
+  .hero .label { color: #a3a3a0; }
+  .lede { font-size: 20px; margin: 16px 0 0; }
+  .hero .lede { color: #d6d6d3; }
+  .hero :global(.heroimg) { margin-top: 48px; }
+  .hero :global(figcaption) { color: #a3a3a0; }
+  .mediaband.light { background: var(--white); }
+  .spec { display:grid; grid-template-columns: 1fr; gap: 20px; margin-top: 0; margin-bottom: 0; }
+  @media (min-width: 720px) { .spec { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); } }
+  .spec dd { margin: 4px 0 0; color: var(--ink); }
+  .prose :global(h2) { margin-bottom: 16px; }
+  .prose :global(p) { font-size: 19px; }
+  .snap :global(.snapfig) { margin-top: 40px; }
+  .nexttile { display:grid; gap: 20px; text-decoration: none; margin-top: 12px; }
+  .nexttile img { border-radius: 20px; max-height: 420px; object-fit: cover; width: 100%; background: var(--white); }
+  @media (min-width: 900px) { .nexttile { grid-template-columns: 2fr 1fr; align-items: center; } }
+</style>

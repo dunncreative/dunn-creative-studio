@@ -1,0 +1,59 @@
+---
+// Plain, light-first layout for the Work section previews. Greyscale; teal only on links and one CTA.
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+interface Props { title: string; description?: string; navCta?: 'solid' | 'ghost' }
+const { title, description, navCta = 'solid' } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+    <style is:global>
+      :root {
+        --white:#ffffff; --grey-50:#f5f5f7; --grey-200:#e3e3e6; --grey-500:#8a8d91;
+        --body:#333333; --ink:#0b0c0d; --teal:#1aa6aa; --teal-deep:#10777a;
+      }
+      * { box-sizing: border-box; }
+      html { -webkit-text-size-adjust: 100%; }
+      body { margin:0; background:var(--white); color:var(--body); font:17px/1.55 Inter, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+      img { max-width:100%; height:auto; display:block; }
+      a { color: var(--teal-deep); }
+      .wrap { max-width: 1200px; margin: 0 auto; padding: 0 16px; }
+      @media (min-width: 720px) { .wrap { padding: 0 32px; } }
+      .band { padding: 64px 0; }
+      .band.grey { background: var(--grey-50); }
+      .band.dark { background: var(--ink); color: #f4f4f2; }
+      .band.dark a { color: var(--teal); }
+      h1, h2, h3 { color: var(--ink); margin: 0; }
+      .band.dark h1, .band.dark h2, .band.dark h3 { color: #fff; }
+      h1 { font-size: clamp(44px, 7vw, 80px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.02; }
+      h2 { font-size: clamp(28px, 4vw, 44px); font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; }
+      h3 { font-size: 21px; font-weight: 600; line-height: 1.25; }
+      p { max-width: 65ch; }
+      .label { font-size: 13px; font-weight: 600; letter-spacing: .04em; color: var(--grey-500); }
+      .btn { display:inline-block; padding: 12px 20px; border-radius: 999px; background: var(--teal); color: var(--ink); border: 1px solid var(--ink); font-weight: 600; text-decoration: none; font-size: 15px; }
+      .textcta { font-weight: 600; text-decoration: none; }
+      /* Bottom CTA: a rounded dark box inside the content width, not a full-bleed band. */
+      .band.ctaband { padding: 64px 0 80px; }
+      .ctabox { background: var(--ink); color: #f4f4f2; border-radius: 16px; padding: 48px 24px; }
+      @media (min-width: 720px) { .ctabox { padding: 64px 56px; } }
+      .band .ctabox h2 { color: #fff; margin-bottom: 12px; }
+      .ctabox p { margin: 12px 0 0; }
+      .ctabox a { color: var(--teal); }
+    </style>
+  </head>
+  <body>
+    <SiteHeader cta={navCta} />
+    <slot name="head" />
+    <main><slot /></main>
+    <SiteFooter />
+  </body>
+</html>
