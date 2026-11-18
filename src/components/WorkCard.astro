@@ -1,33 +1,49 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import { isAiImage } from '../lib/placeholders';
-interface Props { entry: CollectionEntry<'work'>; large?: boolean }
-const { entry, large = false } = Astro.props;
+// feature: the one wide card at the top of the Work index. Thumbnail left, text right, kept short.
+interface Props { entry: CollectionEntry<'work'>; large?: boolean; feature?: boolean }
+const { entry, large = false, feature = false } = Astro.props;
 const d = entry.data;
-const img = d.images[0];
+const img = feature ? (d.cardImage ?? d.images[0]) : d.images[0];
 const isCase = d.kind === 'case-study';
 const href = `/work/${entry.id}/`;
 ---
-<article class:list={['card', { large }]} data-kind={d.kind} data-disc={d.disciplines.join('|')}>
+<article class:list={['card', { large, feature }]} data-kind={d.kind} data-disc={d.disciplines.join('|')}>
   <a href={href} class="media" data-ground={img?.ground ?? 'grey'} aria-label={`${d.title}: ${isCase ? 'case study' : 'snapshot'}`}>
-    {img && <img src={img.src} alt={img.alt} loading="lazy" decoding="async" />}
+    {img && <img src={img.src} alt={img.alt} loading={feature ? 'eager' : 'lazy'} decoding="async" />}
   </a>
-  <p class="label">{isCase ? 'Case study' : 'Snapshot'} · {d.disciplines.join(' · ')}</p>
-  {isAiImage(img?.caption) && <p class="ainote">Image: AI-directed mockup</p>}
-  <h3><a href={href}>{d.title}</a></h3>
-  {d.client !== d.title && <p class="client">{d.client}</p>}
-  {isCase && <a class="textcta" href={href}>View +</a>}
+  <div class="text">
+    <p class="label">{feature ? 'Featured · ' : ''}{isCase ? 'Case study' : 'Snapshot'} · {d.disciplines.join(' · ')}</p>
+    {isAiImage(img?.caption) && <p class="ainote">Image: AI-directed mockup</p>}
+    <h3><a href={href}>{d.title}</a></h3>
+    {d.client !== d.title && <p class="client">{d.client}</p>}
+    {feature && <p class="summary">{d.summary}</p>}
+    {isCase && <a class="textcta" href={href}>View +</a>}
+  </div>
 </article>
 <style>
-  .card { display:flex; flex-direction:column; gap: 6px; }
+  .card { display:flex; flex-direction:column; gap: 6px; min-width: 0; }
+  .text { display:flex; flex-direction:column; align-items:flex-start; gap: 6px; min-width: 0; }
   .card h3 a { color: var(--ink); text-decoration: none; }
   .client { margin: 0; color: var(--grey-500); font-size: 15px; }
   .label { margin: 10px 0 0; }
-  .media { display:flex; align-items:center; justify-content:center; aspect-ratio: 4 / 3; border-radius: 20px; overflow:hidden; background: var(--grey-50); }
+  .media { display:flex; align-items:center; justify-content:center; aspect-ratio: 4 / 3; width: 100%; min-width: 0; border-radius: 20px; overflow:hidden; background: var(--grey-50); }
   .media[data-ground="dark"] { background: var(--ink); }
   .media[data-ground="light"] { background: var(--white); outline: 1px solid var(--grey-200); }
-  .media img { width:100%; height:100%; object-fit: contain; }
+  .media img { width:100%; height:100%; min-width: 0; object-fit: contain; }
   .large .media { aspect-ratio: 16 / 10; }
   .textcta { font-size: 15px; }
   .ainote { margin: 0; font-size: 13px; color: #333333; }
+  .summary { margin: 4px 0 6px; font-size: 17px; }
+
+  /* Feature: a short horizontal card. Stacks on phones. */
+  .feature { background: var(--white); border-radius: 20px; padding: 16px; gap: 16px; }
+  .feature .media { aspect-ratio: 4 / 3; outline: none; }
+  .feature h3 { font-size: clamp(24px, 3vw, 34px); letter-spacing: -0.02em; line-height: 1.1; }
+  @media (min-width: 720px) {
+    .feature { display:grid; grid-template-columns: minmax(0, 280px) minmax(0, 1fr); align-items: center; gap: 32px; padding: 20px 32px 20px 20px; }
+    .feature .media { aspect-ratio: 1 / 1; }
+    .feature .label { margin-top: 0; }
+  }
 </style>

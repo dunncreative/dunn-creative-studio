@@ -28,14 +28,16 @@ const disciplines = [...new Set(entries.flatMap((e) => e.data.disciplines))];
   </section>
   <section class="band grey">
     <div class="wrap grid" id="grid">
-      {entries.map((e) => <WorkCard entry={e} large={e.data.kind === 'case-study'} />)}
+      {entries.map((e, i) => <WorkCard entry={e} feature={i === 0 && e.data.kind === 'case-study'} large={e.data.kind === 'case-study'} />)}
     </div>
     <p class="wrap empty" id="empty" hidden>Nothing here yet for that combination.</p>
   </section>
-  <section class="band dark">
+  <section class="band ctaband">
     <div class="wrap">
-      <h2>Have a project in mind?</h2>
-      <p><a class="textcta" href="mailto:chris@dunncreative.com">Let's talk +</a></p>
+      <div class="ctabox">
+        <h2>Have a project in mind?</h2>
+        <p><a class="textcta" href="mailto:chris@dunncreative.com">Let's talk +</a></p>
+      </div>
     </div>
   </section>
 </Work>
@@ -72,8 +74,10 @@ const disciplines = [...new Set(entries.flatMap((e) => e.data.disciplines))];
   button { font: inherit; font-size: 15px; padding: 8px 16px; border-radius: 999px; border: 1px solid var(--grey-200); background: var(--white); color: var(--body); cursor: pointer; }
   button[aria-pressed="true"] { background: var(--ink); color: #fff; border-color: var(--ink); }
   button:focus-visible { outline: 2px solid var(--teal-deep); outline-offset: 2px; }
-  .grid { display:grid; grid-template-columns: 1fr; gap: 40px 24px; }
-  @media (min-width: 720px) { .grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (min-width: 1040px) { .grid { grid-template-columns: repeat(3, 1fr); } .grid :global(.large) { grid-column: span 3; } .grid :global(.large:nth-of-type(n+2)) { grid-column: span 1; } }
+  /* minmax(0, 1fr) keeps wide images from pushing cards past the container. */
+  .grid { display:grid; grid-template-columns: minmax(0, 1fr); gap: 40px 24px; }
+  .grid :global(.feature) { grid-column: 1 / -1; }
+  @media (min-width: 720px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (min-width: 1040px) { .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
   .empty { color: var(--grey-500); }
 </style>

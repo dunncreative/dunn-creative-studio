@@ -1,6 +1,7 @@
 ---
 // Plain, light-first layout for the Work section previews. Greyscale; teal only on links and one CTA.
 import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
 interface Props { title: string; description?: string; navCta?: 'solid' | 'ghost' }
 const { title, description, navCta = 'solid' } = Astro.props;
 ---
@@ -40,13 +41,19 @@ const { title, description, navCta = 'solid' } = Astro.props;
       .label { font-size: 13px; font-weight: 600; letter-spacing: .04em; color: var(--grey-500); }
       .btn { display:inline-block; padding: 12px 20px; border-radius: 999px; background: var(--teal); color: var(--ink); border: 1px solid var(--ink); font-weight: 600; text-decoration: none; font-size: 15px; }
       .textcta { font-weight: 600; text-decoration: none; }
-      .site-foot { padding: 32px 0; font-size: 14px; color: var(--grey-500); border-top: 1px solid var(--grey-200); }
+      /* Bottom CTA: a rounded dark box inside the content width, not a full-bleed band. */
+      .band.ctaband { padding: 64px 0 80px; }
+      .ctabox { background: var(--ink); color: #f4f4f2; border-radius: 16px; padding: 48px 24px; }
+      @media (min-width: 720px) { .ctabox { padding: 64px 56px; } }
+      .band .ctabox h2 { color: #fff; margin-bottom: 12px; }
+      .ctabox p { margin: 12px 0 0; }
+      .ctabox a { color: var(--teal); }
     </style>
   </head>
   <body>
     <SiteHeader cta={navCta} />
     <slot name="head" />
     <main><slot /></main>
-    <footer class="site-foot"><div class="wrap">Dunn Creative · Jackson, WY · Preview, not indexed</div></footer>
+    <SiteFooter />
   </body>
 </html>

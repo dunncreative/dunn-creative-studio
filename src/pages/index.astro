@@ -93,11 +93,13 @@ const talk = 'mailto:chris@dunncreative.com';
     </div>
   </section>
 
-  <section class="band dark">
+  <section class="band ctaband">
     <div class="wrap">
-      <h2>Ready to build something sharper?</h2>
-      <p>Tell us what you're building.</p>
-      <p><a class="textcta big" href={talk}>Let's talk +</a></p>
+      <div class="ctabox">
+        <h2>Ready to build something sharper?</h2>
+        <p>Tell us what you're building.</p>
+        <p><a class="textcta big" href={talk}>Let's talk +</a></p>
+      </div>
     </div>
   </section>
 </Work>
@@ -114,9 +116,9 @@ const talk = 'mailto:chris@dunncreative.com';
   .names li { margin: 0; }
   .logos { padding: 40px 0; }
   h2 { margin-bottom: 32px; }
-  .grid { display: grid; grid-template-columns: 1fr; gap: 40px 24px; margin-bottom: 32px; }
-  @media (min-width: 720px) { .grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (min-width: 1040px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+  .grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 40px 24px; margin-bottom: 32px; }
+  @media (min-width: 720px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (min-width: 1040px) { .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
   .cards { display: grid; grid-template-columns: 1fr; gap: 16px; margin-bottom: 32px; }
   @media (min-width: 720px) { .cards { grid-template-columns: repeat(2, 1fr); } }
   @media (min-width: 1040px) { .cards { grid-template-columns: repeat(3, 1fr); } }
