@@ -7,7 +7,7 @@ import { isAiImage } from '../lib/placeholders';
 interface Props { entry: CollectionEntry<'work'>; large?: boolean; feature?: boolean }
 const { entry, feature = false } = Astro.props;
 const d = entry.data;
-const img = feature ? (d.cardImage ?? d.images[0]) : d.images[0];
+const img = d.cardImage ?? d.images[0];
 const isCase = d.kind === 'case-study';
 const href = `/work/${entry.id}/`;
 const disc = d.disciplines.join(' · ');
