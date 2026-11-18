@@ -2,6 +2,7 @@
 import { getCollection, render, type CollectionEntry } from 'astro:content';
 import Work from '../../layouts/Work.astro';
 import WorkFigure from '../../components/WorkFigure.astro';
+import { clean, cleanList, isAiImage } from '../../lib/placeholders';
 
 export async function getStaticPaths() {
   const entries = (await getCollection('work', ({ data }) => !data.draft)).sort(
@@ -26,11 +27,14 @@ const isCase = d.kind === 'case-study';
 const { Content } = await render(entry);
 const [hero, ...media] = d.images;
 const spec = d.spec ?? {};
+// Unanswered studio notes ("[confirm]", "[held: …]") are stripped; an empty field hides its row.
+const deliverables = cleanList(spec.deliverables);
+const channels = cleanList(spec.channels);
 const specItems = [
-  spec.timeline && ['Timeline', spec.timeline],
-  spec.deliverables?.length && ['Deliverables', spec.deliverables.join(' · ')],
-  spec.channels?.length && ['Channels', spec.channels.join(' · ')],
-  spec.aiUsed && ['AI used', spec.aiUsed],
+  clean(spec.timeline) && ['Timeline', clean(spec.timeline)],
+  deliverables.length && ['Deliverables', deliverables.join(' · ')],
+  channels.length && ['Channels', channels.join(' · ')],
+  clean(spec.aiUsed) && ['AI used', clean(spec.aiUsed)],
 ].filter(Boolean) as [string, string][];
 const liveHost = d.liveUrl ? new URL(d.liveUrl).hostname.replace(/^www\./, '') : null;
 ---
@@ -101,7 +105,7 @@ const liveHost = d.liveUrl ? new URL(d.liveUrl).hostname.replace(/^www\./, '') :
         <p class="label">{isCase ? 'Next project' : 'See a case study'}</p>
         <a class="nexttile" href={`/work/${next.id}/`}>
           <img src={next.data.images[0].src} alt={next.data.images[0].alt} loading="lazy" />
-          <span><h2>{next.data.title}</h2><span class="textcta">View +</span></span>
+          <span><h2>{next.data.title}</h2>{isAiImage(next.data.images[0].caption) && <span class="label">Image: AI-directed mockup</span>}<span class="textcta">View +</span></span>
         </a>
       </div>
     </section>

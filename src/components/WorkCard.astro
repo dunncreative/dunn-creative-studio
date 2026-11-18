@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content';
+import { isAiImage } from '../lib/placeholders';
 interface Props { entry: CollectionEntry<'work'>; large?: boolean }
 const { entry, large = false } = Astro.props;
 const d = entry.data;
@@ -12,6 +13,7 @@ const href = `/work/${entry.id}/`;
     {img && <img src={img.src} alt={img.alt} loading="lazy" decoding="async" />}
   </a>
   <p class="label">{isCase ? 'Case study' : 'Snapshot'} · {d.disciplines.join(' · ')}</p>
+  {isAiImage(img?.caption) && <p class="ainote">Image: AI-directed mockup</p>}
   <h3><a href={href}>{d.title}</a></h3>
   {d.client !== d.title && <p class="client">{d.client}</p>}
   {isCase && <a class="textcta" href={href}>View +</a>}
@@ -27,4 +29,5 @@ const href = `/work/${entry.id}/`;
   .media img { width:100%; height:100%; object-fit: contain; }
   .large .media { aspect-ratio: 16 / 10; }
   .textcta { font-size: 15px; }
+  .ainote { margin: 0; font-size: 13px; color: #333333; }
 </style>

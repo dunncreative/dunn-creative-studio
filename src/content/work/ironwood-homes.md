@@ -42,8 +42,14 @@ order: 7
 draft: false
 spec:
   deliverables: ["Logo system", "Color palette", "Typography", "Brand guidelines", "Business cards", "Brand mockups"]
-  channels: ["Branding", "Logo", "Brand Guidelines", "Brand Collateral"]
+  channels: ["Branding", "Logo", "Brand guidelines", "Brand collateral"]
   aiUsed: "AI-directed mockups of the logo in use"
+# Human-direction record for the AI mockups (studio note, not rendered).
+# Recorded: the ten mockups come from Freeman's folder "Ironwood Homes - Brand Image Mockups -
+# AI Creative for Real-life Examples"; Freeman chose which ones appear and picked the wall-sign hero
+# (17 Nov chat session). Every caption and the section below label them as AI-made.
+# Not yet recorded (Freeman to confirm before launch): the AI tool/model used, its commercial-use
+# terms, and whether Ironwood Homes has OK'd showing the mockups publicly.
 results: null
 ---
 
@@ -60,3 +66,7 @@ The voice rests on three ideas from Ironwood's own story: attainable by design, 
 A short guidelines document keeps it consistent: clear space, approved colors, and which version of the logo goes on which background.
 
 The photographs of the logo in use on this page are AI-directed mockups, made to show how the mark holds up on signs, trucks, timber and gear.
+
+## About the mockups
+
+Every mockup here is AI-made. None is a photo of a real sign, vehicle or site. Dunn Creative directed them to test the identity in use, and Chris Dunn chose which ones to show.
