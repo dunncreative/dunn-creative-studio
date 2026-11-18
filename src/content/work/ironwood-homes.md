@@ -48,8 +48,8 @@ spec:
 # Recorded: the ten mockups come from Freeman's folder "Ironwood Homes - Brand Image Mockups -
 # AI Creative for Real-life Examples"; Freeman chose which ones appear and picked the wall-sign hero
 # (17 Nov chat session). Every caption and the section below label them as AI-made.
-# Not yet recorded (Freeman to confirm before launch): the AI tool/model used, its commercial-use
-# terms, and whether Ironwood Homes has OK'd showing the mockups publicly.
+# Confirmed by Freeman (18 Nov): made with an X AI tool; its terms are fine for commercial use;
+# Ironwood Homes is OK with showing the mockups. Full note: docs/ironwood-mockups.md.
 results: null
 ---
 
