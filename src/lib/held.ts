@@ -151,6 +151,17 @@ export const held = {
     pages: ['Home', 'Lab', 'AI'],
     meanwhile: 'Titles from the wireframe; no dates, no pages behind them yet.',
   },
+  newsletter: {
+    label: 'email tool and send rhythm',
+    ask: 'Which email tool should the Lab signup use, and how often would you send?',
+    pages: ['Lab'],
+    meanwhile: 'The signup form is preview only and sends nothing.',
+  },
+  'lab-ai': {
+    label: 'AI use on this Lab piece',
+    ask: 'For each Lab piece, what did AI do on it? Every Lab piece says what was AI-assisted.',
+    pages: ['Lab stories'],
+  },
   'service-copy': {
     label: 'service page copy',
     ask: 'Please check the deliverables and process on the Brand, Campaigns, Print and Decks pages. Only Websites was wireframed.',

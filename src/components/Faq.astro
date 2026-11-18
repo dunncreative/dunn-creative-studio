@@ -1,21 +1,16 @@
 ---
-// Questions band: one <details> per question. Answers come through the default slot as
-// <div data-q="Question">answer</div> children so an answer can hold a <Held> chip.
-interface Props { title?: string; grey?: boolean }
-const { title = 'Questions', grey = true } = Astro.props;
+// Questions band, Ridge style: hairline-ruled rows with a plus that turns. Answers come through
+// the default slot as <details><summary>Question</summary><p>answer</p></details> children, so an
+// answer can hold a <Held> chip.
+interface Props { title?: string; grey?: boolean; label?: string }
+const { title = 'Questions', grey = false, label } = Astro.props;
 ---
 <section class:list={['band', { grey }]}>
-  <div class="wrap faq">
-    <h2>{title}</h2>
-    <slot />
+  <div class="wrap split">
+    <div>
+      {label && <p class="lbl" style="margin-bottom:14px">{label}</p>}
+      <h2>{title}</h2>
+    </div>
+    <div class="qa-list"><slot /></div>
   </div>
 </section>
-<style>
-  .faq h2 { margin-bottom: 24px; }
-  .faq :global(details) { border-bottom: 1px solid var(--grey-200); padding: 18px 0; max-width: 820px; }
-  .faq :global(summary) { cursor: pointer; font-weight: 600; color: var(--ink); font-size: var(--fs-card); list-style: none; display: flex; justify-content: space-between; gap: 16px; }
-  .faq :global(summary::-webkit-details-marker) { display: none; }
-  .faq :global(summary::after) { content: '+'; font-weight: 400; font-size: 24px; line-height: 1; }
-  .faq :global(details[open] summary::after) { content: '–'; }
-  .faq :global(details p) { margin: 10px 0 0; }
-</style>

@@ -1,52 +1,69 @@
 ---
-// Services hub, per wireframe services_v02-1 (Site Blueprint "Services", 8 bands, 2 dark).
+// Services hub, per wireframe services_v02-1 (Site Blueprint "Services"), in the Ridge look.
 // Groups and rows live in src/data/services.ts. Rows link to a detail page, to /ai,
 // or say "No detail page yet" (Marketing strategy, Photo direction).
 import Work from '../../layouts/Work.astro';
 import Held from '../../components/Held.astro';
 import Faq from '../../components/Faq.astro';
-import CtaBox from '../../components/CtaBox.astro';
-import Texture from '../../components/Texture.astro';
+import RidgeHero from '../../components/RidgeHero.astro';
+import RidgeCta from '../../components/RidgeCta.astro';
 import { groups } from '../../data/services';
-import { AUDIT } from '../../lib/site';
+import { AUDIT, TALK } from '../../lib/site';
 const href = (to: string | null) => (to === null ? null : to === '/ai' ? '/ai/' : `/services/${to}/`);
+const engage = [
+  { name: 'Audit', line: 'A senior review of your brand, site or creative workflow, with a prioritized plan you can act on.', held: true },
+  { name: 'Sprint', line: 'A defined project with a clear finish line.' },
+  { name: 'Retainer', line: 'Monthly creative capacity for teams that ship constantly: ads, social, email, decks and web updates.' },
+];
 ---
 <Work title="Services · Dunn Creative" description="Brand identity, websites, campaigns, print, decks and AI services from Dunn Creative, a senior-led studio in Jackson, WY.">
   <!-- 01 · Hero -->
+  <RidgeHero short label="Services" title="Everything a brand needs to show up well." stand="Most clients start with one thing and stay for the system. Pick the starting point that fits, and we'll connect the rest.">
+    <div class="ctas">
+      <a class="btn" href={AUDIT}>Get an audit</a>
+      <a class="textcta" href="/services/websites/">Websites +</a>
+    </div>
+    <nav class="jump" aria-label="Jump to a group">
+      {groups.map((g) => <a href={`#${g.id}`}>{g.name}</a>)}
+    </nav>
+  </RidgeHero>
+
+  <!-- 02 to 06 · Groups, one ruled row each -->
   <section class="band">
     <div class="wrap">
-      <p class="eyebrow">Services</p>
-      <h1>Everything a brand needs to show up well.</h1>
-      <p class="lede">Most clients start with one thing and stay for the system. Pick the starting point that fits, and we'll connect the rest.</p>
-      <nav class="jump" aria-label="Jump to a group">
-        <span class="label">Jump to</span>
-        {groups.map((g) => <a class="pill" href={`#${g.id}`}>{g.name}</a>)}
-      </nav>
+      {groups.map((g) => (
+        <div class="group" id={g.id}>
+          <h2>{g.name}</h2>
+          <div class="items">
+            {g.rows.map((r) => (
+              <div>
+                <h3>{href(r.to) ? <a href={href(r.to)!}>{r.name}</a> : r.name}</h3>
+                {r.line && <p>{r.line}</p>}
+                {r.held && <p><Held id={r.held} /></p>}
+                {r.tags.length > 0 && <ul class="tags">{r.tags.map((t) => <li>{t}</li>)}</ul>}
+                {href(r.to)
+                  ? <a class="textcta" href={href(r.to)!} style="display:inline-block;margin-top:12px;font-size:15px">Learn more +</a>
+                  : <p class="cap">No detail page yet</p>}
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
     </div>
   </section>
 
-  <!-- 02 to 06 · Groups -->
-  {groups.map((g) => (
-    <section class:list={['band', g.tone]} id={g.id}>
-      {g.tone === 'dark' && <Texture />}
-      <div class="wrap">
-        <div class="sec-head"><h2>{g.name}</h2></div>
-        <div class:list={['cards', { four: g.rows.length === 4 }]}>
-          {g.rows.map((r) => (
-            <article class="card-s">
-              <h3>{r.name}</h3>
-              {r.line && <p>{r.line}</p>}
-              {r.tags.length > 0 && <ul class="chips">{r.tags.map((t) => <li>{t}</li>)}</ul>}
-              {r.held && <p><Held id={r.held} /></p>}
-              {href(r.to)
-                ? <a class="textcta more" href={href(r.to)!}>Learn more +</a>
-                : <span class="more note">No detail page yet</span>}
-            </article>
-          ))}
-        </div>
+  <!-- How we engage -->
+  <section class="band grey" id="start">
+    <div class="wrap">
+      <div class="sechead"><h2>Start small. Scale when it works.</h2></div>
+      <div class="steps c3">
+        {engage.map((e, i) => (
+          <div><span class="n">{String(i + 1).padStart(2, '0')}</span><h3>{e.name}</h3><p>{e.line} {e.held && <Held id="audit-format" />}</p></div>
+        ))}
       </div>
-    </section>
-  ))}
+      <p style="margin-top:28px"><a class="textcta" href={TALK}>Talk about a sprint or retainer +</a></p>
+    </div>
+  </section>
 
   <!-- 07 · FAQ -->
   <Faq>
@@ -58,17 +75,13 @@ const href = (to: string | null) => (to === null ? null : to === '/ai' ? '/ai/' 
   </Faq>
 
   <!-- 08 · CTA -->
-  <CtaBox title="Start with an audit." button="Get an audit" href={AUDIT}>
-    <p>Not sure what you need? A senior review of your brand, site or workflow, with a prioritized plan. <Held id="audit-format" /></p>
-  </CtaBox>
+  <RidgeCta title="Start with an audit." button="Get an audit" href={AUDIT}>
+    <p class="stand">A senior review of your brand, site or creative workflow, with a prioritized plan you can act on.</p>
+    <Held id="audit-format" />
+  </RidgeCta>
 </Work>
-
 <style>
-  h1 { max-width: 16ch; }
-  .jump { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 32px; }
-  .jump .label { margin-right: 4px; }
-  .jump a.pill:hover { color: var(--white); }
-  .band[id] { scroll-margin-top: 16px; }
-  .band.dark .card-s h3 { color: var(--white); }
-  .band.dark .card-s .note { color: var(--grey-500); }
+  .group { scroll-margin-top: 16px; }
+  .group:first-child { border-top: 1px solid var(--ink); padding-top: 0; }
+  .band > .wrap > .group:first-child { padding-top: clamp(40px, 5vw, 64px); }
 </style>

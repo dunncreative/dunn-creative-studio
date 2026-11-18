@@ -1,13 +1,15 @@
 ---
-// Service detail template, per wireframe service-detail_v02 (shown there: Websites; 7 bands, 1 dark).
-// One page per service in src/data/services.ts. Only Websites was wireframed with its own copy;
-// the others carry the hub's lines and tags, and their process stays held until Freeman checks it.
+// Service detail template, per wireframe service-detail_v02 (shown there: Websites; 7 bands, 1 dark),
+// in the Ridge look. One page per service in src/data/services.ts. Only Websites was wireframed with
+// its own copy; the others carry the hub's lines and tags, and their process stays held.
 import { getCollection, type CollectionEntry } from 'astro:content';
 import Work from '../../layouts/Work.astro';
 import WorkCard from '../../components/WorkCard.astro';
 import Held from '../../components/Held.astro';
 import Faq from '../../components/Faq.astro';
-import CtaBox from '../../components/CtaBox.astro';
+import RidgeHero from '../../components/RidgeHero.astro';
+import RidgeCta from '../../components/RidgeCta.astro';
+import Texture from '../../components/Texture.astro';
 import { details, type ServiceDetail } from '../../data/services';
 import { TALK } from '../../lib/site';
 
@@ -26,69 +28,64 @@ if (s.work.length) {
   // Brand identity and Campaigns: everything tagged for that service page in the Work collection.
   work = all.filter((e) => (e.data.serviceTags as string[]).includes(s.slug)).slice(0, 6);
 }
+const n = (i: number) => String(i + 1).padStart(2, '0');
 ---
 <Work title={`${s.name} · Services · Dunn Creative`} description={s.sub}>
   <!-- 01 · Hero + spec row -->
-  <section class="band">
-    <div class="wrap">
-      <p class="eyebrow"><a href="/services/">Services</a> · {s.name}</p>
-      <h1>{s.headline}</h1>
-      <p class="lede">{s.sub}</p>
-      <div class="actions"><a class="textcta" href="#work">See the work +</a></div>
-      <dl class="specrow spec">
-        <div><dt>Timeline</dt><dd><Held id="timelines" note="typical range" /></dd></div>
-        <div><dt>Deliverables</dt><dd>{s.deliverables}</dd></div>
-        {s.slug === 'websites' && <div><dt>Formats</dt><dd><Held id="platforms" /></dd></div>}
-      </dl>
+  <RidgeHero short label={`Services · ${s.name}`} title={s.headline} stand={s.sub}>
+    <div class="ctas">
+      <a class="btn" href={TALK}>Let's talk</a>
+      <a class="textcta" href="#work">{s.workTitle} +</a>
     </div>
-  </section>
+    <dl class="spec">
+      <div><dt>Timeline</dt><dd><Held id="timelines" note="typical range" /></dd></div>
+      <div><dt>Deliverables</dt><dd>{s.deliverables}</dd></div>
+      {s.slug === 'websites' && <div><dt>Formats</dt><dd><Held id="platforms" /></dd></div>}
+    </dl>
+  </RidgeHero>
 
   <!-- 02 · What you get -->
-  <section class="band grey">
-    <div class="wrap">
-      <div class="sec-head"><h2>What you get</h2></div>
-      <ul class="checks">
-        {s.get.map((g) => <li><span class="box" aria-hidden="true"></span><span>{g.item} {g.held && <Held id={g.held} />}</span></li>)}
+  <section class="band">
+    <div class="wrap split">
+      <div><h2>What you get</h2>{s.copyHeld && <p style="margin-top:18px"><Held id="service-copy" /></p>}</div>
+      <ul class="list2">
+        {s.get.map((g, i) => <li><span class="n">{n(i)}</span><span>{g.item} {g.held && <Held id={g.held} />}</span></li>)}
       </ul>
-      {s.copyHeld && <Held id="service-copy" block />}
     </div>
   </section>
 
   <!-- 03 · Work -->
-  <section class="band" id="work">
+  <section class="band grey" id="work">
     <div class="wrap">
-      <div class="sec-head"><h2>{s.workTitle}</h2></div>
+      <div class="sechead"><h2>{s.workTitle}</h2><a class="textcta" href="/work/">All work +</a></div>
       {work.length > 0 ? (
-        <div class="grid">{work.map((e) => <WorkCard entry={e} large={e.data.kind === 'case-study'} />)}</div>
+        <div class:list={['tiles', { c2: work.length === 2 || work.length === 4 }]}>{work.map((e) => <WorkCard entry={e} />)}</div>
       ) : (
         s.workHeld && <Held id={s.workHeld} block />
       )}
-      <div class="actions"><a class="textcta" href="/work/">All work +</a></div>
     </div>
   </section>
 
-  <!-- 04 · How AI helps here -->
-  <section class="band grey">
+  <!-- 04 · How AI helps here (the page's one dark band after the hero) -->
+  <section class="band dark">
+    <Texture />
     <div class="wrap">
-      <div class="sec-head"><h2>How AI helps here</h2></div>
-      <div class="cards">
-        {s.ai.map((a) => (
-          <article class="card-s"><p class="label">{a.k}</p><p class="big">{a.v}</p></article>
-        ))}
+      <div class="sechead"><h2>How AI helps here</h2><a class="textcta" href="/ai/">How we use AI +</a></div>
+      <div class="three">
+        {s.ai.map((a) => <div><p class="lbl">{a.k}</p><h3>{a.v}</h3></div>)}
       </div>
-      <div class="actions"><a class="textcta" href="/ai/">How we use AI +</a></div>
     </div>
   </section>
 
   <!-- 05 · Process -->
   <section class="band">
     <div class="wrap">
-      <div class="sec-head"><h2>How it runs</h2></div>
+      <div class="sechead"><h2>How it runs</h2></div>
       {s.process ? (
-        <><ol class="steps">
-          {s.process.map((p) => <li><span class="n">{p.n}</span><h3>{p.t}</h3><p>{p.d}</p></li>)}
-        </ol>
-        {s.copyHeld && <Held id="draft-copy" block note="process steps: proposed titles, placeholder copy" />}</>
+        <><div class:list={['steps', { c3: s.process.length === 3 }]}>
+          {s.process.map((p) => <div><span class="n">{p.n}</span><h3>{p.t}</h3><p>{p.d}</p></div>)}
+        </div>
+        {s.copyHeld && <p class="cap" style="margin-top:24px"><Held id="draft-copy" note="process steps: proposed titles, placeholder copy" /></p>}</>
       ) : (
         <Held id="service-copy" block note="process steps for this service" />
       )}
@@ -96,34 +93,14 @@ if (s.work.length) {
   </section>
 
   <!-- 06 · FAQ -->
-  <Faq>
+  <Faq grey>
     {s.faq.map((f) => (
       <details><summary>{f.q}</summary><p>{f.a ?? (f.held && <Held id={f.held} />)}</p></details>
     ))}
   </Faq>
 
   <!-- 07 · CTA -->
-  <CtaBox title={s.cta} button="Let's talk" href={TALK} />
+  <RidgeCta title={s.cta} button="Let's talk" href={TALK}>
+    <p class="stand">{s.sub}</p>
+  </RidgeCta>
 </Work>
-
-<style>
-  h1 { max-width: 18ch; }
-  .eyebrow a { color: inherit; text-decoration: none; }
-  .eyebrow a:hover { text-decoration: underline; }
-  .spec { margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--grey-200); }
-  .checks { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 0 48px; max-width: 900px; }
-  @media (min-width: 720px) { .checks { grid-template-columns: 1fr 1fr; } }
-  .checks li { display: flex; gap: 14px; align-items: baseline; padding: 16px 0; border-bottom: 1px solid var(--grey-200); color: var(--ink); margin: 0; }
-  .box { flex: none; width: 14px; height: 14px; border: 1.5px solid var(--ink); border-radius: 3px; transform: translateY(1px); }
-  .grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 40px 20px; }
-  @media (min-width: 720px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-  @media (min-width: 1040px) { .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-  .big { font-size: var(--fs-card); font-weight: 600; line-height: 1.3; color: var(--ink); }
-  .steps { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 24px; counter-reset: none; }
-  @media (min-width: 720px) { .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-  @media (min-width: 1040px) { .steps { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
-  .steps li { margin: 0; border-top: 1.5px solid var(--ink); padding-top: 16px; }
-  .steps .n { font-weight: 600; color: var(--caption); }
-  .steps h3 { margin: 6px 0 6px; }
-  .steps p { margin: 0; }
-</style>

@@ -48,13 +48,13 @@ export const groups: HubGroup[] = [
 ];
 
 // Home "What we make": six cards (structural default 1). AI links to /ai.
-export const homeCards: { name: string; tags: string[]; href: string }[] = [
-  { name: 'Brand Identity', tags: ['Strategy', 'Logo suite', 'Guidelines'], href: '/services/brand-identity/' },
-  { name: 'Websites', tags: ['UX', 'Visual design', 'Build', 'Landing pages'], href: '/services/websites/' },
-  { name: 'Campaigns & Content', tags: ['Ads', 'Social', 'Email', 'Motion'], href: '/services/campaigns-content/' },
-  { name: 'Print & Packaging', tags: ['Packaging', 'Collateral', 'Magazine ads'], href: '/services/print-packaging/' },
-  { name: 'Decks & Presentations', tags: ['Investor', 'Sales', 'Reports'], href: '/services/decks-presentations/' },
-  { name: 'AI for Creative Teams', tags: ['Workflows', 'Training', 'Brand assistants'], href: '/ai/' },
+export const homeCards: { name: string; line: string; tags: string[]; href: string }[] = [
+  { name: 'Brand Identity', line: 'Strategy, naming, logo, type, color and the guidelines that hold it together.', tags: ['Strategy', 'Logo suite', 'Guidelines'], href: '/services/brand-identity/' },
+  { name: 'Websites', line: 'Marketing sites, landing pages and stores, designed and built to convert.', tags: ['UX', 'Visual design', 'Build', 'Landing pages'], href: '/services/websites/' },
+  { name: 'Campaigns & Content', line: 'Ads, social, email, motion and video, with variations built for testing.', tags: ['Ads', 'Social', 'Email', 'Motion'], href: '/services/campaigns-content/' },
+  { name: 'Print & Packaging', line: "Packaging and merchandise that carry the brand into people's hands.", tags: ['Packaging', 'Collateral', 'Magazine ads'], href: '/services/print-packaging/' },
+  { name: 'Decks & Presentations', line: 'Investor, sales and partnership decks that get read to the end.', tags: ['Investor', 'Sales', 'Reports'], href: '/services/decks-presentations/' },
+  { name: 'AI for Creative Teams', line: "AI built into how your team creates, with the judgment to know where it helps and where it doesn't.", tags: ['Workflows', 'Training', 'Brand assistants'], href: '/ai/' },
 ];
 
 export interface ServiceDetail {

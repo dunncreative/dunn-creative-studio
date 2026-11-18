@@ -1,5 +1,6 @@
 ---
-// Contact, per wireframe contact_v02-1 (Site Blueprint "Contact", 3 bands, 0 dark).
+// Contact, per wireframe contact_v02-1 (Site Blueprint "Contact", 3 bands, 0 dark), in the Ridge look.
+// It stays light: the ridge comes in only as a hairline between the form and the Audit band.
 // The form is demo only: it validates and shows a note, and sends nothing. At launch it posts
 // to chris@dunncreative.com through Netlify Forms (wireframe note).
 import Work from '../layouts/Work.astro';
@@ -9,33 +10,33 @@ const needs = ['Brand', 'Web', 'Content', 'AI', 'Not sure'];
 ---
 <Work title="Let's talk · Dunn Creative" description="Tell Dunn Creative what you're building. One short form, or start smaller with an audit.">
   <!-- 01 · Form -->
-  <section class="band" id="inquiry">
-    <div class="wrap split wide-left top">
+  <section class="band" id="inquiry" style="padding-top:clamp(48px,7vw,96px)">
+    <div class="wrap split" style="align-items:start">
       <div>
-        <p class="eyebrow">Let’s talk</p>
-        <h1>Tell us what you’re building.</h1>
-        <p class="lede">We read every inquiry. <Held id="response-time" /></p>
+        <p class="lbl">Let’s talk</p>
+        <h1 class="ch1">Tell us what you’re building.</h1>
+        <p class="stand">We read every inquiry. <Held id="response-time" /></p>
       </div>
-      <form class="form" id="form" novalidate>
+      <form class="rform" id="form" novalidate>
         <div class="row2">
-          <label>Name* <input name="name" autocomplete="name" required /></label>
-          <label>Email* <input name="email" type="email" autocomplete="email" required /></label>
+          <label for="f-name">Name*<input class="field" id="f-name" name="name" autocomplete="name" required /></label>
+          <label for="f-email">Email*<input class="field" id="f-email" name="email" type="email" autocomplete="email" required /></label>
         </div>
-        <label>Company <input name="company" autocomplete="organization" /></label>
+        <label for="f-co">Company<input class="field" id="f-co" name="company" autocomplete="organization" /></label>
         <fieldset>
           <legend>What you need</legend>
-          <div class="pick">{needs.map((n) => <label class="chip"><input type="checkbox" name="need" value={n} /><span class="pill">{n}</span></label>)}</div>
+          <div class="chipset">{needs.map((n) => <label><input type="checkbox" name="need" value={n} /><span>{n}</span></label>)}</div>
         </fieldset>
         <fieldset>
           <legend>Budget range</legend>
-          <div class="pick">
-            {[1, 2, 3, 4].map((i) => <label class="chip"><input type="radio" name="budget" value={`range-${i}`} /><span class="pill">Range {i}</span></label>)}
-            <label class="chip"><input type="radio" name="budget" value="not-sure" /><span class="pill">Not sure yet</span></label>
+          <div class="chipset">
+            {[1, 2, 3, 4].map((i) => <label><input type="radio" name="budget" value={`range-${i}`} /><span>Range {i}</span></label>)}
+            <label><input type="radio" name="budget" value="not-sure" /><span>Not sure yet</span></label>
           </div>
-          <Held id="budget-ranges" block />
+          <p style="margin:10px 0 0"><Held id="budget-ranges" /></p>
         </fieldset>
-        <label>Message <textarea name="message" rows="5"></textarea></label>
-        <div class="send">
+        <label for="f-msg">Message<textarea class="field" id="f-msg" name="message" rows="5"></textarea></label>
+        <div class="ctas">
           <button class="btn" type="submit">Send inquiry</button>
           <p class="status" id="status" role="status" aria-live="polite"></p>
         </div>
@@ -43,26 +44,34 @@ const needs = ['Brand', 'Web', 'Content', 'AI', 'Not sure'];
     </div>
   </section>
 
+  <div aria-hidden="true">
+    <svg class="lineridge" viewBox="0 0 1440 140" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+      <path d="M0 120 L120 96 L210 110 L330 66 L420 84 L540 36 L610 54 L700 10 L790 46 L880 26 L980 66 L1080 36 L1180 72 L1290 50 L1440 84" fill="none" stroke="#c9cbce" stroke-width="1.2" vector-effect="non-scaling-stroke"/>
+      <path d="M0 138 L150 120 L260 130 L380 98 L470 110 L600 86 L690 106 L820 76 L930 98 L1040 84 L1150 108 L1270 94 L1440 118" fill="none" stroke="#e3e3e6" stroke-width="1" vector-effect="non-scaling-stroke"/>
+    </svg>
+  </div>
+
   <!-- 02 · Or start smaller -->
   <section class="band grey" id="audit">
-    <div class="wrap">
-      <p class="eyebrow">Audit</p>
-      <h2>Or start smaller.</h2>
-      <p class="lede">A senior review of your brand, site or creative workflow, with a short, prioritized list of what to fix first.</p>
-      <p><Held id="audit-format" /></p>
-      <div class="tracks" role="group" aria-label="Audit track">
-        <button type="button" class="track pill" data-track="brand" aria-pressed="true">Brand and web</button>
-        <button type="button" class="track pill" data-track="ai" aria-pressed="false">AI workflow</button>
+    <div class="wrap split">
+      <div><p class="lbl">Audit</p><h2 style="margin-top:12px">Or start smaller.</h2></div>
+      <div>
+        <p class="stand">A senior review of your brand, site or creative workflow, with a short, prioritized list of what to fix first.</p>
+        <p style="margin-top:14px"><Held id="audit-format" /></p>
+        <div class="tracks" role="group" aria-label="Audit track">
+          <button type="button" class="track" data-track="brand" aria-pressed="true">Brand and web</button>
+          <button type="button" class="track" data-track="ai" aria-pressed="false">AI workflow</button>
+        </div>
+        <div class="ctas" style="margin-top:24px"><a class="textcta" href="#inquiry" id="get-audit">Get an audit +</a></div>
       </div>
-      <div class="actions"><a class="textcta" href="#inquiry" id="get-audit">Get an audit +</a></div>
     </div>
   </section>
 
   <!-- 03 · Direct -->
-  <section class="band">
-    <div class="wrap direct">
-      <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
-      <span>{PLACE}</span>
+  <section class="band tight">
+    <div class="wrap">
+      <p class="lbl" style="margin-bottom:14px">Or write directly</p>
+      <div class="direct"><a href={`mailto:${EMAIL}`}>{EMAIL}</a><span>{PLACE}</span></div>
     </div>
   </section>
 </Work>
@@ -94,29 +103,7 @@ const needs = ['Brand', 'Web', 'Content', 'AI', 'Not sure'];
     if (box) box.checked = true;
   });
 </script>
-
 <style>
-  .top { align-items: start; }
-  h1 { max-width: 13ch; }
-  .form { display: grid; gap: 22px; background: var(--grey-50); border-radius: var(--r-tile); padding: 24px; }
-  @media (min-width: 720px) { .form { padding: 32px; } }
-  .row2 { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; }
-  @media (min-width: 560px) { .row2 { grid-template-columns: 1fr 1fr; } }
-  label { display: grid; gap: 6px; font-weight: 600; color: var(--ink); }
-  input:not([type=checkbox]):not([type=radio]), textarea { font: inherit; font-weight: 400; padding: 12px 14px; border: 1px solid var(--grey-200); border-radius: 12px; background: var(--white); color: var(--ink); width: 100%; }
-  input:focus-visible, textarea:focus-visible, .chip input:focus-visible + span { outline: 2px solid var(--ink); outline-offset: 2px; }
-  fieldset { border: 0; padding: 0; margin: 0; }
-  legend { font-weight: 600; color: var(--ink); margin-bottom: 8px; padding: 0; }
-  .pick { display: flex; flex-wrap: wrap; gap: 8px; }
-  .chip { display: inline-flex; font-weight: 400; }
-  .chip input { position: absolute; opacity: 0; width: 1px; height: 1px; }
-  .chip .pill { background: var(--white); color: var(--ink); }
-  .chip .pill:hover, .chip input:checked + .pill { background: var(--ink); color: var(--white); }
-  .send { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; }
-  .status { margin: 0; color: var(--ink); }
-  .tracks { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
-  .direct { display: flex; flex-wrap: wrap; gap: 8px 32px; font-size: var(--fs-section); font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; color: var(--ink); }
-  .direct a { color: var(--ink); text-decoration: none; overflow-wrap: anywhere; }
-  .direct a:hover { text-decoration: underline; }
-  .direct span { color: var(--dark-grey); }
+  .ch1 { font-size: clamp(44px, 6vw, 88px); margin: 16px 0 24px; max-width: 12ch; }
+  #audit { scroll-margin-top: 16px; }
 </style>

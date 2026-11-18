@@ -1,11 +1,13 @@
 ---
 // Lab piece / series story page (wireframe lab_v02, band 04: "Each series gets its own story page.
-// Full-bleed media bands with short captions, like a case study without a client").
+// Full-bleed media bands with short captions, like a case study without a client"), in the Ridge look.
 // Nothing is written yet: titles from the wireframe, body is lorem ipsum under real section titles.
+// The first section is followed by a dark gallery (one large, one tall, a row of three, then full width).
 import Work from '../../layouts/Work.astro';
 import Held from '../../components/Held.astro';
 import MediaSlot from '../../components/MediaSlot.astro';
-import CtaBox from '../../components/CtaBox.astro';
+import RidgeHero from '../../components/RidgeHero.astro';
+import RidgeCta from '../../components/RidgeCta.astro';
 import { lab, labHref, type LabPiece } from '../../data/lab';
 import { LOREM } from '../../lib/lorem';
 import { TALK } from '../../lib/site';
@@ -14,71 +16,88 @@ export function getStaticPaths() {
   return lab.map((p, i) => ({ params: { slug: p.slug }, props: { p, next: lab[(i + 1) % lab.length] } }));
 }
 const { p, next } = Astro.props as { p: LabPiece; next: LabPiece };
+const [first, gallerySection, ...rest] = p.sections;
+const n = (i: number) => String(i + 1).padStart(2, '0');
+const gallery = [
+  { w: 'w8', r: '4 / 3', cap: 'Fig. 02 · Caption to come.' },
+  { w: 'w4', r: '3 / 4.5', cap: 'Fig. 03 · Caption to come.' },
+  { w: 'w4', r: '1 / 1', cap: 'Fig. 04' },
+  { w: 'w4', r: '1 / 1', cap: 'Fig. 05' },
+  { w: 'w4', r: '1 / 1', cap: 'Fig. 06' },
+  { w: 'w12', r: '21 / 9', cap: 'Fig. 07 · Caption to come.' },
+];
 ---
 <Work title={`${p.titleHeld ? p.label : p.title} · Lab · Dunn Creative`} description={`${p.label} from the Dunn Creative Lab.`}>
   <!-- 01 · Header -->
-  <section class="band">
+  <RidgeHero short label={`Lab · ${p.label}`} title={p.titleHeld ? p.label : p.title} meta={[p.label, 'Lab']}>
+    <p class="stand muted" slot="stand" style="margin-bottom:34px">{LOREM[0]}</p>
+    {p.titleHeld && <p style="margin:-14px 0 24px"><Held id="lab-guide" /></p>}
+    <div class="ctas"><a class="textcta" href="#gallery">See the {p.kind === 'series' ? 'series' : 'pictures'} +</a></div>
+  </RidgeHero>
+
+  <!-- 02 · Lead media, full bleed -->
+  <section class="band dark mediaband" style="padding-top:0 !important">
     <div class="wrap">
-      <p class="eyebrow"><a href="/lab/">Lab</a> · {p.label}</p>
-      <h1>{p.titleHeld ? <Held id="lab-guide" /> : p.title}</h1>
-      <p class="lede">{LOREM[0]}</p>
-      <p class="meta"><Held id="lab-posts" note="date" /> <Held id="draft-copy" /></p>
+      <MediaSlot label="Lead image or film, full width" ratio="21 / 9" dark />
+      <p class="cap">Fig. 01 · Caption to come.</p>
+      <p style="margin-top:14px"><Held id="lab-posts" note="date, images and copy" /> <Held id="draft-copy" /></p>
     </div>
   </section>
 
-  <!-- 02 · Lead media, full bleed -->
-  <section class="band dark tight lead">
-    <div class="wrap"><MediaSlot label="Lead image or film" ratio="21 / 9" dark /></div>
+  <!-- 03 · First section -->
+  <section class="band">
+    <div class="wrap">
+      <div class="casesec">
+        <div><span class="n">01</span><h2>{first}</h2></div>
+        <div class="prose">{LOREM.slice(0, 2).map((t) => <p class="muted">{t}</p>)}</div>
+      </div>
+    </div>
   </section>
 
-  <!-- 03+ · Sections, each with a media band and a short caption -->
-  {p.sections.map((title, i) => (
-    <>
-      <section class:list={['band', { grey: i % 2 === 1 }]}>
-        <div class="wrap text">
-          <p class="label">{String(i + 1).padStart(2, '0')}</p>
-          <h2>{title}</h2>
-          <div class="body">{LOREM.slice(0, i === 0 ? 2 : 3).map((t) => <p>{t}</p>)}</div>
+  <!-- 04 · Gallery (dark, no texture near the work) -->
+  <section class="band dark" id="gallery">
+    <div class="wrap">
+      <div class="sechead"><h2>{gallerySection}</h2></div>
+      <div class="gallery">
+        {gallery.map((g) => (
+          <figure class={g.w}><MediaSlot label="Image" ratio={g.r} dark /><figcaption>{g.cap}</figcaption></figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 · The rest, then AI use -->
+  <section class="band">
+    <div class="wrap">
+      {rest.map((t, i) => (
+        <div class="casesec">
+          <div><span class="n">{n(i + 2)}</span><h2>{t}</h2></div>
+          <div class="prose"><p class="muted">{LOREM[i % LOREM.length]}</p></div>
         </div>
-      </section>
-      {i < p.sections.length - 1 && (
-        <section class:list={['band', 'tight', { grey: i % 2 === 1 }]}>
-          <figure class="wrap fig">
-            <MediaSlot label={`${title}: image`} ratio={i % 2 ? '4 / 3' : '16 / 9'} />
-            <figcaption>Fig. {String(i + 1).padStart(2, '0')} · Caption to come.</figcaption>
-          </figure>
-        </section>
-      )}
-    </>
-  ))}
+      ))}
+      <div class="casesec">
+        <div><span class="n">{n(rest.length + 2)}</span><h2>AI use</h2></div>
+        <div class="prose"><p><Held id="lab-ai" /></p><p class="cap">Every Lab piece says what was AI-assisted.</p></div>
+      </div>
+    </div>
+  </section>
 
   <!-- Next piece -->
   <section class="band grey">
     <div class="wrap">
-      <a class="nexttile" href={labHref(next.slug)}>
-        <p class="label">Next in the Lab · {next.label}</p>
-        <h2>{next.titleHeld ? 'Field guide' : next.title}</h2>
-        <span class="textcta">Read +</span>
+      <p class="lbl" style="margin-bottom:18px">Next in the Lab</p>
+      <a class="next" href={labHref(next.slug)}>
+        <MediaSlot label={`${next.titleHeld ? next.label : next.title} image`} ratio="4 / 3" />
+        <div>
+          <p class="lbl">{next.label}</p>
+          <h2>{next.titleHeld ? next.label : next.title}</h2>
+          <p class="stand muted">{LOREM[1]}</p>
+        </div>
       </a>
     </div>
   </section>
 
-  <CtaBox title="Want this thinking on your brand?" button="Let's talk" href={TALK} />
+  <RidgeCta title="Want this thinking on your brand?" button="Let's talk" href={TALK}>
+    <p class="stand">Tell us what you're building.</p>
+  </RidgeCta>
 </Work>
-
-<style>
-  h1 { max-width: 18ch; }
-  .eyebrow a { color: inherit; text-decoration: none; }
-  .eyebrow a:hover { text-decoration: underline; }
-  .meta { margin-top: 24px; display: flex; flex-wrap: wrap; gap: 8px; }
-  .text { display: grid; gap: 16px; }
-  @media (min-width: 880px) { .text { grid-template-columns: 80px minmax(0, 5fr) minmax(0, 7fr); align-items: baseline; gap: 32px; } .text .body { padding-top: 6px; } }
-  .text .label { margin: 0; font-variant-numeric: tabular-nums; }
-  .body p:first-child { margin-top: 0; }
-  .fig { margin: 0 auto; }
-  figcaption { margin-top: 12px; color: var(--caption); }
-  .nexttile { display: grid; gap: 8px; text-decoration: none; color: inherit; }
-  .nexttile h2 { max-width: 22ch; }
-  .nexttile .textcta { color: var(--ink); }
-  .nexttile:hover h2 { text-decoration: underline; text-underline-offset: 6px; }
-</style>

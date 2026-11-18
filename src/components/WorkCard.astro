@@ -1,50 +1,45 @@
 ---
+// Ridge work tile: a 22px-cornered image, a caption label, a medium title and the one-line summary.
+// The whole tile is the link. Logos (images with a set ground) sit contained on their ground;
+// website screenshots crop from the top; everything else fills the tile.
 import type { CollectionEntry } from 'astro:content';
 import { isAiImage } from '../lib/placeholders';
-// feature: the one wide card at the top of the Work index. Thumbnail left, text right, kept short.
 interface Props { entry: CollectionEntry<'work'>; large?: boolean; feature?: boolean }
-const { entry, large = false, feature = false } = Astro.props;
+const { entry, feature = false } = Astro.props;
 const d = entry.data;
 const img = feature ? (d.cardImage ?? d.images[0]) : d.images[0];
 const isCase = d.kind === 'case-study';
 const href = `/work/${entry.id}/`;
+const disc = d.disciplines.join(' · ');
+const fit = img?.ground ? (d.disciplines.includes('Branding') ? 'logo' : 'box') : d.disciplines.includes('Websites') ? 'shot' : 'fill';
 ---
-<article class:list={['card', { large, feature }]} data-kind={d.kind} data-disc={d.disciplines.join('|')}>
-  <a href={href} class="media" data-ground={img?.ground ?? 'grey'} aria-label={`${d.title}: ${isCase ? 'case study' : 'snapshot'}`}>
+<a class:list={['wcard', { feat: feature }]} href={href} data-kind={d.kind} data-disc={d.disciplines.join('|')}>
+  <div class:list={['wimg', fit, img?.ground && `g-${img.ground}`]}>
     {img && <img src={img.src} alt={img.alt} loading={feature ? 'eager' : 'lazy'} decoding="async" />}
-  </a>
-  <div class="text">
-    <p class="label">{feature ? 'Featured · ' : ''}{isCase ? 'Case study' : 'Snapshot'} · {d.disciplines.join(' · ')}</p>
-    {isAiImage(img?.caption) && <p class="ainote">Image: AI-directed mockup</p>}
-    <h3><a href={href}>{d.title}</a></h3>
-    {d.client !== d.title && <p class="client">{d.client}</p>}
-    {feature && <p class="summary">{d.summary}</p>}
-    {isCase && <a class="textcta" href={href}>View +</a>}
+    {isAiImage(img?.caption) && <span class="ai-pill">AI-directed mockup</span>}
   </div>
-</article>
+  <p class="lbl">{isCase ? `${d.client} · ${disc}` : `Snapshot · ${disc}`}</p>
+  <h3>{d.title}</h3>
+  <p class="sum">{d.summary}</p>
+  {feature && isCase && <span class="textcta">Read the case study +</span>}
+</a>
 <style>
-  .card { display:flex; flex-direction:column; gap: 6px; min-width: 0; }
-  .text { display:flex; flex-direction:column; align-items:flex-start; gap: 6px; min-width: 0; }
-  .card h3 a { color: var(--ink); text-decoration: none; }
-  .client { margin: 0; color: var(--caption); }
-  .label { margin: 10px 0 0; }
-  .media { display:flex; align-items:center; justify-content:center; aspect-ratio: 4 / 3; width: 100%; min-width: 0; border-radius: var(--r-tile); overflow:hidden; background: var(--grey-50); transition: transform .2s var(--ease); }
-  .card:hover .media { transform: translateY(-2px); }
-  .media[data-ground="dark"] { background: var(--ink); }
-  .media[data-ground="light"] { background: var(--white); }
-  :global(.band:not(.grey)) .media[data-ground="light"] { background: var(--grey-50); }
-  .media img { width:100%; height:100%; min-width: 0; object-fit: contain; }
-  .large .media { aspect-ratio: 16 / 10; }
-  .ainote { margin: 0; color: var(--caption); }
-  .summary { margin: 4px 0 6px; }
-
-  /* Feature: a short horizontal card. Stacks on phones. */
-  .feature { background: var(--white); border-radius: var(--r-tile); padding: 16px; gap: 16px; }
-  .feature .media { aspect-ratio: 4 / 3; outline: none; }
-  .feature h3 { font-size: var(--fs-section); letter-spacing: -0.02em; line-height: 1.08; }
-  @media (min-width: 720px) {
-    .feature { display:grid; grid-template-columns: minmax(0, 280px) minmax(0, 1fr); align-items: center; gap: 32px; padding: 20px 32px 20px 20px; }
-    .feature .media { aspect-ratio: 1 / 1; }
-    .feature .label { margin-top: 0; }
-  }
+  .wcard { display: block; min-width: 0; text-decoration: none; color: inherit; }
+  .wcard:hover h3 { color: var(--teal-deep); }
+  .wcard:focus-visible { outline: 2px solid var(--teal); outline-offset: 4px; border-radius: var(--r-tile); }
+  .wimg { position: relative; border-radius: var(--r-tile); overflow: hidden; aspect-ratio: 4 / 3; background: var(--grey-50); transition: transform .2s var(--ease); }
+  .wcard:hover .wimg { transform: translateY(-2px); }
+  .wimg img { width: 100%; height: 100%; object-fit: cover; }
+  .wimg.shot img { object-position: 50% 0; }
+  .wimg.g-dark { background: var(--ink); }
+  .wimg.logo img { object-fit: contain; padding: 12%; }
+  .wimg.box img { object-fit: contain; padding: 8%; }
+  :global(.band.grey) .wimg.g-grey, :global(.band.grey) .wimg.g-light { background: var(--white); }
+  .lbl { margin-top: 16px; }
+  h3 { font-size: 20px; font-weight: 500; margin: 4px 0 6px; transition: color .15s; }
+  .sum { color: var(--stand); font-size: 16px; margin: 0; }
+  .textcta { display: inline-block; margin-top: 12px; color: var(--teal-deep); }
+  .feat .wimg { aspect-ratio: 21 / 9; }
+  @media (min-width: 1100px) { :global(.wgrid.c5) h3 { font-size: 17px; } :global(.wgrid.c5) .sum { font-size: 14px; } }
+  @media (max-width: 560px) { .feat .wimg { aspect-ratio: 4 / 3; } }
 </style>

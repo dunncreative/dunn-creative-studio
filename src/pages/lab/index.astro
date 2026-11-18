@@ -1,96 +1,99 @@
 ---
-// Lab, per wireframe lab_v02 (Site Blueprint "Lab", 6 bands, 1 dark). Replaces a separate Journal.
+// Lab, per wireframe lab_v02 (Site Blueprint "Lab", 6 bands, 1 dark), in the Ridge look.
 // No Lab pieces are written yet: titles come from the wireframe and each links to a lorem story page
 // (/lab/[slug], src/data/lab.ts). The series teaser band links to the first series page.
 import Work from '../../layouts/Work.astro';
 import Held from '../../components/Held.astro';
 import MediaSlot from '../../components/MediaSlot.astro';
-import CtaBox from '../../components/CtaBox.astro';
+import RidgeHero from '../../components/RidgeHero.astro';
+import RidgeCta from '../../components/RidgeCta.astro';
+import Texture from '../../components/Texture.astro';
 import { TALK } from '../../lib/site';
 import { lab, labHref } from '../../data/lab';
+import { LOREM } from '../../lib/lorem';
 
 const items = lab.filter((p) => p.slug !== 'client-zero');
 const filters = [['all', 'All'], ['series', 'Series'], ['rnd', 'R&D notes'], ['guide', 'Field guides']];
 ---
 <Work title="Lab · Dunn Creative" description="Chris Dunn's own work and experiments: series, R&D notes and field guides. No client, no brief.">
   <!-- 01 · Header -->
-  <section class="band">
-    <div class="wrap">
-      <p class="eyebrow">Lab</p>
-      <h1>Lab</h1>
-      <p class="lede">My own work and experiments. No client, no brief.</p>
-      <div class="filters" role="group" aria-label="Filter the Lab">
-        {filters.map(([v, l], i) => <button class="pill" type="button" data-value={v} aria-pressed={i === 0 ? 'true' : 'false'}>{l}</button>)}
-      </div>
+  <RidgeHero short label="Lab" title="Lab" stand="My own work and experiments. No client, no brief.">
+    <div class="filters" role="group" aria-label="Filter the Lab">
+      {filters.map(([v, l], i) => <button type="button" data-f={v} aria-pressed={i === 0 ? 'true' : 'false'}>{l}</button>)}
     </div>
-  </section>
+  </RidgeHero>
 
   <!-- 02 · Featured -->
-  <section class="band grey">
-    <div class="wrap split wide-left">
-      <MediaSlot label="Lead piece: latest series or experiment" ratio="16 / 10" />
+  <section class="band">
+    <div class="wrap split" style="align-items:center">
+      <MediaSlot label="Client Zero image" ratio="4 / 3" />
       <div>
-        <p class="label">R&D note</p>
-        <h2>Client Zero: rebuilding our own site with an agent studio</h2>
-        <p class="meta"><Held id="lab-posts" note="date and write-up" /></p>
-        <div class="actions"><a class="textcta" href={labHref('client-zero')}>Read +</a></div>
+        <p class="lbl">R&D note · Featured</p>
+        <h2 style="margin:12px 0 18px">Client Zero: rebuilding our own site with an agent studio</h2>
+        <p class="stand muted">{LOREM[0]}</p>
+        <p class="cap" style="margin-top:14px"><Held id="lab-posts" note="date and write-up" /></p>
+        <div class="ctas" style="margin-top:24px"><a class="textcta" href={labHref('client-zero')}>Read +</a></div>
       </div>
     </div>
   </section>
 
-  <!-- 03 · Grid -->
-  <section class="band">
+  <!-- 03 · Everything, as a ruled index -->
+  <section class="band grey">
     <div class="wrap">
-      <div class="tiles" id="labgrid">
-        {items.map((it) => (
-          <article class="tile" data-kind={it.kind}>
-            <MediaSlot label="Image" />
-            <p class="label">{it.label}</p>
+      <div class="sechead"><h2>Everything in the Lab</h2><Held id="lab-posts" /></div>
+      <div class="labidx" id="labgrid">
+        {items.map((it, i) => (
+          <a class="labrow" href={labHref(it.slug)} data-kind={it.kind}>
+            <span class="n">{String(i + 1).padStart(2, '0')}</span>
+            <p class="lbl">{it.label}</p>
             <h3>{it.titleHeld ? <Held id="lab-guide" /> : it.title}</h3>
-            <p class="meta"><Held id="lab-posts" note="date" /></p>
-            <a class="textcta" href={labHref(it.slug)}>Read +</a>
-          </article>
+            <span class="go">Read +</span>
+          </a>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- 04 · Series page teaser -->
-  <section class="band grey">
+  <!-- 04 · Series page teaser (the page's one dark band after the hero) -->
+  <section class="band dark">
+    <Texture />
     <div class="wrap split">
-      <MediaSlot label="Series story page preview" ratio="4 / 3" />
+      <div><p class="lbl">Series</p><h2 style="margin-top:12px">Each series gets its own story page.</h2></div>
       <div>
-        <p class="eyebrow">Series</p>
-        <h2>Each series gets its own story page.</h2>
-        <p class="lede">Full-bleed media bands with short captions, like a case study without a client.</p>
-        <div class="actions"><a class="textcta" href={labHref('celtic-triskele')}>See a series page +</a></div>
+        <p class="stand">Full-bleed media bands with short captions, like a case study without a client.</p>
+        <div class="ctas" style="margin-top:26px"><a class="btn ghost" href={labHref('celtic-triskele')}>See a series page</a></div>
       </div>
     </div>
   </section>
 
   <!-- 05 · Newsletter -->
   <section class="band">
-    <div class="wrap news">
-      <h2>New Lab drops, by email.</h2>
-      <form class="nl" id="nl" novalidate>
-        <label class="sr" for="nl-email">Email address</label>
-        <input id="nl-email" name="email" type="email" placeholder="Email address" autocomplete="email" required />
-        <button class="ghost" type="submit">Subscribe</button>
-      </form>
-      <p class="meta" id="nl-status" role="status" aria-live="polite"></p>
+    <div class="wrap split">
+      <div><h2>New Lab drops, by email.</h2></div>
+      <div>
+        <form class="signup" id="nl" novalidate>
+          <label class="sr" for="nl-email">Email address</label>
+          <input id="nl-email" name="email" type="email" placeholder="you@company.com" autocomplete="email" required />
+          <button class="btn ghost" type="submit">Subscribe</button>
+        </form>
+        <p class="status" id="nl-status" role="status" aria-live="polite" style="margin-top:12px"></p>
+        <p class="cap" style="margin-top:12px"><Held id="newsletter" /></p>
+      </div>
     </div>
   </section>
 
   <!-- 06 · CTA -->
-  <CtaBox title="Want this thinking on your brand?" button="Let's talk" href={TALK} />
+  <RidgeCta title="Want this thinking on your brand?" button="Let's talk" href={TALK}>
+    <p class="stand">Tell us what you're building.</p>
+  </RidgeCta>
 </Work>
 
 <script>
   const buttons = [...document.querySelectorAll<HTMLButtonElement>('.filters button')];
-  const tiles = [...document.querySelectorAll<HTMLElement>('#labgrid .tile')];
+  const rows = [...document.querySelectorAll<HTMLElement>('#labgrid .labrow')];
   buttons.forEach((b) => b.addEventListener('click', () => {
     buttons.forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
-    tiles.forEach((t) => { t.hidden = b.dataset.value !== 'all' && t.dataset.kind !== b.dataset.value; });
+    rows.forEach((r) => r.toggleAttribute('data-hide', b.dataset.f !== 'all' && r.dataset.kind !== b.dataset.f));
   }));
   const nl = document.getElementById('nl') as HTMLFormElement;
   nl.addEventListener('submit', (e) => {
@@ -100,15 +103,6 @@ const filters = [['all', 'All'], ['series', 'Series'], ['rnd', 'R&D notes'], ['g
       : 'Please enter a valid email.';
   });
 </script>
-
 <style>
-  .filters { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
-  .meta { margin: 8px 0 0; }
-  h2 { max-width: 20ch; }
-  .news { display: grid; gap: 20px; }
-  @media (min-width: 880px) { .news { grid-template-columns: 1fr 1fr; align-items: center; } }
-  .nl { display: flex; flex-wrap: wrap; gap: 12px; }
-  .nl input { flex: 1 1 220px; font: inherit; padding: 12px 18px; border: 1px solid var(--grey-200); border-radius: var(--r-pill); color: var(--ink); }
-  .nl input:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
-  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .labrow .lbl { margin: 0; }
 </style>

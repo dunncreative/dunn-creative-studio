@@ -1,5 +1,5 @@
 ---
-// Home, per wireframe home_v02-2 (Site Blueprint "Home", 10 bands, 2 dark).
+// Home, per wireframe home_v02-2 (10 bands), in the Ridge look Freeman picked on 18 Nov.
 // Anything only Freeman can answer is a <Held> chip (src/lib/held.ts); see /held for the list.
 import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets';
@@ -7,12 +7,12 @@ import Work from '../layouts/Work.astro';
 import WorkCard from '../components/WorkCard.astro';
 import Held from '../components/Held.astro';
 import MediaSlot from '../components/MediaSlot.astro';
-import CtaBox from '../components/CtaBox.astro';
+import RidgeHero from '../components/RidgeHero.astro';
+import RidgeCta from '../components/RidgeCta.astro';
+import Texture from '../components/Texture.astro';
 import { homeCards } from '../data/services';
 import { TALK, AUDIT } from '../lib/site';
-import hero from '../assets/studio/hero-mountain-ai-bw.webp';
 import portrait from '../assets/studio/chris-dunn-portrait-bw.webp';
-import Texture from '../components/Texture.astro';
 import { labHref } from '../data/lab';
 
 // Featured three: Deeper, Peace Park, Ironwood Homes (Freeman: Ironwood replaces GU Energy).
@@ -30,93 +30,86 @@ const lab = [
   { kind: 'R&D note', title: 'Client Zero: rebuilding our own site with an agent studio', href: labHref('client-zero') },
   { kind: 'Field guide', title: 'Field guide', guide: true, href: labHref('field-guide') },
 ];
+const n = (i: number) => String(i + 1).padStart(2, '0');
 ---
 <Work title="Dunn Creative · Brand, web and content studio in Jackson, WY" description="Dunn Creative is a senior-led brand, web and content studio in Jackson, WY, with an AI-accelerated workflow and 20+ years of brand and digital judgment.">
-  <!-- 02 · Hero: type on white, the still below. At phone width the still moves above the type. -->
-  <section class="band hero">
-    <div class="wrap copy">
-      <p class="eyebrow">Creative studio · Jackson, WY</p>
-      <h1>Brand, web and content. Built sharper, shipped faster.</h1>
-      <p class="lede">A senior-led studio with an AI-accelerated workflow. 20+ years of brand and digital judgment, with production that keeps up with your calendar.</p>
-      <div class="actions">
-        <a class="btn" href={TALK}>Let's talk</a>
-        <a class="textcta" href="/work/">See the work +</a>
-      </div>
+  <!-- 02 · Hero -->
+  <RidgeHero
+    label="Creative studio · Jackson, WY"
+    title="Brand, web and content. Built sharper, shipped faster."
+    stand="A senior-led studio with an AI-accelerated workflow. 20+ years of brand and digital judgment, with production that keeps up with your calendar."
+    meta={['Brand', 'Web', 'Content', 'Decks', 'AI for creative teams']}
+  >
+    <div class="ctas">
+      <a class="btn" href={TALK}>Let's talk</a>
+      <a class="textcta" href="/work/">See the work +</a>
     </div>
-    <figure class="wrap reel">
-      <div class="media">
-        <Image src={hero} alt="A black-and-white mountain ridge under cloud" widths={[720, 1200, 1672]} sizes="(min-width: 1200px) 1104px, 100vw" loading="eager" />
-        <span class="ai-label">AI-made image</span>
-      </div>
-      <figcaption><Held id="hero-reel" note="hero reel or Freeman's photo replaces this still" /></figcaption>
-    </figure>
-  </section>
+    <p class="cap" style="margin-top:22px"><Held id="hero-reel" note="hero reel or Freeman's photo can sit behind the ridge" /></p>
+  </RidgeHero>
 
-  <!-- 03 · Client logo strip -->
-  <section class="band grey tight" aria-label="Clients">
+  <!-- 03 · Client names -->
+  <section class="proof" aria-label="Clients">
     <div class="wrap">
-      <ul class="names">{clients.map((c) => <li>{c}</li>)}</ul>
-      <Held id="client-logos" block note="client logo files (names shown as type for now)" />
+      <span class="lbl">Brands we've built work for</span>
+      {clients.map((c) => <span>{c}</span>)}
+      <Held id="client-logos" note="client logo files (names shown as type for now)" />
     </div>
   </section>
 
   <!-- 04 · Featured work -->
-  <section class="band">
+  <section class="band" id="work">
     <div class="wrap">
-      <div class="sec-head"><h2>Recent work</h2></div>
-      <div class="grid">{featured.map((e) => <WorkCard entry={e} large />)}</div>
-      <div class="actions"><a class="textcta" href="/work/">All work +</a></div>
+      <div class="sechead"><h2>Recent work</h2><a class="textcta" href="/work/">All work +</a></div>
+      <div class="tiles">{featured.map((e) => <WorkCard entry={e} />)}</div>
     </div>
   </section>
 
   <!-- 05 · Services -->
   <section class="band grey" id="services">
     <div class="wrap">
-      <div class="sec-head"><h2>What we make</h2></div>
-      <div class="cards">
-        {homeCards.map((s) => (
-          <article class="card-s">
+      <div class="sechead"><h2>What we make</h2><a class="textcta" href="/services/">All services +</a></div>
+      <div class="index">
+        {homeCards.map((s, i) => (
+          <a href={s.href}>
+            <span class="n">{n(i)}</span>
             <h3>{s.name}</h3>
-            <ul class="chips">{s.tags.map((t) => <li>{t}</li>)}</ul>
-            <a class="textcta more" href={s.href}>Learn more +</a>
-          </article>
+            <p>{s.line}</p>
+            <ul class="tags">{s.tags.map((t) => <li>{t}</li>)}</ul>
+          </a>
         ))}
       </div>
     </div>
   </section>
 
   <!-- 06 · AI band (dark, texture allowed) -->
-  <section class="band dark aiband">
+  <section class="band dark">
     <Texture />
     <div class="wrap">
-      <div class="two">
-        <div>
-          <p class="eyebrow">Creative studio</p>
-          <h2>We make the work.</h2>
-          <p class="lede">Brand, web, content and decks. One senior creative director directs every job, from the first idea to the final file.</p>
-        </div>
-        <div>
-          <p class="eyebrow">AI studio</p>
-          <h2>And we build the AI that makes it.</h2>
-          <p class="lede">AI drafts, versions and preps. People make the strategy, the direction and the final calls.</p>
-        </div>
+      <div class="split" style="margin-bottom:56px">
+        <div><p class="lbl">Creative studio</p><h2 style="margin-top:12px">We make the work.</h2></div>
+        <div><p class="lbl">AI studio</p><h2 style="margin-top:12px;color:#9a9da1">And we build the AI that makes it.</h2></div>
       </div>
-      <div class="actions"><a class="textcta" href="/ai/">How we use AI +</a></div>
+      <div class="three">
+        <div><p class="lbl">01</p><h3>One senior director</h3><p>One senior creative director directs every job, from the first idea to the final file.</p></div>
+        <div><p class="lbl">02</p><h3>Agent studio</h3><p>AI drafts, versions and preps. People make the strategy, the direction and the final calls.</p></div>
+        <div><p class="lbl">03</p><h3>Production tools</h3><p>Production that keeps up with your calendar.</p></div>
+      </div>
+      <div class="ctas" style="margin-top:44px"><a class="textcta" href="/ai/">How we use AI +</a></div>
     </div>
   </section>
 
   <!-- 07 · How we engage -->
   <section class="band">
     <div class="wrap">
-      <div class="sec-head"><h2>Start small. Scale when it works.</h2></div>
-      <div class="cards">
-        {engage.map((e) => (
-          <article class="card-s">
+      <div class="sechead"><h2>Start small. Scale when it works.</h2></div>
+      <div class="steps c3">
+        {engage.map((e, i) => (
+          <div>
+            <span class="n">{n(i)}</span>
             <h3>{e.name}</h3>
-            <p>{e.line}</p>
-            {e.held && <p><Held id="audit-format" /></p>}
-            <a class="textcta more" href={e.href}>Learn more +</a>
-          </article>
+            <p>{e.line} {e.held && <Held id="audit-format" />}</p>
+            <a class="textcta" href={e.href}>Learn more +</a>
+          </div>
         ))}
       </div>
     </div>
@@ -126,29 +119,29 @@ const lab = [
   <section class="band grey">
     <div class="wrap split">
       <figure class="portrait">
-        <Image src={portrait} alt="Chris Dunn, black-and-white portrait" widths={[480, 800]} sizes="(min-width: 880px) 520px, 100vw" />
-        <figcaption><Held id="portrait-home" note="portrait pick: default is Chris-Dunn-Portrait-1.jpg" /></figcaption>
+        <Image src={portrait} alt="Chris Dunn, black-and-white portrait" widths={[480, 800]} sizes="(min-width: 880px) 480px, 100vw" />
       </figure>
       <div>
-        <p class="eyebrow">Founder</p>
-        <h2>Every project is directed by Chris Dunn.</h2>
-        <p class="lede">20+ years in creative direction, brand, web and content, most of it in action sports, film and lifestyle, where the work has to look as good as the footage. Senior creative roles at Teton Gravity Research; film campaign credits on We Are Blood, The Fourth Phase and View From A Blue Moon.</p>
-        <div class="actions"><a class="textcta" href="/about/">About the studio +</a></div>
+        <p class="lbl">Founder</p>
+        <h2 style="margin:14px 0 22px">Every project is directed by Chris Dunn.</h2>
+        <p class="stand">20+ years in creative direction, brand, web and content, most of it in action sports, film and lifestyle, where the work has to look as good as the footage. Senior creative roles at Teton Gravity Research; film campaign credits on We Are Blood, The Fourth Phase and View From A Blue Moon.</p>
+        <p class="cap" style="margin-top:18px"><Held id="portrait-home" note="portrait pick: default is Chris-Dunn-Portrait-1.jpg" /></p>
+        <div class="ctas" style="margin-top:24px"><a class="textcta" href="/about/">About the studio +</a></div>
       </div>
     </div>
   </section>
 
   <!-- 09 · From the Lab -->
-  <section class="band">
+  <section class="band" id="lab">
     <div class="wrap">
-      <div class="sec-head"><h2>From the Lab</h2></div>
+      <div class="sechead"><h2>From the Lab</h2><a class="textcta" href="/lab/">The Lab +</a></div>
       <div class="tiles">
         {lab.map((l) => (
           <article class="tile">
-            <MediaSlot label="Lab image" />
-            <p class="label">{l.kind}</p>
+            <MediaSlot label="Lab image" ratio="1 / 1" />
+            <p class="lbl">{l.kind}</p>
             <h3>{l.guide ? <Held id="lab-guide" /> : l.title}</h3>
-            <p class="meta"><Held id="lab-posts" note="date" /></p>
+            <p class="cap"><Held id="lab-posts" note="date" /></p>
             <a class="textcta" href={l.href}>Read +</a>
           </article>
         ))}
@@ -157,37 +150,8 @@ const lab = [
   </section>
 
   <!-- 10 · Final CTA -->
-  <CtaBox title="Ready to build something sharper?" button="Let's talk" href={TALK}>
-    <p>Tell us what you're building. <Held id="response-time" /></p>
-  </CtaBox>
+  <RidgeCta title="Ready to build something sharper?" button="Let's talk" href={TALK} id="talk">
+    <p class="stand">Tell us what you're building.</p>
+    <Held id="response-time" />
+  </RidgeCta>
 </Work>
-
-<style>
-  .hero { padding-top: clamp(48px, 7vw, 104px); padding-bottom: 0; display: flex; flex-direction: column; }
-  .hero > .wrap { width: 100%; }
-  .hero h1 { max-width: 15ch; }
-  .reel { margin-top: clamp(40px, 6vw, 80px); }
-  .media { position: relative; overflow: hidden; border-radius: var(--r-tile); background: var(--ink); aspect-ratio: 21 / 9; }
-  .media :global(img) { width: 100%; height: 100%; object-fit: cover; object-position: 70% 40%; animation: push 14s var(--ease) .3s forwards; }
-  @keyframes push { from { transform: scale(1); } to { transform: scale(1.06); } }
-  .ai-label { position: absolute; left: 16px; bottom: 16px; background: rgba(11,12,13,.88); color: var(--white); font-size: var(--fs-body); font-weight: 600; padding: 6px 14px; border-radius: var(--r-pill); }
-  figcaption { margin-top: 12px; color: var(--caption); }
-  @media (max-width: 759px) {
-    .hero { padding-top: 24px; }
-    .reel { order: -1; margin: 0 0 28px; }
-    .media { aspect-ratio: 4 / 5; }
-    .media :global(img) { object-position: 72% 50%; }
-  }
-  .names { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 12px 36px; font-size: var(--fs-card); font-weight: 600; color: var(--ink); }
-  .names li { margin: 0; }
-  .grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 40px 20px; }
-  @media (min-width: 720px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-  @media (min-width: 1040px) { .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-  .two { display: grid; grid-template-columns: minmax(0, 1fr); gap: 48px; }
-  @media (min-width: 880px) { .two { grid-template-columns: 1fr 1fr; gap: 64px; } }
-  .two h2 { max-width: 14ch; }
-  .portrait { margin: 0; }
-  .portrait :global(img) { border-radius: var(--r-tile); width: 100%; aspect-ratio: 1 / 1; object-fit: cover; }
-  .portrait figcaption { margin-top: 12px; }
-  .meta { margin: 0; }
-</style>
