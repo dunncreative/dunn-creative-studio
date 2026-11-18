@@ -24,6 +24,8 @@ a.textcta:hover, a.textcta:focus-visible { color: var(--teal-deep); text-decorat
 :is(a,button).btn { display: inline-flex; align-items: center; gap: 8px; cursor: pointer; font: 600 var(--fs-body)/1 var(--font); padding: 16px 26px; border: 0; border-radius: var(--r-btn); background: var(--teal); color: var(--ink); text-decoration: none; transition: background .2s var(--ease), color .2s var(--ease); }
 :is(a,button).btn:hover, :is(a,button).btn:focus-visible { background: var(--teal-deep); color: var(--white); }
 :is(a,button).btn:focus-visible, :is(a,button).ghost:focus-visible, a.textcta:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+.band.dark :is(a,button).btn { color: var(--ink); }
+.band.dark :is(a,button).btn:hover, .band.dark :is(a,button).btn:focus-visible { color: var(--white); }
 .band.dark :is(a,button).btn:focus-visible { outline-color: var(--white); }
 /* Ink outline button: the nav "Let's talk" and every secondary button. */
 :is(a,button).btn.ghost, :is(a,button).ghost { display: inline-flex; align-items: center; font: 600 var(--fs-body)/1 var(--font); padding: 12px 20px; border: 0; border-radius: var(--r-btn); background: transparent; color: var(--ink); text-decoration: none; box-shadow: inset 0 0 0 1.5px var(--ink); cursor: pointer; }
