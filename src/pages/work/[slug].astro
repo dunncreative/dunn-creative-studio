@@ -158,5 +158,6 @@ const liveHost = d.liveUrl ? new URL(d.liveUrl).hostname.replace(/^www\./, '') :
   .snap :global(.snapfig) { margin-top: 40px; }
   .nexttile { display:grid; gap: 20px; text-decoration: none; margin-top: 12px; }
   .nexttile img { border-radius: var(--r-tile); max-height: 420px; object-fit: cover; width: 100%; background: var(--white); }
+  .nexttile .textcta { color: var(--ink); }
   @media (min-width: 900px) { .nexttile { grid-template-columns: 2fr 1fr; align-items: center; } }
 </style>
