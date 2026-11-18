@@ -12,12 +12,12 @@ import { homeCards } from '../data/services';
 import { TALK, AUDIT } from '../lib/site';
 import hero from '../assets/studio/hero-mountain-ai-bw.webp';
 import portrait from '../assets/studio/chris-dunn-portrait-bw.webp';
-import texture from '../assets/studio/dc-symbol-white-tile.webp';
+import Texture from '../components/Texture.astro';
 
-// Featured three as drawn (Deeper, Peace Park, GU Energy). Ironwood swap waits on Freeman.
-const featured = (await getCollection('work', ({ data }) => !data.draft && data.featured)).sort(
-  (a, b) => a.data.order - b.data.order,
-);
+// Featured three in the order drawn: Deeper, Peace Park, GU Energy. Ironwood swap waits on Freeman.
+const FEATURED = ['jeremy-jones-deeper', 'peace-park', 'gu-energy'];
+const all = await getCollection('work', ({ data }) => !data.draft);
+const featured = FEATURED.map((id) => all.find((e) => e.id === id)).filter((e) => e !== undefined);
 const clients = ['Teton Gravity Research', 'Brain Farm', 'GU Energy', 'Stio', 'Peace Park', 'Asymbol', 'Ironwood Homes'];
 const engage = [
   { name: 'Audit', line: 'A senior review of your brand, site or creative workflow, with a prioritized plan you can act on.', href: AUDIT, held: true },
@@ -30,10 +30,10 @@ const lab = [
   { kind: 'Field guide', title: 'Field guide', guide: true },
 ];
 ---
-<Work navCta="ghost" title="Dunn Creative · Brand, web and content studio in Jackson, WY" description="Dunn Creative is a senior-led brand, web and content studio in Jackson, WY, with an AI-accelerated workflow and 20+ years of brand and digital judgment.">
-  <!-- 02 · Hero -->
+<Work title="Dunn Creative · Brand, web and content studio in Jackson, WY" description="Dunn Creative is a senior-led brand, web and content studio in Jackson, WY, with an AI-accelerated workflow and 20+ years of brand and digital judgment.">
+  <!-- 02 · Hero: type on white, the still below. At phone width the still moves above the type. -->
   <section class="band hero">
-    <div class="wrap">
+    <div class="wrap copy">
       <p class="eyebrow">Creative studio · Jackson, WY</p>
       <h1>Brand, web and content. Built sharper, shipped faster.</h1>
       <p class="lede">A senior-led studio with an AI-accelerated workflow. 20+ years of brand and digital judgment, with production that keeps up with your calendar.</p>
@@ -43,8 +43,11 @@ const lab = [
       </div>
     </div>
     <figure class="wrap reel">
-      <Image src={hero} alt="A black-and-white mountain ridge under cloud" widths={[720, 1200, 1672]} sizes="(min-width: 1200px) 1136px, 100vw" loading="eager" />
-      <figcaption>Stand-in for the hero reel: an AI-made still. <Held id="hero-reel" /></figcaption>
+      <div class="media">
+        <Image src={hero} alt="A black-and-white mountain ridge under cloud" widths={[720, 1200, 1672]} sizes="(min-width: 1200px) 1104px, 100vw" loading="eager" />
+        <span class="ai-label">AI-made image</span>
+      </div>
+      <figcaption><Held id="hero-reel" note="hero reel or Freeman's photo replaces this still" /></figcaption>
     </figure>
   </section>
 
@@ -82,8 +85,8 @@ const lab = [
   </section>
 
   <!-- 06 · AI band (dark, texture allowed) -->
-  <section class="band dark aiband" style={`--texture:url(${texture.src})`}>
-    <div class="texture" aria-hidden="true"></div>
+  <section class="band dark aiband">
+    <Texture />
     <div class="wrap">
       <div class="two">
         <div>
@@ -159,25 +162,30 @@ const lab = [
 </Work>
 
 <style>
-  .hero { padding-bottom: 32px; }
-  @media (min-width: 880px) { .hero { padding-top: 112px; } }
+  .hero { padding-top: clamp(48px, 7vw, 104px); padding-bottom: 0; display: flex; flex-direction: column; }
   .hero h1 { max-width: 15ch; }
-  .hero .lede { max-width: 56ch; }
-  .reel { margin-top: 56px; }
-  .reel :global(img) { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 20px; }
-  figcaption { margin-top: 10px; font-size: 14px; color: var(--grey-500); }
-  .names { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 12px 36px; font-size: 19px; font-weight: 600; color: var(--grey-500); }
+  .reel { margin-top: clamp(40px, 6vw, 80px); }
+  .media { position: relative; overflow: hidden; border-radius: var(--r-tile); background: var(--ink); aspect-ratio: 21 / 9; }
+  .media :global(img) { width: 100%; height: 100%; object-fit: cover; object-position: 70% 40%; animation: push 14s var(--ease) .3s forwards; }
+  @keyframes push { from { transform: scale(1); } to { transform: scale(1.06); } }
+  .ai-label { position: absolute; left: 16px; bottom: 16px; background: rgba(11,12,13,.88); color: var(--white); font-size: var(--fs-body); font-weight: 600; padding: 6px 14px; border-radius: var(--r-pill); }
+  figcaption { margin-top: 12px; color: var(--caption); }
+  @media (max-width: 759px) {
+    .hero { padding-top: 24px; }
+    .reel { order: -1; margin: 0 0 28px; }
+    .media { aspect-ratio: 4 / 5; }
+    .media :global(img) { object-position: 72% 50%; }
+  }
+  .names { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 12px 36px; font-size: var(--fs-card); font-weight: 600; color: var(--ink); }
   .names li { margin: 0; }
-  .grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 40px 24px; }
+  .grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 40px 20px; }
   @media (min-width: 720px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   @media (min-width: 1040px) { .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-  .aiband { position: relative; isolation: isolate; overflow: hidden; }
-  .texture { position: absolute; inset: 0; z-index: -1; pointer-events: none; background: var(--texture) repeat 0 0 / 120px auto; opacity: .08;
-    -webkit-mask-image: radial-gradient(120% 90% at 100% 0, #000, rgba(0,0,0,.6) 30%, transparent 62%); mask-image: radial-gradient(120% 90% at 100% 0, #000, rgba(0,0,0,.6) 30%, transparent 62%); }
   .two { display: grid; grid-template-columns: minmax(0, 1fr); gap: 48px; }
   @media (min-width: 880px) { .two { grid-template-columns: 1fr 1fr; gap: 64px; } }
   .two h2 { max-width: 14ch; }
   .portrait { margin: 0; }
-  .portrait :global(img) { border-radius: 20px; width: 100%; aspect-ratio: 1 / 1; object-fit: cover; }
-  .meta { margin: 0; font-size: 14px; color: var(--grey-500); }
+  .portrait :global(img) { border-radius: var(--r-tile); width: 100%; aspect-ratio: 1 / 1; object-fit: cover; }
+  .portrait figcaption { margin-top: 12px; }
+  .meta { margin: 0; }
 </style>

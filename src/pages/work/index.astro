@@ -17,13 +17,13 @@ const disciplines = [...new Set(entries.flatMap((e) => e.data.disciplines))];
       <p class="lede">Brand work. Websites. Campaigns. Decks.</p>
       <div class="filters" role="group" aria-label="Filter work">
         <div class="row" data-filter="kind">
-          <button type="button" aria-pressed="true" data-value="all">All</button>
-          <button type="button" aria-pressed="false" data-value="case-study">Case studies</button>
-          <button type="button" aria-pressed="false" data-value="snapshot">Snapshots</button>
+          <button class="pill" type="button" aria-pressed="true" data-value="all">All</button>
+          <button class="pill" type="button" aria-pressed="false" data-value="case-study">Case studies</button>
+          <button class="pill" type="button" aria-pressed="false" data-value="snapshot">Snapshots</button>
         </div>
         <div class="row" data-filter="disc">
-          <button type="button" aria-pressed="true" data-value="all">Any service</button>
-          {disciplines.map((d) => <button type="button" aria-pressed="false" data-value={d}>{d}</button>)}
+          <button class="pill" type="button" aria-pressed="true" data-value="all">Any service</button>
+          {disciplines.map((d) => <button class="pill" type="button" aria-pressed="false" data-value={d}>{d}</button>)}
         </div>
       </div>
     </div>
@@ -63,16 +63,13 @@ const disciplines = [...new Set(entries.flatMap((e) => e.data.disciplines))];
 </script>
 
 <style>
-  .lede { font-size: 20px; margin: 16px 0 28px; }
+  .lede { margin: 16px 0 32px; }
   .filters { display:flex; flex-direction:column; gap: 10px; }
   .row { display:flex; flex-wrap:wrap; gap: 8px; }
-  button { font: inherit; font-size: 15px; padding: 8px 16px; border-radius: 999px; border: 1px solid var(--grey-200); background: var(--white); color: var(--body); cursor: pointer; }
-  button[aria-pressed="true"] { background: var(--ink); color: #fff; border-color: var(--ink); }
-  button:focus-visible { outline: 2px solid var(--teal-deep); outline-offset: 2px; }
   /* minmax(0, 1fr) keeps wide images from pushing cards past the container. */
-  .grid { display:grid; grid-template-columns: minmax(0, 1fr); gap: 40px 24px; }
+  .grid { display:grid; grid-template-columns: minmax(0, 1fr); gap: 40px 20px; }
   .grid :global(.feature) { grid-column: 1 / -1; }
   @media (min-width: 720px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   @media (min-width: 1040px) { .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-  .empty { color: var(--grey-500); }
+  .empty { color: var(--dark-grey); }
 </style>

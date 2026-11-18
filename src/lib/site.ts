@@ -54,3 +54,6 @@ export const defaults = [
     where: 'src/data/services.ts (groups)',
   },
 ];
+
+/** Nav look for every page: 'light' for now (Freeman, 18 Nov). A page can pass nav="dark" to Work. */
+export const NAV_THEME: 'light' | 'dark' = 'light';

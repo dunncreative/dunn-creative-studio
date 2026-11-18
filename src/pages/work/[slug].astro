@@ -6,6 +6,7 @@ import { clean, cleanList, isAiImage } from '../../lib/placeholders';
 import Held from '../../components/Held.astro';
 import MediaSlot from '../../components/MediaSlot.astro';
 import { SHOW_HELD } from '../../lib/held';
+import CtaBox from '../../components/CtaBox.astro';
 
 export async function getStaticPaths() {
   const entries = (await getCollection('work', ({ data }) => !data.draft)).sort(
@@ -46,13 +47,13 @@ const holdAi = isCase && !clean(spec.aiUsed);
 const isDeeper = entry.id === 'jeremy-jones-deeper';
 const liveHost = d.liveUrl ? new URL(d.liveUrl).hostname.replace(/^www\./, '') : null;
 ---
-<Work title={`${d.title} · Work · Dunn Creative`} description={d.summary} navCta={isCase ? 'ghost' : 'solid'}>
+<Work title={`${d.title} · Work · Dunn Creative`} description={d.summary}>
   {isCase ? (
     <header slot="head" class="local">
       <div class="wrap">
         <a href="/work/" class="crumb">Work</a>
         <strong>{d.title}</strong>
-        <a class="btn" href="/contact/">Start a project</a>
+        <a class="ghost" href="/contact/">Start a project</a>
       </div>
     </header>
   ) : null}
@@ -132,26 +133,28 @@ const liveHost = d.liveUrl ? new URL(d.liveUrl).hostname.replace(/^www\./, '') :
       </div>
     </section>
   )}
+
+  {isCase && <CtaBox title="Have a project in mind?" button="Start a project" href="/contact/" texture={false} />}
 </Work>
 
 <style>
   .local { position: sticky; top: 0; z-index: 10; background: rgba(255,255,255,.94); backdrop-filter: blur(8px); border-bottom: 1px solid var(--grey-200); }
   .local .wrap { display:flex; align-items:center; gap: 16px; height: 60px; }
   .local strong { color: var(--ink); flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .crumb { color: var(--grey-500); text-decoration: none; font-size: 15px; }
-  .hero .label { color: #a3a3a0; }
-  .lede { font-size: 20px; margin: 16px 0 0; }
-  .hero .lede { color: #d6d6d3; }
+  .local .ghost { padding: 10px 18px; }
+  .crumb { color: var(--caption); text-decoration: none; }
+  .hero .label { color: var(--grey-500); }
+  .lede { margin: 16px 0 0; }
+  .hero .lede { color: var(--grey-200); }
   .hero :global(.heroimg) { margin-top: 48px; }
-  .hero :global(figcaption) { color: #a3a3a0; }
+  .hero :global(figcaption) { color: var(--grey-500); }
   .mediaband.light { background: var(--white); }
   .spec { display:grid; grid-template-columns: 1fr; gap: 20px; margin-top: 0; margin-bottom: 0; }
   @media (min-width: 720px) { .spec { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); } }
-  .spec dd { margin: 4px 0 0; color: var(--ink); }
+  .spec dd { margin: 4px 0 0; color: var(--ink); font-weight: 600; }
   .prose :global(h2) { margin-bottom: 16px; }
-  .prose :global(p) { font-size: 19px; }
   .snap :global(.snapfig) { margin-top: 40px; }
   .nexttile { display:grid; gap: 20px; text-decoration: none; margin-top: 12px; }
-  .nexttile img { border-radius: 20px; max-height: 420px; object-fit: cover; width: 100%; background: var(--white); }
+  .nexttile img { border-radius: var(--r-tile); max-height: 420px; object-fit: cover; width: 100%; background: var(--white); }
   @media (min-width: 900px) { .nexttile { grid-template-columns: 2fr 1fr; align-items: center; } }
 </style>

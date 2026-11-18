@@ -6,6 +6,7 @@ import Held from '../components/Held.astro';
 import MediaSlot from '../components/MediaSlot.astro';
 import Faq from '../components/Faq.astro';
 import CtaBox from '../components/CtaBox.astro';
+import Texture from '../components/Texture.astro';
 import { AUDIT_AI, TALK } from '../lib/site';
 
 const changes = [
@@ -23,6 +24,7 @@ const offers = [
 <Work title="AI · Dunn Creative" description="How Dunn Creative uses AI: senior direction, an agent studio and production tools, with people making every final call.">
   <!-- 01 · Hero (dark) -->
   <section class="band dark hero">
+    <Texture /><!-- Texture on the AI hero: Freeman to confirm (see /held). Delete this tag to remove it. -->
     <div class="wrap">
       <p class="eyebrow">AI</p>
       <h1>AI is how we work, not what we sell.</h1>
@@ -116,22 +118,19 @@ const offers = [
 </Work>
 
 <style>
-  .hero { padding: 88px 0; }
-  @media (min-width: 880px) { .hero { padding: 136px 0; } }
   .hero h1 { max-width: 14ch; }
   .flow { display: grid; justify-items: center; gap: 12px; max-width: 900px; margin: 0 auto; }
-  .node { display: grid; gap: 2px; text-align: center; background: var(--white); border: 1px solid var(--grey-200); border-radius: 16px; padding: 16px 20px; width: 100%; }
-  .node strong { color: var(--ink); font-size: 18px; }
-  .node span { font-size: 14px; color: var(--grey-500); }
+  .node { display: grid; gap: 2px; text-align: center; background: var(--white); border-radius: var(--r-tile); padding: 20px 24px; width: 100%; }
+  .node strong { color: var(--ink); font-size: var(--fs-card); }
+  .node span { color: var(--caption); }
   .lead, .gate { max-width: 360px; }
-  .gate { border: 1.5px solid var(--ink); }
+  .gate { box-shadow: inset 0 0 0 1.5px var(--ink); }
   .seats { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; width: 100%; }
   @media (min-width: 720px) { .seats { grid-template-columns: repeat(4, 1fr); } }
-  .arrow { font-size: 24px; color: var(--grey-500); }
+  .arrow { font-size: var(--fs-card); color: var(--dark-grey); }
   #studio :global(.held.block) { margin: 24px auto 0; }
-  .tiles.four { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 16px; }
+  .tiles.four { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 20px; }
   @media (min-width: 1040px) { .tiles.four { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
-  .tile h3 { font-size: 18px; }
-  .note { color: var(--grey-500); font-size: 15px; margin-top: 24px; }
-  .stance { font-size: clamp(26px, 3.4vw, 40px); line-height: 1.2; letter-spacing: -0.02em; font-weight: 600; color: var(--ink); max-width: 28ch; margin: 0; }
+  .note { margin-top: 24px; }
+  .stance { font-size: var(--fs-section); line-height: 1.15; letter-spacing: -0.02em; font-weight: 700; color: var(--ink); max-width: 28ch; margin: 0; }
 </style>

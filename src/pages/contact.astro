@@ -7,7 +7,7 @@ import Held from '../components/Held.astro';
 import { EMAIL, PLACE } from '../lib/site';
 const needs = ['Brand', 'Web', 'Content', 'AI', 'Not sure'];
 ---
-<Work navCta="ghost" title="Let's talk · Dunn Creative" description="Tell Dunn Creative what you're building. One short form, or start smaller with an audit.">
+<Work title="Let's talk · Dunn Creative" description="Tell Dunn Creative what you're building. One short form, or start smaller with an audit.">
   <!-- 01 · Form -->
   <section class="band" id="inquiry">
     <div class="wrap split wide-left top">
@@ -24,13 +24,13 @@ const needs = ['Brand', 'Web', 'Content', 'AI', 'Not sure'];
         <label>Company <input name="company" autocomplete="organization" /></label>
         <fieldset>
           <legend>What you need</legend>
-          <div class="pick">{needs.map((n) => <label class="chip"><input type="checkbox" name="need" value={n} /><span>{n}</span></label>)}</div>
+          <div class="pick">{needs.map((n) => <label class="chip"><input type="checkbox" name="need" value={n} /><span class="pill">{n}</span></label>)}</div>
         </fieldset>
         <fieldset>
           <legend>Budget range</legend>
           <div class="pick">
-            {[1, 2, 3, 4].map((i) => <label class="chip"><input type="radio" name="budget" value={`range-${i}`} /><span>Range {i}</span></label>)}
-            <label class="chip"><input type="radio" name="budget" value="not-sure" /><span>Not sure yet</span></label>
+            {[1, 2, 3, 4].map((i) => <label class="chip"><input type="radio" name="budget" value={`range-${i}`} /><span class="pill">Range {i}</span></label>)}
+            <label class="chip"><input type="radio" name="budget" value="not-sure" /><span class="pill">Not sure yet</span></label>
           </div>
           <Held id="budget-ranges" block />
         </fieldset>
@@ -51,8 +51,8 @@ const needs = ['Brand', 'Web', 'Content', 'AI', 'Not sure'];
       <p class="lede">A senior review of your brand, site or creative workflow, with a short, prioritized list of what to fix first.</p>
       <p><Held id="audit-format" /></p>
       <div class="tracks" role="group" aria-label="Audit track">
-        <button type="button" class="track" data-track="brand" aria-pressed="true">Brand and web</button>
-        <button type="button" class="track" data-track="ai" aria-pressed="false">AI workflow</button>
+        <button type="button" class="track pill" data-track="brand" aria-pressed="true">Brand and web</button>
+        <button type="button" class="track pill" data-track="ai" aria-pressed="false">AI workflow</button>
       </div>
       <div class="actions"><a class="textcta" href="#inquiry" id="get-audit">Get an audit +</a></div>
     </div>
@@ -98,27 +98,25 @@ const needs = ['Brand', 'Web', 'Content', 'AI', 'Not sure'];
 <style>
   .top { align-items: start; }
   h1 { max-width: 13ch; }
-  .form { display: grid; gap: 20px; background: var(--grey-50); border-radius: 20px; padding: 24px; }
+  .form { display: grid; gap: 22px; background: var(--grey-50); border-radius: var(--r-tile); padding: 24px; }
   @media (min-width: 720px) { .form { padding: 32px; } }
   .row2 { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; }
   @media (min-width: 560px) { .row2 { grid-template-columns: 1fr 1fr; } }
-  label { display: grid; gap: 6px; font-size: 15px; font-weight: 600; color: var(--ink); }
-  input:not([type=checkbox]):not([type=radio]), textarea { font: inherit; font-weight: 400; font-size: 17px; padding: 12px 14px; border: 1px solid #c9c9ce; border-radius: 10px; background: var(--white); color: var(--ink); width: 100%; }
-  input:focus-visible, textarea:focus-visible, .chip input:focus-visible + span, .track:focus-visible { outline: 2px solid var(--teal-deep); outline-offset: 2px; }
+  label { display: grid; gap: 6px; font-weight: 600; color: var(--ink); }
+  input:not([type=checkbox]):not([type=radio]), textarea { font: inherit; font-weight: 400; padding: 12px 14px; border: 1px solid var(--grey-200); border-radius: 12px; background: var(--white); color: var(--ink); width: 100%; }
+  input:focus-visible, textarea:focus-visible, .chip input:focus-visible + span { outline: 2px solid var(--ink); outline-offset: 2px; }
   fieldset { border: 0; padding: 0; margin: 0; }
-  legend { font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: 8px; padding: 0; }
+  legend { font-weight: 600; color: var(--ink); margin-bottom: 8px; padding: 0; }
   .pick { display: flex; flex-wrap: wrap; gap: 8px; }
   .chip { display: inline-flex; font-weight: 400; }
   .chip input { position: absolute; opacity: 0; width: 1px; height: 1px; }
-  .chip span { padding: 8px 16px; border-radius: 999px; border: 1px solid #c9c9ce; background: var(--white); color: var(--body); cursor: pointer; font-size: 15px; }
-  .chip input:checked + span { background: var(--ink); border-color: var(--ink); color: #fff; }
+  .chip .pill { background: var(--white); color: var(--ink); }
+  .chip .pill:hover, .chip input:checked + .pill { background: var(--ink); color: var(--white); }
   .send { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; }
-  .status { margin: 0; font-size: 15px; color: var(--ink); }
+  .status { margin: 0; color: var(--ink); }
   .tracks { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
-  .track { font: inherit; font-size: 15px; padding: 8px 16px; border-radius: 999px; border: 1px solid #c9c9ce; background: var(--white); color: var(--body); cursor: pointer; }
-  .track[aria-pressed="true"] { background: var(--ink); color: #fff; border-color: var(--ink); }
-  .direct { display: flex; flex-wrap: wrap; gap: 8px 32px; font-size: clamp(22px, 3vw, 32px); font-weight: 600; color: var(--ink); }
+  .direct { display: flex; flex-wrap: wrap; gap: 8px 32px; font-size: var(--fs-section); font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; color: var(--ink); }
   .direct a { color: var(--ink); text-decoration: none; overflow-wrap: anywhere; }
   .direct a:hover { text-decoration: underline; }
-  .direct span { color: var(--grey-500); }
+  .direct span { color: var(--dark-grey); }
 </style>

@@ -44,12 +44,10 @@ const open = items.filter(([, i]) => !i.answer);
 
 <style>
   h2 { margin-bottom: 24px; }
-  .chip { display: inline-block; padding: 0 8px; border: 1.5px dashed #6b6e72; border-radius: 6px; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; color: #6b6e72; }
+  .chip { display: inline-block; padding: 0 8px; border: 1.5px dashed var(--dark-grey); border-radius: 6px; font-size: 13px; font-weight: 700; color: var(--dark-grey); }
   .list { list-style: none; padding: 0; margin: 0; display: grid; gap: 0; max-width: 900px; counter-reset: n; }
   .list li { margin: 0; padding: 20px 0; border-bottom: 1px solid var(--grey-200); scroll-margin-top: 24px; }
   .list li:target { background: var(--white); outline: 1.5px solid var(--ink); outline-offset: 8px; border-radius: 4px; }
-  .list h3 { font-size: 19px; }
   .list p { margin: 6px 0 0; }
-  .meta { font-size: 14px; color: var(--grey-500); }
-  .done { font-size: 12px; font-weight: 600; padding: 2px 8px; border-radius: 999px; background: var(--ink); color: #fff; margin-left: 6px; vertical-align: middle; }
+  .done { font-size: 13px; font-weight: 600; padding: 2px 8px; border-radius: 999px; background: var(--ink); color: #fff; margin-left: 6px; vertical-align: middle; }
 </style>
