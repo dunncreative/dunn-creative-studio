@@ -8,6 +8,7 @@ import Faq from '../components/Faq.astro';
 import CtaBox from '../components/CtaBox.astro';
 import Texture from '../components/Texture.astro';
 import { AUDIT_AI, TALK } from '../lib/site';
+import { labHref } from '../data/lab';
 
 const changes = [
   ['Faster first rounds', 'Options to react to sooner.'],
@@ -71,8 +72,8 @@ const offers = [
     <div class="wrap">
       <div class="sec-head"><h2>AI in the work</h2></div>
       <div class="tiles four">
-        <article class="tile"><MediaSlot label="Tile" ratio="1 / 1" /><p class="label">Lab</p><h3>Client Zero: this site</h3></article>
-        <article class="tile"><MediaSlot label="Tile" ratio="1 / 1" /><p class="label">Lab</p><h3>Celtic / triskele series</h3></article>
+        <article class="tile"><MediaSlot label="Tile" ratio="1 / 1" /><p class="label">Lab</p><h3>Client Zero: this site</h3><a class="textcta" href={labHref('client-zero')}>Read +</a></article>
+        <article class="tile"><MediaSlot label="Tile" ratio="1 / 1" /><p class="label">Lab</p><h3>Celtic / triskele series</h3><a class="textcta" href={labHref('celtic-triskele')}>Read +</a></article>
         <article class="tile"><MediaSlot label="Tile" ratio="1 / 1" /><p class="label">Client</p><h3><Held id="ai-projects" note="AI-assisted project 1" /></h3></article>
         <article class="tile"><MediaSlot label="Tile" ratio="1 / 1" /><p class="label">Client</p><h3><Held id="ai-projects" note="AI-assisted project 2" /></h3></article>
       </div>

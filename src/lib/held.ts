@@ -155,12 +155,24 @@ export const held = {
     label: 'service page copy',
     ask: 'Please check the deliverables and process on the Brand, Campaigns, Print and Decks pages. Only Websites was wireframed.',
     pages: ['Service pages'],
-    meanwhile: 'Deliverables taken from the Services hub tags; process left open.',
+    meanwhile: 'Deliverables from the Services hub tags; process shown as proposed step titles with lorem ipsum.',
   },
   'deck-work': {
     label: 'deck work to show',
     ask: 'Is there deck or presentation work that can be shown? None is in the Work list yet.',
     pages: ['Decks & Presentations'],
+  },
+  'draft-copy': {
+    label: 'placeholder copy',
+    ask: 'Lorem ipsum stands in for detail copy here. Section titles are real; the paragraphs need writing (or a yes to draft them).',
+    pages: ['Service pages', 'Case studies', 'Lab pieces', 'AI statement'],
+    meanwhile: 'Lorem ipsum under real section titles (Freeman, 18 Nov: placeholder text is fine to keep moving).',
+  },
+  'privacy-copy': {
+    label: 'privacy policy text',
+    ask: 'The privacy page needs real policy text before launch (what the contact form collects, analytics, who to contact).',
+    pages: ['Privacy'],
+    meanwhile: 'Section titles with lorem ipsum. Not a real policy.',
   },
 } satisfies Record<string, HeldItem>;
 

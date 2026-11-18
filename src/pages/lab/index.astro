@@ -1,21 +1,15 @@
 ---
 // Lab, per wireframe lab_v02 (Site Blueprint "Lab", 6 bands, 1 dark). Replaces a separate Journal.
-// No Lab pieces are written yet, so titles come from the wireframe and nothing links to a piece.
-// The /lab/[series] story template is drawn as a teaser here (structural default 4).
+// No Lab pieces are written yet: titles come from the wireframe and each links to a lorem story page
+// (/lab/[slug], src/data/lab.ts). The series teaser band links to the first series page.
 import Work from '../../layouts/Work.astro';
 import Held from '../../components/Held.astro';
 import MediaSlot from '../../components/MediaSlot.astro';
 import CtaBox from '../../components/CtaBox.astro';
 import { TALK } from '../../lib/site';
+import { lab, labHref } from '../../data/lab';
 
-const items = [
-  { kind: 'series', label: 'Series', title: 'Celtic / triskele' },
-  { kind: 'series', label: 'Series', title: 'Hoverboarding' },
-  { kind: 'series', label: 'Series', title: 'Money history' },
-  { kind: 'rnd', label: 'R&D note', title: 'Agent studio' },
-  { kind: 'rnd', label: 'R&D note', title: 'Workflows' },
-  { kind: 'guide', label: 'Field guide', title: '', guide: true },
-];
+const items = lab.filter((p) => p.slug !== 'client-zero');
 const filters = [['all', 'All'], ['series', 'Series'], ['rnd', 'R&D notes'], ['guide', 'Field guides']];
 ---
 <Work title="Lab · Dunn Creative" description="Chris Dunn's own work and experiments: series, R&D notes and field guides. No client, no brief.">
@@ -39,6 +33,7 @@ const filters = [['all', 'All'], ['series', 'Series'], ['rnd', 'R&D notes'], ['g
         <p class="label">R&D note</p>
         <h2>Client Zero: rebuilding our own site with an agent studio</h2>
         <p class="meta"><Held id="lab-posts" note="date and write-up" /></p>
+        <div class="actions"><a class="textcta" href={labHref('client-zero')}>Read +</a></div>
       </div>
     </div>
   </section>
@@ -51,8 +46,9 @@ const filters = [['all', 'All'], ['series', 'Series'], ['rnd', 'R&D notes'], ['g
           <article class="tile" data-kind={it.kind}>
             <MediaSlot label="Image" />
             <p class="label">{it.label}</p>
-            <h3>{it.guide ? <Held id="lab-guide" /> : it.title}</h3>
+            <h3>{it.titleHeld ? <Held id="lab-guide" /> : it.title}</h3>
             <p class="meta"><Held id="lab-posts" note="date" /></p>
+            <a class="textcta" href={labHref(it.slug)}>Read +</a>
           </article>
         ))}
       </div>
@@ -67,7 +63,7 @@ const filters = [['all', 'All'], ['series', 'Series'], ['rnd', 'R&D notes'], ['g
         <p class="eyebrow">Series</p>
         <h2>Each series gets its own story page.</h2>
         <p class="lede">Full-bleed media bands with short captions, like a case study without a client.</p>
-        <p class="meta">The first series page goes up with the first series.</p>
+        <div class="actions"><a class="textcta" href={labHref('celtic-triskele')}>See a series page +</a></div>
       </div>
     </div>
   </section>

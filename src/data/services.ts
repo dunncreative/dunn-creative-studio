@@ -4,6 +4,7 @@
 // own lines and tags, and leave the rest held (see src/lib/held.ts, "service-copy").
 import type { HeldId } from '../lib/held';
 import { AUDIT_AI } from '../lib/site';
+import { LOREM_SHORT } from '../lib/lorem';
 
 export type ServiceSlug = 'brand-identity' | 'websites' | 'campaigns-content' | 'print-packaging' | 'decks-presentations';
 
@@ -129,6 +130,13 @@ export const details: ServiceDetail[] = [
     work: [],
     workTitle: 'Brands we’ve built',
     ai: aiGeneric,
+    // Step titles are a proposed shape; descriptions are lorem until Freeman checks them (service-copy).
+    process: [
+      { n: '01', t: 'Discover', d: LOREM_SHORT },
+      { n: '02', t: 'Strategy', d: LOREM_SHORT },
+      { n: '03', t: 'Identity', d: LOREM_SHORT },
+      { n: '04', t: 'Guidelines and rollout', d: LOREM_SHORT },
+    ],
     faq: [
       { q: 'Do you work with existing brands?', a: 'Yes. Refreshes, extensions and ongoing support are common starting points.' },
       { q: 'How many revisions?', held: 'revisions' },
@@ -150,6 +158,13 @@ export const details: ServiceDetail[] = [
     work: [],
     workTitle: 'Campaigns we’ve made',
     ai: aiGeneric,
+    // Step titles are a proposed shape; descriptions are lorem until Freeman checks them (service-copy).
+    process: [
+      { n: '01', t: 'Brief', d: LOREM_SHORT },
+      { n: '02', t: 'Concept', d: LOREM_SHORT },
+      { n: '03', t: 'Make and version', d: LOREM_SHORT },
+      { n: '04', t: 'Launch and learn', d: LOREM_SHORT },
+    ],
     faq: [
       { q: 'Can you work with our media buyer or agency?', a: 'Yes. We deliver in the specs and naming they need.' },
       { q: 'How many revisions?', held: 'revisions' },
@@ -168,6 +183,13 @@ export const details: ServiceDetail[] = [
     work: ['jeremy-jones-deeper', 'gu-energy', 'asymbol'],
     workTitle: 'Print and packaging we’ve made',
     ai: aiGeneric,
+    // Step titles are a proposed shape; descriptions are lorem until Freeman checks them (service-copy).
+    process: [
+      { n: '01', t: 'Brief', d: LOREM_SHORT },
+      { n: '02', t: 'Design', d: LOREM_SHORT },
+      { n: '03', t: 'Proof and prepress', d: LOREM_SHORT },
+      { n: '04', t: 'Production', d: LOREM_SHORT },
+    ],
     faq: [
       { q: 'Do you work with existing brands?', a: 'Yes. Refreshes, extensions and ongoing support are common starting points.' },
       { q: 'How many revisions?', held: 'revisions' },
@@ -187,6 +209,13 @@ export const details: ServiceDetail[] = [
     workTitle: 'Decks we’ve made',
     workHeld: 'deck-work',
     ai: aiGeneric,
+    // Step titles are a proposed shape; descriptions are lorem until Freeman checks them (service-copy).
+    process: [
+      { n: '01', t: 'The argument', d: LOREM_SHORT },
+      { n: '02', t: 'Story and structure', d: LOREM_SHORT },
+      { n: '03', t: 'Design', d: LOREM_SHORT },
+      { n: '04', t: 'Final files and handover', d: LOREM_SHORT },
+    ],
     faq: [
       { q: 'How many revisions?', held: 'revisions' },
       { q: 'How long does it take?', held: 'timelines' },

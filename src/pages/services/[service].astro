@@ -85,9 +85,10 @@ if (s.work.length) {
     <div class="wrap">
       <div class="sec-head"><h2>How it runs</h2></div>
       {s.process ? (
-        <ol class="steps">
+        <><ol class="steps">
           {s.process.map((p) => <li><span class="n">{p.n}</span><h3>{p.t}</h3><p>{p.d}</p></li>)}
         </ol>
+        {s.copyHeld && <Held id="draft-copy" block note="process steps: proposed titles, placeholder copy" />}</>
       ) : (
         <Held id="service-copy" block note="process steps for this service" />
       )}

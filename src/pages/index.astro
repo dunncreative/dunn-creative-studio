@@ -13,6 +13,7 @@ import { TALK, AUDIT } from '../lib/site';
 import hero from '../assets/studio/hero-mountain-ai-bw.webp';
 import portrait from '../assets/studio/chris-dunn-portrait-bw.webp';
 import Texture from '../components/Texture.astro';
+import { labHref } from '../data/lab';
 
 // Featured three: Deeper, Peace Park, Ironwood Homes (Freeman: Ironwood replaces GU Energy).
 const FEATURED = ['jeremy-jones-deeper', 'peace-park', 'ironwood-homes'];
@@ -25,9 +26,9 @@ const engage = [
   { name: 'Retainer', line: 'Monthly creative capacity for teams that ship constantly: ads, social, email, decks and web updates.', href: TALK },
 ];
 const lab = [
-  { kind: 'Series', title: 'Celtic / triskele' },
-  { kind: 'R&D note', title: 'Client Zero: rebuilding our own site with an agent studio' },
-  { kind: 'Field guide', title: 'Field guide', guide: true },
+  { kind: 'Series', title: 'Celtic / triskele', href: labHref('celtic-triskele') },
+  { kind: 'R&D note', title: 'Client Zero: rebuilding our own site with an agent studio', href: labHref('client-zero') },
+  { kind: 'Field guide', title: 'Field guide', guide: true, href: labHref('field-guide') },
 ];
 ---
 <Work title="Dunn Creative · Brand, web and content studio in Jackson, WY" description="Dunn Creative is a senior-led brand, web and content studio in Jackson, WY, with an AI-accelerated workflow and 20+ years of brand and digital judgment.">
@@ -148,7 +149,7 @@ const lab = [
             <p class="label">{l.kind}</p>
             <h3>{l.guide ? <Held id="lab-guide" /> : l.title}</h3>
             <p class="meta"><Held id="lab-posts" note="date" /></p>
-            <a class="textcta" href="/lab/">Read +</a>
+            <a class="textcta" href={l.href}>Read +</a>
           </article>
         ))}
       </div>

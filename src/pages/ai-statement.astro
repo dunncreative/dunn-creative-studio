@@ -1,0 +1,54 @@
+---
+// AI statement (footer link). The stance line is the approved copy from the AI page;
+// the sections under it are real titles with lorem ipsum until the statement is written.
+import Work from '../layouts/Work.astro';
+import Held from '../components/Held.astro';
+import CtaBox from '../components/CtaBox.astro';
+import { LOREM } from '../lib/lorem';
+import { TALK } from '../lib/site';
+const sections = [
+  ['What AI does here', 'AI drafts, versions and preps.'],
+  ['What people do', 'People make the strategy, the direction and the final calls.'],
+  ['Disclosure', 'We tell you what’s AI-assisted, every time.'],
+  ['Your files and data', ''],
+  ['Ownership', ''],
+  ['Tools we use', 'We pick for your workflow: ChatGPT, Claude, Midjourney, Adobe Firefly, Runway and others.'],
+];
+---
+<Work title="AI statement · Dunn Creative" description="How Dunn Creative uses AI, and what people always decide.">
+  <section class="band">
+    <div class="wrap">
+      <p class="eyebrow">AI statement</p>
+      <h1>Directed, not generated.</h1>
+      <p class="lede">AI drafts, versions and preps. People make the strategy, the direction and the final calls. We tell you what’s AI-assisted, every time.</p>
+      <p class="meta"><Held id="draft-copy" note="statement detail copy" /></p>
+    </div>
+  </section>
+  <section class="band grey">
+    <div class="wrap">
+      <ol class="rows">
+        {sections.map(([t, line], i) => (
+          <li>
+            <span class="n">{String(i + 1).padStart(2, '0')}</span>
+            <h2>{t}</h2>
+            <div>{line && <p class="first">{line}</p>}<p>{LOREM[i % 3]}</p></div>
+          </li>
+        ))}
+      </ol>
+      {/* Ownership answer is a held item on the AI page FAQ too. */}
+      <p class="meta"><Held id="ownership" /></p>
+    </div>
+  </section>
+  <CtaBox title="Questions about how we use AI?" button="Let's talk" href={TALK} />
+</Work>
+<style>
+  h1 { max-width: 14ch; }
+  .meta { margin-top: 24px; }
+  .rows { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--grey-200); }
+  .rows li { display: grid; gap: 8px 32px; padding: 28px 0; border-bottom: 1px solid var(--grey-200); margin: 0; }
+  @media (min-width: 880px) { .rows li { grid-template-columns: 64px minmax(0, 4fr) minmax(0, 7fr); align-items: baseline; } }
+  .rows .n { color: var(--caption); font-variant-numeric: tabular-nums; }
+  .rows h2 { font-size: var(--fs-card); }
+  .rows p { margin: 0 0 10px; }
+  .rows .first { color: var(--ink); font-weight: 600; }
+</style>

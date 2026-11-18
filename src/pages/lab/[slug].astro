@@ -1,0 +1,84 @@
+---
+// Lab piece / series story page (wireframe lab_v02, band 04: "Each series gets its own story page.
+// Full-bleed media bands with short captions, like a case study without a client").
+// Nothing is written yet: titles from the wireframe, body is lorem ipsum under real section titles.
+import Work from '../../layouts/Work.astro';
+import Held from '../../components/Held.astro';
+import MediaSlot from '../../components/MediaSlot.astro';
+import CtaBox from '../../components/CtaBox.astro';
+import { lab, labHref, type LabPiece } from '../../data/lab';
+import { LOREM } from '../../lib/lorem';
+import { TALK } from '../../lib/site';
+
+export function getStaticPaths() {
+  return lab.map((p, i) => ({ params: { slug: p.slug }, props: { p, next: lab[(i + 1) % lab.length] } }));
+}
+const { p, next } = Astro.props as { p: LabPiece; next: LabPiece };
+---
+<Work title={`${p.titleHeld ? p.label : p.title} · Lab · Dunn Creative`} description={`${p.label} from the Dunn Creative Lab.`}>
+  <!-- 01 · Header -->
+  <section class="band">
+    <div class="wrap">
+      <p class="eyebrow"><a href="/lab/">Lab</a> · {p.label}</p>
+      <h1>{p.titleHeld ? <Held id="lab-guide" /> : p.title}</h1>
+      <p class="lede">{LOREM[0]}</p>
+      <p class="meta"><Held id="lab-posts" note="date" /> <Held id="draft-copy" /></p>
+    </div>
+  </section>
+
+  <!-- 02 · Lead media, full bleed -->
+  <section class="band dark tight lead">
+    <div class="wrap"><MediaSlot label="Lead image or film" ratio="21 / 9" dark /></div>
+  </section>
+
+  <!-- 03+ · Sections, each with a media band and a short caption -->
+  {p.sections.map((title, i) => (
+    <>
+      <section class:list={['band', { grey: i % 2 === 1 }]}>
+        <div class="wrap text">
+          <p class="label">{String(i + 1).padStart(2, '0')}</p>
+          <h2>{title}</h2>
+          <div class="body">{LOREM.slice(0, i === 0 ? 2 : 3).map((t) => <p>{t}</p>)}</div>
+        </div>
+      </section>
+      {i < p.sections.length - 1 && (
+        <section class:list={['band', 'tight', { grey: i % 2 === 1 }]}>
+          <figure class="wrap fig">
+            <MediaSlot label={`${title}: image`} ratio={i % 2 ? '4 / 3' : '16 / 9'} />
+            <figcaption>Fig. {String(i + 1).padStart(2, '0')} · Caption to come.</figcaption>
+          </figure>
+        </section>
+      )}
+    </>
+  ))}
+
+  <!-- Next piece -->
+  <section class="band grey">
+    <div class="wrap">
+      <a class="nexttile" href={labHref(next.slug)}>
+        <p class="label">Next in the Lab · {next.label}</p>
+        <h2>{next.titleHeld ? 'Field guide' : next.title}</h2>
+        <span class="textcta">Read +</span>
+      </a>
+    </div>
+  </section>
+
+  <CtaBox title="Want this thinking on your brand?" button="Let's talk" href={TALK} />
+</Work>
+
+<style>
+  h1 { max-width: 18ch; }
+  .eyebrow a { color: inherit; text-decoration: none; }
+  .eyebrow a:hover { text-decoration: underline; }
+  .meta { margin-top: 24px; display: flex; flex-wrap: wrap; gap: 8px; }
+  .text { display: grid; gap: 16px; }
+  @media (min-width: 880px) { .text { grid-template-columns: 80px minmax(0, 5fr) minmax(0, 7fr); align-items: baseline; gap: 32px; } .text .body { padding-top: 6px; } }
+  .text .label { margin: 0; font-variant-numeric: tabular-nums; }
+  .body p:first-child { margin-top: 0; }
+  .fig { margin: 0 auto; }
+  figcaption { margin-top: 12px; color: var(--caption); }
+  .nexttile { display: grid; gap: 8px; text-decoration: none; color: inherit; }
+  .nexttile h2 { max-width: 22ch; }
+  .nexttile .textcta { color: var(--ink); }
+  .nexttile:hover h2 { text-decoration: underline; text-underline-offset: 6px; }
+</style>

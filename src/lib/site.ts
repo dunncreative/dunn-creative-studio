@@ -40,12 +40,12 @@ export const defaults = [
   },
   {
     q: 'Lab series page',
-    applied: 'A teaser band on /lab. The /lab/[series] template is not built yet.',
+    applied: 'A teaser band on /lab, plus a /lab/[slug] story page for each wireframed piece (lorem until written).',
     where: 'src/pages/lab/index.astro',
   },
   {
     q: 'Case study closing',
-    applied: 'Ends on Next project with no CTA band; the sticky “Start a project” is the CTA.',
+    applied: 'Ends on Next project, then a “Have a project in mind?” band with “Start a project” (no texture).',
     where: 'src/pages/work/[slug].astro',
   },
   {
