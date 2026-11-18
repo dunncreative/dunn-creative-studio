@@ -6,7 +6,7 @@ disciplines: ["Branding"]
 services: ["Brand identity", "Logo design"]
 summary: "A launch identity for an alliance of coworking spaces in mountain towns. The mark is about spaces joining forces."
 images:
-  - src: "https://images.squarespace-cdn.com/content/v1/5faa1246c94542301efd0f02/1605667946446-5NYQXWI9CA2RV3JLAFCH/mountain-cowork-logo-design-horizontal.png?format=1500w"
+  - src: "/work/mountain-cowork-alliance/mountain-cowork-logo-design-horizontal.webp"
     alt: "Mountain Cowork Alliance horizontal logo: interlocking triangles beside the name"
     ground: grey
 featured: false

@@ -6,13 +6,13 @@ disciplines: ["Campaigns"]
 services: ["Magazine ads", "Marketing collateral", "Social promo imagery", "Brochures", "Nutrition plan cards"]
 summary: "Overflow design partner to GU Energy's in-house team."
 images:
-  - src: "https://images.squarespace-cdn.com/content/v1/5faa1246c94542301efd0f02/1606731693319-YXOBC5TZ3D03OTVXMPPR/GU-International-Energy-Drink-Mix-Print-Ad-8-5x11-Bike-e1490762216746.jpg?format=1500w"
+  - src: "/work/gu-energy/gu-international-energy-drink-mix-print-ad-8-5x11-bike-e1490762216746.webp"
     alt: "GU Energy Drink Mix print ad with a mountain biker and product tubs"
     caption: "Print ad for GU Energy Drink Mix."
-  - src: "https://images.squarespace-cdn.com/content/v1/5faa1246c94542301efd0f02/1606732173447-LN58MC2WOQVL8WL04MS8/GU-International-Energy-Drink-Mix-Social-Ad-600x400-Bike-01.jpg?format=1500w"
+  - src: "/work/gu-energy/gu-international-energy-drink-mix-social-ad-600x400-bike-01.webp"
     alt: "GU Energy Drink Mix social promo with a cyclist and three product tubs"
     caption: "Social promo, same campaign."
-  - src: "https://images.squarespace-cdn.com/content/v1/5faa1246c94542301efd0f02/1606732922014-N1HG3I6G0J2IJK0ACHYD/GU-Key-Features-Action-Shots-Electro-V2-01.jpg?format=1500w"
+  - src: "/work/gu-energy/gu-key-features-action-shots-electro-v2-01.webp"
     alt: "GU ingredient image: Electrolytes, maintain proper hydration, beside a trail runner"
     caption: "Ingredient imagery: electrolytes."
 featured: true

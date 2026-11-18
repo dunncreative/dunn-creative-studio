@@ -1,4 +1,5 @@
 ---
+import { clean } from '../lib/placeholders';
 // One work image. When `mobile` is set, the desktop and phone screenshots of the
 // same page sit side by side at equal height (columns sized by their aspect ratios).
 interface Props {
@@ -9,6 +10,7 @@ interface Props {
 }
 const { image, ground, lazy = false, class: cls } = Astro.props;
 const loading = lazy ? 'lazy' : undefined;
+const caption = clean(image.caption);
 ---
 {image.mobile ? (
   <figure class:list={['shots', cls]}>
@@ -16,12 +18,12 @@ const loading = lazy ? 'lazy' : undefined;
       <img class="desk" src={image.src} alt={`${image.alt} on desktop`} width="1440" height="900" loading={loading} decoding="async" />
       <img class="phone" src={image.mobile} alt={`${image.alt} on a phone`} width="485" height="844" loading={loading} decoding="async" />
     </div>
-    {image.caption && <figcaption>{image.caption}</figcaption>}
+    {caption && <figcaption>{caption}</figcaption>}
   </figure>
 ) : (
   <figure class={cls} data-ground={image.ground ?? ground}>
     <img src={image.src} alt={image.alt} loading={loading} decoding="async" />
-    {image.caption && <figcaption>{image.caption}</figcaption>}
+    {caption && <figcaption>{caption}</figcaption>}
   </figure>
 )}
 <style>

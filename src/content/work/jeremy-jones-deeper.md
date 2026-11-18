@@ -6,13 +6,13 @@ disciplines: ["Campaigns"]
 services: ["Packaging", "Poster", "Magazine ads", "DVD menu", "Marketing collateral"]
 summary: "Packaging, poster, ads and DVD menu for TGR's snowboard film Deeper."
 images:
-  - src: "https://images.squarespace-cdn.com/content/v1/5faa1246c94542301efd0f02/1606729161798-9FRSXNR6K7OVLBY5R9R2/jeremy-jones-deeper-box-wide.jpg?format=1500w"
+  - src: "/work/jeremy-jones-deeper/jeremy-jones-deeper-box-wide.webp"
     alt: "Deeper DVD packaging, back and front covers"
     caption: "Packaging: the special collectors edition box, front and back."
-  - src: "https://images.squarespace-cdn.com/content/v1/5faa1246c94542301efd0f02/1606718010443-9OUMI5DONXG6CRHTC17K/jeremy-jones-deeper.jpg?format=1500w"
+  - src: "/work/jeremy-jones-deeper/jeremy-jones-deeper.webp"
     alt: "Deeper key art: the film title over a black-and-white mountain face"
     caption: "Key art for the film."
-  - src: "https://images.squarespace-cdn.com/content/v1/5faa1246c94542301efd0f02/1606718471482-E7S84ZZJHFAEEF07J9Z4/jeremy-jones-deeper-magazine-ad.jpg?format=1500w"
+  - src: "/work/jeremy-jones-deeper/jeremy-jones-deeper-magazine-ad.webp"
     alt: "Deeper magazine ad, portrait format"
     caption: "Magazine ad."
 featured: true
