@@ -2,6 +2,7 @@
 // Plain, light-first layout for the Work section previews. Greyscale; teal only on links and one CTA.
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
+import '../styles/site.css';
 interface Props { title: string; description?: string; navCta?: 'solid' | 'ghost' }
 const { title, description, navCta = 'solid' } = Astro.props;
 ---

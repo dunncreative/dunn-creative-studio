@@ -1,14 +1,9 @@
 ---
 // Global footer, matched to the lead pages' footer (black band, white logo, tagline, bottom row),
 // plus the main site links and the Explore lead pages.
-// AI, Lab and About aren't built yet, so they render as text marked "soon", like the header.
-const site = [
-  { label: 'Work', href: '/work/' },
-  { label: 'Services', href: '/services/' },
-  { label: 'AI' },
-  { label: 'Lab' },
-  { label: 'About' },
-];
+import Held from './Held.astro';
+import { FOOTER_NAV, EMAIL, PLACE } from '../lib/site';
+const site: { label: string; href?: string }[] = FOOTER_NAV;
 const explore = [
   { label: 'A · Get started', href: '/explore/dunn-creative-lead-a-get-started.html' },
   { label: 'B · Book a 30-minute call', href: '/explore/dunn-creative-lead-b-ai-call.html' },
@@ -16,7 +11,7 @@ const explore = [
 ];
 const year = new Date().getFullYear();
 ---
-<footer class="foot">
+<footer class="foot on-dark">
   <div class="wrap">
     <div class="top">
       <div class="brand">
@@ -36,10 +31,19 @@ const year = new Date().getFullYear();
             {explore.map((l) => <li><a href={l.href}>{l.label}</a></li>)}
           </ul>
         </div>
+        <div>
+          <p class="head">Studio</p>
+          <ul>
+            <li><a href="/ai/#stance">AI statement</a></li>
+            <li><span>Privacy <small>soon</small></span></li>
+            <li><a href="/held/">Open items (preview)</a></li>
+            <li class="social">Instagram · LinkedIn · Behance <Held id="social-handles" /></li>
+          </ul>
+        </div>
       </nav>
     </div>
     <div class="bottom">
-      <span>Jackson, WY · <a href="mailto:chris@dunncreative.com">chris@dunncreative.com</a></span>
+      <span>{PLACE} · <a href={`mailto:${EMAIL}`}>{EMAIL}</a></span>
       <span>© {year} Dunn Creative · Preview, not indexed</span>
     </div>
   </div>
@@ -54,6 +58,8 @@ const year = new Date().getFullYear();
   .brand img { height: 44px; width: auto; }
   .tag { color: #f2f2f2; font-size: 18px; letter-spacing: -.01em; margin: 20px 0 0; }
   .cols { display: grid; grid-template-columns: repeat(2, minmax(0, max-content)); gap: 32px 64px; }
+  @media (min-width: 720px) { .cols { grid-template-columns: repeat(3, minmax(0, max-content)); } }
+  .social { color: #a6a6a6; display: grid; gap: 6px; justify-items: start; }
   .head { margin: 0 0 12px; font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #7a7a7a; }
   .head a { color: #7a7a7a; }
   .head a:hover { color: #f2f2f2; }

@@ -1,0 +1,18 @@
+---
+// Bottom CTA: the rounded dark box used across the site (approved on the demo home).
+// The solid teal button inside is that screen's one accent.
+interface Props { title: string; button: string; href: string }
+const { title, button, href } = Astro.props;
+---
+<section class="band ctaband">
+  <div class="wrap">
+    <div class="ctabox">
+      <h2>{title}</h2>
+      <slot />
+      <p class="act"><a class="btn" href={href}>{button}</a></p>
+    </div>
+  </div>
+</section>
+<style>
+  .act { margin-top: 28px !important; }
+</style>

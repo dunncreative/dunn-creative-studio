@@ -1,0 +1,124 @@
+---
+// Contact, per wireframe contact_v02-1 (Site Blueprint "Contact", 3 bands, 0 dark).
+// The form is demo only: it validates and shows a note, and sends nothing. At launch it posts
+// to chris@dunncreative.com through Netlify Forms (wireframe note).
+import Work from '../layouts/Work.astro';
+import Held from '../components/Held.astro';
+import { EMAIL, PLACE } from '../lib/site';
+const needs = ['Brand', 'Web', 'Content', 'AI', 'Not sure'];
+---
+<Work navCta="ghost" title="Let's talk · Dunn Creative" description="Tell Dunn Creative what you're building. One short form, or start smaller with an audit.">
+  <!-- 01 · Form -->
+  <section class="band" id="inquiry">
+    <div class="wrap split wide-left top">
+      <div>
+        <p class="eyebrow">Let’s talk</p>
+        <h1>Tell us what you’re building.</h1>
+        <p class="lede">We read every inquiry. <Held id="response-time" /></p>
+      </div>
+      <form class="form" id="form" novalidate>
+        <div class="row2">
+          <label>Name* <input name="name" autocomplete="name" required /></label>
+          <label>Email* <input name="email" type="email" autocomplete="email" required /></label>
+        </div>
+        <label>Company <input name="company" autocomplete="organization" /></label>
+        <fieldset>
+          <legend>What you need</legend>
+          <div class="pick">{needs.map((n) => <label class="chip"><input type="checkbox" name="need" value={n} /><span>{n}</span></label>)}</div>
+        </fieldset>
+        <fieldset>
+          <legend>Budget range</legend>
+          <div class="pick">
+            {[1, 2, 3, 4].map((i) => <label class="chip"><input type="radio" name="budget" value={`range-${i}`} /><span>Range {i}</span></label>)}
+            <label class="chip"><input type="radio" name="budget" value="not-sure" /><span>Not sure yet</span></label>
+          </div>
+          <Held id="budget-ranges" block />
+        </fieldset>
+        <label>Message <textarea name="message" rows="5"></textarea></label>
+        <div class="send">
+          <button class="btn" type="submit">Send inquiry</button>
+          <p class="status" id="status" role="status" aria-live="polite"></p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- 02 · Or start smaller -->
+  <section class="band grey" id="audit">
+    <div class="wrap">
+      <p class="eyebrow">Audit</p>
+      <h2>Or start smaller.</h2>
+      <p class="lede">A senior review of your brand, site or creative workflow, with a short, prioritized list of what to fix first.</p>
+      <p><Held id="audit-format" /></p>
+      <div class="tracks" role="group" aria-label="Audit track">
+        <button type="button" class="track" data-track="brand" aria-pressed="true">Brand and web</button>
+        <button type="button" class="track" data-track="ai" aria-pressed="false">AI workflow</button>
+      </div>
+      <div class="actions"><a class="textcta" href="#inquiry" id="get-audit">Get an audit +</a></div>
+    </div>
+  </section>
+
+  <!-- 03 · Direct -->
+  <section class="band">
+    <div class="wrap direct">
+      <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
+      <span>{PLACE}</span>
+    </div>
+  </section>
+</Work>
+
+<script>
+  const form = document.getElementById('form') as HTMLFormElement;
+  const status = document.getElementById('status')!;
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (!form.checkValidity()) {
+      status.textContent = 'Please add your name and a valid email.';
+      form.reportValidity();
+      return;
+    }
+    status.textContent = 'Preview only: nothing was sent. Email chris@dunncreative.com for now.';
+  });
+
+  // Audit track: ?track=ai preselects the AI track. "Get an audit" carries the track into the form.
+  let track = new URLSearchParams(location.search).get('track') === 'ai' ? 'ai' : 'brand';
+  const buttons = [...document.querySelectorAll<HTMLButtonElement>('.track')];
+  const paint = () => buttons.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.track === track)));
+  buttons.forEach((b) => b.addEventListener('click', () => { track = b.dataset.track!; paint(); }));
+  paint();
+  document.getElementById('get-audit')!.addEventListener('click', () => {
+    const msg = form.elements.namedItem('message') as HTMLTextAreaElement;
+    const line = track === 'ai' ? 'I’d like an audit (AI workflow track).' : 'I’d like an audit (brand and web track).';
+    if (!msg.value.includes('I’d like an audit')) msg.value = line + (msg.value ? '\n\n' + msg.value : '');
+    const box = form.querySelector<HTMLInputElement>(`input[name="need"][value="${track === 'ai' ? 'AI' : 'Not sure'}"]`);
+    if (box) box.checked = true;
+  });
+</script>
+
+<style>
+  .top { align-items: start; }
+  h1 { max-width: 13ch; }
+  .form { display: grid; gap: 20px; background: var(--grey-50); border-radius: 20px; padding: 24px; }
+  @media (min-width: 720px) { .form { padding: 32px; } }
+  .row2 { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  @media (min-width: 560px) { .row2 { grid-template-columns: 1fr 1fr; } }
+  label { display: grid; gap: 6px; font-size: 15px; font-weight: 600; color: var(--ink); }
+  input:not([type=checkbox]):not([type=radio]), textarea { font: inherit; font-weight: 400; font-size: 17px; padding: 12px 14px; border: 1px solid #c9c9ce; border-radius: 10px; background: var(--white); color: var(--ink); width: 100%; }
+  input:focus-visible, textarea:focus-visible, .chip input:focus-visible + span, .track:focus-visible { outline: 2px solid var(--teal-deep); outline-offset: 2px; }
+  fieldset { border: 0; padding: 0; margin: 0; }
+  legend { font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: 8px; padding: 0; }
+  .pick { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip { display: inline-flex; font-weight: 400; }
+  .chip input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+  .chip span { padding: 8px 16px; border-radius: 999px; border: 1px solid #c9c9ce; background: var(--white); color: var(--body); cursor: pointer; font-size: 15px; }
+  .chip input:checked + span { background: var(--ink); border-color: var(--ink); color: #fff; }
+  .send { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; }
+  .status { margin: 0; font-size: 15px; color: var(--ink); }
+  .tracks { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+  .track { font: inherit; font-size: 15px; padding: 8px 16px; border-radius: 999px; border: 1px solid #c9c9ce; background: var(--white); color: var(--body); cursor: pointer; }
+  .track[aria-pressed="true"] { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .direct { display: flex; flex-wrap: wrap; gap: 8px 32px; font-size: clamp(22px, 3vw, 32px); font-weight: 600; color: var(--ink); }
+  .direct a { color: var(--ink); text-decoration: none; overflow-wrap: anywhere; }
+  .direct a:hover { text-decoration: underline; }
+  .direct span { color: var(--grey-500); }
+</style>

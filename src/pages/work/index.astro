@@ -2,6 +2,8 @@
 import { getCollection } from 'astro:content';
 import Work from '../../layouts/Work.astro';
 import WorkCard from '../../components/WorkCard.astro';
+import CtaBox from '../../components/CtaBox.astro';
+import { TALK } from '../../lib/site';
 
 const entries = (await getCollection('work', ({ data }) => !data.draft)).sort(
   (a, b) => a.data.order - b.data.order,
@@ -12,7 +14,7 @@ const disciplines = [...new Set(entries.flatMap((e) => e.data.disciplines))];
   <section class="band">
     <div class="wrap">
       <h1>Work</h1>
-      <p class="lede">Brand work, websites and campaigns. Client work only.</p>
+      <p class="lede">Brand work. Websites. Campaigns. Decks.</p>
       <div class="filters" role="group" aria-label="Filter work">
         <div class="row" data-filter="kind">
           <button type="button" aria-pressed="true" data-value="all">All</button>
@@ -32,14 +34,7 @@ const disciplines = [...new Set(entries.flatMap((e) => e.data.disciplines))];
     </div>
     <p class="wrap empty" id="empty" hidden>Nothing here yet for that combination.</p>
   </section>
-  <section class="band ctaband">
-    <div class="wrap">
-      <div class="ctabox">
-        <h2>Have a project in mind?</h2>
-        <p><a class="textcta" href="mailto:chris@dunncreative.com">Let's talk +</a></p>
-      </div>
-    </div>
-  </section>
+  <CtaBox title="Have a project in mind?" button="Let's talk" href={TALK} />
 </Work>
 
 <script>

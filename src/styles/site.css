@@ -1,0 +1,60 @@
+/* Shared pieces for the v02.1 pages. Tokens live in src/layouts/Work.astro.
+   Palette A: greyscale does the work; teal (#1AA6AA) is one element per screen, #10777A for small text on light. */
+
+.eyebrow { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: .12em; color: var(--grey-500); margin: 0 0 12px; }
+.band.dark .eyebrow, .ctabox .eyebrow { color: #a3a3a0; }
+.lede { font-size: 20px; line-height: 1.5; margin: 20px 0 0; }
+.band.dark .lede, .band.dark p { color: #d6d6d3; }
+.band h2 + .lede { margin-top: 12px; }
+.sec-head { margin-bottom: 32px; }
+.sec-head h2 { margin: 0; }
+
+/* Text links ("See the work +") stay in ink, so the one teal element per screen is the button. */
+a.textcta { color: var(--ink); font-weight: 600; text-decoration: none; }
+a.textcta:hover { text-decoration: underline; text-underline-offset: 5px; }
+.band.dark a.textcta, .ctabox a.textcta { color: #fff; }
+
+:is(a,button).btn { display: inline-block; cursor: pointer; font-family: inherit; padding: 13px 24px; border-radius: 999px; background: var(--teal); color: var(--ink); border: 1.5px solid var(--ink); font-weight: 600; text-decoration: none; font-size: 16px; line-height: 1.2; }
+:is(a,button).btn:hover { filter: brightness(.95); }
+:is(a,button).btn.ghost { background: transparent; color: var(--ink); }
+.band.dark :is(a,button).btn.ghost, .ctabox :is(a,button).btn.ghost { color: #fff; border-color: #fff; }
+.actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px; margin-top: 32px; }
+
+/* Card grids */
+.cards { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; }
+@media (min-width: 720px) { .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1040px) { .cards { grid-template-columns: repeat(3, minmax(0, 1fr)); } .cards.four { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.card-s { background: var(--white); border: 1px solid var(--grey-200); border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.band:not(.grey):not(.dark) .card-s { background: var(--grey-50); border-color: transparent; }
+.band.dark .card-s { background: #161719; border-color: #2c2c30; }
+.card-s h3 { margin: 0; }
+.card-s p { margin: 0; }
+.card-s .more { margin-top: auto; padding-top: 8px; }
+.card-s .note { font-size: 14px; color: var(--grey-500); }
+
+.chips { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; padding: 0; margin: 0; }
+.chips li { margin: 0; font-size: 13px; padding: 3px 10px; border-radius: 999px; border: 1px solid var(--grey-200); color: var(--body); background: var(--white); }
+.band.dark .chips li { border-color: #3a3b3f; background: transparent; color: #d6d6d3; }
+.band.grey .card-s .chips li, .band:not(.grey):not(.dark) .card-s .chips li { background: var(--white); }
+
+/* Image tiles (Lab, AI, featured work) */
+.tiles { display: grid; grid-template-columns: minmax(0, 1fr); gap: 32px 24px; }
+@media (min-width: 720px) { .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1040px) { .tiles { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.tile { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.tile h3 { margin: 4px 0 0; }
+.tile .label { margin: 8px 0 0; }
+.tile img { border-radius: 20px; aspect-ratio: 4 / 3; object-fit: cover; width: 100%; background: var(--grey-50); }
+
+/* Two-column split used by hero-with-image bands */
+.split { display: grid; grid-template-columns: minmax(0, 1fr); gap: 40px; align-items: center; }
+@media (min-width: 880px) { .split { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 64px; } .split.wide-left { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); } }
+
+/* Spec rows (service detail, case study) */
+.specrow { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; margin: 0; }
+@media (min-width: 720px) { .specrow { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); } }
+.specrow dt { font-size: 13px; font-weight: 600; letter-spacing: .04em; color: var(--grey-500); }
+.specrow dd { margin: 4px 0 0; color: var(--ink); }
+
+.band.tight { padding: 40px 0; }
+@media (min-width: 880px) { .band { padding: 88px 0; } .band.tight { padding: 48px 0; } .band.ctaband { padding: 72px 0 96px; } }

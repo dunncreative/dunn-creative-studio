@@ -1,100 +1,72 @@
 ---
-// Demo Services hub, built from Website Copy v02 (section 2). Service detail pages aren't built yet,
-// so rows aren't links. Lines tagged [held] or [confirm] in the copy are left out (revision rounds,
-// audit format, free mini-audit, photo and video scope).
+// Services hub, per wireframe services_v02-1 (Site Blueprint "Services", 8 bands, 2 dark).
+// Groups and rows live in src/data/services.ts. Rows link to a detail page, to /ai,
+// or say "No detail page yet" (Marketing strategy, Photo direction).
 import Work from '../../layouts/Work.astro';
-const talk = 'mailto:chris@dunncreative.com';
-const groups = [
-  { name: 'Brand & Identity', tone: 'grey', rows: [
-    ['Branding', 'A complete brand system, built on strategy and made to be used.'],
-    ['Packaging & Merch', "Packaging and merchandise that carry the brand into people's hands."],
-    ['Print', "Print and physical materials that match everything you've built on screen."],
-    ['Presentations', 'Decks built as an argument first and designed second.'],
-  ], also: 'Also in this group: illustration, eBooks and reports.' },
-  { name: 'Web & Digital', tone: '', rows: [
-    ['Web Design', 'Websites and landing pages with clear UX, strong visuals and conversion built in.'],
-    ['Landing pages', 'One page, one campaign, one action. Designed and built to launch on time.'],
-    ['Email', 'Branded email, designed, built and tested inside the platform you already use.'],
-    ['Social', "Social content worth posting, made for each platform's format and pace."],
-  ], also: 'Also in this group: ad creative and copywriting.' },
-  { name: 'Production', tone: 'grey', rows: [
-    ['Video', 'Video directed from the brand system, with shoots crewed through production partners.'],
-    ['Motion', 'Motion and video that bring the brand system to life without breaking it.'],
-  ] },
-  { name: 'AI Services', tone: 'dark', rows: [
-    ['Senior-Led AI Production', 'Senior creative direction with AI in the production line.'],
-    ['AI Consulting', "AI built into how your team creates, with the judgment to know where it helps and where it doesn't."],
-    ['Agent studio', "The studio's own AI seats plan, draft and check the work, and a person approves every step."],
-  ] },
-  { name: 'Strategy', tone: '', rows: [
-    ['Marketing Strategy', 'Positioning and messaging that give every creative decision a reason.'],
-    ['Concept Creation', 'Campaign ideas built to work on every channel, not just one.'],
-  ] },
-];
-const faq = [
-  ['How does AI fit in?', "We use it for drafts, variations and production. Every asset gets human direction, curation and final polish, and we'll always tell you what's AI-assisted."],
-  ['Do you work with existing brands?', 'Yes. Refreshes, extensions and ongoing support are common starting points.'],
-  ['What does it cost?', "It depends on scope. You'll get a fixed quote after a short call."],
-  ['Do you work with clients outside Jackson Hole?', 'Yes. Clients are local, national and remote.'],
-];
-const slug = (s: string) => s.toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9]+/g, '-');
+import Held from '../../components/Held.astro';
+import Faq from '../../components/Faq.astro';
+import CtaBox from '../../components/CtaBox.astro';
+import { groups } from '../../data/services';
+import { AUDIT } from '../../lib/site';
+const href = (to: string | null) => (to === null ? null : to === '/ai' ? '/ai/' : `/services/${to}/`);
 ---
-<Work title="Services · Dunn Creative" description="Brand identity, websites, campaigns, decks, motion and AI services from Dunn Creative, a senior-led studio in Jackson, WY.">
+<Work title="Services · Dunn Creative" description="Brand identity, websites, campaigns, print, decks and AI services from Dunn Creative, a senior-led studio in Jackson, WY.">
+  <!-- 01 · Hero -->
   <section class="band">
     <div class="wrap">
-      <p class="label eyebrow">Services</p>
+      <p class="eyebrow">Services</p>
       <h1>Everything a brand needs to show up well.</h1>
       <p class="lede">Most clients start with one thing and stay for the system. Pick the starting point that fits, and we'll connect the rest.</p>
-      <nav class="jump" aria-label="Service groups">
-        {groups.slice(0, 4).map((g) => <a href={`#${slug(g.name)}`}>{g.name}</a>)}
+      <nav class="jump" aria-label="Jump to a group">
+        <span class="label">Jump to:</span>
+        {groups.map((g) => <a href={`#${g.id}`}>{g.name} +</a>)}
       </nav>
     </div>
   </section>
+
+  <!-- 02 to 06 · Groups -->
   {groups.map((g) => (
-    <section class:list={['band', g.tone]} id={slug(g.name)}>
+    <section class:list={['band', g.tone]} id={g.id}>
       <div class="wrap">
-        <h2>{g.name}</h2>
-        <dl class="rows">
-          {g.rows.map(([n, l]) => (<div class="row"><dt>{n}</dt><dd>{l}</dd></div>))}
-        </dl>
-        {g.also && <p class="also">{g.also}</p>}
+        <div class="sec-head"><h2>{g.name}</h2></div>
+        <div class:list={['cards', { four: g.rows.length === 4 }]}>
+          {g.rows.map((r) => (
+            <article class="card-s">
+              <h3>{r.name}</h3>
+              {r.line && <p>{r.line}</p>}
+              {r.tags.length > 0 && <ul class="chips">{r.tags.map((t) => <li>{t}</li>)}</ul>}
+              {r.held && <p><Held id={r.held} /></p>}
+              {href(r.to)
+                ? <a class="textcta more" href={href(r.to)!}>Learn more +</a>
+                : <span class="more note">No detail page yet</span>}
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   ))}
-  <section class="band grey">
-    <div class="wrap">
-      <h2>Questions</h2>
-      {faq.map(([q, a]) => (<details class="qa"><summary>{q}</summary><p>{a}</p></details>))}
-    </div>
-  </section>
-  <section class="band ctaband">
-    <div class="wrap">
-      <div class="ctabox">
-        <h2>Start with an audit.</h2>
-        <p>Not sure where to begin? A senior review of your brand, site or creative workflow, with a prioritized plan you can act on.</p>
-        <p><a class="textcta" href={talk}>Let's talk +</a></p>
-      </div>
-    </div>
-  </section>
+
+  <!-- 07 · FAQ -->
+  <Faq>
+    <details><summary>How does AI fit in?</summary><p>We use it for drafts, variations and production. Every asset gets human direction, curation and final polish, and we'll always tell you what's AI-assisted.</p></details>
+    <details><summary>Do you work with existing brands?</summary><p>Yes. Refreshes, extensions and ongoing support are common starting points.</p></details>
+    <details><summary>What does it cost?</summary><p>It depends on scope. You'll get a fixed quote after a short call.</p></details>
+    <details><summary>How many revisions?</summary><p><Held id="revisions" note="revision rounds (draft: two to three on most projects)" /></p></details>
+    <details><summary>Can you work with our media buyer or agency?</summary><p>Yes. We deliver in the specs and naming they need.</p></details>
+  </Faq>
+
+  <!-- 08 · CTA -->
+  <CtaBox title="Start with an audit." button="Get an audit" href={AUDIT}>
+    <p>Not sure what you need? A senior review of your brand, site or workflow, with a prioritized plan. <Held id="audit-format" /></p>
+  </CtaBox>
 </Work>
 
 <style>
-  .eyebrow { text-transform: uppercase; letter-spacing: .12em; margin: 0 0 8px; }
   h1 { max-width: 16ch; }
-  .lede { font-size: 20px; margin: 24px 0 28px; }
-  .jump { display: flex; flex-wrap: wrap; gap: 8px; }
+  .jump { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 32px; }
+  .jump .label { margin-right: 4px; }
   .jump a { padding: 8px 16px; border-radius: 999px; border: 1px solid var(--grey-200); color: var(--ink); text-decoration: none; font-size: 15px; }
   .jump a:hover { border-color: var(--ink); }
-  h2 { margin-bottom: 24px; }
-  .rows { margin: 0; border-top: 1px solid var(--grey-200); }
-  .band.dark .rows, .band.dark .row { border-color: #2c2c30; }
-  .row { display: grid; grid-template-columns: 1fr; gap: 4px; padding: 18px 0; border-bottom: 1px solid var(--grey-200); }
-  @media (min-width: 720px) { .row { grid-template-columns: 280px 1fr; gap: 24px; } }
-  dt { font-weight: 600; color: var(--ink); font-size: 19px; }
-  .band.dark dt { color: #fff; }
-  dd { margin: 0; }
-  .also { color: var(--grey-500); font-size: 15px; margin-top: 16px; }
-  .qa { border-bottom: 1px solid var(--grey-200); padding: 16px 0; }
-  .qa summary { cursor: pointer; font-weight: 600; color: var(--ink); font-size: 19px; }
-  .qa p { margin: 8px 0 0; }
+  .band[id] { scroll-margin-top: 16px; }
+  .band.dark .card-s h3 { color: #fff; }
 </style>

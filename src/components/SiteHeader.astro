@@ -5,16 +5,11 @@
 // Nav dark vs light is still an open decision in Brand Guidelines v1; this is the light preview.
 interface Props { cta?: 'solid' | 'ghost' }
 const { cta = 'solid' } = Astro.props;
+import { NAV, TALK } from '../lib/site';
 const path = Astro.url.pathname;
-// Work and Services exist so far; the rest are planned pages and render as plain text until built.
-const links = [
-  { label: 'Work', href: '/work/' },
-  { label: 'Services', href: '/services/' },
-  { label: 'AI' },
-  { label: 'Lab' },
-  { label: 'About' },
-];
-const talk = 'mailto:chris@dunncreative.com';
+// Every page in the v02.1 wireframes is built, so all five links are live.
+const links: { label: string; href?: string }[] = NAV;
+const talk = TALK;
 ---
 <header class="gh">
   <div class="wrap gh-row">

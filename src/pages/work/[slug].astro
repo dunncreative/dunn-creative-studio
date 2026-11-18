@@ -3,6 +3,9 @@ import { getCollection, render, type CollectionEntry } from 'astro:content';
 import Work from '../../layouts/Work.astro';
 import WorkFigure from '../../components/WorkFigure.astro';
 import { clean, cleanList, isAiImage } from '../../lib/placeholders';
+import Held from '../../components/Held.astro';
+import MediaSlot from '../../components/MediaSlot.astro';
+import { SHOW_HELD } from '../../lib/held';
 
 export async function getStaticPaths() {
   const entries = (await getCollection('work', ({ data }) => !data.draft)).sort(
@@ -36,6 +39,11 @@ const specItems = [
   channels.length && ['Channels', channels.join(' · ')],
   clean(spec.aiUsed) && ['AI used', clean(spec.aiUsed)],
 ].filter(Boolean) as [string, string][];
+// Wireframe v02.1 holds: year/duration and AI used stay visible as Held chips on case studies
+// while they're unanswered; Deeper also holds its challenge copy and the DVD menu asset.
+const holdYear = isCase && !clean(spec.timeline);
+const holdAi = isCase && !clean(spec.aiUsed);
+const isDeeper = entry.id === 'jeremy-jones-deeper';
 const liveHost = d.liveUrl ? new URL(d.liveUrl).hostname.replace(/^www\./, '') : null;
 ---
 <Work title={`${d.title} · Work · Dunn Creative`} description={d.summary} navCta={isCase ? 'ghost' : 'solid'}>
@@ -44,7 +52,7 @@ const liveHost = d.liveUrl ? new URL(d.liveUrl).hostname.replace(/^www\./, '') :
       <div class="wrap">
         <a href="/work/" class="crumb">Work</a>
         <strong>{d.title}</strong>
-        <a class="btn" href="mailto:chris@dunncreative.com?subject=Start%20a%20project">Start a project</a>
+        <a class="btn" href="/contact/">Start a project</a>
       </div>
     </header>
   ) : null}
@@ -62,13 +70,15 @@ const liveHost = d.liveUrl ? new URL(d.liveUrl).hostname.replace(/^www\./, '') :
 
       <section class="band">
         <dl class="wrap spec">
+          {holdYear && <div><dt class="label">Timeline</dt><dd><Held id="case-year" /></dd></div>}
           {specItems.map(([k, v]) => <div><dt class="label">{k}</dt><dd>{v}</dd></div>)}
+          {holdAi && <div><dt class="label">AI used</dt><dd><Held id="case-ai" /></dd></div>}
           {d.liveUrl && <div><dt class="label">Live site</dt><dd><a href={d.liveUrl} rel="noopener">{liveHost}</a></dd></div>}
         </dl>
       </section>
 
       <section class="band grey">
-        <div class="wrap prose"><Content /></div>
+        <div class="wrap prose"><Content />{isDeeper && <Held id="deeper-challenge" block />}</div>
       </section>
 
       {media.map((m, i) => (
@@ -76,6 +86,18 @@ const liveHost = d.liveUrl ? new URL(d.liveUrl).hostname.replace(/^www\./, '') :
           <WorkFigure class="wrap" image={m} ground={i % 2 === 0 ? 'light' : 'dark'} lazy />
         </section>
       ))}
+
+      {isDeeper && (
+        <section class:list={['band', 'mediaband', media.length % 2 === 0 ? 'light' : 'dark']}>
+          <div class="wrap"><MediaSlot label="DVD menu" ratio="16 / 9" dark={media.length % 2 === 1} held="dvd-menu" /></div>
+        </section>
+      )}
+
+      {!d.results && SHOW_HELD && (
+        <section class="band grey tight">
+          <div class="wrap"><h2>Results</h2><Held id="results" block note="results: real numbers or a client quote, or this band is left out" /></div>
+        </section>
+      )}
 
       {d.results && (
         <section class="band grey">

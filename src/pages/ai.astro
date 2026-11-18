@@ -1,0 +1,137 @@
+---
+// AI, per wireframe ai_v02 (Site Blueprint "AI", 8 bands, 2 dark).
+// Shows AI through process and work, not claims; routes to the AI track of the one Audit.
+import Work from '../layouts/Work.astro';
+import Held from '../components/Held.astro';
+import MediaSlot from '../components/MediaSlot.astro';
+import Faq from '../components/Faq.astro';
+import CtaBox from '../components/CtaBox.astro';
+import { AUDIT_AI, TALK } from '../lib/site';
+
+const changes = [
+  ['Faster first rounds', 'Options to react to sooner.'],
+  ['More variations', 'More versions to test for the same brief.'],
+  ['Consistent brand', 'Brand-trained systems keep every asset on model.'],
+];
+const seats = ['Brief', 'Design', 'Web', 'QA'];
+const offers = [
+  { name: 'AI Creative Audit', line: 'Where AI saves time in your creative workflow without lowering the bar.', href: AUDIT_AI, held: true },
+  { name: 'AI workflow setup', line: 'Workflows, training and tools built around how your team already works.', href: TALK },
+  { name: 'Brand-trained asset systems', line: 'Systems that produce on-brand variants your team can run.', href: TALK },
+];
+---
+<Work title="AI · Dunn Creative" description="How Dunn Creative uses AI: senior direction, an agent studio and production tools, with people making every final call.">
+  <!-- 01 · Hero (dark) -->
+  <section class="band dark hero">
+    <div class="wrap">
+      <p class="eyebrow">AI</p>
+      <h1>AI is how we work, not what we sell.</h1>
+      <p class="lede">Senior direction + agent studio + production tools</p>
+      <div class="actions"><a class="textcta" href="#studio">See the agent studio +</a></div>
+    </div>
+  </section>
+
+  <!-- 02 · What it changes -->
+  <section class="band">
+    <div class="wrap">
+      <div class="sec-head"><h2>What it changes</h2></div>
+      <div class="cards">
+        {changes.map(([t, d]) => (
+          <article class="card-s">
+            <MediaSlot label="Outcome visual" ratio="16 / 10" />
+            <h3>{t}</h3>
+            <p>{d}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 · The agent studio -->
+  <section class="band grey" id="studio">
+    <div class="wrap">
+      <div class="sec-head"><h2>The agent studio</h2></div>
+      <div class="flow" aria-label="How the agent studio works">
+        <div class="node lead"><strong>Atlas</strong><span>Studio lead agent</span></div>
+        <span class="arrow" aria-hidden="true">↓</span>
+        <div class="seats">
+          {seats.map((s) => <div class="node"><strong>{s}</strong><span>Specialist seat</span></div>)}
+        </div>
+        <span class="arrow" aria-hidden="true">↓</span>
+        <div class="node gate"><strong>Human approval gate</strong><span>Chris signs off at every step</span></div>
+      </div>
+      <Held id="ai-seats" block />
+    </div>
+  </section>
+
+  <!-- 04 · AI in the work -->
+  <section class="band">
+    <div class="wrap">
+      <div class="sec-head"><h2>AI in the work</h2></div>
+      <div class="tiles four">
+        <article class="tile"><MediaSlot label="Tile" ratio="1 / 1" /><p class="label">Lab</p><h3>Client Zero: this site</h3></article>
+        <article class="tile"><MediaSlot label="Tile" ratio="1 / 1" /><p class="label">Lab</p><h3>Celtic / triskele series</h3></article>
+        <article class="tile"><MediaSlot label="Tile" ratio="1 / 1" /><p class="label">Client</p><h3><Held id="ai-projects" note="AI-assisted project 1" /></h3></article>
+        <article class="tile"><MediaSlot label="Tile" ratio="1 / 1" /><p class="label">Client</p><h3><Held id="ai-projects" note="AI-assisted project 2" /></h3></article>
+      </div>
+      <p class="note">Only projects where AI was actually used.</p>
+    </div>
+  </section>
+
+  <!-- 05 · Offers -->
+  <section class="band grey">
+    <div class="wrap">
+      <div class="sec-head"><h2>Three ways in</h2></div>
+      <div class="cards">
+        {offers.map((o) => (
+          <article class="card-s">
+            <h3>{o.name}</h3>
+            <p>{o.line}</p>
+            {o.held && <p><Held id="audit-format" /></p>}
+            <a class="textcta more" href={o.href}>Learn more +</a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 · Our stance (also the footer's "AI statement" for now) -->
+  <section class="band" id="stance">
+    <div class="wrap">
+      <p class="eyebrow">Our stance</p>
+      <p class="stance">AI drafts, versions and preps. People make the strategy, the direction and the final calls. We tell you what’s AI-assisted, every time.</p>
+    </div>
+  </section>
+
+  <!-- 07 · FAQ -->
+  <Faq>
+    <details><summary>Who owns the work?</summary><p><Held id="ownership" /></p></details>
+    <details><summary>Do you disclose AI use?</summary><p>Yes. We’ll always tell you what’s AI-assisted.</p></details>
+    <details><summary>How do you keep it on brand?</summary><p>Senior judgment on every output, and simple rules for brand, privacy and approvals.</p></details>
+    <details><summary>Which tools?</summary><p>We pick for your workflow: ChatGPT, Claude, Midjourney, Adobe Firefly, Runway and others.</p></details>
+  </Faq>
+
+  <!-- 08 · CTA -->
+  <CtaBox title="Move from experimenting to shipping." button="Book the AI Creative Audit" href={AUDIT_AI} />
+</Work>
+
+<style>
+  .hero { padding: 88px 0; }
+  @media (min-width: 880px) { .hero { padding: 136px 0; } }
+  .hero h1 { max-width: 14ch; }
+  .flow { display: grid; justify-items: center; gap: 12px; max-width: 900px; margin: 0 auto; }
+  .node { display: grid; gap: 2px; text-align: center; background: var(--white); border: 1px solid var(--grey-200); border-radius: 16px; padding: 16px 20px; width: 100%; }
+  .node strong { color: var(--ink); font-size: 18px; }
+  .node span { font-size: 14px; color: var(--grey-500); }
+  .lead, .gate { max-width: 360px; }
+  .gate { border: 1.5px solid var(--ink); }
+  .seats { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; width: 100%; }
+  @media (min-width: 720px) { .seats { grid-template-columns: repeat(4, 1fr); } }
+  .arrow { font-size: 24px; color: var(--grey-500); }
+  #studio :global(.held.block) { margin: 24px auto 0; }
+  .tiles.four { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 16px; }
+  @media (min-width: 1040px) { .tiles.four { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+  .tile h3 { font-size: 18px; }
+  .note { color: var(--grey-500); font-size: 15px; margin-top: 24px; }
+  .stance { font-size: clamp(26px, 3.4vw, 40px); line-height: 1.2; letter-spacing: -0.02em; font-weight: 600; color: var(--ink); max-width: 28ch; margin: 0; }
+</style>

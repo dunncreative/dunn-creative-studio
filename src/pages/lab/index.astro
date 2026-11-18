@@ -1,0 +1,119 @@
+---
+// Lab, per wireframe lab_v02 (Site Blueprint "Lab", 6 bands, 1 dark). Replaces a separate Journal.
+// No Lab pieces are written yet, so titles come from the wireframe and nothing links to a piece.
+// The /lab/[series] story template is drawn as a teaser here (structural default 4).
+import Work from '../../layouts/Work.astro';
+import Held from '../../components/Held.astro';
+import MediaSlot from '../../components/MediaSlot.astro';
+import CtaBox from '../../components/CtaBox.astro';
+import { TALK } from '../../lib/site';
+
+const items = [
+  { kind: 'series', label: 'Series', title: 'Celtic / triskele' },
+  { kind: 'series', label: 'Series', title: 'Hoverboarding' },
+  { kind: 'series', label: 'Series', title: 'Money history' },
+  { kind: 'rnd', label: 'R&D note', title: 'Agent studio' },
+  { kind: 'rnd', label: 'R&D note', title: 'Workflows' },
+  { kind: 'guide', label: 'Field guide', title: '', guide: true },
+];
+const filters = [['all', 'All'], ['series', 'Series'], ['rnd', 'R&D notes'], ['guide', 'Field guides']];
+---
+<Work title="Lab · Dunn Creative" description="Chris Dunn's own work and experiments: series, R&D notes and field guides. No client, no brief.">
+  <!-- 01 · Header -->
+  <section class="band">
+    <div class="wrap">
+      <p class="eyebrow">Lab</p>
+      <h1>Lab</h1>
+      <p class="lede">My own work and experiments. No client, no brief.</p>
+      <div class="filters" role="group" aria-label="Filter the Lab">
+        {filters.map(([v, l], i) => <button type="button" data-value={v} aria-pressed={i === 0 ? 'true' : 'false'}>{l}</button>)}
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 · Featured -->
+  <section class="band grey">
+    <div class="wrap split wide-left">
+      <MediaSlot label="Lead piece: latest series or experiment" ratio="16 / 10" />
+      <div>
+        <p class="label">R&D note</p>
+        <h2>Client Zero: rebuilding our own site with an agent studio</h2>
+        <p class="meta"><Held id="lab-posts" note="date and write-up" /></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 · Grid -->
+  <section class="band">
+    <div class="wrap">
+      <div class="tiles" id="labgrid">
+        {items.map((it) => (
+          <article class="tile" data-kind={it.kind}>
+            <MediaSlot label="Image" />
+            <p class="label">{it.label}</p>
+            <h3>{it.guide ? <Held id="lab-guide" /> : it.title}</h3>
+            <p class="meta"><Held id="lab-posts" note="date" /></p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 · Series page teaser -->
+  <section class="band grey">
+    <div class="wrap split">
+      <MediaSlot label="Series story page preview" ratio="4 / 3" />
+      <div>
+        <p class="eyebrow">Series</p>
+        <h2>Each series gets its own story page.</h2>
+        <p class="lede">Full-bleed media bands with short captions, like a case study without a client.</p>
+        <p class="meta">The first series page goes up with the first series.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 · Newsletter -->
+  <section class="band">
+    <div class="wrap news">
+      <h2>New Lab drops, by email.</h2>
+      <form class="nl" id="nl" novalidate>
+        <label class="sr" for="nl-email">Email address</label>
+        <input id="nl-email" name="email" type="email" placeholder="Email address" autocomplete="email" required />
+        <button class="btn ghost" type="submit">Subscribe</button>
+      </form>
+      <p class="meta" id="nl-status" role="status" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <!-- 06 · CTA -->
+  <CtaBox title="Want this thinking on your brand?" button="Let's talk" href={TALK} />
+</Work>
+
+<script>
+  const buttons = [...document.querySelectorAll<HTMLButtonElement>('.filters button')];
+  const tiles = [...document.querySelectorAll<HTMLElement>('#labgrid .tile')];
+  buttons.forEach((b) => b.addEventListener('click', () => {
+    buttons.forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+    tiles.forEach((t) => { t.hidden = b.dataset.value !== 'all' && t.dataset.kind !== b.dataset.value; });
+  }));
+  const nl = document.getElementById('nl') as HTMLFormElement;
+  nl.addEventListener('submit', (e) => {
+    e.preventDefault();
+    document.getElementById('nl-status')!.textContent = nl.checkValidity()
+      ? 'Preview only: nothing was sent.'
+      : 'Please enter a valid email.';
+  });
+</script>
+
+<style>
+  .filters { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+  .filters button { font: inherit; font-size: 15px; padding: 8px 16px; border-radius: 999px; border: 1px solid var(--grey-200); background: var(--white); color: var(--body); cursor: pointer; }
+  .filters button[aria-pressed="true"] { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .meta { margin: 8px 0 0; font-size: 14px; color: var(--grey-500); }
+  h2 { max-width: 20ch; }
+  .news { display: grid; gap: 20px; }
+  @media (min-width: 880px) { .news { grid-template-columns: 1fr 1fr; align-items: center; } }
+  .nl { display: flex; flex-wrap: wrap; gap: 12px; }
+  .nl input { flex: 1 1 220px; font: inherit; font-size: 17px; padding: 12px 16px; border: 1px solid #c9c9ce; border-radius: 999px; }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+</style>

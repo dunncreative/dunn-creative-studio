@@ -1,0 +1,92 @@
+---
+// About, per wireframe about_v02-1 (Site Blueprint "About", 5 bands, 1 dark).
+import Work from '../layouts/Work.astro';
+import Held from '../components/Held.astro';
+import MediaSlot from '../components/MediaSlot.astro';
+import CtaBox from '../components/CtaBox.astro';
+import { TALK } from '../lib/site';
+
+const credits = [
+  ['Teton Gravity Research', 'Senior creative roles'],
+  ['Brain Farm', 'Long-running creative work'],
+  ['We Are Blood', 'Film campaign'],
+  ['The Fourth Phase', 'Film campaign'],
+  ['View From A Blue Moon', 'Film campaign'],
+];
+---
+<Work title="About · Dunn Creative" description="Chris Dunn directs every Dunn Creative project: 20+ years across creative direction, brand, web and content, based in Jackson, WY.">
+  <!-- 01 · Hero -->
+  <section class="band">
+    <div class="wrap split">
+      <MediaSlot label="Portrait of Chris Dunn" file="Chris-Dunn-Portrait-2.jpg" ratio="4 / 5" held="portrait-about" />
+      <div>
+        <p class="eyebrow">About</p>
+        <h1>I’m Chris Dunn. I direct every project here.</h1>
+        <p class="lede">I’ve spent 20+ years across creative direction, brand, web and content, most of it in action sports, film and lifestyle, where the work has to look as good as the footage. Dunn Creative pairs that with an AI-accelerated workflow, so your budget goes to thinking and craft.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 · Credits -->
+  <section class="band grey">
+    <div class="wrap">
+      <div class="sec-head"><h2>Credits</h2></div>
+      <dl class="credits">
+        {credits.map(([n, r]) => <div><dt>{n}</dt><dd>{r}</dd></div>)}
+      </dl>
+    </div>
+  </section>
+
+  <!-- 03 · How the studio works -->
+  <section class="band">
+    <div class="wrap">
+      <div class="sec-head"><h2>How the studio works</h2></div>
+      <div class="cards">
+        <article class="card-s">
+          <MediaSlot label="Diagram / image" ratio="16 / 9" />
+          <h3>Lean senior core</h3>
+          <p>Chris directs every project, start to finish.</p>
+        </article>
+        <article class="card-s">
+          <MediaSlot label="Diagram / image" ratio="16 / 9" />
+          <h3>Network</h3>
+          <p>Specialists brought in by the job. <Held id="network" /></p>
+        </article>
+        <article class="card-s">
+          <MediaSlot label="Diagram / image" ratio="16 / 9" />
+          <h3>Agent studio</h3>
+          <p>AI seats draft, version and prep. People approve every gate.</p>
+          <a class="textcta more" href="/ai/">How we use AI +</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 · Jackson, WY -->
+  <section class="band grey">
+    <div class="wrap split wide-left">
+      <div class="photos">
+        <MediaSlot label="Chris fly fishing on the Green River" file={`Chris-Dunn-Fly-Fishing-on-Green-River-Wyoming.jpg`} ratio="4 / 5" held="about-photos" />
+        <MediaSlot label="Chris backcountry snowboarding, Grand Teton National Park" file={`Chris-Dunn-Backcountry-Snowboard-Grand-Teton-National-Park.jpg`} ratio="4 / 5" held="about-photos" />
+      </div>
+      <div>
+        <p class="eyebrow">Jackson, WY</p>
+        <h2>Based in Jackson. Working everywhere.</h2>
+        <p class="lede">The mountains keep the work honest: simple, durable and built for real conditions. Clients are local, national and remote.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 · CTA -->
+  <CtaBox title="Have a project in mind?" button="Let's talk" href={TALK} />
+</Work>
+
+<style>
+  h1 { max-width: 16ch; }
+  .credits { margin: 0; border-top: 1px solid var(--grey-200); max-width: 900px; }
+  .credits div { display: grid; grid-template-columns: minmax(0, 1fr); gap: 2px; padding: 18px 0; border-bottom: 1px solid var(--grey-200); }
+  @media (min-width: 720px) { .credits div { grid-template-columns: 1fr 1fr; gap: 24px; } }
+  .credits dt { font-weight: 600; color: var(--ink); font-size: 20px; }
+  .credits dd { margin: 0; color: var(--grey-500); font-size: 18px; }
+  .photos { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+</style>
