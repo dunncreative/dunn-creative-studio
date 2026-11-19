@@ -1,0 +1,68 @@
+---
+// Global footer: a Grey 50 band with the Black logo (Moodboard v02.2 band rhythm), tagline,
+// the main site links, the Explore lead pages and a bottom row.
+import Held from './Held.astro';
+import { FOOTER_NAV, EMAIL, PLACE } from '../lib/site';
+const site: { label: string; href?: string }[] = FOOTER_NAV;
+const explore = [
+  { label: 'A · Get started', href: '/explore/dunn-creative-lead-a-get-started.html' },
+  { label: 'B · Book a 30-minute call', href: '/explore/dunn-creative-lead-b-ai-call.html' },
+  { label: 'C · Start with an audit', href: '/explore/dunn-creative-lead-c-audit.html' },
+];
+const year = new Date().getFullYear();
+---
+<footer class="foot">
+  <div class="wrap">
+    <div class="top">
+      <div class="brand">
+        <a href="/" aria-label="Dunn Creative, home"><img src="/brand/dunn-creative-logo-black.png" alt="Dunn Creative" width="92" height="44" /></a>
+        <p class="tag">Strategic thinking. Clean design. Real results.</p>
+      </div>
+      <nav class="cols" aria-label="Footer">
+        <div>
+          <p class="head">Site</p>
+          <ul>
+            {site.map((l) => <li>{l.href ? <a href={l.href}>{l.label}</a> : <span>{l.label} <small>(soon)</small></span>}</li>)}
+          </ul>
+        </div>
+        <div>
+          <p class="head"><a href="/explore/">Explore</a></p>
+          <ul>
+            {explore.map((l) => <li><a href={l.href}>{l.label}</a></li>)}
+          </ul>
+        </div>
+        <div>
+          <p class="head">Studio</p>
+          <ul>
+            <li><a href="/ai-statement/">AI statement</a></li>
+            <li><a href="/privacy/">Privacy</a></li>
+            <li><a href="/held/">Open items (preview)</a></li>
+            <li class="social">Instagram · LinkedIn · Behance <Held id="social-handles" /></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <div class="bottom">
+      <span>{PLACE} · <a href={`mailto:${EMAIL}`}>{EMAIL}</a></span>
+      <span>© {year} Dunn Creative · Preview, not indexed</span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .foot { background: var(--grey-50); color: var(--dark-grey); padding: 72px 0 48px; font-size: var(--fs-body); }
+  .foot a { color: var(--ink); text-decoration: none; }
+  .foot a:hover { color: var(--teal-deep); text-decoration: underline; text-underline-offset: 4px; }
+  .top { display: grid; gap: 40px; padding-bottom: 40px; }
+  @media (min-width: 880px) { .top { grid-template-columns: 1fr auto; align-items: start; } }
+  .brand img { height: 44px; width: auto; }
+  .tag { color: var(--ink); font-size: var(--fs-card); font-weight: 600; letter-spacing: -.01em; margin: 20px 0 0; }
+  .cols { display: grid; grid-template-columns: repeat(2, minmax(0, max-content)); gap: 32px 64px; }
+  @media (min-width: 720px) { .cols { grid-template-columns: repeat(3, minmax(0, max-content)); } }
+  .social { display: grid; gap: 6px; justify-items: start; }
+  .head { margin: 0 0 12px; font-weight: 600; color: var(--ink); }
+  ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+  li span { color: var(--dark-grey); }
+  small { font-size: inherit; margin-left: 4px; }
+  .bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; border-top: 1px solid var(--grey-200); padding-top: 24px; }
+</style>

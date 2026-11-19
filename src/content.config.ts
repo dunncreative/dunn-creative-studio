@@ -27,6 +27,8 @@ const work = defineCollection({
       year: z.number().int().optional(),
       liveUrl: z.string().url().optional(),
       images: z.array(image),
+      // Optional thumbnail for the Work index feature card (left of the text). Falls back to images[0].
+      cardImage: image.optional(),
       featured: z.boolean().default(false),
       // Service pages that list this project: websites · brand-identity · campaigns-content
       serviceTags: z.array(z.enum(['websites', 'brand-identity', 'campaigns-content'])).default([]),

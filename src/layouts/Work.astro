@@ -1,8 +1,14 @@
 ---
-// Plain, light-first layout for the Work section previews. Greyscale; teal only on links and one CTA.
+// Site layout: Moodboard v02.2 "White Room" tokens with the Ridge page system (picked 18 Nov).
+// Light-first, one solid teal button per screen.
 import SiteHeader from '../components/SiteHeader.astro';
-interface Props { title: string; description?: string; navCta?: 'solid' | 'ghost' }
-const { title, description, navCta = 'solid' } = Astro.props;
+import SiteFooter from '../components/SiteFooter.astro';
+import '../styles/site.css';
+import '../styles/ridge.css';
+import { NAV_THEME } from '../lib/site';
+interface Props { title: string; description?: string; navCta?: 'solid' | 'ghost'; nav?: 'light' | 'dark' }
+// nav: light by default (Freeman, 18 Nov); pass nav="dark" on a page, or change NAV_THEME, to switch.
+const { title, description, navCta = 'solid', nav = NAV_THEME } = Astro.props;
 ---
 <!doctype html>
 <html lang="en">
@@ -14,39 +20,67 @@ const { title, description, navCta = 'solid' } = Astro.props;
     {description && <meta name="description" content={description} />}
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <script is:inline>
+      // Reveal motion (Moodboard v02.2): only with JS on and motion allowed, so nothing stays hidden otherwise.
+      if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('rv');
+    </script>
     <style is:global>
+      /* Moodboard v02.2 "White Room" tokens, copied from the board's tokens block. */
       :root {
-        --white:#ffffff; --grey-50:#f5f5f7; --grey-200:#e3e3e6; --grey-500:#8a8d91; --grey-600:#6b6e72;
-        --body:#333333; --ink:#0b0c0d; --teal:#1aa6aa; --teal-deep:#10777a;
+        --white:#ffffff; --grey-50:#f5f5f7; --grey-200:#e3e3e6; --grey-500:#8a8d91;
+        --dark-grey:#333333; --body:#333333;
+        --grey-600:#6b6e72; /* captions on light (Freeman, 18 Nov): 5.12:1 on White, 4.71:1 on Grey 50 */
+        --caption: var(--grey-600); --ink:#0b0c0d; --teal:#1aa6aa; --teal-deep:#10777a;
+        --font: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        --fs-display: clamp(44px, 6.4vw, 96px); --fs-section: clamp(28px, 3.2vw, 44px);
+        --fs-card: clamp(20px, 1.55vw, 22px); --fs-body: 17px;
+        --r-tile: 22px; --r-pill: 999px;
+        --r-btn: 10px; /* buttons: rounded rectangle, per Freeman's references (18 Nov) */
+        --pad-band: clamp(64px, 9vw, 128px); --gutter: clamp(16px, 4vw, 48px); --max: 1240px;
+        --ease: cubic-bezier(.2, .7, .2, 1);
       }
       * { box-sizing: border-box; }
       html { -webkit-text-size-adjust: 100%; }
-      body { margin:0; background:var(--white); color:var(--body); font:17px/1.55 Inter, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+      body { margin:0; background:var(--white); color:var(--dark-grey); font-family: var(--font); font-size: var(--fs-body); line-height: 1.55; overflow-x: hidden; }
       img { max-width:100%; height:auto; display:block; }
       a { color: var(--teal-deep); }
-      .wrap { max-width: 1200px; margin: 0 auto; padding: 0 16px; }
-      @media (min-width: 720px) { .wrap { padding: 0 32px; } }
-      .band { padding: 64px 0; }
+      .wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
+      .band { padding: var(--pad-band) 0; }
       .band.grey { background: var(--grey-50); }
-      .band.dark { background: var(--ink); color: #f4f4f2; }
+      .band.dark { background: var(--ink); color: var(--grey-200); position: relative; overflow: hidden; isolation: isolate; }
+      .band.dark .wrap { position: relative; }
       .band.dark a { color: var(--teal); }
-      h1, h2, h3 { color: var(--ink); margin: 0; }
-      .band.dark h1, .band.dark h2, .band.dark h3 { color: #fff; }
-      h1 { font-size: clamp(44px, 7vw, 80px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.02; }
-      h2 { font-size: clamp(28px, 4vw, 44px); font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; }
-      h3 { font-size: 21px; font-weight: 600; line-height: 1.25; }
+      h1, h2, h3 { color: var(--ink); margin: 0; font-weight: 500; }
+      .band.dark h1, .band.dark h2, .band.dark h3 { color: var(--white); }
+      /* Ridge (Freeman, 18 Nov): display type at weight 400, medium-weight section and card heads. */
+      h1 { font-size: var(--fs-display); font-weight: 400; letter-spacing: -0.035em; line-height: 1; }
+      h2 { font-size: var(--fs-section); letter-spacing: -0.02em; line-height: 1.08; }
+      h3 { font-size: var(--fs-card); font-weight: 500; letter-spacing: -0.01em; line-height: 1.25; }
       p { max-width: 65ch; }
-      .label { font-size: 13px; font-weight: 600; letter-spacing: .04em; color: var(--grey-500); }
-      .btn { display:inline-block; padding: 12px 20px; border-radius: 999px; background: var(--teal); color: var(--ink); border: 1px solid var(--ink); font-weight: 600; text-decoration: none; font-size: 15px; }
+      .label { font-size: var(--fs-body); font-weight: 500; color: var(--caption); }
+      .band.dark .label { color: var(--grey-500); }
       .textcta { font-weight: 600; text-decoration: none; }
-      .site-foot { padding: 32px 0; font-size: 14px; color: var(--grey-500); border-top: 1px solid var(--grey-200); }
+      @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
     </style>
   </head>
   <body>
-    <SiteHeader cta={navCta} />
+    <SiteHeader cta={navCta} theme={nav} />
     <slot name="head" />
     <main><slot /></main>
-    <footer class="site-foot"><div class="wrap">Dunn Creative · Jackson, WY · Preview, not indexed</div></footer>
+    <SiteFooter />
+    <script>
+      // Reveal: light bands fade up 8px over 600ms, staggered 60ms, once. Dark bands just arrive.
+      if (document.documentElement.classList.contains('rv')) {
+        const io = new IntersectionObserver((entries) => {
+          for (const e of entries) if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+        }, { rootMargin: '0px 0px -8% 0px' });
+        document.querySelectorAll<HTMLElement>('main .band:not(.dark) > .wrap > *').forEach((el) => {
+          const i = [...el.parentElement!.children].indexOf(el);
+          el.style.transitionDelay = `${Math.min(i, 5) * 60}ms`;
+          io.observe(el);
+        });
+      }
+    </script>
   </body>
 </html>

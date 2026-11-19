@@ -15,6 +15,10 @@ images:
   - src: "/work/jeremy-jones-deeper/jeremy-jones-deeper-magazine-ad.webp"
     alt: "Deeper magazine ad, portrait format"
     caption: "Magazine ad."
+cardImage:
+  src: "/work/jeremy-jones-deeper/jeremy-jones-deeper-box.webp"
+  alt: "Deeper DVD box, front cover"
+  ground: "light"
 featured: true
 serviceTags: ["campaigns-content"]
 order: 1

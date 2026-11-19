@@ -1,0 +1,112 @@
+---
+// AI, per wireframe ai_v02 (Site Blueprint "AI", 8 bands, 2 dark), in the Ridge look.
+// Shows AI through process and work, not claims; routes to the advanced audit (three ways in, 18 Nov).
+import Work from '../layouts/Work.astro';
+import Held from '../components/Held.astro';
+import MediaSlot from '../components/MediaSlot.astro';
+import RidgeHero from '../components/RidgeHero.astro';
+import RidgeCta from '../components/RidgeCta.astro';
+import Texture from '../components/Texture.astro';
+import { AUDIT_ADV, TALK } from '../lib/site';
+import { labHref } from '../data/lab';
+
+const changes = [
+  ['Faster first rounds', 'Options to react to sooner.'],
+  ['More variations', 'More versions to test for the same brief.'],
+  ['Consistent brand', 'Brand-trained systems keep every asset on model.'],
+];
+const seats = ['Brief', 'Design', 'Web', 'QA'];
+const offers = [
+  { name: 'Advanced audit', line: 'A deeper review of your brand, site and creative workflow, including AI workflow recommendations: where AI saves time without lowering the bar.', href: AUDIT_ADV, held: true },
+  { name: 'AI workflow setup', line: 'Workflows, training and tools built around how your team already works.', href: TALK },
+  { name: 'Brand-trained asset systems', line: 'Systems that produce on-brand variants your team can run.', href: TALK },
+];
+const n = (i: number) => String(i + 1).padStart(2, '0');
+---
+<Work title="AI · Dunn Creative" description="How Dunn Creative uses AI: senior direction, an agent studio and production tools, with people making every final call.">
+  <!-- 01 · Hero (dark, texture per Freeman 18 Nov) -->
+  <RidgeHero short label="AI" title="AI is how we work, not what we sell." stand="Senior direction + agent studio + production tools" meta={['Senior direction', 'Agent studio', 'Production tools']}>
+    <div class="ctas">
+      <a class="btn" href={AUDIT_ADV}>Book the advanced audit</a>
+      <a class="textcta" href="#studio">The agent studio +</a>
+    </div>
+  </RidgeHero>
+
+  <!-- 02 · What it changes -->
+  <section class="band">
+    <div class="wrap">
+      <div class="sechead"><h2>What it changes</h2></div>
+      <div class="three">
+        {changes.map(([t, d], i) => <div><p class="lbl">{n(i)}</p><h3>{t}</h3><p>{d}</p></div>)}
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 · The agent studio (second dark band) -->
+  <section class="band dark" id="studio">
+    <Texture />
+    <div class="wrap">
+      <div class="sechead"><h2>The agent studio</h2><p class="stand" style="max-width:36ch">The studio's own AI seats plan, draft and check the work, and a person approves every step.</p></div>
+      <div class="flow" aria-label="How the agent studio works">
+        <div class="node">Atlas<small>Studio lead agent</small></div>
+        <span class="arr" aria-hidden="true">→</span>
+        <div class="seats">{seats.map((s) => <div class="node">{s}<small>Specialist seat</small></div>)}</div>
+        <span class="arr" aria-hidden="true">→</span>
+        <div class="node gate">Human approval gate<small>Chris signs off at every step</small></div>
+      </div>
+      <p class="cap" style="margin-top:24px"><Held id="ai-seats" /></p>
+    </div>
+  </section>
+
+  <!-- 04 · AI in the work -->
+  <section class="band">
+    <div class="wrap">
+      <div class="sechead"><h2>AI in the work</h2><p class="cap">Only projects where AI was actually used.</p></div>
+      <div class="tiles c4">
+        <article class="tile"><MediaSlot label="Lab image" ratio="1 / 1" /><p class="lbl">Lab</p><h3>Client Zero: this site</h3><a class="textcta" href={labHref('client-zero')}>Read +</a></article>
+        <article class="tile"><MediaSlot label="Lab image" ratio="1 / 1" /><p class="lbl">Lab</p><h3>Celtic / triskele series</h3><a class="textcta" href={labHref('celtic-triskele')}>Read +</a></article>
+        <article class="tile"><MediaSlot label="Client image" ratio="1 / 1" /><p class="lbl">Client</p><h3><Held id="ai-projects" note="AI-assisted project 1" /></h3></article>
+        <article class="tile"><MediaSlot label="Client image" ratio="1 / 1" /><p class="lbl">Client</p><h3><Held id="ai-projects" note="AI-assisted project 2" /></h3></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 · Offers -->
+  <section class="band grey" id="offers">
+    <div class="wrap">
+      <div class="sechead"><h2>Three ways in</h2></div>
+      <div class="steps c3">
+        {offers.map((o, i) => (
+          <div>
+            <span class="n">{n(i)}</span>
+            <h3>{o.name}</h3>
+            <p>{o.line} {o.held && <Held id="audit-credit" />}</p>
+            <a class="textcta" href={o.href}>Learn more +</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 · Our stance (also the footer's "AI statement" for now) + 07 · FAQ -->
+  <section class="band" id="stance">
+    <div class="wrap split">
+      <div>
+        <p class="lbl">Our stance</p>
+        <p class="bigline" style="margin-top:14px;font-size:clamp(28px,3.2vw,44px)">AI drafts, versions and preps. People make the strategy, the direction and the final calls. We tell you what’s AI-assisted, every time.</p>
+      </div>
+      <div class="qa-list">
+        <details><summary>Who owns the work?</summary><p><Held id="ownership" /></p></details>
+        <details><summary>Do you disclose AI use?</summary><p>Yes. We’ll always tell you what’s AI-assisted.</p></details>
+        <details><summary>How do you keep it on brand?</summary><p>Senior judgment on every output, and simple rules for brand, privacy and approvals.</p></details>
+        <details><summary>Which tools?</summary><p>We pick for your workflow: ChatGPT, Claude, Midjourney, Adobe Firefly, Runway and others. For client imagery we use commercially safe models only.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- 08 · CTA -->
+  <RidgeCta title="Move from experimenting to shipping." button="Book the advanced audit" href={AUDIT_ADV}>
+    <p class="stand">A deeper review of your creative workflow, with AI workflow recommendations and a prioritized plan.</p>
+    <Held id="audit-credit" />
+  </RidgeCta>
+</Work>

@@ -1,0 +1,53 @@
+---
+// Preview-only list of everything waiting on Freeman, and the structural defaults applied.
+// Every "Held" chip on the site links here. Source of truth: src/lib/held.ts and src/lib/site.ts.
+import Work from '../layouts/Work.astro';
+import { held, type HeldItem } from '../lib/held';
+import { defaults } from '../lib/site';
+const items = Object.entries(held) as [string, HeldItem][];
+const open = items.filter(([, i]) => !i.answer);
+---
+<Work title="Open items · Dunn Creative preview" description="What the preview still needs from Freeman.">
+  <section class="band">
+    <div class="wrap">
+      <p class="eyebrow">Preview only</p>
+      <h1>Open items</h1>
+      <p class="lede">{open.length} answers still to come. Each one shows on the site as a dashed <span class="chip">Held</span> chip, and swaps in everywhere at once when it lands.</p>
+    </div>
+  </section>
+  <section class="band grey">
+    <div class="wrap">
+      <h2>Waiting on Freeman</h2>
+      <ol class="list">
+        {items.map(([id, i]) => (
+          <li id={id}>
+            <h3>{i.label} {i.answer ? <span class="done">Answered</span> : null}</h3>
+            <p>{i.ask}</p>
+            <p class="meta">On: {i.pages.join(', ')}{i.meanwhile ? ` · Meanwhile: ${i.meanwhile}` : ''}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+  <section class="band">
+    <div class="wrap">
+      <h2>Defaults applied, yours to change</h2>
+      <p class="lede">The six open structural questions from the wireframe index, built the way the wireframes recommend.</p>
+      <ol class="list">
+        {defaults.map((d) => (
+          <li><h3>{d.q}</h3><p>{d.applied}</p><p class="meta">Switch: {d.where}</p></li>
+        ))}
+      </ol>
+    </div>
+  </section>
+</Work>
+
+<style>
+  h2 { margin-bottom: 24px; }
+  .chip { display: inline-block; padding: 0 8px; border: 1.5px dashed var(--dark-grey); border-radius: 6px; font-size: 13px; font-weight: 700; color: var(--dark-grey); }
+  .list { list-style: none; padding: 0; margin: 0; display: grid; gap: 0; max-width: 900px; counter-reset: n; }
+  .list li { margin: 0; padding: 20px 0; border-bottom: 1px solid var(--grey-200); scroll-margin-top: 24px; }
+  .list li:target { background: var(--white); outline: 1.5px solid var(--ink); outline-offset: 8px; border-radius: 4px; }
+  .list p { margin: 6px 0 0; }
+  .done { font-size: 13px; font-weight: 600; padding: 2px 8px; border-radius: 999px; background: var(--ink); color: #fff; margin-left: 6px; vertical-align: middle; }
+</style>

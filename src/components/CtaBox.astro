@@ -1,0 +1,21 @@
+---
+// Final CTA band (Moodboard v02.2): a full-bleed Ink band with the symbol texture, one of the
+// page's two dark bands. The solid teal button inside is that screen's one solid button.
+// texture={false} on case studies, where texture never sits near client work.
+import Texture from './Texture.astro';
+interface Props { title: string; button: string; href: string; texture?: boolean }
+const { title, button, href, texture = true } = Astro.props;
+---
+<section class="band dark ctaband">
+  {texture && <Texture />}
+  <div class="wrap">
+    <h2>{title}</h2>
+    <slot />
+    <p class="act"><a class="btn" href={href}>{button}</a></p>
+  </div>
+</section>
+<style>
+  h2 { max-width: 18ch; }
+  .ctaband :global(p) { margin: 16px 0 0; }
+  .act { margin-top: 32px !important; }
+</style>

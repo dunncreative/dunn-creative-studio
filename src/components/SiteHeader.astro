@@ -1,25 +1,23 @@
 ---
 // Global header, per Client Zero low-fi wireframe v02 (Blueprint Home band 01):
-// logo left (black on light), nav links right, "Let's talk" as the one teal element.
-// cta="ghost" when a solid button is already in view (e.g. the case-study local bar).
+// logo left (black on light), nav links right. Per Moodboard v02.2 the nav "Let's talk" is always an
+// Ink outline pill, so the hero's button stays the only solid one in the first screen.
+// (The cta prop is kept so existing callers still compile; it no longer changes the look.)
 // Nav dark vs light is still an open decision in Brand Guidelines v1; this is the light preview.
-interface Props { cta?: 'solid' | 'ghost' }
-const { cta = 'solid' } = Astro.props;
+// theme: light for now (Freeman, 18 Nov). theme="dark" gives an Ink bar with the White logo, for pages
+// that should switch later; set per page through the layout's nav prop or site-wide with NAV_THEME.
+interface Props { cta?: 'solid' | 'ghost'; theme?: 'light' | 'dark' }
+const { theme = 'light' } = Astro.props;
+import { NAV, TALK } from '../lib/site';
 const path = Astro.url.pathname;
-// Only Work exists so far; the rest are planned pages and render as plain text until built.
-const links = [
-  { label: 'Work', href: '/work/' },
-  { label: 'Services' },
-  { label: 'AI' },
-  { label: 'Lab' },
-  { label: 'About' },
-];
-const talk = 'mailto:chris@dunncreative.com';
+// Every page in the v02.1 wireframes is built, so all five links are live.
+const links: { label: string; href?: string }[] = NAV;
+const talk = TALK;
 ---
-<header class="gh">
+<header class:list={['gh', theme]}>
   <div class="wrap gh-row">
     <a class="gh-logo" href="/" aria-label="Dunn Creative, home">
-      <img src="/brand/dunn-creative-logo-black.png" alt="Dunn Creative" width="968" height="461" />
+      <img src={theme === 'dark' ? '/brand/dunn-creative-logo-white.png' : '/brand/dunn-creative-logo-black.png'} alt="Dunn Creative" width="968" height="461" />
     </a>
     <nav class="gh-nav" aria-label="Main">
       <ul>
@@ -31,7 +29,7 @@ const talk = 'mailto:chris@dunncreative.com';
           </li>
         ))}
       </ul>
-      <a class:list={['gh-cta', cta]} href={talk}>Let's talk</a>
+      <a class="gh-cta ghost" href={talk}>Let's talk</a>
     </nav>
     <details class="gh-menu">
       <summary>Menu <span aria-hidden="true">≡</span></summary>
@@ -45,7 +43,7 @@ const talk = 'mailto:chris@dunncreative.com';
             </li>
           ))}
         </ul>
-        <a class:list={['gh-cta', cta]} href={talk}>Let's talk</a>
+        <a class="gh-cta ghost" href={talk}>Let's talk</a>
       </div>
     </details>
   </div>
@@ -59,16 +57,14 @@ const talk = 'mailto:chris@dunncreative.com';
   .gh a, .gh span { color: var(--ink); text-decoration: none; }
 
   .gh-nav { display: none; align-items: center; gap: 32px; }
-  .gh-nav ul { display: flex; align-items: center; list-style: none; margin: 0; padding: 0; font-size: 15px; }
+  .gh-nav ul { display: flex; align-items: center; list-style: none; margin: 0; padding: 0; font-size: var(--fs-body); }
   .gh-nav li { margin: 0; }
-  .gh-nav li + li::before { content: '·'; color: var(--grey-500); padding: 0 10px; }
+  .gh-nav li + li::before { content: '·'; color: var(--dark-grey); padding: 0 10px; }
   .gh-nav a:hover, .gh-nav a[aria-current='page'] { text-decoration: underline; text-underline-offset: 6px; text-decoration-thickness: 1.5px; }
   .gh-nav span { cursor: default; }
 
-  .gh-cta { display: inline-block; padding: 12px 22px; border-radius: 999px; font-weight: 600; font-size: 15px; white-space: nowrap; border: 1.5px solid var(--ink); }
-  .gh .gh-cta.solid { background: var(--teal); color: var(--ink); }
-  .gh .gh-cta.ghost { background: transparent; color: var(--ink); }
-  .gh .gh-cta:hover { text-decoration: none; filter: brightness(.96); }
+  .gh-cta { white-space: nowrap; }
+  .gh .gh-cta.ghost:hover { color: var(--white); }
 
   .gh-menu { position: static; }
   .gh-menu summary { list-style: none; cursor: pointer; font-weight: 600; font-size: 17px; color: var(--ink); padding: 8px 0; }
@@ -77,11 +73,18 @@ const talk = 'mailto:chris@dunncreative.com';
   .gh-panel { position: absolute; left: 0; right: 0; top: 100%; background: var(--white); border-bottom: 1px solid var(--grey-200); padding: 8px 16px 24px; box-shadow: 0 12px 24px rgba(0,0,0,.06); }
   .gh-panel ul { list-style: none; margin: 0 0 16px; padding: 0; }
   .gh-panel li { margin: 0; border-bottom: 1px solid var(--grey-200); }
-  .gh-panel li a, .gh-panel li span { display: block; padding: 14px 0; font-size: 20px; font-weight: 600; }
-  .gh-panel li span { color: var(--grey-500); }
-  .gh-panel small { font-size: 13px; font-weight: 400; margin-left: 6px; }
+  .gh-panel li a, .gh-panel li span { display: block; padding: 14px 0; font-size: var(--fs-card); font-weight: 600; }
+  .gh-panel li span { color: var(--dark-grey); }
+  .gh-panel small { font-size: var(--fs-body); font-weight: 400; margin-left: 6px; }
 
-  @media (min-width: 720px) { .gh-panel { padding: 8px 32px 24px; } }
+  .gh-panel { padding-inline: var(--gutter); }
+  /* Dark nav (switch, not used yet): Ink bar, White logo and links, White outline button. */
+  .gh.dark { background: var(--ink); border-bottom-color: #1e1f21; }
+  .gh.dark a, .gh.dark span, .gh.dark .gh-menu summary { color: var(--white); }
+  .gh.dark .gh-cta.ghost { box-shadow: inset 0 0 0 1.5px var(--white); }
+  .gh.dark .gh-cta.ghost:hover { background: var(--white); color: var(--ink); }
+  .gh.dark .gh-panel { background: var(--ink); border-bottom-color: #1e1f21; }
+  .gh.dark .gh-panel li { border-bottom-color: #1e1f21; }
   @media (min-width: 880px) {
     .gh-row { height: 88px; }
     .gh-logo img { height: 48px; }

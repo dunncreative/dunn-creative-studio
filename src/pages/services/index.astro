@@ -1,0 +1,87 @@
+---
+// Services hub, per wireframe services_v02-1 (Site Blueprint "Services"), in the Ridge look.
+// Groups and rows live in src/data/services.ts. Rows link to a detail page, to /ai,
+// or say "No detail page yet" (Marketing strategy, Photo direction).
+import Work from '../../layouts/Work.astro';
+import Held from '../../components/Held.astro';
+import Faq from '../../components/Faq.astro';
+import RidgeHero from '../../components/RidgeHero.astro';
+import RidgeCta from '../../components/RidgeCta.astro';
+import { groups } from '../../data/services';
+import { AUDIT, AUDIT_FREE, TALK, WAYS_IN, FREE_AUDIT_LINE } from '../../lib/site';
+const href = (to: string | null) => (to === null ? null : to === '/ai' ? '/ai/' : `/services/${to}/`);
+const engage = [
+  { name: 'Audit', line: 'Start with a free audit: a short written review of your site with the top fixes, within 5 business days. Or book a call, or go deeper with the advanced audit.', credit: true },
+  { name: 'Sprint', line: 'A defined project with a clear finish line.' },
+  { name: 'Retainer', line: 'Monthly creative capacity for teams that ship constantly: ads, social, email, decks and web updates.' },
+];
+---
+<Work title="Services · Dunn Creative" description="Brand identity, websites, campaigns, print, decks and AI services from Dunn Creative, a senior-led studio in Jackson, WY.">
+  <!-- 01 · Hero -->
+  <RidgeHero short label="Services" title="Everything a brand needs to show up well." stand="Most clients start with one thing and stay for the system. Pick the starting point that fits, and we'll connect the rest.">
+    <div class="ctas">
+      <a class="btn" href={AUDIT}>Get an audit</a>
+      <a class="textcta" href="/services/websites/">Websites +</a>
+    </div>
+    <nav class="jump" aria-label="Jump to a group">
+      {groups.map((g) => <a href={`#${g.id}`}>{g.name}</a>)}
+    </nav>
+  </RidgeHero>
+
+  <!-- 02 to 06 · Groups, one ruled row each -->
+  <section class="band">
+    <div class="wrap">
+      {groups.map((g) => (
+        <div class="group" id={g.id}>
+          <h2>{g.name}</h2>
+          <div class="items">
+            {g.rows.map((r) => (
+              <div>
+                <h3>{href(r.to) ? <a href={href(r.to)!}>{r.name}</a> : r.name}</h3>
+                {r.line && <p>{r.line}</p>}
+                {r.held && <p><Held id={r.held} /></p>}
+                {r.tags.length > 0 && <ul class="tags">{r.tags.map((t) => <li>{t}</li>)}</ul>}
+                {href(r.to)
+                  ? <a class="textcta" href={href(r.to)!} style="display:inline-block;margin-top:12px;font-size:15px">Learn more +</a>
+                  : <p class="cap">No detail page yet</p>}
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- How we engage -->
+  <section class="band grey" id="start">
+    <div class="wrap">
+      <div class="sechead"><h2>Start small. Scale when it works.</h2></div>
+      <div class="steps c3">
+        {engage.map((e, i) => (
+          <div><span class="n">{String(i + 1).padStart(2, '0')}</span><h3>{e.name}</h3><p>{e.line} {e.credit && <Held id="audit-credit" />}</p></div>
+        ))}
+      </div>
+      <p style="margin-top:28px"><a class="textcta" href={TALK}>Talk about a sprint or retainer +</a></p>
+    </div>
+  </section>
+
+  <!-- 07 · FAQ -->
+  <Faq>
+    <details><summary>How does AI fit in?</summary><p>We use it for drafts, variations and production. Every asset gets human direction, curation and final polish, and we'll always tell you what's AI-assisted.</p></details>
+    <details><summary>Do you work with existing brands?</summary><p>Yes. Refreshes, extensions and ongoing support are common starting points.</p></details>
+    <details><summary>What does it cost?</summary><p>It depends on scope. You'll get a fixed quote after a short call.</p></details>
+    <details><summary>How many revisions?</summary><p><Held id="revisions" note="revision rounds (draft: two to three on most projects)" /></p></details>
+    <details><summary>Can you work with our media buyer or agency?</summary><p>Yes. We deliver in the specs and naming they need.</p></details>
+  </Faq>
+
+  <!-- 08 · CTA -->
+  <RidgeCta title="Start with an audit." button="Get a free audit" href={AUDIT_FREE}>
+    <p class="stand">{FREE_AUDIT_LINE}</p>
+    <p class="cap" slot="after" style="margin-top:16px">Or <a href={WAYS_IN[1].href}>book a call</a>, or go deeper with the <a href={WAYS_IN[2].href}>advanced audit</a>. <Held id="audit-credit" /></p>
+  </RidgeCta>
+</Work>
+<style>
+  .group { scroll-margin-top: 16px; }
+  .group:first-child { border-top: 1px solid var(--ink); padding-top: 0; }
+  .band > .wrap > .group:first-child { padding-top: clamp(40px, 5vw, 64px); }
+</style>
