@@ -13,13 +13,34 @@ import Texture from '../components/Texture.astro';
 import { homeCards } from '../data/services';
 import { TALK, AUDIT } from '../lib/site';
 import portrait from '../assets/studio/chris-dunn-portrait-bw.webp';
+import logoTgr from '../assets/clients/teton-gravity-research.png';
+import logoBrainFarm from '../assets/clients/brain-farm.png';
+import logoGu from '../assets/clients/gu-energy.png';
+import logoStio from '../assets/clients/stio.png';
+import logoPeacePark from '../assets/clients/peace-park.png';
+import logoAsymbol from '../assets/clients/asymbol.png';
+import logoIronwood from '../assets/clients/ironwood-homes.png';
 import { labHref } from '../data/lab';
 
 // Featured three: Deeper, Peace Park, Ironwood Homes (Freeman: Ironwood replaces GU Energy).
 const FEATURED = ['jeremy-jones-deeper', 'peace-park', 'ironwood-homes'];
 const all = await getCollection('work', ({ data }) => !data.draft);
 const featured = FEATURED.map((id) => all.find((e) => e.id === id)).filter((e) => e !== undefined);
-const clients = ['Teton Gravity Research', 'Brain Farm', 'GU Energy', 'Stio', 'Peace Park', 'Asymbol', 'Ironwood Homes'];
+// Official client logos Freeman supplied on 19 Nov (padding trimmed, art untouched).
+// Each is sized to roughly the same visual area, with a cap so square marks don't tower.
+const clients = [
+  { name: 'Teton Gravity Research', src: logoTgr },
+  { name: 'Brain Farm', src: logoBrainFarm },
+  { name: 'GU Energy', src: logoGu },
+  { name: 'Stio', src: logoStio },
+  { name: 'Peace Park', src: logoPeacePark },
+  { name: 'Asymbol', src: logoAsymbol },
+  { name: 'Ironwood Homes', src: logoIronwood },
+].map((c) => {
+  const aspect = c.src.width / c.src.height;
+  const h = Math.min(52, Math.round(Math.sqrt(4400 / aspect)));
+  return { ...c, h, w: Math.round(h * aspect) };
+});
 const engage = [
   { name: 'Audit', line: 'Start with a free audit: a short written review of your site with the top fixes, within 5 business days. Or book a call, or go deeper with the advanced audit.', credit: true, href: AUDIT },
   { name: 'Sprint', line: 'A defined project with a clear finish line.', href: TALK },
@@ -51,8 +72,11 @@ const n = (i: number) => String(i + 1).padStart(2, '0');
   <section class="proof" aria-label="Clients">
     <div class="wrap">
       <span class="lbl">Brands we've built work for</span>
-      {clients.map((c) => <span>{c}</span>)}
-      <Held id="client-logos" note="client logo files (names shown as type for now)" />
+      <ul class="logos">
+        {clients.map((c) => (
+          <li><Image src={c.src} alt={c.name} width={c.w} height={c.h} densities={[1, 2]} loading="lazy" /></li>
+        ))}
+      </ul>
     </div>
   </section>
 
