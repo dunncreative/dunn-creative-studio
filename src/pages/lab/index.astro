@@ -1,0 +1,108 @@
+---
+// Lab, per wireframe lab_v02 (Site Blueprint "Lab", 6 bands, 1 dark), in the Ridge look.
+// No Lab pieces are written yet: titles come from the wireframe and each links to a lorem story page
+// (/lab/[slug], src/data/lab.ts). The series teaser band links to the first series page.
+import Work from '../../layouts/Work.astro';
+import Held from '../../components/Held.astro';
+import MediaSlot from '../../components/MediaSlot.astro';
+import RidgeHero from '../../components/RidgeHero.astro';
+import RidgeCta from '../../components/RidgeCta.astro';
+import Texture from '../../components/Texture.astro';
+import { TALK } from '../../lib/site';
+import { lab, labHref } from '../../data/lab';
+import { LOREM } from '../../lib/lorem';
+
+const items = lab.filter((p) => p.slug !== 'client-zero');
+const filters = [['all', 'All'], ['series', 'Series'], ['rnd', 'R&D notes'], ['guide', 'Field guides']];
+---
+<Work title="Lab · Dunn Creative" description="Chris Dunn's own work and experiments: series, R&D notes and field guides. No client, no brief.">
+  <!-- 01 · Header -->
+  <RidgeHero short label="Lab" title="Lab" stand="My own work and experiments. No client, no brief.">
+    <div class="filters" role="group" aria-label="Filter the Lab">
+      {filters.map(([v, l], i) => <button type="button" data-f={v} aria-pressed={i === 0 ? 'true' : 'false'}>{l}</button>)}
+    </div>
+  </RidgeHero>
+
+  <!-- 02 · Featured -->
+  <section class="band">
+    <div class="wrap split" style="align-items:center">
+      <MediaSlot label="Client Zero image" ratio="4 / 3" />
+      <div>
+        <p class="lbl">R&D note · Featured</p>
+        <h2 style="margin:12px 0 18px">Client Zero: rebuilding our own site with an agent studio</h2>
+        <p class="stand muted">{LOREM[0]}</p>
+        <p class="cap" style="margin-top:14px"><Held id="lab-posts" note="date and write-up" /></p>
+        <div class="ctas" style="margin-top:24px"><a class="textcta" href={labHref('client-zero')}>Read +</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 · Everything, as a ruled index -->
+  <section class="band grey">
+    <div class="wrap">
+      <div class="sechead"><h2>Everything in the Lab</h2><Held id="lab-posts" /></div>
+      <div class="labidx" id="labgrid">
+        {items.map((it, i) => (
+          <a class="labrow" href={labHref(it.slug)} data-kind={it.kind}>
+            <span class="n">{String(i + 1).padStart(2, '0')}</span>
+            <p class="lbl">{it.label}</p>
+            <h3>{it.titleHeld ? <Held id="lab-guide" /> : it.title}</h3>
+            <span class="go">Read +</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 · Series page teaser (the page's one dark band after the hero) -->
+  <section class="band dark">
+    <Texture />
+    <div class="wrap split">
+      <div><p class="lbl">Series</p><h2 style="margin-top:12px">Each series gets its own story page.</h2></div>
+      <div>
+        <p class="stand">Full-bleed media bands with short captions, like a case study without a client.</p>
+        <div class="ctas" style="margin-top:26px"><a class="btn ghost" href={labHref('celtic-triskele')}>See a series page</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 · Newsletter -->
+  <section class="band">
+    <div class="wrap split">
+      <div><h2>New Lab drops, by email.</h2></div>
+      <div>
+        <form class="signup" id="nl" novalidate>
+          <label class="sr" for="nl-email">Email address</label>
+          <input id="nl-email" name="email" type="email" placeholder="you@company.com" autocomplete="email" required />
+          <button class="btn ghost" type="submit">Subscribe</button>
+        </form>
+        <p class="status" id="nl-status" role="status" aria-live="polite" style="margin-top:12px"></p>
+        <p class="cap" style="margin-top:12px"><Held id="newsletter" /></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 · CTA -->
+  <RidgeCta title="Want this thinking on your brand?" button="Let's talk" href={TALK}>
+    <p class="stand">Tell us what you're building.</p>
+  </RidgeCta>
+</Work>
+
+<script>
+  const buttons = [...document.querySelectorAll<HTMLButtonElement>('.filters button')];
+  const rows = [...document.querySelectorAll<HTMLElement>('#labgrid .labrow')];
+  buttons.forEach((b) => b.addEventListener('click', () => {
+    buttons.forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+    rows.forEach((r) => r.toggleAttribute('data-hide', b.dataset.f !== 'all' && r.dataset.kind !== b.dataset.f));
+  }));
+  const nl = document.getElementById('nl') as HTMLFormElement;
+  nl.addEventListener('submit', (e) => {
+    e.preventDefault();
+    document.getElementById('nl-status')!.textContent = nl.checkValidity()
+      ? 'Preview only: nothing was sent.'
+      : 'Please enter a valid email.';
+  });
+</script>
+<style>
+  .labrow .lbl { margin: 0; }
+</style>

@@ -1,0 +1,23 @@
+---
+// A labelled stand-in for an image or video that isn't in the repo yet.
+// Shows what goes here and, when known, the file name, so it can be swapped fast.
+import Held from './Held.astro';
+import type { HeldId } from '../lib/held';
+interface Props { label: string; file?: string; ratio?: string; held?: HeldId; dark?: boolean; class?: string }
+const { label, file, ratio = '4 / 3', held, dark = false, class: cls } = Astro.props;
+---
+<div class:list={['slot', { dark }, cls]} style={`aspect-ratio:${ratio}`} role="img" aria-label={`Placeholder: ${label}`}>
+  <div class="inner">
+    <span class="what">{label}</span>
+    {file && <span class="file">{file}</span>}
+    {held && <Held id={held} />}
+  </div>
+</div>
+<style>
+  .slot { width: 100%; border-radius: var(--r-tile); background: repeating-linear-gradient(135deg, #ececef 0 12px, #e6e6ea 12px 24px); display: flex; align-items: center; justify-content: center; text-align: center; padding: 20px; color: var(--dark-grey); overflow: hidden; }
+  .slot.dark { background: repeating-linear-gradient(135deg, #1b1c1e 0 12px, #17181a 12px 24px); color: var(--grey-500); }
+  .inner { display: flex; flex-direction: column; align-items: center; gap: 6px; max-width: 46ch; }
+  .what { font-weight: 600; font-size: 15px; }
+  .file { font-size: 12px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; opacity: .85; }
+  .dark :global(.held) { color: var(--grey-200); }
+</style>
