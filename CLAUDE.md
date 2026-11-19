@@ -9,29 +9,31 @@ Owner and creative director: Freeman (Chris Dunn).
 - `npm run build` must pass before any PR is marked ready.
 
 ## Structure
+- `src/pages/` — the site in the Ridge look: home, services hub + `services/[service]`, work index + case
+  study, AI, Lab + Lab stories, About, Contact, AI statement, Privacy.
 - `src/pages/explore/a/` — the studio's one-page lead site (task #33).
 - `public/explore/` — three standalone lead pages (get started, AI call, audit) plus an index, made in Freeman's
   chat sessions. Static HTML; edit them only on Freeman's ask.
-- The full site (home, about, services hub + single service template, work index + case study template,
-  contact, Lab, AI) is being built on `feat/site-pages-v02-1` (PR #5), not on `main` yet.
+- `src/lib/held.ts` (shown at `/held`) — every open item for Freeman in one registry. Never fill an `answer`
+  there from anything but Freeman's own answer.
 
-## Where things stand (18 Nov 2026)
-- `main` is the live demo at dunncreative.netlify.app: PR #2 (home, services, work) and PR #4 (/explore/a)
-  are merged. AI, Lab and About show "soon" until PR #5 lands.
-- PR #1 (`feat/work-collection`, tasks #39 and #40) and PR #3 (`claude/33-explore-a`) are still open.
-  Their content is already on `main`; fixes pushed there reach the demo only when Freeman merges them.
-- PR #5 (`feat/site-pages-v02-1`) holds the site pages from Wireframes v02.1, which Freeman approved on
-  18 Nov, rebuilt in the **Ridge** look he picked the same day (of Ridge, Type and Frame). Freeman's chat
-  session owns this branch. Studio runs don't push to it; send changes for it through the Notion Inbox.
-- Open items for Freeman live in one registry on PR #5: `src/lib/held.ts`, shown at `/held`. Never fill an
-  `answer` there from anything but Freeman's own answer.
-- The Notion board (Decisions, task handoff notes, Inbox) is the record of what's decided. Read it before
-  acting on anything in this file.
+## Where things stand (19 Nov 2026)
+- `main` is the live site at dunncreative.netlify.app. PR #5 (site pages from Wireframes v02.1, in the
+  **Ridge** look Freeman picked) was squash-merged on 19 Nov, so the Ridge pages are live.
+- Home and About use the portrait Freeman approved: `src/assets/studio/chris-dunn-portrait-bw.webp`.
+- Still open: PR #1 (`feat/work-collection`, tasks #39 and #40), PR #3 (`claude/33-explore-a`, QA fixes for
+  #33) and draft PR #7 (`feat/client-logo-bar`, Freeman's seven client logos in the homepage logo bar, from
+  the chat session). Next merges, per Freeman's chat session: #1, then #3, each brought up to date with
+  `main` first. Merging stays Freeman's.
+- Freeman's chat session owns `feat/client-logo-bar`. Studio runs don't push to it; send changes for it
+  through the Notion Inbox.
+- The Notion board (Decisions, task handoff notes, Inbox) is the record of what's decided, including copy and
+  pricing calls. Read it before acting on anything in this file.
 
 ## Rules for agents
 - Never commit to `main`. Work on a branch, open a **draft** pull request, link the Deploy Preview on the Notion task.
 - Never merge. Merging is Freeman's.
-- Don't push to a branch another session owns (today: `feat/site-pages-v02-1`, PR #5).
+- Don't push to a branch another session owns (today: `feat/client-logo-bar`, PR #7).
 - Never invent clients, results, quotes or prices. Use only facts from the Brand Brain, the board or Freeman.
 - Brand: logo in white on dark, black on light, never teal. Teal (#1AA6AA; #10777A for small text on light)
   is an accent only. Greys from dark to light are part of the palette; Grey 600 (#6B6E72) is the caption grey
