@@ -33,6 +33,14 @@
 .proof { border-bottom: var(--rule); }
 .proof .wrap { display: flex; gap: 14px 36px; flex-wrap: wrap; align-items: center; padding-top: 26px; padding-bottom: 26px; }
 .proof span { font-size: 15px; font-weight: 500; color: var(--stand); }
+.proof .logos { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 20px 44px; flex: 1; }
+.proof .logos li { display: flex; align-items: center; }
+.proof .logos img { display: block; max-width: 100%; height: auto; }
+@media (max-width: 760px) {
+  .proof .wrap { flex-direction: column; align-items: flex-start; gap: 18px; }
+  .proof .logos { width: 100%; gap: 22px 30px; }
+  .proof .logos img { zoom: .85; }
+}
 
 /* Tiles */
 .tiles { display: grid; gap: clamp(20px, 2.4vw, 32px); grid-template-columns: repeat(3, minmax(0, 1fr)); }

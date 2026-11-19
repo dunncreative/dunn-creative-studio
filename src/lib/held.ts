@@ -93,6 +93,7 @@ export const held = {
     ask: 'Please add the seven client logo files (Client-Logos-For-Website, plus an Ironwood Homes export).',
     pages: ['Home'],
     meanwhile: 'Client names set as type.',
+    answer: 'Seven official logos supplied by Freeman (19 Nov).',
   },
   network: {
     label: 'describe the network',
