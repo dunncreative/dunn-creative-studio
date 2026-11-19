@@ -123,6 +123,8 @@ const liveHost = d.liveUrl ? new URL(d.liveUrl).hostname.replace(/^www\./, '') :
   .hero :global(.heroimg) { margin-top: 48px; }
   .hero :global(figcaption) { color: #a3a3a0; }
   .mediaband.light { background: var(--white); }
+  /* Grey 600 is the caption grey on light; on dark bands captions keep Grey 500 (about 6:1 on ink). */
+  .mediaband.dark :global(figcaption) { color: var(--grey-500); }
   .spec { display:grid; grid-template-columns: 1fr; gap: 20px; margin-top: 0; margin-bottom: 0; }
   @media (min-width: 720px) { .spec { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); } }
   .spec dd { margin: 4px 0 0; color: var(--ink); }
