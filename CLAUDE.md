@@ -9,15 +9,35 @@ Owner and creative director: Freeman (Chris Dunn).
 - `npm run build` must pass before any PR is marked ready.
 
 ## Structure
-- `src/pages/explore/{a,b,c}/` — landing-page explorations, one per moodboard direction.
-- The chosen direction grows into the full site (home, about, services hub + single service template,
-  work index + case study template, blog, contact, Lab).
+- `src/pages/` — the site in the Ridge look: home, services hub + `services/[service]`, work index + case
+  study, AI, Lab + Lab stories, About, Contact, AI statement, Privacy.
+- `src/pages/explore/a/` — the studio's one-page lead site (task #33).
+- `public/explore/` — three standalone lead pages (get started, AI call, audit) plus an index, made in Freeman's
+  chat sessions. Static HTML; edit them only on Freeman's ask.
+- `src/lib/held.ts` (shown at `/held`) — every open item for Freeman in one registry. Never fill an `answer`
+  there from anything but Freeman's own answer.
+
+## Where things stand (19 Nov 2026)
+- `main` is the live site at dunncreative.netlify.app. PR #5 (site pages from Wireframes v02.1, in the
+  **Ridge** look Freeman picked) was squash-merged on 19 Nov, so the Ridge pages are live.
+- Home and About use the portrait Freeman approved: `src/assets/studio/chris-dunn-portrait-bw.webp`.
+- Still open: PR #1 (`feat/work-collection`, tasks #39 and #40), PR #3 (`claude/33-explore-a`, QA fixes for
+  #33) and draft PR #7 (`feat/client-logo-bar`, Freeman's seven client logos in the homepage logo bar, from
+  the chat session). Next merges, per Freeman's chat session: #1, then #3, each brought up to date with
+  `main` first. Merging stays Freeman's.
+- Freeman's chat session owns `feat/client-logo-bar`. Studio runs don't push to it; send changes for it
+  through the Notion Inbox.
+- The Notion board (Decisions, task handoff notes, Inbox) is the record of what's decided, including copy and
+  pricing calls. Read it before acting on anything in this file.
 
 ## Rules for agents
 - Never commit to `main`. Work on a branch, open a **draft** pull request, link the Deploy Preview on the Notion task.
 - Never merge. Merging is Freeman's.
+- Don't push to a branch another session owns (today: `feat/client-logo-bar`, PR #7).
 - Never invent clients, results, quotes or prices. Use only facts from the Brand Brain, the board or Freeman.
 - Brand: logo in white on dark, black on light, never teal. Teal (#1AA6AA; #10777A for small text on light)
-  is an accent only. Greys from dark to light are part of the palette. Follow Brand Guidelines v1 once it exists.
+  is an accent only. Greys from dark to light are part of the palette; Grey 600 (#6B6E72) is the caption grey
+  on light. Follow Brand Guidelines v1 (Notion), which also sets sentence-case buttons with rounded corners
+  and a light nav for now.
 - Keep previews `noindex` until launch (set in `netlify.toml`).
 - Reference only, do not copy wholesale: the old .net repo (`dunncreative/dunn-creative`) and the live Squarespace site.
