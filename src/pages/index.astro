@@ -30,15 +30,16 @@ const featured = FEATURED.map((id) => all.find((e) => e.id === id)).filter((e) =
 // Each is sized to roughly the same visual area, with a cap so square marks don't tower.
 const clients = [
   { name: 'Teton Gravity Research', src: logoTgr },
-  { name: 'Brain Farm', src: logoBrainFarm },
+  { name: 'Brain Farm', src: logoBrainFarm, optical: 0.8 }, // heavy wordmark, eased down
   { name: 'GU Energy', src: logoGu },
   { name: 'Stio', src: logoStio },
-  { name: 'Peace Park', src: logoPeacePark },
+  { name: 'Peace Park', src: logoPeacePark, optical: 1.35 }, // thin linework, eased up
   { name: 'Asymbol', src: logoAsymbol },
   { name: 'Ironwood Homes', src: logoIronwood },
-].map((c) => {
+].map((c: { name: string; src: ImageMetadata; optical?: number }) => {
   const aspect = c.src.width / c.src.height;
-  const h = Math.min(52, Math.round(Math.sqrt(4400 / aspect)));
+  const optical = c.optical ?? 1;
+  const h = Math.round(Math.min(52 * Math.sqrt(optical), (Math.sqrt((4400 * optical) / aspect))));
   return { ...c, h, w: Math.round(h * aspect) };
 });
 const engage = [
