@@ -1,130 +1,156 @@
 ---
-// Demo home page, built from Website Copy v02 (Home, section 1) for the demo at dunncreative.netlify.app.
-// Lines tagged [held] or [confirm] in the copy are left out until Freeman answers them:
-// client logos (names shown as text, the copy's own fallback), hero reel, portrait, Lab tiles,
-// free mini-audit line and the reply-time promise.
+// Home, per wireframe home_v02-2 (10 bands), in the Ridge look Freeman picked on 18 Nov.
+// Anything only Freeman can answer is a <Held> chip (src/lib/held.ts); see /held for the list.
 import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
 import Work from '../layouts/Work.astro';
 import WorkCard from '../components/WorkCard.astro';
+import Held from '../components/Held.astro';
+import MediaSlot from '../components/MediaSlot.astro';
+import RidgeHero from '../components/RidgeHero.astro';
+import RidgeCta from '../components/RidgeCta.astro';
+import Texture from '../components/Texture.astro';
+import { homeCards } from '../data/services';
+import { TALK, AUDIT } from '../lib/site';
+import portrait from '../assets/studio/chris-dunn-portrait-bw.webp';
+import { labHref } from '../data/lab';
 
-const featured = (await getCollection('work', ({ data }) => !data.draft && data.featured)).sort(
-  (a, b) => a.data.order - b.data.order,
-);
-const clients = ['Teton Gravity Research', 'Brain Farm', 'GU Energy', 'Stio', 'Asymbol', 'Peace Park', 'Ironwood Homes'];
-const services = [
-  { name: 'Brand Identity', tags: ['Strategy', 'Logo suite', 'Guidelines'], line: 'Strategy, naming, logo, type, color and the guidelines that hold it together.' },
-  { name: 'Websites', tags: ['Strategy', 'Design', 'Build'], line: 'Marketing sites, landing pages and stores, designed and built to convert.' },
-  { name: 'Campaigns & Content', tags: ['Ads', 'Social', 'Email'], line: 'Ads, social, email, motion and video, with variations built for testing.' },
-  { name: 'Presentations & Decks', tags: ['Pitch', 'Sales', 'Reports'], line: 'Investor, sales and partnership decks that get read to the end.' },
-  { name: 'Motion & Video', tags: ['Motion', 'Video', 'Photo direction'], line: 'Motion and video that bring the brand system to life without breaking it.' },
-  { name: 'Marketing Strategy', tags: ['Positioning', 'Messaging', 'Concepts'], line: 'Positioning and messaging that give every creative decision a reason.' },
+// Featured three: Deeper, Peace Park, Ironwood Homes (Freeman: Ironwood replaces GU Energy).
+const FEATURED = ['jeremy-jones-deeper', 'peace-park', 'ironwood-homes'];
+const all = await getCollection('work', ({ data }) => !data.draft);
+const featured = FEATURED.map((id) => all.find((e) => e.id === id)).filter((e) => e !== undefined);
+const clients = ['Teton Gravity Research', 'Brain Farm', 'GU Energy', 'Stio', 'Peace Park', 'Asymbol', 'Ironwood Homes'];
+const engage = [
+  { name: 'Audit', line: 'Start with a free audit: a short written review of your site with the top fixes, within 5 business days. Or book a call, or go deeper with the advanced audit.', credit: true, href: AUDIT },
+  { name: 'Sprint', line: 'A defined project with a clear finish line.', href: TALK },
+  { name: 'Retainer', line: 'Monthly creative capacity for teams that ship constantly: ads, social, email, decks and web updates.', href: TALK },
 ];
-const talk = 'mailto:chris@dunncreative.com';
+const lab = [
+  { kind: 'Series', title: 'Celtic / triskele', href: labHref('celtic-triskele') },
+  { kind: 'R&D note', title: 'Client Zero: rebuilding our own site with an agent studio', href: labHref('client-zero') },
+  { kind: 'Field guide', title: 'Field guide', guide: true, href: labHref('field-guide') },
+];
+const n = (i: number) => String(i + 1).padStart(2, '0');
 ---
 <Work title="Dunn Creative · Brand, web and content studio in Jackson, WY" description="Dunn Creative is a senior-led brand, web and content studio in Jackson, WY, with an AI-accelerated workflow and 20+ years of brand and digital judgment.">
-  <section class="band hero">
+  <!-- 02 · Hero -->
+  <RidgeHero
+    label="Creative studio · Jackson, WY"
+    title="Brand, web and content. Built sharper, shipped faster."
+    stand="A senior-led studio with an AI-accelerated workflow. 20+ years of brand and digital judgment, with production that keeps up with your calendar."
+    meta={['Brand', 'Web', 'Content', 'Decks', 'AI for creative teams']}
+  >
+    <div class="ctas">
+      <a class="btn" href={TALK}>Let's talk</a>
+      <a class="textcta" href="/work/">See the work +</a>
+    </div>
+    <p class="cap" style="margin-top:22px"><Held id="hero-reel" note="hero reel or Freeman's photo can sit behind the ridge" /></p>
+  </RidgeHero>
+
+  <!-- 03 · Client names -->
+  <section class="proof" aria-label="Clients">
     <div class="wrap">
-      <p class="label eyebrow">Creative studio · Jackson, WY</p>
-      <h1>Brand, web and content. Built sharper, shipped faster.</h1>
-      <p class="lede">Dunn Creative is a senior-led studio with an AI-accelerated workflow. You get 20+ years of brand and digital judgment, with production that keeps up with your calendar.</p>
-      <p class="ctas"><a class="textcta" href={talk}>Let's talk +</a><a class="textcta" href="/work/">See the work +</a></p>
+      <span class="lbl">Brands we've built work for</span>
+      {clients.map((c) => <span>{c}</span>)}
+      <Held id="client-logos" note="client logo files (names shown as type for now)" />
     </div>
   </section>
 
-  <section class="band grey logos" aria-labelledby="clients">
+  <!-- 04 · Featured work -->
+  <section class="band" id="work">
     <div class="wrap">
-      <p class="label" id="clients">Brands we've built work for</p>
-      <ul class="names">{clients.map((c) => <li>{c}</li>)}</ul>
+      <div class="sechead"><h2>Recent work</h2><a class="textcta" href="/work/">All work +</a></div>
+      <div class="tiles">{featured.map((e) => <WorkCard entry={e} />)}</div>
     </div>
   </section>
 
-  <section class="band">
-    <div class="wrap">
-      <p class="label eyebrow">Selected work</p>
-      <h2>Recent work.</h2>
-      <div class="grid">{featured.map((e) => <WorkCard entry={e} />)}</div>
-      <p><a class="textcta" href="/work/">All work +</a></p>
-    </div>
-  </section>
-
+  <!-- 05 · Services -->
   <section class="band grey" id="services">
     <div class="wrap">
-      <p class="label eyebrow">Services</p>
-      <h2>Six things, done properly.</h2>
-      <div class="cards">
-        {services.map((s) => (
-          <article class="svc">
+      <div class="sechead"><h2>What we make</h2><a class="textcta" href="/services/">All services +</a></div>
+      <div class="index">
+        {homeCards.map((s, i) => (
+          <a href={s.href}>
+            <span class="n">{n(i)}</span>
             <h3>{s.name}</h3>
-            <p class="tags">{s.tags.join(' · ')}</p>
             <p>{s.line}</p>
+            <ul class="tags">{s.tags.map((t) => <li>{t}</li>)}</ul>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 · AI band (dark, texture allowed) -->
+  <section class="band dark">
+    <Texture />
+    <div class="wrap">
+      <div class="split" style="margin-bottom:56px">
+        <div><p class="lbl">Creative studio</p><h2 style="margin-top:12px">We make the work.</h2></div>
+        <div><p class="lbl">AI studio</p><h2 style="margin-top:12px;color:#9a9da1">And we build the AI that makes it.</h2></div>
+      </div>
+      <div class="three">
+        <div><p class="lbl">01</p><h3>One senior director</h3><p>One senior creative director directs every job, from the first idea to the final file.</p></div>
+        <div><p class="lbl">02</p><h3>Agent studio</h3><p>AI drafts, versions and preps. People make the strategy, the direction and the final calls.</p></div>
+        <div><p class="lbl">03</p><h3>Production tools</h3><p>Production that keeps up with your calendar.</p></div>
+      </div>
+      <div class="ctas" style="margin-top:44px"><a class="textcta" href="/ai/">How we use AI +</a></div>
+    </div>
+  </section>
+
+  <!-- 07 · How we engage -->
+  <section class="band">
+    <div class="wrap">
+      <div class="sechead"><h2>Start small. Scale when it works.</h2></div>
+      <div class="steps c3">
+        {engage.map((e, i) => (
+          <div>
+            <span class="n">{n(i)}</span>
+            <h3>{e.name}</h3>
+            <p>{e.line} {e.credit && <Held id="audit-credit" />}</p>
+            <a class="textcta" href={e.href}>Learn more +</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 08 · Founder note -->
+  <section class="band grey">
+    <div class="wrap split">
+      <figure class="portrait">
+        <Image src={portrait} alt="Chris Dunn, black-and-white portrait" widths={[480, 800]} sizes="(min-width: 880px) 480px, 100vw" />
+      </figure>
+      <div>
+        <p class="lbl">Founder</p>
+        <h2 style="margin:14px 0 22px">Every project is directed by Chris Dunn.</h2>
+        <p class="stand">20+ years in creative direction, brand, web and content, most of it in action sports, film and lifestyle, where the work has to look as good as the footage. Senior creative roles at Teton Gravity Research; film campaign credits on We Are Blood, The Fourth Phase and View From A Blue Moon.</p>
+        <div class="ctas" style="margin-top:24px"><a class="textcta" href="/about/">About the studio +</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 09 · From the Lab -->
+  <section class="band" id="lab">
+    <div class="wrap">
+      <div class="sechead"><h2>From the Lab</h2><a class="textcta" href="/lab/">The Lab +</a></div>
+      <div class="tiles">
+        {lab.map((l) => (
+          <article class="tile">
+            <MediaSlot label="Lab image" ratio="1 / 1" />
+            <p class="lbl">{l.kind}</p>
+            <h3>{l.guide ? <Held id="lab-guide" /> : l.title}</h3>
+            <p class="cap"><Held id="lab-posts" note="date" /></p>
+            <a class="textcta" href={l.href}>Read +</a>
           </article>
         ))}
       </div>
-      <p><a class="textcta" href="/services/">All services +</a></p>
     </div>
   </section>
 
-  <section class="band dark">
-    <div class="wrap">
-      <p class="label eyebrow">Creative studio · AI studio</p>
-      <h2>Two studios under one roof.</h2>
-      <p>The creative studio makes the work: brands, sites, campaigns and decks. The AI studio builds the agent seats and workflows that help make it. Chris approves the work at every step.</p>
-    </div>
-  </section>
-
-  <section class="band">
-    <div class="wrap">
-      <p class="label eyebrow">How we engage</p>
-      <h2>Start small. Scale when it works.</h2>
-      <div class="cards three">
-        <article class="svc"><h3>Audit</h3><p>A senior review of your brand, site or creative workflow, with a prioritized plan you can act on.</p></article>
-        <article class="svc"><h3>Sprint</h3><p>A defined project with a clear finish line.</p></article>
-        <article class="svc"><h3>Retainer</h3><p>Monthly creative capacity for teams that ship constantly: ads, social, email, decks and web updates.</p></article>
-      </div>
-      <p><a class="textcta" href={talk}>Let's talk +</a></p>
-    </div>
-  </section>
-
-  <section class="band grey">
-    <div class="wrap">
-      <p class="label eyebrow">Founder</p>
-      <h2>Every project, directed by Chris.</h2>
-      <p>Chris Dunn has spent 20+ years in creative direction, brand, web and content, most of it in action sports, film and lifestyle, where the work has to look as good as the footage. He was Creative Director at Teton Gravity Research, and he ran digital marketing for films including We Are Blood and View From A Blue Moon, on behalf of Brain Farm. He runs Dunn Creative and directs every project himself.</p>
-    </div>
-  </section>
-
-  <section class="band ctaband">
-    <div class="wrap">
-      <div class="ctabox">
-        <h2>Ready to build something sharper?</h2>
-        <p>Tell us what you're building.</p>
-        <p><a class="textcta big" href={talk}>Let's talk +</a></p>
-      </div>
-    </div>
-  </section>
+  <!-- 10 · Final CTA -->
+  <RidgeCta title="Ready to build something sharper?" button="Let's talk" href={TALK} id="talk">
+    <p class="stand">Tell us what you're building.</p>
+    <Held id="response-time" />
+  </RidgeCta>
 </Work>
-
-<style>
-  .hero { padding: 72px 0 80px; }
-  @media (min-width: 880px) { .hero { padding: 120px 0 128px; } }
-  .hero h1 { max-width: 15ch; margin-top: 12px; }
-  .eyebrow { text-transform: uppercase; letter-spacing: .12em; margin: 0 0 8px; }
-  .band.dark .eyebrow { color: #a3a3a0; }
-  .lede { font-size: 20px; margin: 24px 0 28px; }
-  .ctas { display: flex; flex-wrap: wrap; gap: 24px; font-size: 18px; }
-  .names { list-style: none; padding: 0; margin: 16px 0 0; display: flex; flex-wrap: wrap; gap: 10px 32px; font-size: 19px; font-weight: 600; color: var(--grey-500); }
-  .names li { margin: 0; }
-  .logos { padding: 40px 0; }
-  h2 { margin-bottom: 32px; }
-  .grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 40px 24px; margin-bottom: 32px; }
-  @media (min-width: 720px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-  @media (min-width: 1040px) { .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-  .cards { display: grid; grid-template-columns: 1fr; gap: 16px; margin-bottom: 32px; }
-  @media (min-width: 720px) { .cards { grid-template-columns: repeat(2, 1fr); } }
-  @media (min-width: 1040px) { .cards { grid-template-columns: repeat(3, 1fr); } }
-  .svc { background: var(--white); border: 1px solid var(--grey-200); border-radius: 20px; padding: 24px; }
-  .band:not(.grey) .svc { background: var(--grey-50); border-color: transparent; }
-  .svc p { margin: 8px 0 0; }
-  .tags { font-size: 14px; color: var(--grey-500); }
-  .big { font-size: 24px; }
-</style>

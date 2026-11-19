@@ -1,0 +1,119 @@
+---
+// Contact, per wireframe contact_v02-1 (Site Blueprint "Contact", 3 bands, 0 dark), in the Ridge look.
+// It stays light: the ridge comes in only as a hairline between the form and the Audit band.
+// The form is demo only: it validates and shows a note, and sends nothing. At launch it posts
+// to chris@dunncreative.com through Netlify Forms (wireframe note).
+import Work from '../layouts/Work.astro';
+import Held from '../components/Held.astro';
+import { EMAIL, PLACE, WAYS_IN } from '../lib/site';
+const needs = ['Brand', 'Web', 'Content', 'AI', 'Not sure'];
+---
+<Work title="Let's talk · Dunn Creative" description="Tell Dunn Creative what you're building. One short form, or start smaller with an audit.">
+  <!-- 01 · Form -->
+  <section class="band" id="inquiry" style="padding-top:clamp(48px,7vw,96px)">
+    <div class="wrap split" style="align-items:start">
+      <div>
+        <p class="lbl">Let’s talk</p>
+        <h1 class="ch1">Tell us what you’re building.</h1>
+        <p class="stand">We read every inquiry. <Held id="response-time" /></p>
+      </div>
+      <form class="rform" id="form" novalidate>
+        <div class="row2">
+          <label for="f-name">Name*<input class="field" id="f-name" name="name" autocomplete="name" required /></label>
+          <label for="f-email">Email*<input class="field" id="f-email" name="email" type="email" autocomplete="email" required /></label>
+        </div>
+        <label for="f-co">Company<input class="field" id="f-co" name="company" autocomplete="organization" /></label>
+        <fieldset>
+          <legend>What you need</legend>
+          <div class="chipset">{needs.map((n) => <label><input type="checkbox" name="need" value={n} /><span>{n}</span></label>)}</div>
+        </fieldset>
+        <fieldset>
+          <legend>Budget range</legend>
+          <div class="chipset">
+            {[1, 2, 3, 4].map((i) => <label><input type="radio" name="budget" value={`range-${i}`} /><span>Range {i}</span></label>)}
+            <label><input type="radio" name="budget" value="not-sure" /><span>Not sure yet</span></label>
+          </div>
+          <p style="margin:10px 0 0"><Held id="budget-ranges" /></p>
+        </fieldset>
+        <label for="f-msg">Message<textarea class="field" id="f-msg" name="message" rows="5"></textarea></label>
+        <div class="ctas">
+          <button class="btn" type="submit">Send inquiry</button>
+          <p class="status" id="status" role="status" aria-live="polite"></p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <div aria-hidden="true">
+    <svg class="lineridge" viewBox="0 0 1440 140" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+      <path d="M0 120 L120 96 L210 110 L330 66 L420 84 L540 36 L610 54 L700 10 L790 46 L880 26 L980 66 L1080 36 L1180 72 L1290 50 L1440 84" fill="none" stroke="#c9cbce" stroke-width="1.2" vector-effect="non-scaling-stroke"/>
+      <path d="M0 138 L150 120 L260 130 L380 98 L470 110 L600 86 L690 106 L820 76 L930 98 L1040 84 L1150 108 L1270 94 L1440 118" fill="none" stroke="#e3e3e6" stroke-width="1" vector-effect="non-scaling-stroke"/>
+    </svg>
+  </div>
+
+  <!-- 02 · Or start smaller -->
+  <section class="band grey" id="audit">
+    <div class="wrap split">
+      <div><p class="lbl">Audit</p><h2 style="margin-top:12px">Or start smaller.</h2></div>
+      <div>
+        <p class="stand">Three ways in. Pick one and it goes into your message.</p>
+        <p class="lbl" id="ways-lbl" style="margin-top:24px">What do you need?</p>
+        <div class="tracks" role="group" aria-labelledby="ways-lbl" style="margin-top:12px">
+          {WAYS_IN.map((w, i) => <button type="button" class="track" data-way={w.id} aria-pressed={i === 0 ? "true" : "false"}>{w.name}</button>)}
+        </div>
+        {WAYS_IN.map((w, i) => (
+          <p class="way-line" data-way={w.id} hidden={i !== 0} style="margin-top:16px">{w.line} {w.credit && <Held id="audit-credit" />}</p>
+        ))}
+        <div class="ctas" style="margin-top:24px"><a class="textcta" href="#inquiry" id="get-audit">Continue +</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 · Direct -->
+  <section class="band tight">
+    <div class="wrap">
+      <p class="lbl" style="margin-bottom:14px">Or write directly</p>
+      <div class="direct"><a href={`mailto:${EMAIL}`}>{EMAIL}</a><span>{PLACE}</span></div>
+    </div>
+  </section>
+</Work>
+
+<script>
+  const form = document.getElementById('form') as HTMLFormElement;
+  const status = document.getElementById('status')!;
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (!form.checkValidity()) {
+      status.textContent = 'Please add your name and a valid email.';
+      form.reportValidity();
+      return;
+    }
+    status.textContent = 'Preview only: nothing was sent. Email chris@dunncreative.com for now.';
+  });
+
+  // Three ways in: ?way=free|call|advanced preselects one. "Continue" carries the pick into the form.
+  const WAYS: Record<string, string> = {
+    free: 'I’d like the free audit.',
+    call: 'I’d like to book a call.',
+    advanced: 'I’d like the advanced audit.',
+  };
+  const asked = new URLSearchParams(location.search).get('way') ?? '';
+  let way = asked in WAYS ? asked : 'free';
+  const buttons = [...document.querySelectorAll<HTMLButtonElement>('.track')];
+  const lines = [...document.querySelectorAll<HTMLElement>('.way-line')];
+  const paint = () => {
+    buttons.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.way === way)));
+    lines.forEach((l) => (l.hidden = l.dataset.way !== way));
+  };
+  buttons.forEach((b) => b.addEventListener('click', () => { way = b.dataset.way!; paint(); }));
+  paint();
+  document.getElementById('get-audit')!.addEventListener('click', () => {
+    const msg = form.elements.namedItem('message') as HTMLTextAreaElement;
+    const rest = msg.value.split('\n').filter((l) => !Object.values(WAYS).includes(l)).join('\n').trim();
+    msg.value = WAYS[way] + (rest ? '\n\n' + rest : '');
+  });
+</script>
+<style>
+  .ch1 { font-size: clamp(44px, 6vw, 88px); margin: 16px 0 24px; max-width: 12ch; }
+  #audit { scroll-margin-top: 16px; }
+</style>

@@ -1,0 +1,19 @@
+---
+// Ridge closing band: a Grey 50 band, big weight-400 line on the left, the screen's one solid
+// teal button on the right with an optional line under it. Light, so no texture.
+interface Props { title: string; button: string; href: string; id?: string; label?: string }
+const { title, button, href, id, label } = Astro.props;
+---
+<section class="band grey rcta" id={id}>
+  <div class="wrap">
+    <div>
+      {label && <p class="lbl" style="margin-bottom:14px">{label}</p>}
+      <h2>{title}</h2>
+    </div>
+    <div class="side">
+      <slot />
+      <a class="btn" href={href}>{button}</a>
+      <slot name="after" />
+    </div>
+  </div>
+</section>

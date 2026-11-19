@@ -1,8 +1,17 @@
 ---
-import { getCollection, render, type CollectionEntry } from 'astro:content';
+// Case study and snapshot pages, per wireframes case-study_v02 and work_v02, in the Ridge look.
+// Case study: ridge hero, the lead image, a ruled spec row, the story as numbered ruled sections,
+// the rest of the images, then it ends on Next project (wireframe row 15). A sticky "Start a project"
+// follows the reader and steps aside when the footer is on screen.
+import { getCollection, type CollectionEntry } from 'astro:content';
 import Work from '../../layouts/Work.astro';
 import WorkFigure from '../../components/WorkFigure.astro';
 import { clean, cleanList, isAiImage } from '../../lib/placeholders';
+import Held from '../../components/Held.astro';
+import MediaSlot from '../../components/MediaSlot.astro';
+import RidgeHero from '../../components/RidgeHero.astro';
+import { SHOW_HELD } from '../../lib/held';
+import { LOREM } from '../../lib/lorem';
 
 export async function getStaticPaths() {
   const entries = (await getCollection('work', ({ data }) => !data.draft)).sort(
@@ -24,112 +33,154 @@ export async function getStaticPaths() {
 const { entry, next } = Astro.props as { entry: CollectionEntry<'work'>; next?: CollectionEntry<'work'> };
 const d = entry.data;
 const isCase = d.kind === 'case-study';
-const { Content } = await render(entry);
 const [hero, ...media] = d.images;
 const spec = d.spec ?? {};
 // Unanswered studio notes ("[confirm]", "[held: …]") are stripped; an empty field hides its row.
 const deliverables = cleanList(spec.deliverables);
 const channels = cleanList(spec.channels);
 const specItems = [
+  ['Client', d.client],
   clean(spec.timeline) && ['Timeline', clean(spec.timeline)],
-  deliverables.length && ['Deliverables', deliverables.join(' · ')],
-  channels.length && ['Channels', channels.join(' · ')],
+  deliverables.length && ['Deliverables', deliverables.join(', ')],
+  channels.length && ['Channels', channels.join(', ')],
   clean(spec.aiUsed) && ['AI used', clean(spec.aiUsed)],
 ].filter(Boolean) as [string, string][];
-const liveHost = d.liveUrl ? new URL(d.liveUrl).hostname.replace(/^www\./, '') : null;
----
-<Work title={`${d.title} · Work · Dunn Creative`} description={d.summary} navCta={isCase ? 'ghost' : 'solid'}>
-  {isCase ? (
-    <header slot="head" class="local">
-      <div class="wrap">
-        <a href="/work/" class="crumb">Work</a>
-        <strong>{d.title}</strong>
-        <a class="btn" href="mailto:chris@dunncreative.com?subject=Start%20a%20project">Start a project</a>
-      </div>
-    </header>
-  ) : null}
+// Wireframe v02.1 holds: year/duration and AI used stay visible as Held chips on case studies
+// while they're unanswered; Deeper also holds its challenge copy and the DVD menu asset.
+const holdYear = isCase && !clean(spec.timeline);
+const holdAi = isCase && !clean(spec.aiUsed);
+const isDeeper = entry.id === 'jeremy-jones-deeper';
 
+// The write-up, split at its "## " headings into numbered sections. Bodies are plain paragraphs.
+const sections = (entry.body ?? '')
+  .split(/^## /m)
+  .map((s) => s.trim())
+  .filter(Boolean)
+  .map((s) => {
+    const [head, ...rest] = s.split('\n');
+    return { title: head.trim(), paras: rest.join('\n').split(/\n\s*\n/).map((p) => p.trim()).filter(Boolean), lorem: false };
+  });
+// Case studies whose write-up stops at "Challenge" get the rest of the story's sections as
+// real titles with lorem ipsum (Freeman, 18 Nov), so the page structure reads complete.
+const extra = isCase && sections.length <= 1;
+if (extra) for (const t of ['Approach', 'What we made', 'Outcome']) sections.push({ title: t, paras: [LOREM[0], LOREM[1]], lorem: true });
+const liveHost = d.liveUrl ? new URL(d.liveUrl).hostname.replace(/^www\./, '') : null;
+const nextImg = next?.data.cardImage ?? next?.data.images[0];
+---
+<Work title={`${d.title} · Work · Dunn Creative`} description={d.summary}>
   {isCase ? (
     <>
-      <section class="band dark hero">
+      <RidgeHero short texture={false} label={`${d.client} · ${d.disciplines.join(' · ')}`} title={d.title} stand={d.summary} meta={deliverables.slice(0, 5)}>
+        <div class="ctas"><a class="textcta" href="#story">Read the story +</a></div>
+      </RidgeHero>
+
+      <section class="band dark mediaband">
+        <WorkFigure class="wrap" image={hero} ground="dark" />
+      </section>
+
+      <section class="band tight">
         <div class="wrap">
-          <p class="label">Case study · {d.client}</p>
-          <h1>{d.title}</h1>
-          <p class="lede">{d.summary}</p>
+          <dl class="spec">
+            {specItems.map(([k, v]) => <div><dt>{k}</dt><dd>{v}</dd></div>)}
+            {holdYear && <div><dt>Timeline</dt><dd><Held id="case-year" /></dd></div>}
+            {holdAi && <div><dt>AI used</dt><dd><Held id="case-ai" /></dd></div>}
+            {d.liveUrl && <div><dt>Live site</dt><dd><a href={d.liveUrl} rel="noopener">{liveHost}</a></dd></div>}
+          </dl>
         </div>
-        <WorkFigure class="wrap heroimg" image={hero} ground="dark" />
       </section>
 
-      <section class="band">
-        <dl class="wrap spec">
-          {specItems.map(([k, v]) => <div><dt class="label">{k}</dt><dd>{v}</dd></div>)}
-          {d.liveUrl && <div><dt class="label">Live site</dt><dd><a href={d.liveUrl} rel="noopener">{liveHost}</a></dd></div>}
-        </dl>
+      <section class="band" id="story" style="padding-top:24px">
+        <div class="wrap">
+          {sections.map((s, i) => (
+            <div class="casesec">
+              <div><span class="n">{String(i + 1).padStart(2, '0')}</span><h2>{s.title}</h2></div>
+              <div class="prose">
+                {s.paras.map((p) => <p class:list={{ muted: s.lorem }}>{p}</p>)}
+                {isDeeper && i === 0 && <p><Held id="deeper-challenge" /></p>}
+              </div>
+            </div>
+          ))}
+          {extra && <p style="margin-top:20px"><Held id="draft-copy" note="case study copy for Approach, What we made and Outcome" /></p>}
+        </div>
       </section>
 
-      <section class="band grey">
-        <div class="wrap prose"><Content /></div>
-      </section>
-
-      {media.map((m, i) => (
-        <section class:list={['band', 'mediaband', i % 2 === 0 ? 'light' : 'dark']}>
-          <WorkFigure class="wrap" image={m} ground={i % 2 === 0 ? 'light' : 'dark'} lazy />
+      {(media.length > 0 || isDeeper) && (
+        <section class="band dark mediaband">
+          <div class="wrap stack">
+            {media.map((m) => <WorkFigure image={m} ground="dark" lazy />)}
+            {isDeeper && <MediaSlot label="DVD menu" ratio="16 / 9" dark held="dvd-menu" />}
+          </div>
         </section>
-      ))}
+      )}
 
-      {d.results && (
-        <section class="band grey">
-          <div class="wrap">
-            <h2>Results</h2>
-            <p class="lede">{d.results.text}</p>
-            {d.results.source && <p class="label">{d.results.source}</p>}
+      {d.results ? (
+        <section class="band tight">
+          <div class="wrap split">
+            <div><h2>Results</h2></div>
+            <div><p class="stand">{d.results.text}</p>{d.results.source && <p class="cap">{d.results.source}</p>}</div>
+          </div>
+        </section>
+      ) : SHOW_HELD && (
+        <section class="band tight">
+          <div class="wrap split">
+            <div><h2>Results</h2></div>
+            <div><p class="stand"><Held id="results" note="results: real numbers or a client quote" /></p><p class="cap">This band stays hidden on the live site until there is a real result to show.</p></div>
           </div>
         </section>
       )}
     </>
   ) : (
-    <section class="band">
-      <div class="wrap snap">
-        <p class="label">Snapshot · {d.disciplines.join(' · ')}</p>
-        <h1>{d.title}</h1>
-        <p class="lede">{d.summary}</p>
-        <p class="label">{d.services.join(' · ')}{d.liveUrl && <> · <a href={d.liveUrl} rel="noopener">{liveHost}</a></>}</p>
-        <WorkFigure class="snapfig" image={hero} ground="grey" />
-      </div>
-    </section>
+    <>
+      <RidgeHero short label={`Snapshot · ${d.disciplines.join(' · ')}`} title={d.title} stand={d.summary} meta={[...d.services]}>
+        {d.liveUrl && <div class="ctas"><a class="textcta" href={d.liveUrl} rel="noopener">{liveHost} +</a></div>}
+      </RidgeHero>
+      <section class="band">
+        <div class="wrap"><WorkFigure image={hero} ground="grey" /></div>
+      </section>
+    </>
   )}
 
-  {next && next.id !== entry.id && (
+  {next && next.id !== entry.id && nextImg && (
     <section class="band grey">
       <div class="wrap">
-        <p class="label">{isCase ? 'Next project' : 'See a case study'}</p>
-        <a class="nexttile" href={`/work/${next.id}/`}>
-          <img src={next.data.images[0].src} alt={next.data.images[0].alt} loading="lazy" />
-          <span><h2>{next.data.title}</h2>{isAiImage(next.data.images[0].caption) && <span class="label">Image: AI-directed mockup</span>}<span class="textcta">View +</span></span>
+        <p class="lbl" style="margin-bottom:18px">{isCase ? 'Next project' : 'See a case study'}</p>
+        <a class="next" href={`/work/${next.id}/`}>
+          <div class:list={['nimg', nextImg.ground && 'contain', nextImg.ground && `g-${nextImg.ground}`]}>
+            <img src={nextImg.src} alt={nextImg.alt} loading="lazy" decoding="async" />
+            {isAiImage(nextImg.caption) && <span class="ai-pill">AI-directed mockup</span>}
+          </div>
+          <div>
+            <p class="lbl">{next.data.client} · {next.data.disciplines.join(' · ')}</p>
+            <h2>{next.data.title}</h2>
+            <p class="stand">{next.data.summary}</p>
+          </div>
         </a>
       </div>
     </section>
   )}
+
+  {isCase && (
+    <>
+      <div class="wrap sticky-cta" id="sticky"><a class="btn" href="/contact/">Start a project</a></div>
+    </>
+  )}
 </Work>
 
+{isCase && (
+  <script>
+    const s = document.getElementById('sticky');
+    const c = document.querySelector('footer');
+    if (s && c && 'IntersectionObserver' in window) {
+      new IntersectionObserver((en) => s.classList.toggle('off', en[0].isIntersecting)).observe(c);
+    }
+  </script>
+)}
+
 <style>
-  .local { position: sticky; top: 0; z-index: 10; background: rgba(255,255,255,.94); backdrop-filter: blur(8px); border-bottom: 1px solid var(--grey-200); }
-  .local .wrap { display:flex; align-items:center; gap: 16px; height: 60px; }
-  .local strong { color: var(--ink); flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .crumb { color: var(--grey-500); text-decoration: none; font-size: 15px; }
-  .hero .label { color: #a3a3a0; }
-  .lede { font-size: 20px; margin: 16px 0 0; }
-  .hero .lede { color: #d6d6d3; }
-  .hero :global(.heroimg) { margin-top: 48px; }
-  .hero :global(figcaption) { color: #a3a3a0; }
-  .mediaband.light { background: var(--white); }
-  .spec { display:grid; grid-template-columns: 1fr; gap: 20px; margin-top: 0; margin-bottom: 0; }
-  @media (min-width: 720px) { .spec { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); } }
-  .spec dd { margin: 4px 0 0; color: var(--ink); }
-  .prose :global(h2) { margin-bottom: 16px; }
-  .prose :global(p) { font-size: 19px; }
-  .snap :global(.snapfig) { margin-top: 40px; }
-  .nexttile { display:grid; gap: 20px; text-decoration: none; margin-top: 12px; }
-  .nexttile img { border-radius: 20px; max-height: 420px; object-fit: cover; width: 100%; background: var(--white); }
-  @media (min-width: 900px) { .nexttile { grid-template-columns: 2fr 1fr; align-items: center; } }
+  .mediaband :global(figure > img) { max-height: 82vh; }
+  .stack { display: grid; gap: clamp(24px, 4vw, 48px); }
+  .nimg { position: relative; border-radius: var(--r-tile); overflow: hidden; aspect-ratio: 4 / 3; background: var(--white); }
+  .nimg img { width: 100%; height: 100%; object-fit: cover; }
+  .nimg.contain img { object-fit: contain; padding: 10%; }
+  .nimg.g-dark { background: var(--ink); }
 </style>

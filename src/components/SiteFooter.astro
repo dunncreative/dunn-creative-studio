@@ -1,14 +1,9 @@
 ---
-// Global footer, matched to the lead pages' footer (black band, white logo, tagline, bottom row),
-// plus the main site links and the Explore lead pages.
-// AI, Lab and About aren't built yet, so they render as text marked "soon", like the header.
-const site = [
-  { label: 'Work', href: '/work/' },
-  { label: 'Services', href: '/services/' },
-  { label: 'AI' },
-  { label: 'Lab' },
-  { label: 'About' },
-];
+// Global footer: a Grey 50 band with the Black logo (Moodboard v02.2 band rhythm), tagline,
+// the main site links, the Explore lead pages and a bottom row.
+import Held from './Held.astro';
+import { FOOTER_NAV, EMAIL, PLACE } from '../lib/site';
+const site: { label: string; href?: string }[] = FOOTER_NAV;
 const explore = [
   { label: 'A · Get started', href: '/explore/dunn-creative-lead-a-get-started.html' },
   { label: 'B · Book a 30-minute call', href: '/explore/dunn-creative-lead-b-ai-call.html' },
@@ -20,14 +15,14 @@ const year = new Date().getFullYear();
   <div class="wrap">
     <div class="top">
       <div class="brand">
-        <a href="/" aria-label="Dunn Creative, home"><img src="/brand/dunn-creative-logo-white.png" alt="Dunn Creative" width="92" height="44" /></a>
+        <a href="/" aria-label="Dunn Creative, home"><img src="/brand/dunn-creative-logo-black.png" alt="Dunn Creative" width="92" height="44" /></a>
         <p class="tag">Strategic thinking. Clean design. Real results.</p>
       </div>
       <nav class="cols" aria-label="Footer">
         <div>
           <p class="head">Site</p>
           <ul>
-            {site.map((l) => <li>{l.href ? <a href={l.href}>{l.label}</a> : <span>{l.label} <small>soon</small></span>}</li>)}
+            {site.map((l) => <li>{l.href ? <a href={l.href}>{l.label}</a> : <span>{l.label} <small>(soon)</small></span>}</li>)}
           </ul>
         </div>
         <div>
@@ -36,29 +31,38 @@ const year = new Date().getFullYear();
             {explore.map((l) => <li><a href={l.href}>{l.label}</a></li>)}
           </ul>
         </div>
+        <div>
+          <p class="head">Studio</p>
+          <ul>
+            <li><a href="/ai-statement/">AI statement</a></li>
+            <li><a href="/privacy/">Privacy</a></li>
+            <li><a href="/held/">Open items (preview)</a></li>
+            <li class="social">Instagram · LinkedIn · Behance <Held id="social-handles" /></li>
+          </ul>
+        </div>
       </nav>
     </div>
     <div class="bottom">
-      <span>Jackson, WY · <a href="mailto:chris@dunncreative.com">chris@dunncreative.com</a></span>
+      <span>{PLACE} · <a href={`mailto:${EMAIL}`}>{EMAIL}</a></span>
       <span>© {year} Dunn Creative · Preview, not indexed</span>
     </div>
   </div>
 </footer>
 
 <style>
-  .foot { background: #0a0a0a; color: #a6a6a6; padding: 64px 0 40px; font-size: 14px; }
-  .foot a { color: #f2f2f2; text-decoration: none; }
-  .foot a:hover { text-decoration: underline; }
+  .foot { background: var(--grey-50); color: var(--dark-grey); padding: 72px 0 48px; font-size: var(--fs-body); }
+  .foot a { color: var(--ink); text-decoration: none; }
+  .foot a:hover { color: var(--teal-deep); text-decoration: underline; text-underline-offset: 4px; }
   .top { display: grid; gap: 40px; padding-bottom: 40px; }
   @media (min-width: 880px) { .top { grid-template-columns: 1fr auto; align-items: start; } }
   .brand img { height: 44px; width: auto; }
-  .tag { color: #f2f2f2; font-size: 18px; letter-spacing: -.01em; margin: 20px 0 0; }
+  .tag { color: var(--ink); font-size: var(--fs-card); font-weight: 600; letter-spacing: -.01em; margin: 20px 0 0; }
   .cols { display: grid; grid-template-columns: repeat(2, minmax(0, max-content)); gap: 32px 64px; }
-  .head { margin: 0 0 12px; font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #7a7a7a; }
-  .head a { color: #7a7a7a; }
-  .head a:hover { color: #f2f2f2; }
-  ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; font-size: 15px; }
-  li span { color: #6b6b6b; }
-  small { font-size: 11px; letter-spacing: .06em; text-transform: uppercase; margin-left: 4px; }
-  .bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; border-top: 1px solid #2b2b2b; padding-top: 24px; }
+  @media (min-width: 720px) { .cols { grid-template-columns: repeat(3, minmax(0, max-content)); } }
+  .social { display: grid; gap: 6px; justify-items: start; }
+  .head { margin: 0 0 12px; font-weight: 600; color: var(--ink); }
+  ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+  li span { color: var(--dark-grey); }
+  small { font-size: inherit; margin-left: 4px; }
+  .bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; border-top: 1px solid var(--grey-200); padding-top: 24px; }
 </style>

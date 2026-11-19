@@ -1,0 +1,16 @@
+---
+// Questions band, Ridge style: hairline-ruled rows with a plus that turns. Answers come through
+// the default slot as <details><summary>Question</summary><p>answer</p></details> children, so an
+// answer can hold a <Held> chip.
+interface Props { title?: string; grey?: boolean; label?: string }
+const { title = 'Questions', grey = false, label } = Astro.props;
+---
+<section class:list={['band', { grey }]}>
+  <div class="wrap split">
+    <div>
+      {label && <p class="lbl" style="margin-bottom:14px">{label}</p>}
+      <h2>{title}</h2>
+    </div>
+    <div class="qa-list"><slot /></div>
+  </div>
+</section>

@@ -1,0 +1,29 @@
+---
+// Ridge hero (picked by Freeman, 18 Nov): a dark band with the drawn ridge line and the symbol
+// texture, weight-400 display type, an optional stand line and a ruled meta row.
+// Pass `short` for inner pages. The default slot holds buttons, filters or jump links.
+import Texture from './Texture.astro';
+interface Props { label?: string; title: string; stand?: string; meta?: string[]; short?: boolean; texture?: boolean; id?: string }
+const { label, title, stand, meta = [], short = false, texture = true, id } = Astro.props;
+---
+<section class:list={['band dark rhero', { short }]} id={id}>
+  {texture && <Texture />}
+  <svg class="ridge" viewBox="0 0 1440 520" preserveAspectRatio="xMidYMax slice" aria-hidden="true" focusable="false">
+    <path d="M0 330 L120 286 L210 312 L330 228 L420 262 L540 170 L610 204 L700 120 L790 188 L880 150 L980 226 L1080 168 L1180 236 L1290 196 L1440 260 L1440 520 L0 520Z" fill="#1A1A1A"/>
+    <path d="M540 170 L610 204 L700 120 L790 188 L880 150" fill="none" stroke="#5A5A5A" stroke-width="1.2"/>
+    <path d="M700 120 L716 150 L702 168 L730 196 M880 150 L870 176 L892 200" fill="none" stroke="#8A8A8A" stroke-width="1" opacity=".55"/>
+    <path d="M0 400 L150 352 L260 380 L380 300 L470 330 L600 268 L690 318 L820 246 L930 300 L1040 262 L1150 322 L1270 284 L1440 346 L1440 520 L0 520Z" fill="#121212"/>
+    <path d="M380 300 L470 330 L600 268 L690 318 L820 246 L930 300 L1040 262" fill="none" stroke="#3A3A3A" stroke-width="1"/>
+    <path d="M820 246 L834 274 L818 292 M1040 262 L1052 286" fill="none" stroke="#9A9A9A" stroke-width="1" opacity=".45"/>
+    <path d="M0 470 L200 424 L330 446 L480 400 L620 436 L760 392 L900 432 L1060 398 L1200 440 L1320 414 L1440 446 L1440 520 L0 520Z" fill="#0A0A0A"/>
+    <path d="M0 470 L200 424 L330 446 L480 400 L620 436 L760 392 L900 432 L1060 398 L1200 440 L1320 414 L1440 446" fill="none" stroke="#262626" stroke-width="1"/>
+  </svg>
+  <div class="wrap">
+    {label && <p class="lbl">{label}</p>}
+    <h1>{title}</h1>
+    {stand && <p class="stand">{stand}</p>}
+    <slot name="stand" />
+    <slot />
+    {meta.length > 0 && <div class="meta-row">{meta.map((m) => <span>{m}</span>)}</div>}
+  </div>
+</section>

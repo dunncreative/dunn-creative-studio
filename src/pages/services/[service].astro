@@ -1,0 +1,106 @@
+---
+// Service detail template, per wireframe service-detail_v02 (shown there: Websites; 7 bands, 1 dark),
+// in the Ridge look. One page per service in src/data/services.ts. Only Websites was wireframed with
+// its own copy; the others carry the hub's lines and tags, and their process stays held.
+import { getCollection, type CollectionEntry } from 'astro:content';
+import Work from '../../layouts/Work.astro';
+import WorkCard from '../../components/WorkCard.astro';
+import Held from '../../components/Held.astro';
+import Faq from '../../components/Faq.astro';
+import RidgeHero from '../../components/RidgeHero.astro';
+import RidgeCta from '../../components/RidgeCta.astro';
+import Texture from '../../components/Texture.astro';
+import { details, type ServiceDetail } from '../../data/services';
+import { TALK } from '../../lib/site';
+
+export function getStaticPaths() {
+  return details.map((s) => ({ params: { service: s.slug }, props: { s } }));
+}
+const { s } = Astro.props as { s: ServiceDetail };
+
+const all = (await getCollection('work', ({ data }) => !data.draft)).sort((a, b) => a.data.order - b.data.order);
+let work: CollectionEntry<'work'>[];
+if (s.work.length) {
+  work = s.work.map((id) => all.find((e) => e.id === id)).filter((e): e is CollectionEntry<'work'> => Boolean(e));
+} else if (s.workHeld) {
+  work = [];
+} else {
+  // Brand identity and Campaigns: everything tagged for that service page in the Work collection.
+  work = all.filter((e) => (e.data.serviceTags as string[]).includes(s.slug)).slice(0, 6);
+}
+const n = (i: number) => String(i + 1).padStart(2, '0');
+---
+<Work title={`${s.name} · Services · Dunn Creative`} description={s.sub}>
+  <!-- 01 · Hero + spec row -->
+  <RidgeHero short label={`Services · ${s.name}`} title={s.headline} stand={s.sub}>
+    <div class="ctas">
+      <a class="btn" href={TALK}>Let's talk</a>
+      <a class="textcta" href="#work">{s.workTitle} +</a>
+    </div>
+    <dl class="spec">
+      <div><dt>Timeline</dt><dd><Held id="timelines" note="typical range" /></dd></div>
+      <div><dt>Deliverables</dt><dd>{s.deliverables}</dd></div>
+      {s.slug === 'websites' && <div><dt>Formats</dt><dd><Held id="platforms" /></dd></div>}
+    </dl>
+  </RidgeHero>
+
+  <!-- 02 · What you get -->
+  <section class="band">
+    <div class="wrap split">
+      <div><h2>What you get</h2>{s.copyHeld && <p style="margin-top:18px"><Held id="service-copy" /></p>}</div>
+      <ul class="list2">
+        {s.get.map((g, i) => <li><span class="n">{n(i)}</span><span>{g.item} {g.held && <Held id={g.held} />}</span></li>)}
+      </ul>
+    </div>
+  </section>
+
+  <!-- 03 · Work -->
+  <section class="band grey" id="work">
+    <div class="wrap">
+      <div class="sechead"><h2>{s.workTitle}</h2><a class="textcta" href="/work/">All work +</a></div>
+      {work.length > 0 ? (
+        <div class:list={['tiles', { c2: work.length === 2 || work.length === 4 }]}>{work.map((e) => <WorkCard entry={e} />)}</div>
+      ) : (
+        s.workHeld && <Held id={s.workHeld} block />
+      )}
+    </div>
+  </section>
+
+  <!-- 04 · How AI helps here (the page's one dark band after the hero) -->
+  <section class="band dark">
+    <Texture />
+    <div class="wrap">
+      <div class="sechead"><h2>How AI helps here</h2><a class="textcta" href="/ai/">How we use AI +</a></div>
+      <div class="three">
+        {s.ai.map((a) => <div><p class="lbl">{a.k}</p><h3>{a.v}</h3></div>)}
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 · Process -->
+  <section class="band">
+    <div class="wrap">
+      <div class="sechead"><h2>How it runs</h2></div>
+      {s.process ? (
+        <><div class:list={['steps', { c3: s.process.length === 3 }]}>
+          {s.process.map((p) => <div><span class="n">{p.n}</span><h3>{p.t}</h3><p>{p.d}</p></div>)}
+        </div>
+        {s.copyHeld && <p class="cap" style="margin-top:24px"><Held id="draft-copy" note="process steps: proposed titles, placeholder copy" /></p>}</>
+      ) : (
+        <Held id="service-copy" block note="process steps for this service" />
+      )}
+    </div>
+  </section>
+
+  <!-- 06 · FAQ -->
+  <Faq grey>
+    {s.faq.map((f) => (
+      <details><summary>{f.q}</summary><p>{f.a ?? (f.held && <Held id={f.held} />)}</p></details>
+    ))}
+  </Faq>
+
+  <!-- 07 · CTA -->
+  <RidgeCta title={s.cta} button="Let's talk" href={TALK}>
+    <p class="stand">{s.sub}</p>
+  </RidgeCta>
+</Work>
