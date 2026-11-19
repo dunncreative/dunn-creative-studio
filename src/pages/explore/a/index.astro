@@ -9,7 +9,7 @@ import texture from '../../../assets/studio/dc-symbol-white-tile.webp';
 import hero from '../../../assets/studio/hero-mountain-ai-bw.webp';
 import portrait from '../../../assets/studio/chris-dunn-portrait-bw.webp';
 import deeper from '../../../assets/work/jeremy-jones-deeper/deeper-poster.webp';
-import gu from '../../../assets/work/gu-energy/gu-brochure-outside.webp';
+import peacePark from '../../../assets/work/peace-park/peace-park-home-1440.webp';
 import ironwood from '../../../assets/work/ironwood-homes/ironwood-logo-stacked.webp';
 
 const nav = [
@@ -30,19 +30,19 @@ const work = [
     line: "Packaging, poster, magazine ads and DVD menu for the first film in TGR's Deeper, Further, Higher trilogy with Jeremy Jones.",
   },
   {
-    img: gu, alt: 'GU Energy product brochure, outside spread, with the GU nutrition matrix panel',
-    title: 'GU Energy', meta: 'Print and digital design',
-    line: "Overflow design partner for GU Energy's in-house team: magazine ads, digital promos, a ride nutrition plan card and a product brochure.",
+    img: peacePark, alt: 'Peace Park website home page at desktop width',
+    title: 'Peace Park', meta: 'Website design and development',
+    line: 'A website for Peace Park, an annual snowboard gathering on a course that mixes superpipe, park jumps, banked slalom and surf-inspired features.',
   },
   {
     img: ironwood, alt: 'Ironwood Homes stacked logo in black on white',
-    title: 'Ironwood Homes', meta: 'Brand · Web',
-    line: 'Brand and web for a custom home builder in Star Valley, WY.',
+    title: 'Ironwood Homes', meta: 'Brand identity',
+    line: 'Brand identity for a custom home builder serving Star Valley, Wyoming.',
   },
 ];
 
 const services = [
-  { name: 'Brand Identity', tags: ['Strategy', 'Logo suite', 'Guidelines'], line: 'Strategy, naming, logo, type, color and the guidelines that hold it together.' },
+  { name: 'Brand Identity', tags: ['Strategy', 'Logo suite', 'Guidelines'], line: 'Strategy, logo, type, color and the guidelines that hold it together.' },
   { name: 'Websites', tags: ['Strategy', 'Design', 'Build'], line: 'Marketing sites, landing pages and stores, designed and built to convert.' },
   { name: 'Campaigns & Content', tags: ['Ads', 'Social', 'Email'], line: 'Ads, social, email, motion and video, with variations built for testing.' },
   { name: 'Presentations & Decks', tags: ['Pitch', 'Sales', 'Reports'], line: 'Investor, sales and partnership decks that get read to the end.' },
@@ -65,12 +65,17 @@ const steps = [
 ];
 
 const engage = [
-  { name: 'Audit', line: 'A senior review of your brand, site or creative workflow, with a prioritized plan you can act on.' },
+  { name: 'Audit', line: 'A senior review of your brand, site or creative workflow, with a prioritized plan you can act on. Start with a free audit: a short written review of your site with the top fixes, within 5 business days. Or go further with the advanced audit.' },
   { name: 'Sprint', line: 'A defined project with a clear finish line.' },
   { name: 'Retainer', line: 'Monthly creative capacity for teams that ship constantly: ads, social, email, decks and web updates.' },
 ];
 
-const needs = ['Website', 'Branding', 'Content', 'AI', 'Free Audit', 'Not sure'];
+const starts = [
+  { value: 'audit', label: 'Free audit' },
+  { value: 'call', label: 'Book a call' },
+  { value: 'advanced', label: 'Advanced audit' },
+];
+const needs = ['Brand', 'Web', 'Content', 'AI', 'Not sure'];
 const year = new Date().getFullYear();
 ---
 <!doctype html>
@@ -267,7 +272,8 @@ const year = new Date().getFullYear();
             </li>
           ))}
         </ol>
-        <a class="tcta" href="#contact" data-need="Free Audit" data-reveal>Let's talk <span aria-hidden="true">+</span></a>
+        <p class="engage__line meta" data-reveal>Three ways in: a free audit, a call or the advanced audit. Each one ends in a three-tier proposal built from the findings.</p>
+        <a class="tcta" href="#contact" data-start="audit" data-reveal>Let's talk <span aria-hidden="true">+</span></a>
       </div>
     </section>
 
@@ -283,9 +289,10 @@ const year = new Date().getFullYear();
 
         <form class="form tile tile--white" action="#" method="post" novalidate data-form data-reveal>
           <fieldset class="seg">
-            <legend class="flabel">How would you like to start?</legend>
-            <label><input type="radio" name="start" value="brief" checked /> <span>Get started</span></label>
-            <label><input type="radio" name="start" value="call" /> <span>Schedule a 30-minute call</span></label>
+            <legend class="flabel">What do you need?</legend>
+            {starts.map((o, i) => (
+              <label><input type="radio" name="start" value={o.value} checked={i === 0} /> <span>{o.label}</span></label>
+            ))}
           </fieldset>
 
           <div class="form__row">
@@ -307,7 +314,7 @@ const year = new Date().getFullYear();
           </div>
 
           <fieldset class="chips">
-            <legend class="flabel">What do you need?</legend>
+            <legend class="flabel">What's it for?</legend>
             {needs.map((n) => (
               <label class="chip"><input type="checkbox" name="need" value={n} /> <span>{n}</span></label>
             ))}
@@ -393,7 +400,11 @@ const year = new Date().getFullYear();
       };
       form.addEventListener('change', setMode);
 
-      // Links elsewhere on the page can preselect a need (e.g. Free Audit, AI).
+      // Links elsewhere on the page can preselect a start choice (e.g. Free audit) or a need (e.g. AI).
+      document.querySelectorAll<HTMLElement>('[data-start]').forEach((a) => a.addEventListener('click', () => {
+        const radio = form.querySelector<HTMLInputElement>(`input[name="start"][value="${a.dataset.start}"]`);
+        if (radio) { radio.checked = true; setMode(); }
+      }));
       document.querySelectorAll<HTMLElement>('[data-need]').forEach((a) => a.addEventListener('click', () => {
         const box = form.querySelector<HTMLInputElement>(`input[name="need"][value="${a.dataset.need}"]`);
         if (box) box.checked = true;
@@ -580,7 +591,7 @@ const year = new Date().getFullYear();
   .work__media img { width: 100%; height: 100%; object-fit: cover; transition: transform 900ms var(--ease); }
   .work__tile--2 .work__media { background: var(--white); }
   .work__tile--2 .work__media img { object-fit: contain; padding: 12%; }
-  .work__tile--1 .work__media img { object-fit: contain; background: var(--white); }
+  .work__tile--1 .work__media img { object-fit: cover; object-position: top center; }
   .work__tile:hover .work__media img { transform: scale(1.02); }
   .work__body { display: grid; gap: 8px; align-content: start; padding: 24px 26px 28px; }
   @media (min-width: 900px) {
@@ -636,6 +647,7 @@ const year = new Date().getFullYear();
 
   /* 08 Engage */
   .engage { display: grid; gap: 16px; margin-bottom: 28px; }
+  .engage__line { max-width: 60ch; margin-bottom: 20px; }
   .engage__card { display: grid; gap: 10px; align-content: start; padding: 28px 26px 30px; }
   .engage__n { font-size: var(--fs-section); font-weight: 700; letter-spacing: -0.02em; line-height: 1; color: var(--ink); margin-bottom: 16px; }
   @media (min-width: 900px) { .engage { grid-template-columns: repeat(3, 1fr); gap: 20px; } }
@@ -661,7 +673,7 @@ const year = new Date().getFullYear();
   .field input:focus, .field textarea:focus { border-color: var(--ink); outline: none; }
   .field input[aria-invalid="true"] { border-color: var(--ink); border-width: 1.5px; }
   .ferr { margin-top: 6px; color: var(--ink); font-weight: 600; }
-  .seg { display: grid; grid-template-columns: 1fr 1fr; gap: 0; background: var(--grey-50); border-radius: 14px; padding: 4px; }
+  .seg { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; background: var(--grey-50); border-radius: 14px; padding: 4px; }
   .seg legend { margin-bottom: 8px; }
   .seg label { position: relative; display: grid; place-items: center; text-align: center; min-height: 48px; padding: 8px 10px; border-radius: 10px; cursor: pointer; font-weight: 600; color: var(--dark-grey); line-height: 1.25; }
   .seg input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
