@@ -3,7 +3,7 @@
 // Only Websites was wireframed as a detail page; the other four reuse its template with the hub's
 // own lines and tags, and leave the rest held (see src/lib/held.ts, "service-copy").
 import type { HeldId } from '../lib/held';
-import { AUDIT_AI } from '../lib/site';
+import { AUDIT_ADV } from '../lib/site';
 import { LOREM_SHORT } from '../lib/lorem';
 
 export type ServiceSlug = 'brand-identity' | 'websites' | 'campaigns-content' | 'print-packaging' | 'decks-presentations';
@@ -49,7 +49,7 @@ export const groups: HubGroup[] = [
 
 // Home "What we make": six cards (structural default 1). AI links to /ai.
 export const homeCards: { name: string; line: string; tags: string[]; href: string }[] = [
-  { name: 'Brand Identity', line: 'Strategy, naming, logo, type, color and the guidelines that hold it together.', tags: ['Strategy', 'Logo suite', 'Guidelines'], href: '/services/brand-identity/' },
+  { name: 'Brand Identity', line: 'Strategy, logo, type, color and the guidelines that hold it together.', tags: ['Strategy', 'Logo suite', 'Guidelines'], href: '/services/brand-identity/' },
   { name: 'Websites', line: 'Marketing sites, landing pages and stores, designed and built to convert.', tags: ['UX', 'Visual design', 'Build', 'Landing pages'], href: '/services/websites/' },
   { name: 'Campaigns & Content', line: 'Ads, social, email, motion and video, with variations built for testing.', tags: ['Ads', 'Social', 'Email', 'Motion'], href: '/services/campaigns-content/' },
   { name: 'Print & Packaging', line: "Packaging and merchandise that carry the brand into people's hands.", tags: ['Packaging', 'Collateral', 'Magazine ads'], href: '/services/print-packaging/' },
@@ -225,4 +225,4 @@ export const details: ServiceDetail[] = [
   },
 ];
 
-export const aiOfferLink = AUDIT_AI;
+export const aiOfferLink = AUDIT_ADV;

@@ -31,7 +31,13 @@ export const held = {
     label: 'audit: free or paid, format, turnaround',
     ask: 'Is the Audit free or paid, what format is it, and how long does it take?',
     pages: ['Home', 'Services', 'AI', 'Contact'],
-    meanwhile: 'One Audit offer with a brand/web track and an AI track; no price shown.',
+    answer: 'Settled 18 Nov (Audit and Lead Path decision): a free audit (a short written review of your site with the top fixes, within 5 business days), book a call, or a paid advanced audit. No prices on the site.',
+  },
+  'audit-credit': {
+    label: 'advanced audit fee comes off the project',
+    ask: 'Confirm the line “the advanced audit fee comes off the project” (no figure shown).',
+    pages: ['Home', 'Services', 'AI', 'Contact'],
+    meanwhile: 'Shown as a Held chip beside the advanced audit until confirmed.',
   },
   'budget-ranges': {
     label: 'budget range values',
@@ -80,7 +86,7 @@ export const held = {
     label: 'final hero reel cut',
     ask: 'Is dunn-creative-hero-imagery-4.MP4 the hero reel, and is there a final cut to compress?',
     pages: ['Home'],
-    meanwhile: "A still from the studio's AI-made mountain image, labelled as AI-made.",
+    meanwhile: 'The Ridge hero: a drawn SVG ridge line over the dark band, with no reel or image yet.',
   },
   'client-logos': {
     label: 'client logo files',

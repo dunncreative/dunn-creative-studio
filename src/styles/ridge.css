@@ -95,6 +95,8 @@
 .flow .node small { display: block; font-size: 12px; color: #9a9da1; font-weight: 400; margin-top: 4px; }
 .flow .seats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
 .flow .arr { align-self: center; color: var(--caption); }
+/* Lighter arrows on Ink for contrast (Nov 19 polish). */
+.band.dark .flow .arr { color: var(--grey-200); }
 .flow .gate { border-color: var(--teal); }
 
 /* Services groups */

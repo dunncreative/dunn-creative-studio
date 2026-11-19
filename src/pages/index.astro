@@ -21,7 +21,7 @@ const all = await getCollection('work', ({ data }) => !data.draft);
 const featured = FEATURED.map((id) => all.find((e) => e.id === id)).filter((e) => e !== undefined);
 const clients = ['Teton Gravity Research', 'Brain Farm', 'GU Energy', 'Stio', 'Peace Park', 'Asymbol', 'Ironwood Homes'];
 const engage = [
-  { name: 'Audit', line: 'A senior review of your brand, site or creative workflow, with a prioritized plan you can act on.', href: AUDIT, held: true },
+  { name: 'Audit', line: 'Start with a free audit: a short written review of your site with the top fixes, within 5 business days. Or book a call, or go deeper with the advanced audit.', credit: true, href: AUDIT },
   { name: 'Sprint', line: 'A defined project with a clear finish line.', href: TALK },
   { name: 'Retainer', line: 'Monthly creative capacity for teams that ship constantly: ads, social, email, decks and web updates.', href: TALK },
 ];
@@ -107,7 +107,7 @@ const n = (i: number) => String(i + 1).padStart(2, '0');
           <div>
             <span class="n">{n(i)}</span>
             <h3>{e.name}</h3>
-            <p>{e.line} {e.held && <Held id="audit-format" />}</p>
+            <p>{e.line} {e.credit && <Held id="audit-credit" />}</p>
             <a class="textcta" href={e.href}>Learn more +</a>
           </div>
         ))}

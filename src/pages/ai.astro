@@ -1,13 +1,13 @@
 ---
 // AI, per wireframe ai_v02 (Site Blueprint "AI", 8 bands, 2 dark), in the Ridge look.
-// Shows AI through process and work, not claims; routes to the AI track of the one Audit.
+// Shows AI through process and work, not claims; routes to the advanced audit (three ways in, 18 Nov).
 import Work from '../layouts/Work.astro';
 import Held from '../components/Held.astro';
 import MediaSlot from '../components/MediaSlot.astro';
 import RidgeHero from '../components/RidgeHero.astro';
 import RidgeCta from '../components/RidgeCta.astro';
 import Texture from '../components/Texture.astro';
-import { AUDIT_AI, TALK } from '../lib/site';
+import { AUDIT_ADV, TALK } from '../lib/site';
 import { labHref } from '../data/lab';
 
 const changes = [
@@ -17,7 +17,7 @@ const changes = [
 ];
 const seats = ['Brief', 'Design', 'Web', 'QA'];
 const offers = [
-  { name: 'AI Creative Audit', line: 'Where AI saves time in your creative workflow without lowering the bar.', href: AUDIT_AI, held: true },
+  { name: 'Advanced audit', line: 'A deeper review of your brand, site and creative workflow, including AI workflow recommendations: where AI saves time without lowering the bar.', href: AUDIT_ADV, held: true },
   { name: 'AI workflow setup', line: 'Workflows, training and tools built around how your team already works.', href: TALK },
   { name: 'Brand-trained asset systems', line: 'Systems that produce on-brand variants your team can run.', href: TALK },
 ];
@@ -27,7 +27,7 @@ const n = (i: number) => String(i + 1).padStart(2, '0');
   <!-- 01 · Hero (dark, texture per Freeman 18 Nov) -->
   <RidgeHero short label="AI" title="AI is how we work, not what we sell." stand="Senior direction + agent studio + production tools" meta={['Senior direction', 'Agent studio', 'Production tools']}>
     <div class="ctas">
-      <a class="btn" href={AUDIT_AI}>Book the AI Creative Audit</a>
+      <a class="btn" href={AUDIT_ADV}>Book the advanced audit</a>
       <a class="textcta" href="#studio">The agent studio +</a>
     </div>
   </RidgeHero>
@@ -80,7 +80,7 @@ const n = (i: number) => String(i + 1).padStart(2, '0');
           <div>
             <span class="n">{n(i)}</span>
             <h3>{o.name}</h3>
-            <p>{o.line} {o.held && <Held id="audit-format" />}</p>
+            <p>{o.line} {o.held && <Held id="audit-credit" />}</p>
             <a class="textcta" href={o.href}>Learn more +</a>
           </div>
         ))}
@@ -99,14 +99,14 @@ const n = (i: number) => String(i + 1).padStart(2, '0');
         <details><summary>Who owns the work?</summary><p><Held id="ownership" /></p></details>
         <details><summary>Do you disclose AI use?</summary><p>Yes. We’ll always tell you what’s AI-assisted.</p></details>
         <details><summary>How do you keep it on brand?</summary><p>Senior judgment on every output, and simple rules for brand, privacy and approvals.</p></details>
-        <details><summary>Which tools?</summary><p>We pick for your workflow: ChatGPT, Claude, Midjourney, Adobe Firefly, Runway and others.</p></details>
+        <details><summary>Which tools?</summary><p>We pick for your workflow: ChatGPT, Claude, Midjourney, Adobe Firefly, Runway and others. For client imagery we use commercially safe models only.</p></details>
       </div>
     </div>
   </section>
 
   <!-- 08 · CTA -->
-  <RidgeCta title="Move from experimenting to shipping." button="Book the AI Creative Audit" href={AUDIT_AI}>
-    <p class="stand">Where AI saves time in your creative workflow without lowering the bar.</p>
-    <Held id="audit-format" />
+  <RidgeCta title="Move from experimenting to shipping." button="Book the advanced audit" href={AUDIT_ADV}>
+    <p class="stand">A deeper review of your creative workflow, with AI workflow recommendations and a prioritized plan.</p>
+    <Held id="audit-credit" />
   </RidgeCta>
 </Work>

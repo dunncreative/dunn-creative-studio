@@ -8,10 +8,10 @@ import Faq from '../../components/Faq.astro';
 import RidgeHero from '../../components/RidgeHero.astro';
 import RidgeCta from '../../components/RidgeCta.astro';
 import { groups } from '../../data/services';
-import { AUDIT, TALK } from '../../lib/site';
+import { AUDIT, AUDIT_FREE, TALK, WAYS_IN, FREE_AUDIT_LINE } from '../../lib/site';
 const href = (to: string | null) => (to === null ? null : to === '/ai' ? '/ai/' : `/services/${to}/`);
 const engage = [
-  { name: 'Audit', line: 'A senior review of your brand, site or creative workflow, with a prioritized plan you can act on.', held: true },
+  { name: 'Audit', line: 'Start with a free audit: a short written review of your site with the top fixes, within 5 business days. Or book a call, or go deeper with the advanced audit.', credit: true },
   { name: 'Sprint', line: 'A defined project with a clear finish line.' },
   { name: 'Retainer', line: 'Monthly creative capacity for teams that ship constantly: ads, social, email, decks and web updates.' },
 ];
@@ -58,7 +58,7 @@ const engage = [
       <div class="sechead"><h2>Start small. Scale when it works.</h2></div>
       <div class="steps c3">
         {engage.map((e, i) => (
-          <div><span class="n">{String(i + 1).padStart(2, '0')}</span><h3>{e.name}</h3><p>{e.line} {e.held && <Held id="audit-format" />}</p></div>
+          <div><span class="n">{String(i + 1).padStart(2, '0')}</span><h3>{e.name}</h3><p>{e.line} {e.credit && <Held id="audit-credit" />}</p></div>
         ))}
       </div>
       <p style="margin-top:28px"><a class="textcta" href={TALK}>Talk about a sprint or retainer +</a></p>
@@ -75,9 +75,9 @@ const engage = [
   </Faq>
 
   <!-- 08 · CTA -->
-  <RidgeCta title="Start with an audit." button="Get an audit" href={AUDIT}>
-    <p class="stand">A senior review of your brand, site or creative workflow, with a prioritized plan you can act on.</p>
-    <Held id="audit-format" />
+  <RidgeCta title="Start with an audit." button="Get a free audit" href={AUDIT_FREE}>
+    <p class="stand">{FREE_AUDIT_LINE}</p>
+    <p class="cap" slot="after" style="margin-top:16px">Or <a href={WAYS_IN[1].href}>book a call</a>, or go deeper with the <a href={WAYS_IN[2].href}>advanced audit</a>. <Held id="audit-credit" /></p>
   </RidgeCta>
 </Work>
 <style>

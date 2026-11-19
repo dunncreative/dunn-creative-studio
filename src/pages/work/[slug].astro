@@ -1,8 +1,8 @@
 ---
 // Case study and snapshot pages, per wireframes case-study_v02 and work_v02, in the Ridge look.
 // Case study: ridge hero, the lead image, a ruled spec row, the story as numbered ruled sections,
-// the rest of the images, Next project, then the closing band. A sticky "Start a project" follows
-// the reader and steps aside when the closing band (with its own button) is on screen.
+// the rest of the images, then it ends on Next project (wireframe row 15). A sticky "Start a project"
+// follows the reader and steps aside when the footer is on screen.
 import { getCollection, type CollectionEntry } from 'astro:content';
 import Work from '../../layouts/Work.astro';
 import WorkFigure from '../../components/WorkFigure.astro';
@@ -10,7 +10,6 @@ import { clean, cleanList, isAiImage } from '../../lib/placeholders';
 import Held from '../../components/Held.astro';
 import MediaSlot from '../../components/MediaSlot.astro';
 import RidgeHero from '../../components/RidgeHero.astro';
-import RidgeCta from '../../components/RidgeCta.astro';
 import { SHOW_HELD } from '../../lib/held';
 import { LOREM } from '../../lib/lorem';
 
@@ -162,9 +161,6 @@ const nextImg = next?.data.cardImage ?? next?.data.images[0];
 
   {isCase && (
     <>
-      <RidgeCta title="Have a project in mind?" button="Start a project" href="/contact/" id="talk">
-        <p class="stand">Tell us what you're building.</p>
-      </RidgeCta>
       <div class="wrap sticky-cta" id="sticky"><a class="btn" href="/contact/">Start a project</a></div>
     </>
   )}
@@ -173,7 +169,7 @@ const nextImg = next?.data.cardImage ?? next?.data.images[0];
 {isCase && (
   <script>
     const s = document.getElementById('sticky');
-    const c = document.getElementById('talk');
+    const c = document.querySelector('footer');
     if (s && c && 'IntersectionObserver' in window) {
       new IntersectionObserver((en) => s.classList.toggle('off', en[0].isIntersecting)).observe(c);
     }
