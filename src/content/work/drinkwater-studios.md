@@ -8,7 +8,7 @@ summary: "Brand identity for a Southern California film and television productio
 images:
   - src: "/work/drinkwater-studios/drinkwater-studios-logo11.webp"
     alt: "Drinkwater Studios logo: a teal mountain-and-river mark over the wordmark, on black"
-    caption: "Logo."
+    caption: "Primary logo."
     ground: dark
   - src: "/work/drinkwater-studios/logo-design-5.webp"
     alt: "Drinkwater Studios horizontal logo with a pattern of diamond shapes"
