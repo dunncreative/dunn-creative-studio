@@ -37,7 +37,7 @@ export const held = {
     label: 'advanced audit fee comes off the project',
     ask: 'Confirm the line “the advanced audit fee comes off the project” (no figure shown).',
     pages: ['Home', 'Services', 'AI', 'Contact'],
-    meanwhile: 'Shown as a Held chip beside the advanced audit until confirmed.',
+    answer: 'Go ahead within 30 days and your audit fee comes off the project.',
   },
   'budget-ranges': {
     label: 'budget range values',
@@ -68,13 +68,13 @@ export const held = {
     label: 'portrait pick (Home)',
     ask: 'Which portrait goes in the Home founder band? Default: Chris-Dunn-Portrait-1.jpg.',
     pages: ['Home'],
-    meanwhile: "The studio's current black-and-white portrait, until Portrait-1 is in the repo.",
+    answer: 'chris-dunn-portrait-bw (Freeman, 19 Nov).',
   },
   'portrait-about': {
     label: 'portrait pick (About)',
     ask: 'Which portrait goes at the top of About? Default: Chris-Dunn-Portrait-2.jpg (different from Home).',
     pages: ['About'],
-    meanwhile: 'A labelled slot. The file is in Dropbox, which this build cannot download from.',
+    answer: 'chris-dunn-portrait-bw, same as Home (Freeman, 19 Nov).',
   },
   'about-photos': {
     label: 'Wyoming photos',
