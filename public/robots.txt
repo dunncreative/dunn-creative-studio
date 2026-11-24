@@ -1,0 +1,5 @@
+# Dunn Creative. Page explorations and the open-items list are reference only: keep them out of search.
+# (Every page also sends X-Robots-Tag: noindex until launch; see netlify.toml.)
+User-agent: *
+Disallow: /explore/
+Disallow: /held/

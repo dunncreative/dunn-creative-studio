@@ -1,0 +1,396 @@
+{
+ "home": [
+  [
+   "a",
+   "Module grid",
+   ""
+  ],
+  [
+   "b",
+   "Bento",
+   ""
+  ],
+  [
+   "c",
+   "Sticky list + work rail",
+   ""
+  ],
+  [
+   "d",
+   "R3 \u00b7 Hybrid A+C, new copy",
+   ""
+  ],
+  [
+   "e",
+   "R3 \u00b7 Sticky list + bento work, new copy",
+   ""
+  ],
+  [
+   "f",
+   "R5 \u00b7 A refined: your services grid and featured work cards",
+   ""
+  ],
+  [
+   "g",
+   "R5 \u00b7 New: work-led, big type index",
+   ""
+  ],
+  [
+   "h",
+   "R8 \u00b7 New: service chips in the hero, areas as a mixed-size grid",
+   ""
+  ],
+  [
+   "i",
+   "R8 \u00b7 New: type-led hero, a service explorer, a work rail",
+   ""
+  ],
+  [
+   "j",
+   "R8 \u00b7 New: project slider hero, numbered area cards, studio split",
+   ""
+  ],
+  [
+   "k",
+   "R10 \u00b7 Your pick: J, I, F and A combined, with the six service areas",
+   "lead"
+  ],
+  [
+   "k1",
+   "R9 \u00b7 Reference: first version of K, before your notes",
+   ""
+  ]
+ ],
+ "services": [
+  [
+   "a",
+   "Grouped modules",
+   ""
+  ],
+  [
+   "b",
+   "Core cards",
+   ""
+  ],
+  [
+   "c",
+   "Filter tabs",
+   ""
+  ],
+  [
+   "d",
+   "R3 \u00b7 Wireframe bands, brand-first",
+   ""
+  ],
+  [
+   "e",
+   "R3 \u00b7 Service list + modules",
+   ""
+  ],
+  [
+   "f",
+   "R4 \u00b7 Image modules by group (option)",
+   ""
+  ],
+  [
+   "g",
+   "R5 \u00b7 D refined, with F\u2019s images",
+   ""
+  ],
+  [
+   "h",
+   "R5 \u00b7 New: start from what you need",
+   ""
+  ],
+  [
+   "i",
+   "R10 \u00b7 Your pick: the service map, now six areas",
+   "lead"
+  ]
+ ],
+ "work": [
+  [
+   "a",
+   "Two over three",
+   ""
+  ],
+  [
+   "b",
+   "Full-bleed rows",
+   ""
+  ],
+  [
+   "c",
+   "Type index",
+   ""
+  ],
+  [
+   "d",
+   "R3 \u00b7 Big and small",
+   ""
+  ],
+  [
+   "e",
+   "R11 \u00b7 Your pick, reworked: your four case studies, two per row",
+   "lead"
+  ],
+  [
+   "f",
+   "R4 \u00b7 Split hero, tabs, cards, load more",
+   ""
+  ],
+  [
+   "g",
+   "R6 \u00b7 E refined: cascade of cards, with F\u2019s hero, tabs and load more",
+   ""
+  ],
+  [
+   "h",
+   "R6 \u00b7 New: one featured project, then a list or grid view",
+   ""
+  ]
+ ],
+ "plans": [
+  [
+   "a",
+   "On-demand sketch",
+   "sketch"
+  ]
+ ],
+ "about": [
+  [
+   "a",
+   "Editorial modules",
+   ""
+  ],
+  [
+   "b",
+   "Founder letter",
+   ""
+  ],
+  [
+   "c",
+   "Sticky portrait",
+   ""
+  ],
+  [
+   "d",
+   "R3 \u00b7 Studio first, then Chris",
+   ""
+  ],
+  [
+   "e",
+   "R10 \u00b7 Your pick: services now match Home K and Services I",
+   "lead"
+  ],
+  [
+   "f",
+   "R5 \u00b7 New: the studio in six questions",
+   ""
+  ]
+ ],
+ "ai": [
+  [
+   "a",
+   "AI does, people do",
+   ""
+  ],
+  [
+   "b",
+   "Dark manifesto",
+   ""
+  ],
+  [
+   "c",
+   "Sticky contents",
+   ""
+  ],
+  [
+   "d",
+   "R3 \u00b7 Hybrid, new messaging",
+   ""
+  ],
+  [
+   "e",
+   "R5 \u00b7 D refined: shorter, ways in earlier",
+   ""
+  ],
+  [
+   "f",
+   "R5 \u00b7 New: built around one diagram",
+   ""
+  ],
+  [
+   "g",
+   "R10 \u00b7 Your pick, reworked: \u201cWhat AI makes\u201d as a 3 by 3 grid, no hero capsules",
+   "lead"
+  ]
+ ],
+ "contact": [
+  [
+   "a",
+   "Ways in first",
+   ""
+  ],
+  [
+   "b",
+   "One question at a time",
+   ""
+  ],
+  [
+   "c",
+   "What happens next",
+   ""
+  ],
+  [
+   "d",
+   "R3 \u00b7 Ways in + steps",
+   ""
+  ],
+  [
+   "e",
+   "R6 \u00b7 D refined: A\u2019s ways in first, then the steps",
+   "lead"
+  ],
+  [
+   "f",
+   "R6 \u00b7 New: one short form, plus a \u201cwhich way in?\u201d helper",
+   ""
+  ]
+ ],
+ "branding": [
+  [
+   "a",
+   "Image-led modules",
+   ""
+  ],
+  [
+   "b",
+   "Long page, sticky sections",
+   ""
+  ],
+  [
+   "c",
+   "R3 \u00b7 What\u2019s included",
+   ""
+  ],
+  [
+   "d",
+   "R3 \u00b7 From your copy, trimmed",
+   ""
+  ],
+  [
+   "e",
+   "R5 \u00b7 D refined: identity and guidelines first",
+   ""
+  ],
+  [
+   "f",
+   "R5 \u00b7 New: the brand system, chapter by chapter",
+   ""
+  ],
+  [
+   "g",
+   "R10 \u00b7 Your pick, reworked: \u201cWhat we offer\u201d as a 3 by 3 grid, no hero capsules",
+   "lead"
+  ]
+ ],
+ "case-study": [
+  [
+   "a",
+   "Facts sidebar",
+   ""
+  ],
+  [
+   "b",
+   "Magazine",
+   ""
+  ],
+  [
+   "c",
+   "R3 \u00b7 Hybrid A+B",
+   ""
+  ],
+  [
+   "d",
+   "R4 \u00b7 Project page from your reference: Deeper",
+   ""
+  ],
+  [
+   "e",
+   "R4 \u00b7 Same template, a branding project: Ironwood",
+   ""
+  ],
+  [
+   "f",
+   "R6 \u00b7 E refined: Ironwood, with B\u2019s magazine story",
+   ""
+  ],
+  [
+   "g",
+   "R6 \u00b7 New: sticky project rail, chapters scroll past",
+   "lead"
+  ]
+ ],
+ "lab-post": [
+  [
+   "a",
+   "Reading column",
+   ""
+  ],
+  [
+   "b",
+   "R11 \u00b7 Your pick, reworked: A\u2019s title and lead image, with E\u2019s facts and sections",
+   "lead"
+  ],
+  [
+   "c",
+   "R3 \u00b7 Hybrid A+B",
+   ""
+  ],
+  [
+   "d",
+   "R4 \u00b7 Project-page layout for a Lab piece",
+   ""
+  ],
+  [
+   "e",
+   "R6 \u00b7 A refined: reading column, with B\u2019s hero, D\u2019s facts and the V1 story",
+   ""
+  ],
+  [
+   "f",
+   "R6 \u00b7 New: sticky figure, the story scrolls past",
+   ""
+  ]
+ ],
+ "websites": [
+  [
+   "a",
+   "R3 \u00b7 From your copy, trimmed",
+   ""
+  ],
+  [
+   "b",
+   "R10 \u00b7 Your pick, reworked: \u201cWhat we offer\u201d as a 3 by 3 grid, no hero capsules",
+   "lead"
+  ]
+ ],
+ "lab": [
+  [
+   "a",
+   "R4 \u00b7 Lab index: split hero, tabs, cards",
+   ""
+  ],
+  [
+   "b",
+   "R11 \u00b7 Your pick, reworked: Work E\u2019s hero, then two pieces per row",
+   "lead"
+  ],
+  [
+   "c",
+   "R6 \u00b7 New: journal index, type first",
+   ""
+  ]
+ ]
+}

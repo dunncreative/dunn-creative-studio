@@ -1,103 +1,93 @@
 ---
-// Lab piece / series story page (wireframe lab_v02, band 04: "Each series gets its own story page.
-// Full-bleed media bands with short captions, like a case study without a client"), in the Ridge look.
-// Nothing is written yet: titles from the wireframe, body is lorem ipsum under real section titles.
-// The first section is followed by a dark gallery (one large, one tall, a row of three, then full width).
-import Work from '../../layouts/Work.astro';
-import Held from '../../components/Held.astro';
-import MediaSlot from '../../components/MediaSlot.astro';
-import RidgeHero from '../../components/RidgeHero.astro';
-import RidgeCta from '../../components/RidgeCta.astro';
+// Lab post template: Lab post B, Freeman's 24 Nov pick, reworked per his note: Lab post A's title and
+// lead image, then E's fact strip, numbered sections and AI band. Nothing is written yet, so every
+// body is a "To come" chip under the real section titles from src/data/lab.ts (held: lab-posts, lab-ai).
+import V2 from '../../layouts/V2.astro';
 import { lab, labHref, type LabPiece } from '../../data/lab';
-import { LOREM } from '../../lib/lorem';
 import { TALK } from '../../lib/site';
 
 export function getStaticPaths() {
-  return lab.map((p, i) => ({ params: { slug: p.slug }, props: { p, next: lab[(i + 1) % lab.length] } }));
+  return lab.map((p, i) => ({
+    params: { slug: p.slug },
+    props: { p, nextTwo: [lab[(i + 1) % lab.length], lab[(i + 2) % lab.length]] },
+  }));
 }
-const { p, next } = Astro.props as { p: LabPiece; next: LabPiece };
-const [first, gallerySection, ...rest] = p.sections;
+const { p, nextTwo } = Astro.props as { p: LabPiece; nextTwo: LabPiece[] };
+const title = p.titleHeld ? 'Field guide title to come' : p.title;
 const n = (i: number) => String(i + 1).padStart(2, '0');
-const gallery = [
-  { w: 'w8', r: '4 / 3', cap: 'Fig. 02 · Caption to come.' },
-  { w: 'w4', r: '3 / 4.5', cap: 'Fig. 03 · Caption to come.' },
-  { w: 'w4', r: '1 / 1', cap: 'Fig. 04' },
-  { w: 'w4', r: '1 / 1', cap: 'Fig. 05' },
-  { w: 'w4', r: '1 / 1', cap: 'Fig. 06' },
-  { w: 'w12', r: '21 / 9', cap: 'Fig. 07 · Caption to come.' },
-];
+const [first, second, ...rest] = p.sections;
+const tones = ['ink', 'stone', 'fog'];
+const lc = (s: string) => s.charAt(0).toLowerCase() + s.slice(1);
 ---
-<Work title={`${p.titleHeld ? p.label : p.title} · Lab · Dunn Creative`} description={`${p.label} from the Dunn Creative Lab.`}>
-  <!-- 01 · Header -->
-  <RidgeHero short label={`Lab · ${p.label}`} title={p.titleHeld ? p.label : p.title} meta={[p.label, 'Lab']}>
-    <p class="stand muted" slot="stand" style="margin-bottom:34px">{LOREM[0]}</p>
-    {p.titleHeld && <p style="margin:-14px 0 24px"><Held id="lab-guide" /></p>}
-    <div class="ctas"><a class="textcta" href="#gallery">See the {p.kind === 'series' ? 'series' : 'pictures'} +</a></div>
-  </RidgeHero>
-
-  <!-- 02 · Lead media, full bleed -->
-  <section class="band dark mediaband" style="padding-top:0 !important">
-    <div class="wrap">
-      <MediaSlot label="Lead image or film, full width" ratio="21 / 9" dark />
-      <p class="cap">Fig. 01 · Caption to come.</p>
-      <p style="margin-top:14px"><Held id="lab-posts" note="date, images and copy" /> <Held id="draft-copy" /></p>
+<V2 title={`${p.titleHeld ? p.label : p.title} · Lab · Dunn Creative`} description={`${p.label} from the Dunn Creative Lab.`}>
+  <section class="band tight"><div class="wrap"><div class="read">
+    <p class="lbl">Lab · {p.label}</p>
+    <h1 style="font-size:clamp(40px,6vw,80px);font-weight:400;letter-spacing:-.04em;line-height:1;margin:14px 0 22px">{title}</h1>
+    <p class="stand" style="max-width:none"><span class="held">To come: standfirst</span></p>
+    <div style="margin-top:28px"><div class="author">
+      <img src="/v2/assets/chris-portrait.webp" alt="Chris Dunn" loading="lazy" decoding="async" />
+      <div><b>Chris Dunn</b><span class="cap" style="margin:0">Founder and creative director</span></div>
+      <span style="margin-left:auto"><span class="held">To come: publish date</span></span>
+    </div></div>
+  </div></div></section>
+  <div class="wrap"><div class="wide">
+    <div class="grad ink" style="aspect-ratio:16/9;">Lead image · Fig. 01</div>
+    <p class="cap">Fig. 01 · Caption to come.</p>
+  </div></div>
+  <section class="band tight"><div class="wrap">
+    <dl class="fstrip">
+      <div><dt>Type</dt><dd>{p.label}</dd></div>
+      <div><dt>Topic</dt><dd>{p.titleHeld ? <span class="held">To come: topic</span> : p.title}</dd></div>
+      <div><dt>Tools</dt><dd><span class="held">To come: tools</span></dd></div>
+      <div><dt>AI use</dt><dd><span class="held">To come: what AI did</span></dd></div>
+      <div><dt>Year</dt><dd><span class="held">To come: year</span></dd></div>
+    </dl>
+  </div></section>
+  <section class="band" style="padding-top:0"><div class="wrap">
+    <div class="read">
+      <p class="lbl" style="margin-top:56px">01</p>
+      <h2 style="margin-top:8px">{first}</h2>
+      <p><span class="held">To come: {lc(first)} copy</span></p>
+      <p class="lbl" style="margin-top:56px">02</p>
+      <h2 style="margin-top:8px">{second}</h2>
+      {p.kind !== 'series' && <p><span class="held">To come: {lc(second)} copy</span></p>}
     </div>
-  </section>
-
-  <!-- 03 · First section -->
-  <section class="band">
-    <div class="wrap">
-      <div class="casesec">
-        <div><span class="n">01</span><h2>{first}</h2></div>
-        <div class="prose">{LOREM.slice(0, 2).map((t) => <p class="muted">{t}</p>)}</div>
+    {p.kind === 'series' && (
+      <div class="wide" style="margin:clamp(36px,5vw,56px) auto">
+        <div class="mods c2" style="grid-template-columns:2fr 1fr"><div class="grad stone" style="aspect-ratio:4/3;">Fig. 02</div><div class="grad " style="aspect-ratio:2/3;">Fig. 03</div></div>
+        <div class="mods c3" style="grid-template-columns:repeat(3,1fr);margin-top:12px"><div class="grad " style="aspect-ratio:1/1;">Fig. 04</div><div class="grad ink" style="aspect-ratio:1/1;">Fig. 05</div><div class="grad fog" style="aspect-ratio:1/1;">Fig. 06</div></div>
+        <div style="margin-top:12px"><div class="grad ink" style="aspect-ratio:21/9;">Fig. 07 · full width</div></div>
+        <p class="cap">The series: one large, one tall, a row of three, then full width. Captions to come.</p>
       </div>
-    </div>
-  </section>
-
-  <!-- 04 · Gallery (dark, no texture near the work) -->
-  <section class="band dark" id="gallery">
-    <div class="wrap">
-      <div class="sechead"><h2>{gallerySection}</h2></div>
-      <div class="gallery">
-        {gallery.map((g) => (
-          <figure class={g.w}><MediaSlot label="Image" ratio={g.r} dark /><figcaption>{g.cap}</figcaption></figure>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- 05 · The rest, then AI use -->
-  <section class="band">
-    <div class="wrap">
-      {rest.map((t, i) => (
-        <div class="casesec">
-          <div><span class="n">{n(i + 2)}</span><h2>{t}</h2></div>
-          <div class="prose"><p class="muted">{LOREM[i % LOREM.length]}</p></div>
-        </div>
+    )}
+    <div class="read">
+      {rest.map((s, i) => (
+        <>
+          <p class="lbl" style="margin-top:56px">{n(i + 2)}</p>
+          <h2 style="margin-top:8px">{s}</h2>
+          <p><span class="held">To come: {lc(s)} copy</span></p>
+        </>
       ))}
-      <div class="casesec">
-        <div><span class="n">{n(rest.length + 2)}</span><h2>AI use</h2></div>
-        <div class="prose"><p><Held id="lab-ai" /></p><p class="cap">Every Lab piece says what was AI-assisted.</p></div>
-      </div>
     </div>
-  </section>
-
-  <!-- Next piece -->
-  <section class="band grey">
-    <div class="wrap">
-      <p class="lbl" style="margin-bottom:18px">Next in the Lab</p>
-      <a class="next" href={labHref(next.slug)}>
-        <MediaSlot label={`${next.titleHeld ? next.label : next.title} image`} ratio="4 / 3" />
-        <div>
-          <p class="lbl">{next.label}</p>
-          <h2>{next.titleHeld ? next.label : next.title}</h2>
-          <p class="stand muted">{LOREM[1]}</p>
-        </div>
-      </a>
+  </div></section>
+  <section class="band dark tex"><div class="wrap split">
+    <div><p class="lbl">{n(p.sections.length)} · AI use</p><h2 style="margin-top:14px">What AI did on this piece.</h2></div>
+    <div><p><span class="held">To come: what AI did on this piece</span></p><p class="stand" style="margin-top:16px">Every Lab piece says what was AI-assisted.</p></div>
+  </div></section>
+  <section class="band tight"><div class="wrap"><div class="read"><div class="tags"><span>{p.label}</span><span>Lab</span></div></div></div></section>
+  <section class="band grey"><div class="wrap">
+    <div class="sechead"><h2>Next in the Lab</h2><a class="tlink" href="/lab/">The Lab +</a></div>
+    <div class="wrow r2">
+      {nextTwo.map((x, i) => (
+        <a class="wc" href={labHref(x.slug)}>
+          <div class={`grad ${tones[i % 3]}`} style="aspect-ratio:16/10;">Lab image</div>
+          <p class="lbl">{x.label}</p><h3>{x.titleHeld ? 'Field guide title to come' : x.title}</h3>
+        </a>
+      ))}
     </div>
-  </section>
-
-  <RidgeCta title="Want this thinking on your brand?" button="Let's talk" href={TALK}>
-    <p class="stand">Tell us what you're building.</p>
-  </RidgeCta>
-</Work>
+  </div></section>
+  <section class="band cta" id="talk"><div class="wrap">
+    <h2>Want this thinking on your brand?</h2>
+    <div class="side"><p class="stand">Tell us what you're building.</p><span class="held">To come: response time</span><a class="btn" href={TALK}>Let's talk</a></div>
+  </div></section>
+</V2>

@@ -14,10 +14,18 @@ Owner and creative director: Freeman (Chris Dunn).
 - `src/pages/explore/a/` — the studio's one-page lead site (task #33).
 - `public/explore/` — three standalone lead pages (get started, AI call, audit) plus an index, made in Freeman's
   chat sessions. Static HTML; edit them only on Freeman's ask.
+- Since the 24 Nov page picks, the main pages render Freeman's picked layouts from Page Explorations v2:
+  `src/layouts/V2.astro` (header/footer in `src/components/v2/`, styles in `public/v2/v2.css`), markup in
+  `src/v2/*.html`, case studies from `src/data/caseStudies.ts` (copy v03), Lab posts from `src/data/lab.ts`.
+  `/sprints/` is built in the same v2 style from the sprint one-pager concept (prices held). Every other version is kept as static reference at `/explore/pages/`.
 - `src/lib/held.ts` (shown at `/held`) — every open item for Freeman in one registry. Never fill an `answer`
   there from anything but Freeman's own answer.
 
 ## Where things stand (19 Nov 2026)
+- 24 Nov: Freeman picked the page layouts (Home K, About E, Services I, AI G, Branding G, Websites B,
+  Contact E, Work E, Case study G, Lab post B, Lab B). A draft PR from
+  `claude/u22414bf55145482f23a140dacf5681d9-explorations-to-site` ports them; his merge puts them live. Until
+  then, page work continues on that branch, not in fresh layouts.
 - `main` is the live site at dunncreative.netlify.app. PR #5 (site pages from Wireframes v02.1, in the
   **Ridge** look Freeman picked) was squash-merged on 19 Nov, so the Ridge pages are live.
 - Home and About use the portrait Freeman approved: `src/assets/studio/chris-dunn-portrait-bw.webp`.
