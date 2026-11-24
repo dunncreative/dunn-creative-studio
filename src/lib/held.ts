@@ -26,6 +26,7 @@ export const held = {
     label: 'response-time promise',
     ask: 'How fast do you reply to an inquiry (for example, within one business day)?',
     pages: ['Home', 'Contact'],
+    answer: '24 Nov: A. No response-time promise at launch.',
   },
   'audit-format': {
     label: 'audit: free or paid, format, turnaround',
