@@ -1,16 +1,18 @@
 ---
 // Service pages, per Freeman's 24 Nov picks: Brand Identity is Branding G, Websites is Websites B
 // (markup from Page Explorations v2, with his notes applied: 3x3 "What we offer" grids, no hero capsules).
-// Marketing Creative and Film & Motion live as sections on /services/ for now. The older service
-// pages (campaigns-content, print-packaging, decks-presentations) redirect there (netlify.toml).
+// Marketing Creative (Freeman, 24 Nov) follows the same layout. Film & Motion lives as a section on /services/ for now.
+// The older service pages (campaigns-content, print-packaging, decks-presentations) redirect to Marketing Creative (netlify.toml).
 import V2 from '../../layouts/V2.astro';
 import branding from '../../v2/branding.html?raw';
 import websites from '../../v2/websites.html?raw';
+import marketing from '../../v2/marketing.html?raw';
 
 export function getStaticPaths() {
   return [
     { params: { service: 'brand-identity' }, props: { html: branding, name: 'Brand Identity', sub: 'Strategy, identity and the standards that hold it together, built for the long term.' } },
     { params: { service: 'websites' }, props: { html: websites, name: 'Websites', sub: 'Website design, development and everything around it, from Dunn Creative in Jackson, WY.' } },
+    { params: { service: 'marketing-creative' }, props: { html: marketing, name: 'Marketing Creative', sub: 'Ads, social, email, decks, print and campaigns from Dunn Creative, all made from your brand.' } },
   ];
 }
 const { html, name, sub } = Astro.props;

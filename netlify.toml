@@ -11,19 +11,19 @@
   [headers.values]
     X-Robots-Tag = "noindex, nofollow"
 
-# 24 Nov page picks: four case studies only, and two service pages. Older routes point to their new homes.
+# 24 Nov page picks: four case studies only, and three service pages. Older routes point to their new homes.
 # (302s: the content files stay in the repo and these can come back.)
 [[redirects]]
   from = "/services/campaigns-content/"
-  to = "/services/#creative"
+  to = "/services/marketing-creative/"
   status = 302
 [[redirects]]
   from = "/services/print-packaging/"
-  to = "/services/#creative"
+  to = "/services/marketing-creative/"
   status = 302
 [[redirects]]
   from = "/services/decks-presentations/"
-  to = "/services/#creative"
+  to = "/services/marketing-creative/"
   status = 302
 [[redirects]]
   from = "/work/animal-hospital-of-boone/"

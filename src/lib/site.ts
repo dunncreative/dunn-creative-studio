@@ -72,7 +72,7 @@ export const NAV_THEME: 'light' | 'dark' = 'light';
 export const SERVICE_AREAS = [
   { label: 'Brand Identity', href: '/services/brand-identity/' },
   { label: 'Websites', href: '/services/websites/' },
-  { label: 'Marketing Creative', href: '/services/#creative' },
+  { label: 'Marketing Creative', href: '/services/marketing-creative/' },
   { label: 'Film & Motion', href: '/services/#video' },
   { label: 'AI Creative', href: '/ai/' },
   { label: 'AI for Teams', href: '/ai/#team' },
