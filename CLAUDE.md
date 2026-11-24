@@ -27,7 +27,8 @@ Owner and creative director: Freeman (Chris Dunn).
   PR #5 (Ridge site pages) on 19 Nov and PRs #1 (work collection), #3 (/explore/a fixes), #8 (`docs/duet/`)
   and #10 (his 24 Nov page picks) on 24 Nov. New work branches off `main`.
 - 24 Nov page picks, live since PR #10: Home K, About E, Services I, AI G, Branding G, Websites B, Contact E,
-  Work E, Case study G, Lab post B, Lab B. Page work builds on these layouts, not fresh ones.
+  Work E, Case study G, Lab post B, Lab B. These are the live routes; `/explore/pages/` holds the alternates.
+  Studio runs build on `main` from here, on these layouts, not fresh ones.
 - Home and About use the portrait Freeman approved: `src/assets/studio/chris-dunn-portrait-bw.webp`.
 - Draft PR #7 (`feat/client-logo-bar`, Freeman's client logos in the homepage logo bar) stays parked. Freeman's
   chat session owns that branch. Studio runs don't push to it; send changes for it through the Notion Inbox.
