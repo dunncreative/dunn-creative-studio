@@ -3,7 +3,7 @@
 Concepts Freeman made with Claude Duet, copied here so the studio runs can read and build from them.
 Reference only: nothing in `docs/` is built or served. The claude.ai links are the originals and may be newer.
 
-## sprint-one-pager/ — the source for the Sprints page at /sprints (task v04 · 4)
+## sprint-one-pager/ — the source for the Sprints page at /sprints (task v04 · 4, live since PR #10)
 
 The sprint one-pager concept: hero, In short, proof band, six offers, Brand Sprint menu picker, day-by-day
 process tabs, five working rules, work grouped by buyer, ownership, founder, FAQ, and a qualifying start form.
@@ -15,6 +15,11 @@ process tabs, five working rules, work grouped by buyer, ownership, founder, FAQ
   palette and type) is still Freeman's to decide. Leave those out of a build until the board says otherwise.
 
 ## page-explorations/ — page layout explorations
+
+Since PR #10 (24 Nov), Freeman's picked layouts are the live routes on `main` (Home K, About E, Services I,
+AI G, Branding G, Websites B, Contact E, Work E, Case study G, Lab post B, Lab B), and `/sprints` is live in the
+same style with prices held. Every other version is kept as static reference at `/explore/pages/`, hidden from
+the nav. Build on `main` from here, not on these files.
 
 Home, Services, AI, About, Work, Case study, Lab, Contact and Websites layouts in several looks
 (`frame/`, `ridge/`, `type/`) and the v2 variants (`v2/<page>/a…k.html`, with `v2/PATTERNS.md` and `v2/v2.css`).
