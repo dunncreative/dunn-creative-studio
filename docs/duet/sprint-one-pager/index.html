@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sprints · Dunn Creative (concept)</title>
+<meta name="description" content="Fixed-scope brand, web, film and AI workflow sprints from Dunn Creative, a senior-led studio in Jackson Hole, Wyoming.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0B0C0D;--g6:#6B6E72;--g3:#B9BBBE;--soft:#F4F4F3;--line:#E6E6E3;--teal:#1AA6AA;--tealink:#0E7C80;--r:14px;--w:1240px}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{margin:0;background:#fff;color:var(--ink);font:400 17px/1.55 Inter,system-ui,-apple-system,Segoe UI,sans-serif;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}a{color:inherit}
+.wrap{max-width:var(--w);margin:0 auto;padding:0 clamp(20px,4vw,40px)}
+.review{background:var(--soft);border-bottom:1px solid var(--line);font-size:13px;color:var(--g6)}
+.review .wrap{display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap;padding-block:9px}
+.review a{color:var(--ink)}
+.draft{display:inline-block;font:500 11px/1 Inter,sans-serif;letter-spacing:.04em;text-transform:uppercase;color:var(--tealink);border:1px dashed var(--teal);border-radius:999px;padding:4px 8px;vertical-align:middle;margin-left:8px;white-space:nowrap}
+.nav{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.92);backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;gap:28px;height:68px}
+.nav .logo img{height:30px;width:auto}
+.nav nav{display:flex;gap:22px;margin-left:auto;font-size:15px}
+.nav nav a{text-decoration:none;color:var(--g6)}.nav nav a:hover{color:var(--ink)}
+.btn{display:inline-flex;align-items:center;gap:8px;font:500 15px/1 Inter,sans-serif;border-radius:10px;padding:13px 18px;text-decoration:none;border:1px solid var(--ink);background:var(--ink);color:#fff;cursor:pointer}
+.btn.teal{background:var(--teal);border-color:var(--teal);color:#fff}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.light{background:#fff;color:var(--ink);border-color:#fff}
+.lbl{font-size:13px;color:var(--g6);margin:0 0 10px;letter-spacing:.01em}
+.dark .lbl{color:var(--g3)}
+h1,h2,h3,h4{font-weight:400;margin:0;letter-spacing:-.02em}
+h1{font-size:clamp(44px,6.6vw,92px);line-height:1;letter-spacing:-.045em}
+h2{font-size:clamp(34px,4.4vw,58px);line-height:1.04;letter-spacing:-.035em}
+h3{font-size:clamp(22px,2vw,28px);line-height:1.15;font-weight:500;letter-spacing:-.02em}
+h4{font-size:17px;font-weight:500;letter-spacing:-.01em}
+.stand{font-size:clamp(18px,1.6vw,21px);color:var(--g6);max-width:62ch;margin:18px 0 0}
+.dark .stand{color:var(--g3)}
+section{padding-block:clamp(64px,9vw,128px)}
+.sechead{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:end;margin-bottom:clamp(32px,4vw,56px)}
+.box{background:var(--soft);border-radius:var(--r);padding:clamp(24px,3vw,40px)}
+.blk{background:var(--ink);color:#fff;border-radius:var(--r);padding:clamp(32px,5vw,72px)}
+/* hero */
+.hero{padding-top:clamp(56px,8vw,112px);padding-bottom:clamp(40px,5vw,64px)}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:14px;color:var(--g6);border:1px solid var(--line);border-radius:999px;padding:7px 12px;margin-bottom:28px}
+.badge i{width:8px;height:8px;border-radius:50%;background:var(--teal);display:inline-block}
+.hero h1{max-width:15ch}
+.hero .for{margin-top:22px;font-size:16px;color:var(--ink);max-width:68ch}
+.hero .acts{display:flex;gap:12px;margin-top:34px;flex-wrap:wrap}
+.mosaic{display:grid;grid-template-columns:1.35fr 1fr 1fr;gap:16px;margin-top:clamp(48px,6vw,80px)}
+.mosaic figure{margin:0;border-radius:var(--r);overflow:hidden;background:var(--soft);aspect-ratio:4/5;position:relative}
+.mosaic figure:first-child{aspect-ratio:auto}
+.mosaic img{width:100%;height:100%;object-fit:cover}
+.mosaic figure.contain{background:#fff;border:1px solid var(--line)}.mosaic figure.contain img{object-fit:contain;padding:8%}
+.mosaic figcaption{position:absolute;left:12px;bottom:12px;font-size:12px;background:rgba(255,255,255,.92);border-radius:999px;padding:5px 10px}
+/* in short */
+.short{padding-block:clamp(40px,5vw,64px)}
+.short p.big{font-size:clamp(22px,2.4vw,32px);line-height:1.3;letter-spacing:-.02em;max-width:34ch;margin:0}
+.short .cols{display:grid;grid-template-columns:200px 1fr;gap:32px;border-top:1px solid var(--line);padding-top:32px}
+/* proof */
+.proof .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,3vw,48px);margin-top:48px;border-top:1px solid #2A2C2E;padding-top:36px}
+.proof .n{font-size:clamp(40px,4.6vw,64px);letter-spacing:-.04em;line-height:1}
+.proof .grid p{color:var(--g3);margin:12px 0 0;font-size:15px}
+.clients{display:flex;flex-wrap:wrap;gap:10px 28px;margin-top:44px;font-size:15px;color:var(--g3)}
+.clients span{white-space:nowrap}
+/* offers */
+.offers{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.offer{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:28px;display:flex;flex-direction:column}
+.offer#o-audit{background:var(--soft);border-color:var(--soft)}
+.otop{display:flex;justify-content:space-between;font-size:13px;color:var(--g6);margin-bottom:28px}
+.when{border:1px solid var(--line);border-radius:999px;padding:3px 10px;background:#fff}
+.otag{font-size:14px;color:var(--g6);margin:6px 0 0}
+.oline{margin:16px 0 0}
+.ticks{list-style:none;padding:0;margin:18px 0 0;font-size:15px}
+.ticks li{padding:9px 0 9px 22px;border-top:1px solid var(--line);position:relative}
+.ticks li:before{content:"";position:absolute;left:2px;top:17px;width:8px;height:8px;border-radius:50%;border:1.5px solid var(--ink)}
+.prices{margin-top:auto;padding-top:22px}
+.pr{display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid var(--ink);padding-top:12px;margin-top:8px;font-size:15px}
+.price{font-size:20px;font-weight:500;letter-spacing:-.01em}
+.onote{font-size:13px;color:var(--g6);margin:10px 0 0}
+.olink{margin-top:20px;font-weight:500;font-size:15px;text-decoration:none;display:inline-flex;gap:8px}
+.olink:hover{color:var(--tealink)}
+/* brand menu */
+.menu{display:grid;grid-template-columns:1fr 1.4fr;gap:clamp(24px,4vw,64px);align-items:start;margin-top:16px}
+.picker{display:flex;flex-wrap:wrap;gap:8px}
+.picker button{font:400 15px/1 Inter,sans-serif;border:1px solid var(--line);background:#fff;border-radius:999px;padding:11px 14px;cursor:pointer;color:var(--ink)}
+.picker button[aria-pressed=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.picker button:disabled{opacity:.35;cursor:not-allowed}
+.count{font-size:14px;color:var(--g6);margin-top:14px}
+/* process */
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:32px}
+.tabs button{font:500 14px/1 Inter,sans-serif;background:transparent;color:var(--g3);border:1px solid #2A2C2E;border-radius:999px;padding:10px 14px;cursor:pointer}
+.tabs button[aria-selected=true]{background:#fff;color:var(--ink);border-color:#fff}
+.before{color:var(--g3);margin:0 0 22px;font-size:15px}
+.days{display:grid;grid-template-columns:repeat(var(--n),1fr);gap:4px;margin-bottom:34px}
+.days .d{height:34px;border-radius:6px;background:#1C1E20;font-size:12px;display:flex;align-items:center;justify-content:center;color:#fff}
+.days .d.on{background:var(--teal)}
+.ms{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,1fr);gap:20px}
+.ms li{border-top:1px solid #2A2C2E;padding-top:16px}
+.ms .day{font-size:13px;color:var(--teal)}
+.ms h4{margin:8px 0 6px}.ms p{margin:0;color:var(--g3);font-size:15px}
+.rules{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-top:16px}
+.rules div{background:var(--soft);border-radius:var(--r);padding:22px}
+.rules b{display:block;font-weight:500;margin-bottom:8px}.rules p{margin:0;font-size:15px;color:var(--g6)}
+/* work */
+.wrow{display:grid;grid-template-columns:1.25fr 1fr;gap:clamp(24px,4vw,64px);align-items:center;padding-block:clamp(28px,3.5vw,48px);border-top:1px solid var(--line)}
+.wrow.flip .wm{order:2}
+.wm{border-radius:var(--r);overflow:hidden;aspect-ratio:16/10;background:var(--soft)}
+.wm img{width:100%;height:100%;object-fit:cover}
+.wm.contain{background:#fff;border:1px solid var(--line)}.wm.contain img{object-fit:contain;padding:6%}
+.wm.typecard{background:var(--ink);color:#fff;padding:clamp(24px,3vw,40px);display:flex;flex-direction:column;justify-content:flex-end}
+.wm.typecard .lbl{color:var(--g3)}
+.wm.typecard ul{list-style:none;margin:0;padding:0;font-size:clamp(20px,2.2vw,30px);letter-spacing:-.02em;line-height:1.3}
+.wt h3{margin-bottom:12px}.wt p{margin:0;color:var(--g6)}
+.wt .as{margin-top:18px;font-size:14px}.wt .as b{font-weight:500;color:var(--ink);margin-left:6px;border:1px solid var(--line);border-radius:999px;padding:4px 10px}
+/* ownership */
+.own{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+.own div{border-top:1px solid #2A2C2E;padding-top:16px}
+.own b{display:block;font-weight:500;margin-bottom:8px}.own p{margin:0;color:var(--g3);font-size:15px}
+/* founder */
+.founder{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(24px,4vw,64px);align-items:center}
+.founder img{border-radius:var(--r);aspect-ratio:1;object-fit:cover;filter:grayscale(1)}
+.founder blockquote{margin:0;font-size:clamp(22px,2.4vw,32px);line-height:1.3;letter-spacing:-.02em}
+.founder .who{margin-top:22px;color:var(--g6);font-size:15px}
+.fit{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:clamp(48px,6vw,80px)}
+.fit ul{margin:12px 0 0;padding-left:18px}.fit li{margin:6px 0}
+/* faq */
+.faq details{border-top:1px solid var(--line);padding:20px 0}
+.faq details:last-child{border-bottom:1px solid var(--line)}
+.faq summary{cursor:pointer;list-style:none;font-size:clamp(18px,1.6vw,21px);font-weight:500;display:flex;justify-content:space-between;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:after{content:"+";color:var(--g6);font-weight:400}
+.faq details[open] summary:after{content:"–"}
+.faq details p{color:var(--g6);margin:12px 0 0;max-width:70ch}
+/* start */
+.startgrid{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(24px,4vw,64px);align-items:start}
+.start fieldset{border:0;padding:0;margin:0 0 22px}
+.start legend{font-weight:500;margin-bottom:10px;font-size:15px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip input{position:absolute;opacity:0;pointer-events:none}
+.chip span{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:10px 14px;font-size:15px;cursor:pointer;background:#fff}
+.chip input:checked+span{background:var(--ink);color:#fff;border-color:var(--ink)}
+.chip input:focus-visible+span{outline:2px solid var(--teal);outline-offset:2px}
+.field{display:block;margin-bottom:16px}.field span{display:block;font-size:14px;color:var(--g6);margin-bottom:6px}
+.field input,.field textarea{width:100%;font:400 16px/1.4 Inter,sans-serif;border:1px solid var(--line);border-radius:10px;padding:12px 14px;background:#fff}
+.field input:focus,.field textarea:focus{outline:2px solid var(--teal);outline-offset:0;border-color:transparent}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.hint{background:#E8F6F6;border-radius:10px;padding:12px 14px;font-size:15px;margin:0 0 22px}
+.send{display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin-top:8px}.cap{font-size:13px;color:var(--g6);margin:0}
+.sent{background:var(--soft);border-radius:var(--r);padding:32px}.sent p{color:var(--g6)}
+.steps3{list-style:none;padding:0;margin:28px 0 0;counter-reset:s}
+.steps3 li{counter-increment:s;border-top:1px solid var(--line);padding:14px 0 14px 40px;position:relative;font-size:15px}
+.steps3 li:before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:14px;color:var(--g6);font-size:13px}
+footer{border-top:1px solid var(--line);padding-block:40px;font-size:14px;color:var(--g6)}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+[hidden]{display:none!important}
+.group{font-size:13px;color:var(--g6);margin:0 0 4px}
+.wm.contain.soft{background:var(--soft);border-color:var(--soft)}
+.cards{display:grid;gap:16px}.cards.two-up{grid-template-columns:1fr 1fr;margin:8px 0 clamp(40px,5vw,64px)}.cards.three-up{grid-template-columns:repeat(3,1fr);margin-top:32px}
+.wcard h4{margin:14px 0 6px}.wcard p{margin:0;color:var(--g6);font-size:15px}.wcard .lbl{margin:14px 0 0}.wcard .as{margin-top:12px;font-size:14px;color:var(--ink)}
+.wcard .as b{font-weight:500;margin-left:6px;border:1px solid var(--line);border-radius:999px;padding:3px 9px;background:#fff}
+.cm{border-radius:var(--r);overflow:hidden;aspect-ratio:16/10;background:#fff;border:1px solid var(--line)}.cm img{width:100%;height:100%;object-fit:cover}
+.cm.contain img{object-fit:contain;padding:6%}
+.cm.typecard{background:var(--ink);color:#fff;border-color:var(--ink);padding:22px;display:flex;flex-direction:column;justify-content:flex-end}
+.cm.typecard .lbl{color:var(--g3)}.cm.typecard ul{list-style:none;margin:0;padding:0;font-size:18px;line-height:1.3;letter-spacing:-.01em}
+.localbox .lh{max-width:22ch;font-weight:400;font-size:clamp(26px,3vw,40px);letter-spacing:-.03em}
+.localbox .lsub{color:var(--g6);max-width:60ch;margin:14px 0 0}
+@media (max-width:980px){.cards.three-up{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.cards.two-up,.cards.three-up{grid-template-columns:1fr}}
+
+@media (max-width:980px){.offers{grid-template-columns:1fr 1fr}.rules,.own{grid-template-columns:1fr 1fr}.ms{grid-template-columns:1fr 1fr}}
+@media (max-width:820px){.nav nav{display:none}.mosaic{grid-template-columns:1fr 1fr}.mosaic figure:first-child{grid-column:1/-1;aspect-ratio:16/10}
+ .short .cols,.menu,.wrow,.founder,.startgrid,.fit,.sechead{grid-template-columns:1fr}.wrow.flip .wm{order:0}.proof .grid{grid-template-columns:1fr}
+ .days{grid-template-columns:repeat(10,1fr)}}
+@media (max-width:560px){.offers,.rules,.own,.ms,.two{grid-template-columns:1fr}.nav .btn{padding:10px 12px;font-size:14px}}
+</style></head><body>
+
+<div class="review"><div class="wrap"><span>Concept for #33 /explore/a. Marked <span class="draft" style="margin:0 2px">Draft</span> = still to decide: prices, the open-slots badge, palette and type.</span><a href="qwvrs/index.html">Earlier QWVRS pages, for reference →</a></div></div>
+
+<header class="nav"><div class="wrap"><a class="logo" href="#top" aria-label="Dunn Creative"><img src="assets/dunn-creative-logo-black.png" alt="Dunn Creative" width="63" height="30"></a>
+<nav aria-label="Page"><a href="#sprints">Sprints</a><a href="#process">How it runs</a><a href="#work">Work</a><a href="#own">Ownership</a><a href="#faq">FAQ</a></nav>
+<a class="btn teal" href="#start">Start a sprint</a></div></header>
+
+<main id="top">
+<section class="hero"><div class="wrap">
+  <p class="badge"><i></i>[n] sprint slots open in [month] <span class="draft" title="Still to decide">Draft</span></p>
+  <h1>Senior brand, web and film work, on a fixed date.</h1>
+  <p class="stand">Fixed scope, fixed price and a day-by-day plan. You work with the creative director from the first call to the handover.</p>
+  <p class="for">Dunn Creative works with founder-led and family-run businesses whose brand hasn't caught up with their work: outdoor and lifestyle brands, filmmakers and athletes, wellness studios and retreats, and established local companies ready to modernize.</p>
+  <div class="acts"><a class="btn" href="#sprints">See the sprints</a><a class="btn ghost" href="#start" data-pick="audit">Not sure? Start with an Audit</a></div>
+  <div class="mosaic">
+    <figure><img src="assets/jeremy-jones-deeper-1.webp" alt="Deeper key art: the film title over a black-and-white mountain face"><figcaption>Deeper · Teton Gravity Research</figcaption></figure>
+    <figure><img src="assets/gu-energy.webp" alt="GU Energy Drink Mix print ad with a mountain biker and product tubs"><figcaption>GU Energy</figcaption></figure>
+    <figure class="contain"><img src="assets/ironwood-homes-1.webp" alt="Ironwood Homes logo suite on a light board"><figcaption>Ironwood Homes</figcaption></figure>
+  </div>
+</div></section>
+
+<section class="short"><div class="wrap"><div class="cols"><p class="lbl">In short</p>
+  <p class="big">Dunn Creative is a senior-led brand and web studio in Jackson Hole, Wyoming. It sells fixed-scope sprints: an Audit, a Brand Sprint, a Web Sprint, a Launch Film, an AI Workflow Sprint and a monthly Creative Retainer, each with a set price and a day-by-day plan.</p></div></div></section>
+
+<section class="proof" style="padding-top:0"><div class="wrap"><div class="blk dark">
+  <p class="lbl">Why you can trust the date</p>
+  <h2>Twenty years of work that had to ship on time.</h2>
+  <p class="stand">Senior roles at Teton Gravity Research and Brain Farm, on film campaigns built around release dates. The same discipline runs every sprint.</p>
+  <div class="grid">
+    <div><div class="n">20+</div><p>years in creative direction, brand, web and content</p></div>
+    <div><div class="n">3</div><p>feature film campaigns: We Are Blood, The Fourth Phase and View From A Blue Moon</p></div>
+    <div><div class="n">1</div><p>creative director on every call, from kickoff to handover</p></div>
+  </div>
+  <div class="clients" aria-label="Clients"><span>Teton Gravity Research</span><span>Brain Farm</span><span>GU Energy</span><span>Stio</span><span>Peace Park</span><span>Asymbol</span><span>Mountain Mind Project</span><span>Ironwood Homes</span><span>Dwelling</span><span>Satori Anglers</span><span>Hines Goldsmiths</span><span>Connecticut Signcraft</span><span>Animal Hospital of Boone</span></div>
+</div></div></section>
+
+<section id="sprints" style="padding-top:0"><div class="wrap">
+  <div class="sechead"><div><p class="lbl">The sprints</p><h2>Six ways to work together.</h2></div><p class="cap" style="max-width:34ch">Prices show as from $X until they're set. <span class="draft" title="Still to decide">Prices: draft</span></p></div>
+  <div class="offers"><article class="offer" id="o-audit"><div class="otop"><span class="num">01</span><span class="when">1 week</span></div><h3>Audit</h3><p class="otag">Start here if you are not sure</p><p class="oline">A senior review of your brand, site and how you show up in search and AI answers.</p><ul class="ticks"><li>Brand, website and AEO review</li><li>A prioritized fix list you can act on</li><li>A live readout call to walk through it</li><li>Which sprint you need, if any</li></ul><div class="prices"><div class="pr"><span>Audit</span><span class="price">from $X</span></div><p class="onote">The fee comes off a sprint if you go ahead within 30 days.</p></div><a class="olink" href="#start" data-pick="audit">Start with Audit <span aria-hidden="true">→</span></a></article><article class="offer" id="o-brand"><div class="otop"><span class="num">02</span><span class="when">2 weeks</span></div><h3>Brand Sprint</h3><p class="otag">You bring the positioning, we make the brand</p><p class="oline">Two directions on day 3, picked on the call, and a finished identity handed over on day 10.</p><ul class="ticks"><li>Logo suite, type and color</li><li>Brand guidelines</li><li>4 to 6 pieces chosen from a menu</li><li>All source files in your name</li></ul><div class="prices"><div class="pr"><span>Brand Sprint</span><span class="price">from $X</span></div></div><a class="olink" href="#start" data-pick="brand">Start with Brand Sprint <span aria-hidden="true">→</span></a></article><article class="offer" id="o-web"><div class="otop"><span class="num">03</span><span class="when">2 or 4 weeks</span></div><h3>Web Sprint</h3><p class="otag">Designed, built and live on a date</p><p class="oline">A landing page in two weeks, or a site of up to five pages in four.</p><ul class="ticks"><li>Design and build in Astro, with easy editing</li><li>Repo and hosting in your name</li><li>Schema and llms.txt, so search and AI can read it</li><li>Recorded walkthrough at launch</li></ul><div class="prices"><div class="pr"><span>Landing page</span><span class="price">from $X</span></div><div class="pr"><span>Up to 5 pages</span><span class="price">from $X</span></div></div><a class="olink" href="#start" data-pick="web">Start with Web Sprint <span aria-hidden="true">→</span></a></article><article class="offer" id="o-film"><div class="otop"><span class="num">04</span><span class="when">3 weeks</span></div><h3>Launch Film</h3><p class="otag">Film-grade work for a launch</p><p class="oline">A short film for a launch, a raise or a campaign, from script to every cutdown.</p><ul class="ticks"><li>Script and storyboard, approved before production</li><li>A 30 to 90 second hero cut</li><li>Cutdowns in 16:9, 4:5 and 9:16</li><li>Licensed music and sound</li></ul><div class="prices"><div class="pr"><span>Launch Film</span><span class="price">from $X</span></div></div><a class="olink" href="#start" data-pick="film">Start with Launch Film <span aria-hidden="true">→</span></a></article><article class="offer" id="o-retainer"><div class="otop"><span class="num">05</span><span class="when">Monthly</span></div><h3>Creative Retainer</h3><p class="otag">After a sprint, or on its own</p><p class="oline">Ongoing design for teams that ship every week: ads, social, email, decks and site updates.</p><ul class="ticks"><li>One request at a time, as many as fit the month</li><li>48-hour turnaround on standard requests</li><li>The same senior eye on everything</li><li>3-month minimum, then month to month</li></ul><div class="prices"><div class="pr"><span>Retainer</span><span class="price">from $X / mo</span></div></div><a class="olink" href="#start" data-pick="retainer">Start with Creative Retainer <span aria-hidden="true">→</span></a></article><article class="offer" id="o-ai"><div class="otop"><span class="num">06</span><span class="when">2 weeks</span></div><h3>AI Workflow Sprint</h3><p class="otag">The pipeline we run, set up for your team</p><p class="oline">We map how your team makes creative work, then set up and hand over an AI pipeline that fits it.</p><ul class="ticks"><li>Workflow review and a plan you approve</li><li>Agents, a task board and QA steps in your tools</li><li>A training session for your team</li><li>A written playbook and recorded walkthrough</li></ul><div class="prices"><div class="pr"><span>AI Workflow Sprint</span><span class="price">from $X</span></div></div><a class="olink" href="#start" data-pick="ai">Start with AI Workflow Sprint <span aria-hidden="true">→</span></a></article></div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap"><div class="box">
+  <div class="menu"><div><p class="lbl">Inside the Brand Sprint</p><h3>You pick the pieces at kickoff.</h3><p style="color:var(--g6);margin:12px 0 0">Choose four to six from the menu. The scope is set the moment you pick, so day 10 stays day 10.</p></div>
+  <div><div class="picker" data-max="6"><button type="button" aria-pressed="false">Business cards and stationery</button><button type="button" aria-pressed="false">Pitch deck template</button><button type="button" aria-pressed="false">Social templates</button><button type="button" aria-pressed="false">Signage</button><button type="button" aria-pressed="false">Vehicle or uniform marks</button><button type="button" aria-pressed="false">Packaging front</button><button type="button" aria-pressed="false">Merch and apparel</button><button type="button" aria-pressed="false">Email signature and templates</button><button type="button" aria-pressed="false">Homepage design</button><button type="button" aria-pressed="false">Brand imagery direction</button><button type="button" aria-pressed="false">Launch announcement</button><button type="button" aria-pressed="false">Presentation template</button></div><p class="count" id="count" aria-live="polite"></p></div></div>
+</div></div></section>
+
+<section id="process" style="padding-top:0"><div class="wrap"><div class="blk dark">
+  <p class="lbl">How a sprint runs</p><h2 style="margin-bottom:32px">Counted in days, decided on calls.</h2>
+  <div class="tabs" role="tablist" aria-label="Sprint"><button type="button" role="tab" data-tab="brand" aria-selected="true">Brand Sprint</button><button type="button" role="tab" data-tab="web" aria-selected="false">Web Sprint</button><button type="button" role="tab" data-tab="film" aria-selected="false">Launch Film</button><button type="button" role="tab" data-tab="ai" aria-selected="false">AI Workflow Sprint</button></div><div class="tl" data-tab="brand" ><p class="before">Before day 1: a questionnaire and a short call to check your positioning is settled.</p><div class="days" style="--n:10" aria-hidden="true"><span class="d on" title="Day 1">1</span><span class="d" title="Day 2"></span><span class="d on" title="Day 3">3</span><span class="d" title="Day 4"></span><span class="d on" title="Day 5">5</span><span class="d" title="Day 6"></span><span class="d" title="Day 7"></span><span class="d on" title="Day 8">8</span><span class="d" title="Day 9"></span><span class="d on" title="Day 10">10</span></div><ol class="ms"><li><span class="day">Day 1</span><div><h4>Kickoff</h4><p>Your questionnaire answers become the brief. We agree the menu pieces.</p></div></li><li><span class="day">Day 3</span><div><h4>Two directions</h4><p>Shown on a live call. You pick one there and then.</p></div></li><li><span class="day">Day 5</span><div><h4>System review</h4><p>Logo, type and color refined in the chosen direction.</p></div></li><li><span class="day">Day 8</span><div><h4>Menu pieces</h4><p>Your chosen pieces, shown and adjusted on the call.</p></div></li><li><span class="day">Day 10</span><div><h4>Handover</h4><p>Guidelines and every file, in your name.</p></div></li></ol></div><div class="tl" data-tab="web" hidden><p class="before">Before day 1: a questionnaire and a list of pages. A landing page runs the same steps in 10 days.</p><div class="days" style="--n:20" aria-hidden="true"><span class="d on" title="Day 1">1</span><span class="d" title="Day 2"></span><span class="d" title="Day 3"></span><span class="d" title="Day 4"></span><span class="d on" title="Day 5">5</span><span class="d" title="Day 6"></span><span class="d" title="Day 7"></span><span class="d" title="Day 8"></span><span class="d" title="Day 9"></span><span class="d on" title="Day 10">10</span><span class="d" title="Day 11"></span><span class="d" title="Day 12"></span><span class="d" title="Day 13"></span><span class="d" title="Day 14"></span><span class="d on" title="Day 15">15</span><span class="d" title="Day 16"></span><span class="d" title="Day 17"></span><span class="d" title="Day 18"></span><span class="d" title="Day 19"></span><span class="d on" title="Day 20">20</span></div><ol class="ms"><li><span class="day">Day 1</span><div><h4>Kickoff</h4><p>Sitemap and page goals agreed.</p></div></li><li><span class="day">Day 5</span><div><h4>Homepage design</h4><p>Shown on a live call, decided on the call.</p></div></li><li><span class="day">Day 10</span><div><h4>All pages designed</h4><p>Every page signed off before the build starts.</p></div></li><li><span class="day">Day 15</span><div><h4>Staging review</h4><p>The working site on a private link.</p></div></li><li><span class="day">Day 20</span><div><h4>Live</h4><p>Launched on your domain, with a recorded walkthrough.</p></div></li></ol></div><div class="tl" data-tab="film" hidden><p class="before">Before day 1: a questionnaire, your product screens and any footage or brand files.</p><div class="days" style="--n:15" aria-hidden="true"><span class="d on" title="Day 1">1</span><span class="d" title="Day 2"></span><span class="d on" title="Day 3">3</span><span class="d" title="Day 4"></span><span class="d" title="Day 5"></span><span class="d on" title="Day 6">6</span><span class="d" title="Day 7"></span><span class="d" title="Day 8"></span><span class="d" title="Day 9"></span><span class="d" title="Day 10"></span><span class="d on" title="Day 11">11</span><span class="d" title="Day 12"></span><span class="d" title="Day 13"></span><span class="d" title="Day 14"></span><span class="d on" title="Day 15">15</span></div><ol class="ms"><li><span class="day">Day 1</span><div><h4>Kickoff</h4><p>Message, audience and channels agreed.</p></div></li><li><span class="day">Day 3</span><div><h4>Script</h4><p>Approved on a call.</p></div></li><li><span class="day">Day 6</span><div><h4>Storyboard</h4><p>Every scene approved before any animation or edit.</p></div></li><li><span class="day">Day 11</span><div><h4>First cut</h4><p>Round one of changes, on a call.</p></div></li><li><span class="day">Day 15</span><div><h4>Delivery</h4><p>Master cut and every cutdown, after round two.</p></div></li></ol></div><div class="tl" data-tab="ai" hidden><p class="before">Before day 1: a short questionnaire on how your team makes and approves creative work.</p><div class="days" style="--n:10" aria-hidden="true"><span class="d on" title="Day 1">1</span><span class="d" title="Day 2"></span><span class="d on" title="Day 3">3</span><span class="d" title="Day 4"></span><span class="d" title="Day 5"></span><span class="d on" title="Day 6">6</span><span class="d" title="Day 7"></span><span class="d on" title="Day 8">8</span><span class="d" title="Day 9"></span><span class="d on" title="Day 10">10</span></div><ol class="ms"><li><span class="day">Day 1</span><div><h4>Kickoff</h4><p>We walk through your current workflow and tools.</p></div></li><li><span class="day">Day 3</span><div><h4>Pipeline plan</h4><p>You approve what gets automated and what stays human.</p></div></li><li><span class="day">Day 6</span><div><h4>Setup</h4><p>Agents, board and QA steps set up in your tools.</p></div></li><li><span class="day">Day 8</span><div><h4>Training</h4><p>A live session with the people who will run it.</p></div></li><li><span class="day">Day 10</span><div><h4>Handover</h4><p>Playbook and recorded walkthrough.</p></div></li></ol></div>
+</div>
+<div class="rules"><div><b>Come ready</b><p>Positioning settled and one person who can say yes. If that isn&#x27;t you yet, the Audit gets you there.</p></div><div><b>Decide live</b><p>Work is shown on calls and decided on calls. No email rounds.</p></div><div><b>Count days</b><p>Every sprint is planned by the day, so you know when each piece lands.</p></div><div><b>Pick from a menu</b><p>You choose the pieces at kickoff. You stay in control and the scope stays fixed.</p></div><div><b>Own it all</b><p>Files, repo, hosting and accounts are in your name from day one.</p></div></div>
+</div></section>
+
+<section id="work" style="padding-top:0"><div class="wrap">
+  <div class="sechead"><div><p class="lbl">Work</p><h2>The proof is the work.</h2></div><p class="cap" style="max-width:36ch">Earlier projects, grouped by who they were for, each with the sprint it is closest to today.</p></div>
+  <p class="group">Outdoor, lifestyle, film and wellness</p><article class="wrow"><div class="wm cover"><img src="assets/jeremy-jones-deeper-1.webp" alt="Deeper key art: the film title over a black-and-white mountain face" loading="lazy"></div><div class="wt"><p class="lbl">Teton Gravity Research · Film</p><h3>Jeremy Jones’ Deeper</h3><p>Packaging, key art, magazine ads and DVD menu for TGR&#x27;s snowboard film Deeper, the first of the Deeper, Further, Higher trilogy.</p><p class="as">Closest sprint <b>Launch Film</b></p></div></article><article class="wrow flip"><div class="wm contain soft"><img src="assets/gu-energy.webp" alt="GU Energy Drink Mix print ad with a mountain biker and product tubs" loading="lazy"></div><div class="wt"><p class="lbl">GU Energy · Outdoor and lifestyle</p><h3>GU Energy</h3><p>Overflow design partner to GU Energy&#x27;s in-house team, on print ads and campaign work.</p><p class="as">Closest sprint <b>Creative Retainer</b></p></div></article><div class="cards two-up"><article class="wcard"><div class="cm "><img src="assets/peace-park.webp" alt="Peace Park home page" loading="lazy" style="object-position:left top"></div><p class="lbl">Outdoor and lifestyle</p><h4>Peace Park</h4><p>Website for an annual gathering of the world&#x27;s best snowboarders.</p></article><article class="wcard"><div class="cm "><img src="assets/mountain-mind-project.webp" alt="Mountain Mind Project home page" loading="lazy" style="object-position:left top"></div><p class="lbl">Wellness</p><h4>Mountain Mind Project</h4><p>A full redesign for a mindfulness training company, with our own photography.</p></article></div><div class="box localbox"><p class="lbl">Established local businesses</p><h3 class="lh">Good companies whose brand hadn't caught up with their work.</h3><p class="lsub">Most of the website work is here: family-run and owner-led businesses with a real reputation and a site that didn't show it.</p><div class="cards three-up"><article class="wcard"><div class="cm contain"><img src="assets/ironwood-homes-1.webp" alt="Ironwood Homes logo suite on a light board" loading="lazy" style="object-position:left top"></div><h4>Ironwood Homes</h4><p>Brand identity for a custom home builder in Star Valley, Wyoming.</p><p class="as">Closest sprint <b>Brand Sprint</b></p></article><article class="wcard"><div class="cm "><img src="assets/dwelling.webp" alt="Dwelling website home page" loading="lazy" style="object-position:left top"></div><h4>Dwelling</h4><p>A rebuilt site for a Jackson Hole interior design studio with a Mountain Modern look.</p><p class="as">Closest sprint <b>Web Sprint</b></p></article><article class="wcard"><div class="cm typecard"><p class="lbl">Six water pages</p><ul><li>Snake River</li><li>Green River</li><li>Salt River</li><li>New Fork River</li><li>Lewis Lake</li><li>Yellowstone Lake</li></ul></div><h4>Satori Anglers</h4><p>A full site audit for a Jackson fly fishing outfitter, then six river and lake pages written to be found.</p><p class="as">Closest sprint <b>Audit</b></p></article><article class="wcard"><div class="cm "><img src="assets/hines-goldsmiths.webp" alt="Hines Goldsmiths online store home page" loading="lazy" style="object-position:left top"></div><h4>Hines Goldsmiths</h4><p>An online store for a Jackson Hole fine jewelry and glassware shop, so customers can buy direct.</p><p class="as">Closest sprint <b>Web Sprint</b></p></article><article class="wcard"><div class="cm "><img src="assets/connecticut-signcraft.webp" alt="Connecticut Signcraft home page" loading="lazy" style="object-position:left top"></div><h4>Connecticut Signcraft</h4><p>A site for a family-run Connecticut sign company, built to show its work across devices.</p><p class="as">Closest sprint <b>Web Sprint</b></p></article><article class="wcard"><div class="cm "><img src="assets/animal-hospital-of-boone.webp" alt="Animal Hospital of Boone home page" loading="lazy" style="object-position:left top"></div><h4>Animal Hospital of Boone</h4><p>A new site for a Boone, NC animal hospital, organized around appointments and prescription refills.</p><p class="as">Closest sprint <b>Web Sprint</b></p></article></div></div>
+</div></section>
+
+<section id="own" style="padding-top:0"><div class="wrap"><div class="blk dark">
+  <p class="lbl">What you own</p><h2 style="margin-bottom:40px">Everything, from day one.</h2>
+  <div class="own"><div><b>In your name</b><p>Domain, repo, hosting, font licenses and source files are yours from the start.</p></div><div><b>Recorded walkthrough</b><p>Every handover comes with a video of how to run, edit and extend what you got.</p></div><div><b>30 days of fixes</b><p>Anything that doesn&#x27;t work as agreed in the first 30 days is fixed free.</p></div><div><b>Built to be found</b><p>Clean headings, schema and an llms.txt file, so search engines and AI answers can read you.</p></div><div><b>No lock-in</b><p>Keep going with a retainer, or take it in-house. Either way, nothing is held back.</p></div></div>
+</div></div></section>
+
+<section style="padding-top:0"><div class="wrap">
+  <div class="founder"><img src="assets/chris-portrait.webp" alt="Christopher Dunn">
+  <div><p class="lbl">Who you work with</p><blockquote>One creative director on every call, from the first idea to the final file.</blockquote>
+  <p class="who">Christopher Dunn, owner and creative director. 20+ years in creative direction, brand, web and content, most of it in action sports, film and lifestyle, where the work has to look as good as the footage.</p></div></div>
+  <div class="fit"><div class="box"><h4>A good fit</h4><ul><li>A founder or small team with one person who can say yes</li><li>Positioning you can state in a sentence</li><li>A launch, raise or season with a real date</li></ul></div>
+  <div class="box"><h4>Not a fit yet</h4><ul><li>Sign-off by committee</li><li>Scope that should stay open</li><li>Still deciding what the company is. Start with the Audit.</li></ul></div></div>
+</div></section>
+
+<section id="faq" style="padding-top:0"><div class="wrap"><div class="sechead"><div><p class="lbl">FAQ</p><h2>Straight answers.</h2></div></div><div class="faq"><details><summary>What does a Brand Sprint cost?</summary><p>From $X, fixed. The price on the page is the price you pay, for the scope on the page.</p></details><details><summary>What does a Web Sprint cost?</summary><p>A landing page is from $X and a site of up to five pages is from $X. Larger sites get a fixed quote after an Audit.</p></details><details><summary>What if we aren&#x27;t ready for a sprint?</summary><p>Start with the Audit. It is from $X, takes a week, and the fee comes off a sprint if you go ahead within 30 days.</p></details><details><summary>Who does the work?</summary><p>Christopher Dunn directs every sprint and is on every call. AI speeds up drafts and production; every piece is directed and finished by hand, and we tell you what was AI-assisted.</p></details><details><summary>What can make a sprint run late?</summary><p>Decisions. That is why work is shown and decided on live calls, and why we ask for one person who can say yes.</p></details><details><summary>What happens after the sprint?</summary><p>You own everything and can run it yourself. Many teams move to the Creative Retainer for ongoing work.</p></details><details><summary>Do you work with clients outside Jackson Hole?</summary><p>Yes. The studio is in Jackson Hole, Wyoming, and every call is on video, so you can be anywhere.</p></details></div></div></section>
+
+<section id="start" style="padding-top:0"><div class="wrap"><div class="startgrid">
+  <div><p class="lbl">Start</p><h2>Tell us about the launch.</h2><p class="stand">Five quick questions, then a 20-minute fit call.</p>
+  <ol class="steps3"><li>You answer the questions here.</li><li>A short call to check fit and pick dates.</li><li>A questionnaire before day 1, so kickoff starts with decisions.</li></ol></div>
+  <div>
+<form class="start" id="startform" novalidate>
+  <fieldset><legend>What do you need?</legend><div class="chips"><label class="chip"><input type="radio" name="offer" value="audit"><span>Audit</span></label><label class="chip"><input type="radio" name="offer" value="brand"><span>Brand Sprint</span></label><label class="chip"><input type="radio" name="offer" value="web"><span>Web Sprint</span></label><label class="chip"><input type="radio" name="offer" value="film"><span>Launch Film</span></label><label class="chip"><input type="radio" name="offer" value="retainer"><span>Creative Retainer</span></label><label class="chip"><input type="radio" name="offer" value="ai"><span>AI Workflow Sprint</span></label><label class="chip"><input type="radio" name="offer" value="unsure"><span>Not sure yet</span></label></div></fieldset>
+  <fieldset><legend>When do you want to start?</legend><div class="chips"><label class="chip"><input type="radio" name="when" value="This month"><span>This month</span></label><label class="chip"><input type="radio" name="when" value="Next month"><span>Next month</span></label><label class="chip"><input type="radio" name="when" value="In 2 to 3 months"><span>In 2 to 3 months</span></label><label class="chip"><input type="radio" name="when" value="No date yet"><span>No date yet</span></label></div></fieldset>
+  <fieldset class="only-web" hidden><legend>How big is the site?</legend><div class="chips"><label class="chip"><input type="radio" name="size" value="One landing page"><span>One landing page</span></label><label class="chip"><input type="radio" name="size" value="Up to 5 pages"><span>Up to 5 pages</span></label><label class="chip"><input type="radio" name="size" value="More than 5 pages"><span>More than 5 pages</span></label></div></fieldset>
+  <fieldset><legend>Is your positioning settled?</legend><div class="chips"><label class="chip"><input type="radio" name="pos" value="yes"><span>Yes, we know who we are</span></label><label class="chip"><input type="radio" name="pos" value="partly"><span>Partly</span></label><label class="chip"><input type="radio" name="pos" value="no"><span>Not yet</span></label></div></fieldset>
+  <fieldset><legend>Who signs off?</legend><div class="chips"><label class="chip"><input type="radio" name="approver" value="one"><span>One person</span></label><label class="chip"><input type="radio" name="approver" value="few"><span>Two or three people</span></label><label class="chip"><input type="radio" name="approver" value="many"><span>A committee</span></label></div></fieldset>
+  <p class="hint" id="hint" hidden></p>
+  <div class="two"><label class="field"><span>Name</span><input name="name" autocomplete="name"></label><label class="field"><span>Email</span><input name="email" type="email" autocomplete="email"></label></div>
+  <label class="field"><span>Company or website</span><input name="site"></label>
+  <label class="field"><span>Anything else we should know</span><textarea name="note" rows="3"></textarea></label>
+  <div class="send"><button class="btn teal" type="submit">Send and pick a call time</button><p class="cap">This concept sends nothing. A live version would open a calendar next.</p></div>
+</form>
+<div class="sent" id="sent" hidden><h3>Thanks. That's everything we need.</h3><p>On the live site, a calendar opens here for a 20-minute fit call. You'd hear back within one working day either way.</p><button class="btn ghost" type="button" id="again">Edit answers</button></div>
+</div>
+</div></div></section>
+</main>
+
+<footer><div class="wrap"><span>Dunn Creative · Jackson Hole, Wyoming</span><span>Concept page, not live. <a href="qwvrs/index.html">Earlier QWVRS pages</a></span></div></footer>
+<script>
+(function(){
+  // process tabs
+  var tabs=document.querySelectorAll('.tabs button');
+  tabs.forEach(function(b){b.addEventListener('click',function(){
+    tabs.forEach(function(x){x.setAttribute('aria-selected',x===b?'true':'false')});
+    document.querySelectorAll('.tl').forEach(function(t){t.hidden=t.dataset.tab!==b.dataset.tab});
+  })});
+  // brand menu picker, up to 6
+  var pk=document.querySelector('.picker'),out=document.getElementById('count');
+  if(pk){var max=+pk.dataset.max,btns=pk.querySelectorAll('button');
+    function upd(){var on=pk.querySelectorAll('[aria-pressed=true]').length;
+      btns.forEach(function(b){b.disabled=on>=max&&b.getAttribute('aria-pressed')!=='true'});
+      out.textContent=on<4?(on+' chosen. Pick at least '+(4-on)+' more.'):(on+' of '+max+' chosen. That is your Brand Sprint.');}
+    btns.forEach(function(b){b.addEventListener('click',function(){b.setAttribute('aria-pressed',b.getAttribute('aria-pressed')==='true'?'false':'true');upd()})});upd();}
+  // start form
+  var f=document.getElementById('startform'),hint=document.getElementById('hint'),web=f.querySelector('.only-web');
+  function val(n){var c=f.querySelector('input[name='+n+']:checked');return c?c.value:''}
+  function logic(){
+    web.hidden=val('offer')!=='web';
+    var h='';
+    if(val('offer')==='unsure'||val('pos')==='no')h='Start with the Audit. It settles what you need, and its fee comes off a sprint if you go ahead within 30 days.';
+    else if(val('approver')==='many')h='Sprints move at the speed of decisions. We would ask for one person who can sign off on the calls.';
+    else if(val('size')==='More than 5 pages')h='Sites over five pages get a fixed quote after an Audit.';
+    hint.textContent=h;hint.hidden=!h;
+  }
+  f.addEventListener('change',logic);
+  document.querySelectorAll('[data-pick]').forEach(function(a){a.addEventListener('click',function(){
+    var r=f.querySelector('input[name=offer][value='+a.dataset.pick+']');if(r){r.checked=true;logic()}})});
+  f.addEventListener('submit',function(e){e.preventDefault();f.hidden=true;document.getElementById('sent').hidden=false});
+  document.getElementById('again').addEventListener('click',function(){f.hidden=false;document.getElementById('sent').hidden=true});
+})();
+</script>
+</body></html>
