@@ -825,3 +825,5 @@ a.chiplink{font-size:15px;color:var(--ink);text-decoration:none;border:1px solid
 @media (max-width:1000px){.plans.sprints{grid-template-columns:1fr 1fr}}
 @media (max-width:860px){.plans.sprints{grid-template-columns:1fr}}
 @media (max-width:560px){.fit{grid-template-columns:1fr}}
+.plans.sprints .foot2 .held{justify-self:start}
+#sprints,#menu,#how,#talk{scroll-margin-top:80px}
