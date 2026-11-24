@@ -3,7 +3,7 @@
 Concepts Freeman made with Claude Duet, copied here so the studio runs can read and build from them.
 Reference only: nothing in `docs/` is built or served. The claude.ai links are the originals and may be newer.
 
-## sprint-one-pager/ — the source for the next /explore/a (task #33)
+## sprint-one-pager/ — the source for the Sprints page at /sprints (task v04 · 4)
 
 The sprint one-pager concept: hero, In short, proof band, six offers, Brand Sprint menu picker, day-by-day
 process tabs, five working rules, work grouped by buyer, ownership, founder, FAQ, and a qualifying start form.
@@ -25,9 +25,12 @@ Home, Services, AI, About, Work, Case study, Lab, Contact and Websites layouts i
 
 ## Claude Docs from the same sessions (read with the Claude Docs connector)
 
-- Website Creative Brief v03 (draft): https://claude.ai/artifact/4u3uSsa55XWi5hiVTphKN8
+- Website Master Brief v04 (current; replaces Creative Brief v03): https://claude.ai/artifact/JrNrFvwH9A2Jf68jno7pkK
+  (Dropbox copy: `01_Briefs/dunncreative_clientzero_website-brief_v04.md`)
+- Website Creative Brief v03 (draft, superseded by v04): https://claude.ai/artifact/4u3uSsa55XWi5hiVTphKN8
 - Sprint studio concept: https://claude.ai/artifact/R9MbMeMeqZaVPChwxsdo3M
-- Studio Week Plan · 22–28 Nov 2026 (draft): https://claude.ai/artifact/8TCcvFsauyA4W9UXKjo4tm
+- Studio Week Plan · 22–28 Nov 2026 (draft, superseded): https://claude.ai/artifact/8TCcvFsauyA4W9UXKjo4tm.
+  This week's plan is the Notion Week Plan's "This week: 24–30 Nov" section.
 - Sprint Model Strategy: https://claude.ai/artifact/8EbpvrtRffgxLwJgKE9k2F
 - Buyer Focus: https://claude.ai/artifact/ViWpfyZSu5o9KXBiRKzNXF
 - Audit and Lead Path · Approach v01: https://claude.ai/artifact/DPcg85a19pBFwSAfcwDA1k
