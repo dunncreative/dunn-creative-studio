@@ -1,70 +1,10 @@
 ---
-// Work index, per wireframe work_v02 (Site Blueprint "Work"), in the Ridge look:
-// case studies first (Deeper as the wide feature), then the snapshots, with one set of filters.
-import { getCollection } from 'astro:content';
-import Work from '../../layouts/Work.astro';
-import WorkCard from '../../components/WorkCard.astro';
-import Held from '../../components/Held.astro';
-import RidgeHero from '../../components/RidgeHero.astro';
-import RidgeCta from '../../components/RidgeCta.astro';
-import { TALK } from '../../lib/site';
-
-const entries = (await getCollection('work', ({ data }) => !data.draft)).sort(
-  (a, b) => a.data.order - b.data.order,
-);
-const cases = entries.filter((e) => e.data.kind === 'case-study');
-const snaps = entries.filter((e) => e.data.kind === 'snapshot');
-const disciplines = [...new Set(entries.flatMap((e) => e.data.disciplines))];
+// Work E, Freeman's pick (24 Nov page picks). Markup comes from Page Explorations v2
+// (src/v2/work.html, links pointed at the real routes). Other versions: /explore/pages/.
+// "To come" chips mark content still to supply; the list is on /held.
+import V2 from '../../layouts/V2.astro';
+import html from '../../v2/work.html?raw';
 ---
-<Work title="Work · Dunn Creative" description="Brand work, websites and campaigns from Dunn Creative, a senior-led studio in Jackson, WY.">
-  <RidgeHero short label="Work" title="Work" stand="Brand work. Websites. Campaigns. Decks.">
-    <div class="filters" role="group" aria-label="Filter work">
-      <button type="button" aria-pressed="true" data-f="all">All</button>
-      {disciplines.map((d) => <button type="button" aria-pressed="false" data-f={d}>{d}</button>)}
-    </div>
-    <p class="count" id="count" aria-live="polite"></p>
-  </RidgeHero>
-
-  <section class="band" id="cases">
-    <div class="wrap">
-      <div class="sechead"><h2>Case studies</h2><p class="cap">Full stories, with the brief and what we made.</p></div>
-      <div class="wgrid">{cases.map((e, i) => <WorkCard entry={e} feature={i === 0} />)}</div>
-      <p class="empty" hidden>No case studies in this group yet.</p>
-    </div>
-  </section>
-
-  <section class="band grey" id="snapshots">
-    <div class="wrap">
-      <div class="sechead"><h2>Snapshots</h2><p class="cap">Smaller jobs, shown in one frame.</p></div>
-      <div class="wgrid c5">{snaps.map((e) => <WorkCard entry={e} />)}</div>
-      <p class="empty" hidden>No snapshots in this group yet.</p>
-    </div>
-  </section>
-
-  <RidgeCta title="Have a project in mind?" button="Let's talk" href={TALK}>
-    <p class="stand">Tell us what you're building.</p>
-    <Held id="response-time" />
-  </RidgeCta>
-</Work>
-
-<script>
-  const buttons = [...document.querySelectorAll<HTMLButtonElement>('.filters button')];
-  const cards = [...document.querySelectorAll<HTMLElement>('.wgrid .wcard')];
-  const count = document.getElementById('count')!;
-  function go(f: string) {
-    buttons.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.f === f)));
-    let shown = 0;
-    for (const c of cards) {
-      const on = f === 'all' || (c.dataset.disc ?? '').split('|').includes(f);
-      c.toggleAttribute('data-hide', !on);
-      if (on) shown++;
-    }
-    document.querySelectorAll<HTMLElement>('.wgrid').forEach((g) => {
-      const empty = g.parentElement!.querySelector<HTMLElement>('.empty')!;
-      empty.hidden = [...g.children].some((c) => !c.hasAttribute('data-hide'));
-    });
-    count.textContent = `${shown} projects`;
-  }
-  buttons.forEach((b) => b.addEventListener('click', () => go(b.dataset.f!)));
-  go('all');
-</script>
+<V2 title={'Work · Dunn Creative'} description={'Brand work, websites and campaigns from Dunn Creative, a creative studio in Jackson, WY.'}>
+  <Fragment set:html={html} />
+</V2>

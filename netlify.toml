@@ -10,3 +10,70 @@
   for = "/*"
   [headers.values]
     X-Robots-Tag = "noindex, nofollow"
+
+# 24 Nov page picks: four case studies only, and two service pages. Older routes point to their new homes.
+# (302s: the content files stay in the repo and these can come back.)
+[[redirects]]
+  from = "/services/campaigns-content/"
+  to = "/services/#creative"
+  status = 302
+[[redirects]]
+  from = "/services/print-packaging/"
+  to = "/services/#creative"
+  status = 302
+[[redirects]]
+  from = "/services/decks-presentations/"
+  to = "/services/#creative"
+  status = 302
+[[redirects]]
+  from = "/work/animal-hospital-of-boone/"
+  to = "/work/"
+  status = 302
+[[redirects]]
+  from = "/work/connecticut-signcraft/"
+  to = "/work/"
+  status = 302
+[[redirects]]
+  from = "/work/drinkwater-studios/"
+  to = "/work/"
+  status = 302
+[[redirects]]
+  from = "/work/dwelling/"
+  to = "/work/"
+  status = 302
+[[redirects]]
+  from = "/work/florio-imports/"
+  to = "/work/"
+  status = 302
+[[redirects]]
+  from = "/work/gu-energy/"
+  to = "/work/"
+  status = 302
+[[redirects]]
+  from = "/work/hines-goldsmiths/"
+  to = "/work/"
+  status = 302
+[[redirects]]
+  from = "/work/jackson-hole-public-art/"
+  to = "/work/"
+  status = 302
+[[redirects]]
+  from = "/work/lateral-designs/"
+  to = "/work/"
+  status = 302
+[[redirects]]
+  from = "/work/mountain-cowork-alliance/"
+  to = "/work/"
+  status = 302
+[[redirects]]
+  from = "/work/peace-park/"
+  to = "/work/"
+  status = 302
+[[redirects]]
+  from = "/work/vale/"
+  to = "/work/"
+  status = 302
+[[redirects]]
+  from = "/work/wind-river-builders/"
+  to = "/work/"
+  status = 302

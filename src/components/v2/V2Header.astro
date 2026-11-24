@@ -1,0 +1,17 @@
+---
+// Site header for the v2 pages (Freeman's 24 Nov picks). Light nav, logo black on light.
+import { NAV, TALK } from '../../lib/site';
+const path = Astro.url.pathname;
+const current = (href: string) => (path === href || path.startsWith(href) ? 'page' : undefined);
+---
+<header class="nav"><div class="wrap">
+  <a class="logo" href="/" aria-label="Dunn Creative home"><img src="/v2/assets/dunn-creative-logo-black.png" alt="Dunn Creative" width="71" height="34" /></a>
+  <ul>{NAV.map((n) => <li><a href={n.href} aria-current={current(n.href)}>{n.label}</a></li>)}</ul>
+  <div class="right">
+    <a class="btn sm ghost" href={TALK}>Let's talk</a>
+    <details><summary>Menu</summary><div class="panel">
+      {NAV.map((n) => <a href={n.href} aria-current={current(n.href)}>{n.label}</a>)}
+      <a class="btn" href={TALK}>Let's talk</a>
+    </div></details>
+  </div>
+</div></header>
