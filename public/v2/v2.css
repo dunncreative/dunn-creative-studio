@@ -221,6 +221,8 @@ a.mod:hover{border-color:var(--ink);transform:translateY(-2px)}
 a.mod:hover .go{background:var(--ink);color:#fff;border-color:var(--ink)}
 .mod.line{background:transparent;border-color:var(--g200)}
 .mod.dk{background:var(--ink);color:#c9cbce}.mod.dk h3{color:#fff}.mod.dk p{color:#b9bbbe}.mod.dk .n{color:#9a9da1}.mod.dk .tags span{border-color:#2c2e31;color:#9a9da1}.mod.dk .go{background:transparent;border-color:#3a3c40;color:#fff}
+/* Dark cards take the same label, held-chip and ghost-button colours as dark bands */
+.mod.dk .lbl,.mod.dk .cap{color:#9a9da1}.mod.dk .held{color:#b9bbbe;border-color:#5d6064}.mod.dk .btn.ghost{border-color:rgba(255,255,255,.55);color:#fff}.mod.dk .btn.ghost:hover{background:#fff;color:var(--ink)}
 .mod.dk::before{content:"";position:absolute;inset:0;background:url(/v2/assets/texture-tile.webp) repeat;background-size:120px 96px;opacity:.07;z-index:-1}
 a.mod.dk:hover{border-color:var(--teal)}
 .mod .pic{margin:calc(-1 * clamp(22px,2.2vw,30px));margin-bottom:8px;aspect-ratio:16/10;overflow:hidden;position:relative;background:#e9e9ec}
@@ -575,7 +577,8 @@ details.need .wc .wimg{aspect-ratio:16/10}
 .mod.feat{min-height:0;background:#fff}.mod.feat h3{font-size:clamp(28px,2.8vw,40px);font-weight:400;letter-spacing:-.03em}
 .mod.feat .pic{aspect-ratio:16/9}
 ul.li,ul.plain{list-style:none;padding:0;margin:4px 0 0;display:grid}ul.li li,ul.plain li{padding:11px 0;border-top:var(--rule);color:var(--ink)}
-.dark ul.plain li{border-top-color:#2a2c2f;color:#fff}
+/* Lists on dark bands and dark cards: white text, dark grey dividers */
+:is(.dark,.mod.dk) :is(ul.li,ul.plain) li{border-top-color:#2a2c2f;color:#fff}
 ul.plain li b{display:block;font-weight:500}.dark ul.plain li b{color:#fff}
 .incl.c4{grid-template-columns:repeat(4,1fr)}
 .bashow{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(14px,1.6vw,20px)}
