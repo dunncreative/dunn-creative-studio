@@ -27,6 +27,8 @@ Owner and creative director: Freeman (Chris Dunn).
   `main` first. Merging stays Freeman's.
 - Freeman's chat session owns `feat/client-logo-bar`. Studio runs don't push to it; send changes for it
   through the Notion Inbox.
+- `docs/duet/` holds Freeman's Claude Duet concepts (24 Nov): the sprint one-pager that the next /explore/a
+  builds from, the page layout explorations, and the buyer sentence Freeman settled. Read `docs/duet/README.md`.
 - The Notion board (Decisions, task handoff notes, Inbox) is the record of what's decided, including copy and
   pricing calls. Read it before acting on anything in this file.
 
