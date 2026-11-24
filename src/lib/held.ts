@@ -135,6 +135,7 @@ export const held = {
     label: 'Deeper DVD menu asset',
     ask: 'Is there an image or capture of the Deeper DVD menu to show?',
     pages: ['Deeper case study'],
+    meanwhile: 'The four DVD menu screens from the Deeper selects folder (Main, Chapters, Extras, Unplugged) are on the case study.',
   },
   results: {
     label: 'results',
@@ -211,9 +212,9 @@ export const held = {
   },
   'case-images': {
     label: 'case study selects',
-    ask: 'Case studies use the images already in the repo plus your Mountain Mind uploads. Swap in more from each project’s _website-case-study-selects folder?',
+    ask: 'The selects from each project’s _website-case-study-selects folder are now on the four case studies. Anything to add, drop or reorder?',
     pages: ['Case studies'],
-    meanwhile: 'The 24 Nov build could not download the selects folder; Ironwood’s AI mockups all carry an AI label.',
+    meanwhile: 'Selects in (24 Nov overnight build): Ironwood AI mockups (each labelled), Mountain Mind site mockups, photos and three marketing plan pages, Deeper packaging, discs, ads and DVD menus, Asymbol launch, social and email. Not used: Ironwood logo PNGs, brand guidelines PDF and business card proof PDF (the logo system and business card images already cover them). Case study years still held.',
   },
   'lab-lines': {
     label: 'Lab one-liners and images',
