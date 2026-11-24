@@ -25,10 +25,17 @@ Owner and creative director: Freeman (Chris Dunn).
 ## Where things stand (24 Nov 2026)
 - `main` is the live site at dunncreative.netlify.app and takes squash merges only. Freeman squash-merged
   PR #5 (Ridge site pages) on 19 Nov and PRs #1 (work collection), #3 (/explore/a fixes), #8 (`docs/duet/`)
-  and #10 (his 24 Nov page picks) on 24 Nov. New work branches off `main`.
+  and #10 (his 24 Nov page picks) on 24 Nov, then #9 and #11 (docs), #13 (service page heroes and the new
+  Marketing Creative page) and #12 (type specimen) the same afternoon. New work branches off `main`.
 - 24 Nov page picks, live since PR #10: Home K, About E, Services I, AI G, Branding G, Websites B, Contact E,
   Work E, Case study G, Lab post B, Lab B. These are the live routes; `/explore/pages/` holds the alternates.
   Studio runs build on `main` from here, on these layouts, not fresh ones.
+- Service pages (PR #13): Brand Identity, Websites and Marketing Creative share one hero (service name as the
+  title, one description line, the mountain graphic, no photo). `/services/marketing-creative/` (`src/v2/marketing.html`)
+  replaces the old campaigns, print and decks pages, which redirect to it. Its lines "One brand, every channel.",
+  the five How it runs steps and "Have a launch coming up?" are drafted and wait on Freeman's check. Don't rename
+  or regroup the service areas until Freeman decides (see the Project Direction field).
+- `/explore/type/` (PR #12) is the type specimen. No page changes fonts until Freeman picks option 1 or 2.
 - Home and About use the portrait Freeman approved: `src/assets/studio/chris-dunn-portrait-bw.webp`.
 - Draft PR #7 (`feat/client-logo-bar`, Freeman's client logos in the homepage logo bar) stays parked. Freeman's
   chat session owns that branch. Studio runs don't push to it; send changes for it through the Notion Inbox.
