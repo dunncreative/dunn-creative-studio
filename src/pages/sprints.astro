@@ -1,15 +1,37 @@
 ---
-// Sprints: held placeholder so the nav link doesn't 404 (24 Nov page picks: Sprints replaces Plans).
-// The real page is still to come from Freeman (held: sprints-page). No prices, by rule.
+// Sprints (24 Nov). No exploration pick exists for this page (Plans A was never built; Sprints
+// replaces it), so it is built in the picked pages' v2 style from the sprint one-pager concept
+// (docs/duet/sprint-one-pager), per Website Master Brief v04 §5 and content-decisions v03.
+// Prices and the open-slots badge stay off (held: sprint-prices). The Refresh Package stays off.
 import V2 from '../layouts/V2.astro';
-import { TALK } from '../lib/site';
+import html from '../v2/sprints.html?raw';
 ---
-<V2 title="Sprints · Dunn Creative" description="Sprints from Dunn Creative: defined projects with a clear finish line.">
-  <section class="band"><div class="wrap">
-    <p class="lbl">Sprints</p>
-    <h1 style="font-size:clamp(44px,6.4vw,96px);font-weight:400;letter-spacing:-.035em;line-height:1;margin:14px 0 22px">Sprints</h1>
-    <p class="stand">A defined project with a clear finish line.</p>
-    <p style="margin-top:22px"><span class="held">To come: the Sprints page (what a sprint covers and how it runs)</span></p>
-    <div class="ctas" style="margin-top:32px"><a class="btn" href={TALK}>Let's talk</a><a class="tlink" href="/services/">All services +</a></div>
-  </div></section>
+<V2 title="Sprints · Dunn Creative" description="Fixed-scope sprints from Dunn Creative: an Audit, a Brand Sprint, a Web Sprint, a Launch Film, an AI Workflow Sprint and a monthly Creative Retainer, each with a day-by-day plan.">
+  <Fragment set:html={html} />
+  <script is:inline>
+    (function () {
+      var bar = document.querySelector('[data-sprint-tabs]');
+      if (bar) {
+        var wrap = bar.parentNode;
+        var btns = bar.querySelectorAll('button');
+        var panels = wrap.querySelectorAll('[data-panel]');
+        function show(key) {
+          btns.forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.tab === key ? 'true' : 'false'); });
+          panels.forEach(function (p) { p.hidden = p.dataset.panel !== key; });
+        }
+        bar.hidden = false;
+        wrap.classList.add('tabs-on');
+        btns.forEach(function (b) { b.addEventListener('click', function () { show(b.dataset.tab); }); });
+        show(btns[0].dataset.tab);
+      }
+      var menu = document.querySelector('[data-menu]');
+      var out = document.querySelector('[data-menu-count]');
+      if (menu && out) {
+        menu.addEventListener('change', function () {
+          var n = menu.querySelectorAll('input:checked').length;
+          out.textContent = n === 0 ? 'Pick four to six.' : n < 4 ? n + ' picked. Pick ' + (4 - n) + ' more.' : n <= 6 ? n + ' picked. That fits a Brand Sprint.' : n + ' picked. A Brand Sprint takes six at most.';
+        });
+      }
+    })();
+  </script>
 </V2>

@@ -191,11 +191,17 @@ export const held = {
     pages: ['Privacy'],
     meanwhile: 'Section titles with lorem ipsum. Not a real policy.',
   },
-  'sprints-page': {
-    label: 'the Sprints page',
-    ask: 'What goes on /sprints: what a sprint covers, how it runs and how to start one? (No prices on the site.)',
-    pages: ['Sprints', 'Nav'],
-    meanwhile: 'A one-line placeholder page so the nav link works (24 Nov page picks).',
+  'sprint-prices': {
+    label: 'sprint prices',
+    ask: 'A price for each sprint (Audit, Brand Sprint, Web Sprint, Launch Film, Creative Retainer, AI Workflow Sprint), or keep prices off for now? The open-slots badge stays off until you say.',
+    pages: ['Sprints'],
+    meanwhile: 'Each sprint card and the cost FAQ show a “To come” price chip.',
+  },
+  'sprint-terms': {
+    label: 'sprint durations and terms',
+    ask: 'The Sprints page uses the durations and terms from your sprint one-pager concept as written: Audit 1 week, Brand Sprint 2 weeks, Web Sprint 2 or 4 weeks, Launch Film 3 weeks, AI Workflow Sprint 2 weeks, Retainer monthly; the audit fee credit within 30 days; 48-hour retainer turnaround and a 3-month minimum; 30 days of fixes. Keep them all?',
+    pages: ['Sprints'],
+    meanwhile: 'Shown as written in the concept.',
   },
   'footer-line': {
     label: 'footer line',

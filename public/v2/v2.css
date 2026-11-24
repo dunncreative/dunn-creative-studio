@@ -802,3 +802,26 @@ a.chiplink{font-size:15px;color:var(--ink);text-decoration:none;border:1px solid
 /* round 11: two per row, then the next two below */
 .rows2 .wrow+.wrow{margin-top:clamp(36px,4.4vw,64px)}
 .rows2 .wc[data-hide]{display:none}
+
+/* ---------- Sprints page (24 Nov, built from the sprint one-pager concept) ---------- */
+.mods.stats .n{font-size:clamp(44px,4.4vw,64px);line-height:1;letter-spacing:-.03em;color:var(--ink);font-weight:300}
+.plans.sprints .tagline{font-size:15px;font-weight:500;color:var(--teal-deep, #10777A);margin-top:-6px}
+.plans.sprints .best{min-height:0}
+.runpanel+.runpanel{margin-top:clamp(36px,4vw,56px)}
+.runpanel .runname{font-size:21px;font-weight:500;margin-bottom:6px}
+.runpanel .before{font-size:15px;color:#b9bbbe;margin-bottom:22px;max-width:70ch}
+.tabs-on .runpanel .runname{display:none}
+.tabs-on .runpanel+.runpanel{margin-top:0}
+.tabbar[hidden]{display:none}
+.dark .tabbar button{background:transparent;color:#fff;border-color:#3a3c40}
+.dark .tabbar button[aria-pressed=true]{background:#fff;color:var(--ink);border-color:#fff}
+.menucount{margin-top:16px;color:var(--caption)}
+.fit{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:32px;border-top:var(--rule);padding-top:24px}
+.fit h3{font-size:18px;font-weight:500;margin-bottom:10px}
+.fit ul{list-style:none;margin:0;padding:0;display:grid;gap:10px;font-size:16px;color:#3f4246}
+.fit li{display:flex;gap:10px}
+.fit li::before{content:"";flex:none;width:16px;height:16px;margin-top:4px;border-radius:50%;border:1.5px solid var(--teal);background:radial-gradient(circle,var(--teal) 0 3px,transparent 3.5px)}
+.fit .no li::before{border-color:var(--g500);background:none}
+@media (max-width:1000px){.plans.sprints{grid-template-columns:1fr 1fr}}
+@media (max-width:860px){.plans.sprints{grid-template-columns:1fr}}
+@media (max-width:560px){.fit{grid-template-columns:1fr}}

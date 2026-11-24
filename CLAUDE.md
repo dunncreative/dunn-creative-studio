@@ -17,7 +17,7 @@ Owner and creative director: Freeman (Chris Dunn).
 - Since the 24 Nov page picks, the main pages render Freeman's picked layouts from Page Explorations v2:
   `src/layouts/V2.astro` (header/footer in `src/components/v2/`, styles in `public/v2/v2.css`), markup in
   `src/v2/*.html`, case studies from `src/data/caseStudies.ts` (copy v03), Lab posts from `src/data/lab.ts`.
-  `/sprints/` is a held placeholder. Every other version is kept as static reference at `/explore/pages/`.
+  `/sprints/` is built in the same v2 style from the sprint one-pager concept (prices held). Every other version is kept as static reference at `/explore/pages/`.
 - `src/lib/held.ts` (shown at `/held`) — every open item for Freeman in one registry. Never fill an `answer`
   there from anything but Freeman's own answer.
 
