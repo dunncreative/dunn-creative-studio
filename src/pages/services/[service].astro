@@ -10,9 +10,9 @@ import marketing from '../../v2/marketing.html?raw';
 
 export function getStaticPaths() {
   return [
-    { params: { service: 'brand-identity' }, props: { html: branding, name: 'Brand Identity', sub: 'Strategy, identity and the standards that hold it together, built for the long term.' } },
-    { params: { service: 'websites' }, props: { html: websites, name: 'Websites', sub: 'Website design, development and everything around it, from Dunn Creative in Jackson, WY.' } },
-    { params: { service: 'marketing-creative' }, props: { html: marketing, name: 'Marketing Creative', sub: 'Ads, social, email, decks, print and campaigns from Dunn Creative, all made from your brand.' } },
+    { params: { service: 'brand-identity' }, props: { html: branding, name: 'Brand Identity', sub: 'Brand development, identity systems, logos and guidelines that build lasting recognition.' } },
+    { params: { service: 'websites' }, props: { html: websites, name: 'Websites', sub: 'Marketing websites, landing pages and stores, designed and built to convert.' } },
+    { params: { service: 'marketing-creative' }, props: { html: marketing, name: 'Marketing Creative', sub: 'Original design and creative systems that work across every channel.' } },
   ];
 }
 const { html, name, sub } = Astro.props;
