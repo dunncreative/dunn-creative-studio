@@ -15,13 +15,19 @@ Owner and creative director: Freeman (Chris Dunn).
   (task v04 · 4), built from `docs/duet/sprint-one-pager/`.
 - `public/explore/` — three standalone lead pages (get started, AI call, audit) plus an index, made in Freeman's
   chat sessions. Static HTML; edit them only on Freeman's ask.
+- Since the 24 Nov page picks, the main pages render Freeman's picked layouts from Page Explorations v2:
+  `src/layouts/V2.astro` (header/footer in `src/components/v2/`, styles in `public/v2/v2.css`), markup in
+  `src/v2/*.html`, case studies from `src/data/caseStudies.ts` (copy v03), Lab posts from `src/data/lab.ts`.
+  `/sprints/` is built in the same v2 style from the sprint one-pager concept (prices held). Every other version is kept as static reference at `/explore/pages/`.
 - `src/lib/held.ts` (shown at `/held`) — every open item for Freeman in one registry. Never fill an `answer`
   there from anything but Freeman's own answer.
 
 ## Where things stand (24 Nov 2026)
 - `main` is the live site at dunncreative.netlify.app and takes squash merges only. Freeman squash-merged
-  PR #5 (Ridge site pages) on 19 Nov and PRs #1 (work collection), #3 (/explore/a fixes) and #8
-  (`docs/duet/`) on 24 Nov. New work branches off `main`.
+  PR #5 (Ridge site pages) on 19 Nov and PRs #1 (work collection), #3 (/explore/a fixes), #8 (`docs/duet/`)
+  and #10 (his 24 Nov page picks) on 24 Nov. New work branches off `main`.
+- 24 Nov page picks, live since PR #10: Home K, About E, Services I, AI G, Branding G, Websites B, Contact E,
+  Work E, Case study G, Lab post B, Lab B. Page work builds on these layouts, not fresh ones.
 - Home and About use the portrait Freeman approved: `src/assets/studio/chris-dunn-portrait-bw.webp`.
 - Draft PR #7 (`feat/client-logo-bar`, Freeman's client logos in the homepage logo bar) stays parked. Freeman's
   chat session owns that branch. Studio runs don't push to it; send changes for it through the Notion Inbox.

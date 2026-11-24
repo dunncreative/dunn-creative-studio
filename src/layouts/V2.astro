@@ -1,0 +1,27 @@
+---
+// Layout for the pages Freeman picked on 24 Nov (Page Explorations v2). Styles: public/v2/v2.css,
+// copied from the explorations. The other versions stay at /explore/pages/ for reference.
+import V2Header from '../components/v2/V2Header.astro';
+import V2Footer from '../components/v2/V2Footer.astro';
+interface Props { title: string; description?: string }
+const { title, description } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/v2/v2.css" />
+  </head>
+  <body>
+    <V2Header />
+    <main><slot /></main>
+    <V2Footer />
+  </body>
+</html>

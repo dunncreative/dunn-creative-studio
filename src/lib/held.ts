@@ -191,6 +191,36 @@ export const held = {
     pages: ['Privacy'],
     meanwhile: 'Section titles with lorem ipsum. Not a real policy.',
   },
+  'sprint-prices': {
+    label: 'sprint prices',
+    ask: 'A price for each sprint (Audit, Brand Sprint, Web Sprint, Launch Film, Creative Retainer, AI Workflow Sprint), or keep prices off for now? The open-slots badge stays off until you say.',
+    pages: ['Sprints'],
+    meanwhile: 'Each sprint card and the cost FAQ show a “To come” price chip.',
+  },
+  'sprint-terms': {
+    label: 'sprint durations and terms',
+    ask: 'The Sprints page uses the durations and terms from your sprint one-pager concept as written: Audit 1 week, Brand Sprint 2 weeks, Web Sprint 2 or 4 weeks, Launch Film 3 weeks, AI Workflow Sprint 2 weeks, Retainer monthly; the audit fee credit within 30 days; 48-hour retainer turnaround and a 3-month minimum; 30 days of fixes. Keep them all?',
+    pages: ['Sprints'],
+    meanwhile: 'Shown as written in the concept.',
+  },
+  'footer-line': {
+    label: 'footer line',
+    ask: 'The footer still says “Strategic thinking. Clean design. Real results.” Keep it or change it?',
+    pages: ['Every page'],
+    meanwhile: 'Kept as written (your call, 24 Nov).',
+  },
+  'case-images': {
+    label: 'case study selects',
+    ask: 'Case studies use the images already in the repo plus your Mountain Mind uploads. Swap in more from each project’s _website-case-study-selects folder?',
+    pages: ['Case studies'],
+    meanwhile: 'The 24 Nov build could not download the selects folder; Ironwood’s AI mockups all carry an AI label.',
+  },
+  'lab-lines': {
+    label: 'Lab one-liners and images',
+    ask: 'A one-line description and a lead image for each Lab piece.',
+    pages: ['Lab', 'Lab pieces'],
+    meanwhile: 'Grey image blocks and “To come: one line” chips.',
+  },
 } satisfies Record<string, HeldItem>;
 
 export type HeldId = keyof typeof held;

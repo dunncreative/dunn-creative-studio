@@ -1,0 +1,37 @@
+---
+// Sprints (24 Nov). No exploration pick exists for this page (Plans A was never built; Sprints
+// replaces it), so it is built in the picked pages' v2 style from the sprint one-pager concept
+// (docs/duet/sprint-one-pager), per Website Master Brief v04 §5 and content-decisions v03.
+// Prices and the open-slots badge stay off (held: sprint-prices). The Refresh Package stays off.
+import V2 from '../layouts/V2.astro';
+import html from '../v2/sprints.html?raw';
+---
+<V2 title="Sprints · Dunn Creative" description="Fixed-scope sprints from Dunn Creative: an Audit, a Brand Sprint, a Web Sprint, a Launch Film, an AI Workflow Sprint and a monthly Creative Retainer, each with a day-by-day plan.">
+  <Fragment set:html={html} />
+  <script is:inline>
+    (function () {
+      var bar = document.querySelector('[data-sprint-tabs]');
+      if (bar) {
+        var wrap = bar.parentNode;
+        var btns = bar.querySelectorAll('button');
+        var panels = wrap.querySelectorAll('[data-panel]');
+        function show(key) {
+          btns.forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.tab === key ? 'true' : 'false'); });
+          panels.forEach(function (p) { p.hidden = p.dataset.panel !== key; });
+        }
+        bar.hidden = false;
+        wrap.classList.add('tabs-on');
+        btns.forEach(function (b) { b.addEventListener('click', function () { show(b.dataset.tab); }); });
+        show(btns[0].dataset.tab);
+      }
+      var menu = document.querySelector('[data-menu]');
+      var out = document.querySelector('[data-menu-count]');
+      if (menu && out) {
+        menu.addEventListener('change', function () {
+          var n = menu.querySelectorAll('input:checked').length;
+          out.textContent = n === 0 ? 'Pick four to six.' : n < 4 ? n + ' picked. Pick ' + (4 - n) + ' more.' : n <= 6 ? n + ' picked. That fits a Brand Sprint.' : n + ' picked. A Brand Sprint takes six at most.';
+        });
+      }
+    })();
+  </script>
+</V2>

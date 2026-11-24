@@ -1,186 +1,83 @@
 ---
-// Case study and snapshot pages, per wireframes case-study_v02 and work_v02, in the Ridge look.
-// Case study: ridge hero, the lead image, a ruled spec row, the story as numbered ruled sections,
-// the rest of the images, then it ends on Next project (wireframe row 15). A sticky "Start a project"
-// follows the reader and steps aside when the footer is on screen.
-import { getCollection, type CollectionEntry } from 'astro:content';
-import Work from '../../layouts/Work.astro';
-import WorkFigure from '../../components/WorkFigure.astro';
-import { clean, cleanList, isAiImage } from '../../lib/placeholders';
-import Held from '../../components/Held.astro';
-import MediaSlot from '../../components/MediaSlot.astro';
-import RidgeHero from '../../components/RidgeHero.astro';
-import { SHOW_HELD } from '../../lib/held';
-import { LOREM } from '../../lib/lorem';
+// Case study template: Case study G, Freeman's 24 Nov pick (a sticky project rail while the chapters
+// scroll past; "revise and explore other options later"). Four case studies only (src/data/caseStudies.ts,
+// copy v03 as written). The older project pages redirect to /work/ (netlify.toml); their content files stay.
+import V2 from '../../layouts/V2.astro';
+import { caseStudies, caseHref, type CaseStudy, type CsImage } from '../../data/caseStudies';
+import { TALK } from '../../lib/site';
 
-export async function getStaticPaths() {
-  const entries = (await getCollection('work', ({ data }) => !data.draft)).sort(
-    (a, b) => a.data.order - b.data.order,
-  );
-  const cases = entries.filter((e) => e.data.kind === 'case-study');
-  return entries.map((entry) => {
-    let next: CollectionEntry<'work'> | undefined;
-    if (entry.data.kind === 'case-study') {
-      const i = cases.findIndex((c) => c.id === entry.id);
-      next = cases[(i + 1) % cases.length];
-    } else {
-      next = cases[0];
-    }
-    return { params: { slug: entry.id }, props: { entry, next } };
-  });
+export function getStaticPaths() {
+  return caseStudies.map((cs, i) => ({ params: { slug: cs.slug }, props: { cs, next: caseStudies[(i + 1) % caseStudies.length] } }));
 }
-
-const { entry, next } = Astro.props as { entry: CollectionEntry<'work'>; next?: CollectionEntry<'work'> };
-const d = entry.data;
-const isCase = d.kind === 'case-study';
-const [hero, ...media] = d.images;
-const spec = d.spec ?? {};
-// Unanswered studio notes ("[confirm]", "[held: …]") are stripped; an empty field hides its row.
-const deliverables = cleanList(spec.deliverables);
-const channels = cleanList(spec.channels);
-const specItems = [
-  ['Client', d.client],
-  clean(spec.timeline) && ['Timeline', clean(spec.timeline)],
-  deliverables.length && ['Deliverables', deliverables.join(', ')],
-  channels.length && ['Channels', channels.join(', ')],
-  clean(spec.aiUsed) && ['AI used', clean(spec.aiUsed)],
-].filter(Boolean) as [string, string][];
-// Wireframe v02.1 holds: year/duration and AI used stay visible as Held chips on case studies
-// while they're unanswered; Deeper also holds its challenge copy and the DVD menu asset.
-const holdYear = isCase && !clean(spec.timeline);
-const holdAi = isCase && !clean(spec.aiUsed);
-const isDeeper = entry.id === 'jeremy-jones-deeper';
-
-// The write-up, split at its "## " headings into numbered sections. Bodies are plain paragraphs.
-const sections = (entry.body ?? '')
-  .split(/^## /m)
-  .map((s) => s.trim())
-  .filter(Boolean)
-  .map((s) => {
-    const [head, ...rest] = s.split('\n');
-    return { title: head.trim(), paras: rest.join('\n').split(/\n\s*\n/).map((p) => p.trim()).filter(Boolean), lorem: false };
-  });
-// Case studies whose write-up stops at "Challenge" get the rest of the story's sections as
-// real titles with lorem ipsum (Freeman, 18 Nov), so the page structure reads complete.
-const extra = isCase && sections.length <= 1;
-if (extra) for (const t of ['Approach', 'What we made', 'Outcome']) sections.push({ title: t, paras: [LOREM[0], LOREM[1]], lorem: true });
-const liveHost = d.liveUrl ? new URL(d.liveUrl).hostname.replace(/^www\./, '') : null;
-const nextImg = next?.data.cardImage ?? next?.data.images[0];
+const { cs, next } = Astro.props as { cs: CaseStudy; next: CaseStudy };
+const ratio = (im: CsImage) => `aspect-ratio:${im.w}/${im.h}`;
+const heroDark = cs.heroFit === 'contain';
+const pill = 'AI-directed mockup';
 ---
-<Work title={`${d.title} · Work · Dunn Creative`} description={d.summary}>
-  {isCase ? (
-    <>
-      <RidgeHero short texture={false} label={`${d.client} · ${d.disciplines.join(' · ')}`} title={d.title} stand={d.summary} meta={deliverables.slice(0, 5)}>
-        <div class="ctas"><a class="textcta" href="#story">Read the story +</a></div>
-      </RidgeHero>
-
-      <section class="band dark mediaband">
-        <WorkFigure class="wrap" image={hero} ground="dark" />
-      </section>
-
-      <section class="band tight">
-        <div class="wrap">
-          <dl class="spec">
-            {specItems.map(([k, v]) => <div><dt>{k}</dt><dd>{v}</dd></div>)}
-            {holdYear && <div><dt>Timeline</dt><dd><Held id="case-year" /></dd></div>}
-            {holdAi && <div><dt>AI used</dt><dd><Held id="case-ai" /></dd></div>}
-            {d.liveUrl && <div><dt>Live site</dt><dd><a href={d.liveUrl} rel="noopener">{liveHost}</a></dd></div>}
-          </dl>
-        </div>
-      </section>
-
-      <section class="band" id="story" style="padding-top:24px">
-        <div class="wrap">
-          {sections.map((s, i) => (
-            <div class="casesec">
-              <div><span class="n">{String(i + 1).padStart(2, '0')}</span><h2>{s.title}</h2></div>
-              <div class="prose">
-                {s.paras.map((p) => <p class:list={{ muted: s.lorem }}>{p}</p>)}
-                {isDeeper && i === 0 && <p><Held id="deeper-challenge" /></p>}
-              </div>
+<V2 title={`${cs.title} · Work · Dunn Creative`} description={cs.summary}>
+  <section class="lhero"><div class="wrap">
+    <p class="lbl">Work / {cs.category}</p>
+    <h1>{cs.title}</h1>
+    <div class="lh2"><p class="stand">{cs.titleLine}</p><div class="ctas"><a class="btn ghost" href={`#${cs.chapters[0].id}`}>Start reading ↓</a></div></div>
+  </div></section>
+  <div class="wrap">
+    <div class="media" style={`aspect-ratio:16/9${heroDark ? ';background:#0b0c0d' : ''}`}>
+      <img src={cs.hero.src} alt={cs.hero.alt} width={cs.hero.w} height={cs.hero.h} decoding="async" style={heroDark ? 'object-fit:contain;height:100%' : 'height:100%'} />
+      {cs.hero.ai && <span class="aipill" style="left:auto;right:12px;bottom:auto;top:12px">{pill}</span>}
+    </div>
+  </div>
+  <section class="band"><div class="wrap tocgrid">
+    <aside class="rail6">
+      <p class="lbl teal">{cs.title}</p>
+      <dl class="facts" style="position:static">
+        {cs.facts.map(([k, v]) => <div><dt>{k}</dt><dd>{v}</dd></div>)}
+        {cs.liveUrl && <div><dt>Live site</dt><dd><a href={cs.liveUrl} rel="noopener">{new URL(cs.liveUrl).hostname.replace(/^www\./, '')}</a></dd></div>}
+      </dl>
+      <nav class="toc" aria-label="Chapters">
+        {cs.chapters.map((c, i) => <a href={`#${c.id}`}>{String(i + 1).padStart(2, '0')} · {c.title}</a>)}
+      </nav>
+      <a class="tlink" href="/work/">All work +</a>
+    </aside>
+    <div>
+      {cs.chapters.map((c, i) => (
+        <section class="chap" id={c.id}>
+          <p class="lbl">{String(i + 1).padStart(2, '0')}</p>
+          <h2>{c.title}</h2>
+          {c.text && <p class="stand">{c.text}</p>}
+          {c.note && <p class="cap">{c.note}</p>}
+          {c.images && (
+            <div style="margin-top:28px;display:grid;gap:12px">
+              {c.images.map((row) => (
+                <div class={row.length > 1 ? 'mods c2' : ''} style={row.length > 1 ? 'align-items:start' : ''}>
+                  {row.map((im) => (
+                    <figure style="margin:0">
+                      <div class="media" style={ratio(im)}>
+                        <img src={im.src} alt={im.alt} width={im.w} height={im.h} loading="lazy" decoding="async" />
+                        {im.ai && <span class="aipill">{pill}</span>}
+                      </div>
+                      {im.caption && <figcaption class="cap">{im.caption}</figcaption>}
+                    </figure>
+                  ))}
+                </div>
+              ))}
             </div>
-          ))}
-          {extra && <p style="margin-top:20px"><Held id="draft-copy" note="case study copy for Approach, What we made and Outcome" /></p>}
-        </div>
-      </section>
-
-      {(media.length > 0 || isDeeper) && (
-        <section class="band dark mediaband">
-          <div class="wrap stack">
-            {media.map((m) => <WorkFigure image={m} ground="dark" lazy />)}
-            {isDeeper && <MediaSlot label="DVD menu" ratio="16 / 9" dark held="dvd-menu" />}
-          </div>
+          )}
+          {c.held && <p style="margin-top:18px"><span class="held">{c.held}</span></p>}
+          {c.tags && <div class="dlv">{c.tags.map((t) => <span>{t}</span>)}</div>}
         </section>
-      )}
-
-      {d.results ? (
-        <section class="band tight">
-          <div class="wrap split">
-            <div><h2>Results</h2></div>
-            <div><p class="stand">{d.results.text}</p>{d.results.source && <p class="cap">{d.results.source}</p>}</div>
-          </div>
-        </section>
-      ) : SHOW_HELD && (
-        <section class="band tight">
-          <div class="wrap split">
-            <div><h2>Results</h2></div>
-            <div><p class="stand"><Held id="results" note="results: real numbers or a client quote" /></p><p class="cap">This band stays hidden on the live site until there is a real result to show.</p></div>
-          </div>
-        </section>
-      )}
-    </>
-  ) : (
-    <>
-      <RidgeHero short label={`Snapshot · ${d.disciplines.join(' · ')}`} title={d.title} stand={d.summary} meta={[...d.services]}>
-        {d.liveUrl && <div class="ctas"><a class="textcta" href={d.liveUrl} rel="noopener">{liveHost} +</a></div>}
-      </RidgeHero>
-      <section class="band">
-        <div class="wrap"><WorkFigure image={hero} ground="grey" /></div>
-      </section>
-    </>
-  )}
-
-  {next && next.id !== entry.id && nextImg && (
-    <section class="band grey">
-      <div class="wrap">
-        <p class="lbl" style="margin-bottom:18px">{isCase ? 'Next project' : 'See a case study'}</p>
-        <a class="next" href={`/work/${next.id}/`}>
-          <div class:list={['nimg', nextImg.ground && 'contain', nextImg.ground && `g-${nextImg.ground}`]}>
-            <img src={nextImg.src} alt={nextImg.alt} loading="lazy" decoding="async" />
-            {isAiImage(nextImg.caption) && <span class="ai-pill">AI-directed mockup</span>}
-          </div>
-          <div>
-            <p class="lbl">{next.data.client} · {next.data.disciplines.join(' · ')}</p>
-            <h2>{next.data.title}</h2>
-            <p class="stand">{next.data.summary}</p>
-          </div>
-        </a>
-      </div>
-    </section>
-  )}
-
-  {isCase && (
-    <>
-      <div class="wrap sticky-cta" id="sticky"><a class="btn" href="/contact/">Start a project</a></div>
-    </>
-  )}
-</Work>
-
-{isCase && (
-  <script>
-    const s = document.getElementById('sticky');
-    const c = document.querySelector('footer');
-    if (s && c && 'IntersectionObserver' in window) {
-      new IntersectionObserver((en) => s.classList.toggle('off', en[0].isIntersecting)).observe(c);
-    }
-  </script>
-)}
-
-<style>
-  .mediaband :global(figure > img) { max-height: 82vh; }
-  .stack { display: grid; gap: clamp(24px, 4vw, 48px); }
-  .nimg { position: relative; border-radius: var(--r-tile); overflow: hidden; aspect-ratio: 4 / 3; background: var(--white); }
-  .nimg img { width: 100%; height: 100%; object-fit: cover; }
-  .nimg.contain img { object-fit: contain; padding: 10%; }
-  .nimg.g-dark { background: var(--ink); }
-</style>
+      ))}
+    </div>
+  </div></section>
+  <section class="band grey"><div class="wrap">
+    <p class="lbl" style="margin-bottom:18px">Next project</p>
+    <a class="featw" href={caseHref(next.slug)}>
+      <div class="wimg "><img src={next.card.src} alt={next.card.alt} loading="lazy" decoding="async" />{next.card.ai && <span class="aipill">{pill}</span>}</div>
+      <div class="t"><p class="lbl">{next.category}</p><h2>{next.title}</h2><p>{next.summary}</p><span class="tlink" style="margin-top:18px">View project +</span></div>
+    </a>
+  </div></section>
+  <section class="dark tex ctabar"><div class="wrap">
+    <h2>Have a project in mind?</h2>
+    <p>Dunn Creative helps brands build identities, websites, content and campaigns that connect and perform.</p>
+    <div class="ctas"><a class="btn" href={TALK}>Start a project →</a><a class="btn ghost" href={TALK}>Get in touch</a></div>
+  </div></section>
+</V2>

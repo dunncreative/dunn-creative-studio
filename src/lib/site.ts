@@ -20,10 +20,11 @@ export const WAYS_IN = [
   { id: 'advanced', name: 'Advanced audit', line: 'A deeper, paid review of your brand, site and creative workflow, including AI workflow recommendations, with a prioritized plan.', href: AUDIT_ADV, credit: true },
 ] as const;
 
+// Main nav (24 Nov page picks): Work · Services · Sprints · Lab · About. AI lives under Services.
 export const NAV = [
   { label: 'Work', href: '/work/' },
   { label: 'Services', href: '/services/' },
-  { label: 'AI', href: '/ai/' },
+  { label: 'Sprints', href: '/sprints/' },
   { label: 'Lab', href: '/lab/' },
   { label: 'About', href: '/about/' },
 ];
@@ -34,8 +35,8 @@ export const FOOTER_NAV = [...NAV, { label: 'Contact', href: '/contact/' }];
 export const defaults = [
   {
     q: 'Six service cards, not the Content Plan’s five',
-    applied: 'Brand Identity, Websites, Campaigns & Content, Print & Packaging, Decks & Presentations, AI for Creative Teams. The AI card links to /ai, not a /services/ai page.',
-    where: 'src/data/services.ts (homeCards)',
+    applied: 'Settled 24 Nov (page picks): six areas everywhere: Brand Identity, Websites, Marketing Creative, Film & Motion, AI Creative, AI for Teams. AI Creative and AI for Teams link to /ai.',
+    where: 'src/lib/site.ts (SERVICE_AREAS) and the v2 page markup',
   },
   {
     q: 'Work page CTA label',
@@ -66,3 +67,13 @@ export const defaults = [
 
 /** Nav look for every page: 'light' for now (Freeman, 18 Nov). A page can pass nav="dark" to Work. */
 export const NAV_THEME: 'light' | 'dark' = 'light';
+
+/** The six service areas, everywhere on the site (24 Nov page picks). */
+export const SERVICE_AREAS = [
+  { label: 'Brand Identity', href: '/services/brand-identity/' },
+  { label: 'Websites', href: '/services/websites/' },
+  { label: 'Marketing Creative', href: '/services/#creative' },
+  { label: 'Film & Motion', href: '/services/#video' },
+  { label: 'AI Creative', href: '/ai/' },
+  { label: 'AI for Teams', href: '/ai/#team' },
+];
