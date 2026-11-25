@@ -14,6 +14,9 @@ The working canvas is a Claude Design artifact Freeman owns: https://claude.ai/a
   over a bottom gradient, the CTA buttons inside the panel.
 - Services hero image: `public/explore/design-a/assets/services-hero-moons.webp` (Freeman's own image, labelled
   "AI-directed image").
+- Sprints hero image (25 Nov): `public/explore/design-a/assets/sprints-hero-galaxy.webp` (Freeman's own galaxy
+  image, labelled "AI-directed image"), shown in `sprints-v2.html`. Use it for every Sprints hero, including
+  `sprints-a2`. Frame it so the swirl sits above the headline (`background-position: center 95%`).
 - The Deeper key art is **not** a hero image (it distorts). Mountain photo `/v2/assets/hero-mountain-ai.webp` is the
   placeholder elsewhere, labelled "Placeholder image · AI-directed".
 
