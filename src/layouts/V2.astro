@@ -8,6 +8,10 @@ const { title, description } = Astro.props;
 // 'To come' chips (.held) show on Deploy Previews and /held, never on the live site (v04 · 10).
 // Netlify sets CONTEXT=production for main; local builds and previews keep the chips visible.
 const hideHeld = process.env.CONTEXT === 'production' && !Astro.url.pathname.startsWith('/held');
+// On production the chips are also taken out of the HTML (not only hidden), so no "To come" text ships in dist/.
+// Chips are plain-text spans; anything else stays as written.
+let body = await Astro.slots.render('default');
+if (hideHeld) body = body.replace(/<span class="held"[^>]*>[^<]*<\/span>/g, '');
 ---
 <!doctype html>
 <html lang="en">
@@ -25,7 +29,7 @@ const hideHeld = process.env.CONTEXT === 'production' && !Astro.url.pathname.sta
   </head>
   <body>
     <V2Header />
-    <main><slot /></main>
+    <main><Fragment set:html={body} /></main>
     <V2Footer />
   </body>
 </html>

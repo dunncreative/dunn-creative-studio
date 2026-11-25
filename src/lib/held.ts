@@ -45,6 +45,7 @@ export const held = {
     label: 'budget range values',
     ask: 'What are the four budget ranges on the contact form? (Chips are approved; values are not set.)',
     pages: ['Contact'],
+    meanwhile: 'Live site (CONTEXT=production): the budget step is left out and the form runs in five steps. Deploy Previews keep the Range 1/2/3 placeholder step (v04 · 10 QA).',
   },
   platforms: {
     label: 'build platforms',
@@ -158,7 +159,7 @@ export const held = {
     label: 'Lab pieces and dates',
     ask: 'Which Lab pieces go up first, and when? (Celtic / triskele, Hoverboarding, Money history, Client Zero, Agent studio, Workflows.)',
     pages: ['Home', 'Lab', 'AI'],
-    meanwhile: 'Titles from the wireframe; no dates, no pages behind them yet.',
+    meanwhile: 'Titles from the wireframe, no dates. Live site (CONTEXT=production): each Lab story page shows its title and one line, “Full story coming soon.” Deploy Previews keep the full story template with “To come” chips (v04 · 10 QA).',
   },
   newsletter: {
     label: 'email tool and send rhythm',
@@ -192,7 +193,13 @@ export const held = {
     label: 'privacy policy text',
     ask: 'The privacy page needs real policy text before launch (what the contact form collects, analytics, who to contact).',
     pages: ['Privacy'],
-    meanwhile: 'Section titles with lorem ipsum. Not a real policy.',
+    meanwhile: 'Live site (CONTEXT=production): one holding line, “Our privacy policy is being finalized. Ask us anything on the contact page.” Deploy Previews: section titles with lorem ipsum. Not a real policy, and studio agents do not draft one (v04 · 10 QA).',
+  },
+  'ai-statement-copy': {
+    label: 'AI statement text',
+    ask: 'The /ai-statement/ page has no approved text yet. Please write or approve the statement (what AI does, what people decide, disclosure, files and data, ownership, tools).',
+    pages: ['AI statement'],
+    meanwhile: 'Live site (CONTEXT=production): one holding line, “Our AI statement is being finalized. Ask us anything on the contact page.”, plus a link to /ai/. Deploy Previews: real section titles with the draft lines and lorem ipsum (v04 · 10 QA).',
   },
   'sprint-prices': {
     label: 'sprint prices',

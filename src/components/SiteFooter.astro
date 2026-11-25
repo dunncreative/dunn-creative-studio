@@ -10,6 +10,9 @@ const explore = [
   { label: 'C · Start with an audit', href: '/explore/dunn-creative-lead-c-audit.html' },
 ];
 const year = new Date().getFullYear();
+// Only /held still uses this footer (the other pages moved to V2, v04 · 10 QA). On the live site
+// (CONTEXT=production) it drops the Explore column, the /held link, the unlinked socials and the preview note.
+const live = process.env.CONTEXT === 'production';
 ---
 <footer class="foot">
   <div class="wrap">
@@ -25,26 +28,28 @@ const year = new Date().getFullYear();
             {site.map((l) => <li>{l.href ? <a href={l.href}>{l.label}</a> : <span>{l.label} <small>(soon)</small></span>}</li>)}
           </ul>
         </div>
-        <div>
-          <p class="head"><a href="/explore/">Explore</a></p>
-          <ul>
-            {explore.map((l) => <li><a href={l.href}>{l.label}</a></li>)}
-          </ul>
-        </div>
+        {!live && (
+          <div>
+            <p class="head"><a href="/explore/">Explore</a></p>
+            <ul>
+              {explore.map((l) => <li><a href={l.href}>{l.label}</a></li>)}
+            </ul>
+          </div>
+        )}
         <div>
           <p class="head">Studio</p>
           <ul>
             <li><a href="/ai-statement/">AI statement</a></li>
             <li><a href="/privacy/">Privacy</a></li>
-            <li><a href="/held/">Open items (preview)</a></li>
-            <li class="social">Instagram · LinkedIn · Behance <Held id="social-handles" /></li>
+            {!live && <li><a href="/held/">Open items (preview)</a></li>}
+            {!live && <li class="social">Instagram · LinkedIn · Behance <Held id="social-handles" /></li>}
           </ul>
         </div>
       </nav>
     </div>
     <div class="bottom">
       <span>{PLACE} · <a href={`mailto:${EMAIL}`}>{EMAIL}</a></span>
-      <span>© {year} Dunn Creative · Preview, not indexed</span>
+      <span>© {year} Dunn Creative{!live && ' · Preview, not indexed'}</span>
     </div>
   </div>
 </footer>
