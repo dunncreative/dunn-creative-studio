@@ -5,6 +5,9 @@ import V2Header from '../components/v2/V2Header.astro';
 import V2Footer from '../components/v2/V2Footer.astro';
 interface Props { title: string; description?: string }
 const { title, description } = Astro.props;
+// 'To come' chips (.held) show on Deploy Previews and /held, never on the live site (v04 · 10).
+// Netlify sets CONTEXT=production for main; local builds and previews keep the chips visible.
+const hideHeld = process.env.CONTEXT === 'production' && !Astro.url.pathname.startsWith('/held');
 ---
 <!doctype html>
 <html lang="en">
@@ -18,6 +21,7 @@ const { title, description } = Astro.props;
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="/v2/v2.css" />
+    {hideHeld && <style is:inline set:html=".held{display:none!important}" />}
   </head>
   <body>
     <V2Header />

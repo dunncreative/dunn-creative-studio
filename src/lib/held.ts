@@ -6,7 +6,8 @@
 //
 // Nothing here is a fact until Freeman answers it. Never fill `answer` from anywhere but Freeman.
 
-export const SHOW_HELD = true;
+// Off on the live site: Netlify sets CONTEXT=production for main. Deploy Previews and local builds show chips (v04 · 10).
+export const SHOW_HELD = process.env.CONTEXT !== 'production';
 
 export interface HeldItem {
   /** Short label shown on the chip. */
@@ -210,12 +211,19 @@ export const held = {
     ask: 'The footer still says “Strategic thinking. Clean design. Real results.” Keep it or change it?',
     pages: ['Every page'],
     meanwhile: 'Kept as written (your call, 24 Nov).',
+    answer: 'Strategic thinking. Clean design. Built to perform.',
   },
   'case-images': {
     label: 'case study selects',
     ask: 'The selects from each project’s _website-case-study-selects folder are now on the four case studies. Anything to add, drop or reorder?',
     pages: ['Case studies'],
     meanwhile: 'Selects in (24 Nov overnight build): Ironwood AI mockups (each labelled), Mountain Mind site mockups, photos and three marketing plan pages, Deeper packaging, discs, ads and DVD menus, Asymbol launch, social and email. Not used: Ironwood logo PNGs, brand guidelines PDF and business card proof PDF (the logo system and business card images already cover them). Case study years still held.',
+  },
+  'film-motion-copy': {
+    label: 'Film & Motion page copy',
+    ask: 'The new /services/film-motion/ stub has drafted lines: the description, the section title and one line per sub-service. Juno writes the final copy in v04 · 3. Keep the drafts until then?',
+    pages: ['Film & Motion'],
+    meanwhile: 'Drafted lines (v04 · 10), shown with a “To come” chip on previews.',
   },
   'lab-lines': {
     label: 'Lab one-liners and images',
