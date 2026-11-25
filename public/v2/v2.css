@@ -838,3 +838,7 @@ a.chiplink{font-size:15px;color:var(--ink);text-decoration:none;border:1px solid
 @media (max-width:560px){.fit{grid-template-columns:1fr}}
 .plans.sprints .foot2 .held{justify-self:start}
 #sprints,#menu,#how,#talk{scroll-margin-top:80px}
+/* Work · More work strip (v04 · 5): name + one image each, no case study pages */
+.snapgrid.more .wimg{aspect-ratio:4/3}
+.snapgrid.more .wimg.logo img{padding:0}
+.more-work{border-top:var(--rule)}
