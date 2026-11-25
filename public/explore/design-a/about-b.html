@@ -67,6 +67,8 @@ figure{margin:0}figcaption{margin-top:10px;font-size:14px;color:#6B6E72}
 .foot span{font-size:14px;color:#6B6E72}
 @media (max-width:640px){.rowlink{grid-template-columns:1fr;gap:6px}.rowlink>*{grid-column:auto!important;text-align:left!important}.card{padding:28px}}
 
+/* 390: compact header (logo + Let's talk on one row, nav below) and a stronger hero scrim behind the text */
+@media (max-width:640px){.head{gap:12px 16px;min-height:0;padding-top:16px;padding-bottom:4px}.head .talk{order:2;margin-left:auto;padding:8px 14px}.head nav{order:3;flex-basis:100%;margin-left:0;gap:8px;justify-content:space-between;flex-wrap:nowrap}.ahero::before{background:linear-gradient(180deg,rgba(11,12,13,.2) 0%,rgba(11,12,13,.58) 26%,rgba(11,12,13,.88) 52%,rgba(11,12,13,.92) 100%)}}
 </style>
 </head>
 <body>
@@ -94,7 +96,7 @@ figure{margin:0}figcaption{margin-top:10px;font-size:14px;color:#6B6E72}
 </section>
 <section class="wrap sec">
 <div class="g2">
-<div class="card dk" style="min-height:320px"><p class="lbl" style="color:#B9BBBE">Client Zero</p><h3 class="d" style="font-size:clamp(32px,3.2vw,44px);margin-top:auto">We rebuilt our own studio <span class="it">first</span>.</h3><p class="body" style="font-size:16px;max-width:46ch">Before offering AI-led work to clients, Dunn Creative rebuilt itself around an agent studio. This site is Client Zero.</p><a href="lab-a.html" style="font-size:15px;color:#FFFFFF">Read the Lab note →</a></div>
+<div class="card dk" style="min-height:320px"><p class="lbl" style="color:#B9BBBE">Client Zero</p><h3 class="d" style="font-size:clamp(32px,3.2vw,44px);margin-top:auto">We rebuilt our own studio <span class="it">first</span>.</h3><p class="body" style="font-size:16px;max-width:46ch">Before offering AI-led work to clients, Dunn Creative rebuilt itself around an agent studio. This site is Client Zero.</p><a href="/lab/client-zero/" style="font-size:15px;color:#FFFFFF">Read the Lab note →</a></div>
 <div class="card" style="min-height:320px"><p class="lbl">Jackson, WY</p><h3 class="d" style="font-size:clamp(32px,3.2vw,44px);margin-top:auto">Inspired by clarity, craft and the <span class="it">wild</span>.</h3><p class="body" style="font-size:16px;max-width:46ch">Jackson Hole shapes a point of view grounded in boldness, simplicity and authenticity. Clients are local, national and remote.</p></div>
 </div></section>
 <section class="wrap" style="padding-top:48px;padding-bottom:96px">

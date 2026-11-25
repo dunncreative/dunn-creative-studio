@@ -67,6 +67,8 @@ figure{margin:0}figcaption{margin-top:10px;font-size:14px;color:#6B6E72}
 .foot span{font-size:14px;color:#6B6E72}
 @media (max-width:640px){.rowlink{grid-template-columns:1fr;gap:6px}.rowlink>*{grid-column:auto!important;text-align:left!important}.card{padding:28px}}
 .ahero{background-position:8% 50%}@media (min-width:900px){.ahero{background-size:160% auto;background-position:0% 40%}}
+/* 390: compact header (logo + Let's talk on one row, nav below) and a stronger hero scrim behind the text */
+@media (max-width:640px){.head{gap:12px 16px;min-height:0;padding-top:16px;padding-bottom:4px}.head .talk{order:2;margin-left:auto;padding:8px 14px}.head nav{order:3;flex-basis:100%;margin-left:0;gap:8px;justify-content:space-between;flex-wrap:nowrap}.ahero::before{background:linear-gradient(180deg,rgba(11,12,13,.2) 0%,rgba(11,12,13,.58) 26%,rgba(11,12,13,.88) 52%,rgba(11,12,13,.92) 100%)}}
 </style>
 </head>
 <body>
