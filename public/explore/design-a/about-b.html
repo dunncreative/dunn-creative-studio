@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>About B · portrait-led hero · Design round A · Dunn Creative</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500&amp;family=Inter:wght@400;500&amp;family=Instrument+Serif:ital@1&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#0B0C0D}a:hover{color:#10777A}
+.pg{font-family:Inter,system-ui,sans-serif;color:#0B0C0D;background:#FFFFFF;width:100%}
+.wrap{max-width:1280px;margin:0 auto;padding:0 clamp(20px,4vw,48px);box-sizing:border-box}
+.d{font-family:'Inter Tight',Inter,sans-serif;font-weight:300;letter-spacing:-0.035em;margin:0}
+.it{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;letter-spacing:-0.01em}
+.lbl{font-size:13px;letter-spacing:0.08em;text-transform:uppercase;color:#6B6E72;margin:0}
+.mut{color:#6B6E72}
+.h2{font-size:clamp(40px,4.6vw,64px)}
+.h3{font-size:30px;font-weight:400}
+.body{margin:0;color:#6B6E72;font-size:17px;line-height:1.55}
+.btn{text-decoration:none;border-radius:10px;padding:14px 20px;font-size:15px;display:inline-block}
+.b-w{background:#FFFFFF;color:#0B0C0D}.b-wo{color:#FFFFFF;border:1px solid rgba(255,255,255,.6)}
+.b-t{background:#1AA6AA;color:#0B0C0D;font-weight:500}.b-do{color:#FFFFFF;border:1px solid #3A3C3E}
+.b-k{background:#0B0C0D;color:#FFFFFF}.b-ko{color:#0B0C0D;border:1px solid #0B0C0D}
+.btns{display:flex;gap:12px;flex-wrap:wrap}
+.head{display:flex;align-items:center;gap:32px;min-height:80px;flex-wrap:wrap}
+.head nav{display:flex;gap:28px;margin-left:auto;flex-wrap:wrap}
+.head nav a{text-decoration:none;color:#6B6E72;font-size:15px}.head nav a.on{color:#0B0C0D}
+.talk{text-decoration:none;font-size:15px;border:1px solid #0B0C0D;border-radius:10px;padding:10px 16px}
+.ahero{position:relative;border-radius:20px;overflow:hidden;min-height:560px;display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(28px,4.5vw,64px);color:#FFFFFF;box-sizing:border-box;background-color:#0B0C0D;background-image:url('/v2/assets/hero-mountain-ai.webp');background-repeat:no-repeat;background-size:cover}
+.ahero::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,12,13,0) 0%,rgba(11,12,13,0) 45%,rgba(11,12,13,.85) 100%)}
+.ahero>*:not(.atag){position:relative}
+.ahero h1{font-size:clamp(46px,6.9vw,100px);line-height:0.98;margin-top:20px}
+.ahero .row{display:flex;justify-content:space-between;align-items:flex-end;gap:28px;flex-wrap:wrap;margin-top:28px}
+.ahero .line{margin:0;font-size:clamp(16px,1.3vw,19px);line-height:1.5;color:#E6E6E3;max-width:54ch}
+.atag{position:absolute;right:20px;top:20px;font-size:12px;background:rgba(255,255,255,.92);color:#0B0C0D;border-radius:999px;padding:5px 10px;z-index:1}
+.pill{position:absolute;left:12px;bottom:12px;font-size:12px;background:rgba(255,255,255,.92);color:#0B0C0D;border-radius:999px;padding:5px 10px}
+.sec{padding-top:72px;padding-bottom:48px}
+.shead{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:40px}
+.shead p{margin:0;color:#6B6E72;font-size:17px;line-height:1.5;max-width:44ch}
+.g2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:20px}
+.g3{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:20px}
+.g4{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:20px}
+.card{background:#F4F4F3;border-radius:20px;padding:36px;display:flex;flex-direction:column;gap:12px;box-sizing:border-box;min-width:0}
+.card.dk{background:#0B0C0D;color:#FFFFFF}.card.dk .mut,.card.dk .body{color:#B9BBBE}
+.num{font-size:14px;color:#6B6E72}
+.caps{display:flex;flex-wrap:wrap;gap:8px}
+.caps span{font-size:14px;border:1px solid #DCDCD9;border-radius:999px;padding:7px 14px}
+.held{display:inline-block;font-size:13px;border:1px dashed #B9BBBE;border-radius:999px;padding:4px 10px;color:#6B6E72;background:#FFFFFF}
+.panel{background:#0B0C0D;border-radius:20px;padding:clamp(32px,6vw,80px);color:#FFFFFF}
+.panel .lbl{color:#B9BBBE}
+.steps{list-style:none;margin:48px 0 0;padding:0;display:flex;gap:28px;flex-wrap:wrap}
+.steps li{flex:1 1 200px;border-top:1px solid #3A3C3E;padding-top:16px}
+.steps .k{font-size:13px;color:#1AA6AA;margin:0}
+.steps h3,.steps h4{margin:8px 0 6px;color:#FFFFFF}
+.steps p{margin:0;color:#B9BBBE;font-size:15px;line-height:1.5}
+.cta{background:#0B0C0D;color:#FFFFFF;border-radius:20px;padding:clamp(32px,6vw,88px);display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap}
+.cta h2{font-size:clamp(40px,5vw,72px);line-height:1;max-width:16ch}
+.cta p{margin:16px 0 0;color:#B9BBBE;font-size:17px;line-height:1.5;max-width:46ch}
+.rowlink{text-decoration:none;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:16px;padding:28px 0;border-top:1px solid #E6E6E3;align-items:baseline}
+.media{position:relative;border-radius:20px;overflow:hidden;background:#F4F4F3}
+.media img{width:100%;height:100%;object-fit:cover;display:block}
+.ph{display:flex;align-items:center;justify-content:center;text-align:center;background:#E6E6E3;color:#6B6E72;font-size:14px;border-radius:20px;padding:16px;box-sizing:border-box}
+.ph.dk{background:#3A3C3E;color:#D9D9D9}
+figure{margin:0}figcaption{margin-top:10px;font-size:14px;color:#6B6E72}
+.foot{padding-top:48px;padding-bottom:48px;display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;border-top:1px solid #E6E6E3}
+.foot span{font-size:14px;color:#6B6E72}
+@media (max-width:640px){.rowlink{grid-template-columns:1fr;gap:6px}.rowlink>*{grid-column:auto!important;text-align:left!important}.card{padding:28px}}
+
+</style>
+</head>
+<body>
+<div class="pg"><header class="wrap head">
+<img src="/v2/assets/dunn-creative-logo-black.png" alt="Dunn Creative" style="height:30px;width:auto">
+<nav><a href="work-a.html">Work</a><a href="services-a.html">Services</a><a href="sprints-a2.html">Sprints</a><a href="lab-a.html">Lab</a><a href="about-a.html" class="on">About</a></nav>
+<a href="contact-a.html" class="talk">Let’s talk</a>
+</header>
+
+<section class="wrap" style="padding-top:28px;padding-bottom:24px">
+<div style="display:flex;flex-wrap:wrap;gap:20px;align-items:stretch">
+<div style="flex:7 1 340px;min-width:0;background:#F4F4F3;border-radius:20px;padding:clamp(28px,4.5vw,64px);display:flex;flex-direction:column;justify-content:flex-end;min-height:560px;box-sizing:border-box">
+<p class="lbl">About · Jackson, WY</p>
+<h1 class="d" style="font-size:clamp(46px,6vw,88px);line-height:0.98;margin-top:20px">Every project, directed by <span class="it">Chris</span>.</h1>
+<p class="body" style="margin-top:24px;font-size:clamp(16px,1.3vw,19px);max-width:46ch">Christopher Dunn, owner and creative director. 20+ years in creative direction, brand, web and content.</p>
+<div class="btns" style="margin-top:28px"><a href="contact-a.html" class="btn b-k">Let’s talk</a><a href="work-a.html" class="btn b-ko">See the work</a></div></div>
+<figure style="flex:5 1 300px;min-width:0;position:relative"><div class="media" style="height:100%;min-height:440px;aspect-ratio:auto"><img src="/v2/assets/chris-portrait.webp" alt="Chris Dunn" style="position:absolute;inset:0;object-position:center 30%"></div></figure>
+</div></section>
+<section class="wrap sec">
+<div class="shead"><h2 class="d h2">The <span class="it">credits</span></h2><p>Most of it in action sports, film and lifestyle, where the work has to look as good as the footage.</p></div>
+<div class="g4"><div class="card" style="min-height:180px"><span class="num">01</span><h3 class="d" style="font-size:24px;font-weight:400;margin-top:auto">Teton Gravity Research</h3><p class="body" style="font-size:15px">Senior creative roles</p></div><div class="card" style="min-height:180px"><span class="num">02</span><h3 class="d" style="font-size:24px;font-weight:400;margin-top:auto">Brain Farm</h3><p class="body" style="font-size:15px">Long-running creative work</p></div><div class="card" style="min-height:180px"><span class="num">03</span><h3 class="d" style="font-size:24px;font-weight:400;margin-top:auto">We Are Blood</h3><p class="body" style="font-size:15px">Film campaign</p></div><div class="card" style="min-height:180px"><span class="num">04</span><h3 class="d" style="font-size:24px;font-weight:400;margin-top:auto">The Fourth Phase</h3><p class="body" style="font-size:15px">Film campaign</p></div><div class="card" style="min-height:180px"><span class="num">05</span><h3 class="d" style="font-size:24px;font-weight:400;margin-top:auto">View From A Blue Moon</h3><p class="body" style="font-size:15px">Film campaign</p></div></div></section>
+<section class="wrap sec">
+<div class="shead"><h2 class="d h2">How the studio <span class="it">works</span></h2><p>Small studio. Senior judgment. Bigger output.</p></div>
+<div class="rowlink"><span style="grid-column:span 1;font-size:13px;color:#6B6E72">01</span><h3 class="d" style="grid-column:span 4;font-size:clamp(26px,2.6vw,36px);font-weight:400">Lean senior core</h3><p style="grid-column:span 7;margin:0;color:#6B6E72;font-size:17px;line-height:1.5">Chris directs every project, start to finish.</p></div><div class="rowlink"><span style="grid-column:span 1;font-size:13px;color:#6B6E72">02</span><h3 class="d" style="grid-column:span 4;font-size:clamp(26px,2.6vw,36px);font-weight:400">Network</h3><p style="grid-column:span 7;margin:0;color:#6B6E72;font-size:17px;line-height:1.5">Specialists brought in by the job. <span class="held">To come: network partners</span></p></div><div class="rowlink"><span style="grid-column:span 1;font-size:13px;color:#6B6E72">03</span><h3 class="d" style="grid-column:span 4;font-size:clamp(26px,2.6vw,36px);font-weight:400">Agent studio</h3><p style="grid-column:span 7;margin:0;color:#6B6E72;font-size:17px;line-height:1.5">AI seats draft, version and prep. People approve every gate.</p></div>
+</section>
+<section class="wrap sec">
+<div class="g2">
+<div class="card dk" style="min-height:320px"><p class="lbl" style="color:#B9BBBE">Client Zero</p><h3 class="d" style="font-size:clamp(32px,3.2vw,44px);margin-top:auto">We rebuilt our own studio <span class="it">first</span>.</h3><p class="body" style="font-size:16px;max-width:46ch">Before offering AI-led work to clients, Dunn Creative rebuilt itself around an agent studio. This site is Client Zero.</p><a href="lab-a.html" style="font-size:15px;color:#FFFFFF">Read the Lab note →</a></div>
+<div class="card" style="min-height:320px"><p class="lbl">Jackson, WY</p><h3 class="d" style="font-size:clamp(32px,3.2vw,44px);margin-top:auto">Inspired by clarity, craft and the <span class="it">wild</span>.</h3><p class="body" style="font-size:16px;max-width:46ch">Jackson Hole shapes a point of view grounded in boldness, simplicity and authenticity. Clients are local, national and remote.</p></div>
+</div></section>
+<section class="wrap" style="padding-top:48px;padding-bottom:96px">
+<div class="cta"><div><h2 class="d">Let’s create something clear, distinctive and built to <span class="it">perform</span>.</h2><p>Tell us about your brand, your goals and what you’re building.</p></div><div class="btns"><a href="contact-a.html" class="btn b-t">Let’s talk</a><a href="contact-a.html" class="btn b-do">Get a free audit</a></div></div></section>
+<footer class="wrap foot">
+<span>Strategic thinking. Clean design. Built to perform.</span>
+<span>Dunn Creative · Jackson, WY · chris@dunncreative.com</span></footer></div>
+</body>
+</html>
