@@ -9,6 +9,9 @@ import { NAV_THEME } from '../lib/site';
 interface Props { title: string; description?: string; navCta?: 'solid' | 'ghost'; nav?: 'light' | 'dark' }
 // nav: light by default (Freeman, 18 Nov); pass nav="dark" on a page, or change NAV_THEME, to switch.
 const { title, description, navCta = 'solid', nav = NAV_THEME } = Astro.props;
+// 'To come' chips (.held) show on Deploy Previews and /held, never on the live site (v04 · 10).
+// Netlify sets CONTEXT=production for main; local builds and previews keep the chips visible.
+const hideHeld = process.env.CONTEXT === 'production' && !Astro.url.pathname.startsWith('/held');
 ---
 <!doctype html>
 <html lang="en">
@@ -63,6 +66,7 @@ const { title, description, navCta = 'solid', nav = NAV_THEME } = Astro.props;
       .textcta { font-weight: 600; text-decoration: none; }
       @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
     </style>
+    {hideHeld && <style is:inline set:html=".held{display:none!important}" />}
   </head>
   <body>
     <SiteHeader cta={navCta} theme={nav} />

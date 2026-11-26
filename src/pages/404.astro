@@ -1,12 +1,15 @@
 ---
-import Work from '../layouts/Work.astro';
+// 404 on the V2 layout and footer (v04 · 10 QA: no old SiteFooter, so no /explore or /held links).
+import V2 from '../layouts/V2.astro';
+import { TALK } from '../lib/site';
 ---
-<Work title="Page not found · Dunn Creative">
-  <section class="band">
-    <div class="wrap">
-      <h1>This page isn't built yet.</h1>
-      <p style="font-size:20px;margin:24px 0">The new site is still going up. The work is ready to see.</p>
-      <p><a class="textcta" href="/work/">See the work +</a> &nbsp; <a class="textcta" href="/">Home +</a></p>
+<V2 title="Page not found · Dunn Creative" description="This page doesn't exist.">
+  <section class="lhero"><div class="wrap">
+    <p class="lbl">404</p>
+    <h1>This page doesn't exist.</h1>
+    <div class="lh2">
+      <p class="stand">The link may be old or mistyped. Start from one of these.</p>
+      <div class="ctas"><a class="tlink" href="/">Home +</a><a class="tlink" href="/work/">See the work +</a><a class="btn" href={TALK}>Let's talk</a></div>
     </div>
-  </section>
-</Work>
+  </div></section>
+</V2>

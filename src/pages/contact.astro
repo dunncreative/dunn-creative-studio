@@ -3,7 +3,23 @@
 // (src/v2/contact.html, links pointed at the real routes). Other versions: /explore/pages/.
 // "To come" chips mark content still to supply; the list is on /held.
 import V2 from '../layouts/V2.astro';
-import html from '../v2/contact.html?raw';
+import raw from '../v2/contact.html?raw';
+import { SHOW_HELD } from '../lib/held';
+
+// Budget ranges are held (held: budget-ranges). On the live site (CONTEXT=production) step 5 "Roughly what
+// budget?" is left out and the form runs in five steps; Deploy Previews keep the placeholder step.
+function dropBudgetStep(html: string): string {
+  const start = html.indexOf('<div class="q"><p class="lbl">Step 5 of 6</p>');
+  const end = html.indexOf('<div class="q"><p class="lbl">Step 6 of 6</p>');
+  if (start < 0 || end < start) throw new Error('contact.html: budget step markers not found');
+  const bar6 = '<div class="bar" aria-hidden="true"><i class=on></i><i></i><i></i><i></i><i></i><i></i></div>';
+  if (!html.includes(bar6)) throw new Error('contact.html: step bar marker not found');
+  return (html.slice(0, start) + html.slice(end))
+    .replace(bar6, '<div class="bar" aria-hidden="true"><i class=on></i><i></i><i></i><i></i><i></i></div>')
+    .replace('Step 6 of 6', 'Step 5 of 5')
+    .replace(/Step ([1-4]) of 6/g, 'Step $1 of 5');
+}
+const html = SHOW_HELD ? raw : dropBudgetStep(raw);
 ---
 <V2 title={"Let's talk · Dunn Creative"} description={"Tell Dunn Creative what you're building, or start smaller with an audit."}>
   <Fragment set:html={html} />

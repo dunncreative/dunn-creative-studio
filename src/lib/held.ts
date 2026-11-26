@@ -6,7 +6,8 @@
 //
 // Nothing here is a fact until Freeman answers it. Never fill `answer` from anywhere but Freeman.
 
-export const SHOW_HELD = true;
+// Off on the live site: Netlify sets CONTEXT=production for main. Deploy Previews and local builds show chips (v04 · 10).
+export const SHOW_HELD = process.env.CONTEXT !== 'production';
 
 export interface HeldItem {
   /** Short label shown on the chip. */
@@ -26,6 +27,7 @@ export const held = {
     label: 'response-time promise',
     ask: 'How fast do you reply to an inquiry (for example, within one business day)?',
     pages: ['Home', 'Contact'],
+    answer: '24 Nov: A. No response-time promise at launch.',
   },
   'audit-format': {
     label: 'audit: free or paid, format, turnaround',
@@ -43,6 +45,7 @@ export const held = {
     label: 'budget range values',
     ask: 'What are the four budget ranges on the contact form? (Chips are approved; values are not set.)',
     pages: ['Contact'],
+    meanwhile: 'Live site (CONTEXT=production): the budget step is left out and the form runs in five steps. Deploy Previews keep the Range 1/2/3 placeholder step (v04 · 10 QA).',
   },
   platforms: {
     label: 'build platforms',
@@ -135,6 +138,7 @@ export const held = {
     label: 'Deeper DVD menu asset',
     ask: 'Is there an image or capture of the Deeper DVD menu to show?',
     pages: ['Deeper case study'],
+    meanwhile: 'The four DVD menu screens from the Deeper selects folder (Main, Chapters, Extras, Unplugged) are on the case study.',
   },
   results: {
     label: 'results',
@@ -155,7 +159,7 @@ export const held = {
     label: 'Lab pieces and dates',
     ask: 'Which Lab pieces go up first, and when? (Celtic / triskele, Hoverboarding, Money history, Client Zero, Agent studio, Workflows.)',
     pages: ['Home', 'Lab', 'AI'],
-    meanwhile: 'Titles from the wireframe; no dates, no pages behind them yet.',
+    meanwhile: 'Titles from the wireframe, no dates. Live site (CONTEXT=production): each Lab story page shows its title and one line, “Full story coming soon.” Deploy Previews keep the full story template with “To come” chips (v04 · 10 QA).',
   },
   newsletter: {
     label: 'email tool and send rhythm',
@@ -189,7 +193,13 @@ export const held = {
     label: 'privacy policy text',
     ask: 'The privacy page needs real policy text before launch (what the contact form collects, analytics, who to contact).',
     pages: ['Privacy'],
-    meanwhile: 'Section titles with lorem ipsum. Not a real policy.',
+    meanwhile: 'Live site (CONTEXT=production): one holding line, “Our privacy policy is being finalized. Ask us anything on the contact page.” Deploy Previews: section titles with lorem ipsum. Not a real policy, and studio agents do not draft one (v04 · 10 QA).',
+  },
+  'ai-statement-copy': {
+    label: 'AI statement text',
+    ask: 'The /ai-statement/ page has no approved text yet. Please write or approve the statement (what AI does, what people decide, disclosure, files and data, ownership, tools).',
+    pages: ['AI statement'],
+    meanwhile: 'Live site (CONTEXT=production): one holding line, “Our AI statement is being finalized. Ask us anything on the contact page.”, plus a link to /ai/. Deploy Previews: real section titles with the draft lines and lorem ipsum (v04 · 10 QA).',
   },
   'sprint-prices': {
     label: 'sprint prices',
@@ -208,18 +218,63 @@ export const held = {
     ask: 'The footer still says “Strategic thinking. Clean design. Real results.” Keep it or change it?',
     pages: ['Every page'],
     meanwhile: 'Kept as written (your call, 24 Nov).',
+    answer: 'Strategic thinking. Clean design. Built to perform.',
   },
   'case-images': {
     label: 'case study selects',
-    ask: 'Case studies use the images already in the repo plus your Mountain Mind uploads. Swap in more from each project’s _website-case-study-selects folder?',
+    ask: 'The selects from each project’s _website-case-study-selects folder are now on the four case studies. Anything to add, drop or reorder?',
     pages: ['Case studies'],
-    meanwhile: 'The 24 Nov build could not download the selects folder; Ironwood’s AI mockups all carry an AI label.',
+    meanwhile: 'Selects in (24 Nov overnight build): Ironwood AI mockups (each labelled), Mountain Mind site mockups, photos and three marketing plan pages, Deeper packaging, discs, ads and DVD menus, Asymbol launch, social and email. Not used: Ironwood logo PNGs, brand guidelines PDF and business card proof PDF (the logo system and business card images already cover them). Case study years still held.',
+  },
+  'film-motion-copy': {
+    label: 'Film & Motion page copy',
+    ask: 'The new /services/film-motion/ stub has drafted lines: the description, the section title and one line per sub-service. Juno writes the final copy in v04 · 3. Keep the drafts until then?',
+    pages: ['Film & Motion'],
+    meanwhile: 'Drafted lines (v04 · 10), shown with a “To come” chip on previews.',
   },
   'lab-lines': {
     label: 'Lab one-liners and images',
     ask: 'A one-line description and a lead image for each Lab piece.',
     pages: ['Lab', 'Lab pieces'],
     meanwhile: 'Grey image blocks and “To come: one line” chips.',
+  },
+  // Design round A area pages (task #58, PR #18): static noindex alternates in /explore/design-a/.
+  // Each item lists the lines that are drafted or adapted, not verbatim from the brief, the live site or case copy v03.
+  'design-a-web-lines': {
+    label: 'Web & Digital drafted lines',
+    ask: 'Web & Digital area page (web-digital and web-digital-b): OK these lines? Custom website development: “Design and build in Astro, with easy editing.” (from your Web Sprint one-pager; names a platform, which is still held). Custom CMS: “Adds a CMS and blog so your team can publish.” (from the Web Sprint Plus line). E-commerce: “An online store, so customers can buy direct.” Get found: SEO and AEO: “So people, and the AI tools they ask, can find you.” Care and updates: “Web pages and updates, ordered as you need them.” Case eyebrow: “Website · Jackson, WY”.',
+    pages: ['/explore/design-a/web-digital', '/explore/design-a/web-digital-b'],
+    meanwhile: 'Shown as drafted.',
+  },
+  'design-a-marketing-lines': {
+    label: 'Marketing Creative drafted lines',
+    ask: 'Marketing Creative area page: OK the case eyebrow “Marketing creative · Jackson, WY”? Sub-service titles drop the brief’s qualifiers (“Ad creative” without “(static and animated)”): keep them short like this?',
+    pages: ['/explore/design-a/marketing-creative'],
+    meanwhile: 'Shown as drafted.',
+  },
+  'design-a-film-lines': {
+    label: 'Film & Motion drafted lines',
+    ask: 'Film & Motion area page: OK these lines? Intro: “Motion and video, directed from the brand system.” (the live Home card line, reused as the intro). Key art and film packaging: “One film, one look, across every release piece.” (adapted from a case-study exploration heading). Titles and intros: “Title sequences and motion logos, made from the brand.” Edits and cutdowns: “Cutdowns in 16:9, 4:5 and 9:16.” (from the Launch Film one-pager). Deeper eyebrow: “Key art and packaging · TGR”. Deeper credit: “Made in-house at Teton Gravity Research while Chris was Creative Director.”',
+    pages: ['/explore/design-a/film-motion'],
+    meanwhile: 'Shown as drafted.',
+  },
+  'design-a-ai-creative-lines': {
+    label: 'AI Creative drafted lines',
+    ask: 'AI Creative area page: OK these lines? AI illustration: “Custom illustration that extends the identity.” (the Illustration line from the live Marketing Creative page). Ironwood eyebrow: “AI-directed mockups · Star Valley, WY”. Ironwood note: “Every scene is an AI-directed mockup, made to show the identity on real touchpoints.”',
+    pages: ['/explore/design-a/ai-creative'],
+    meanwhile: 'Shown as drafted.',
+  },
+  'design-a-ai-teams-lines': {
+    label: 'AI for Teams pipeline steps',
+    ask: 'AI for Teams area page, “How the pipeline works” (adapted from the AI page): OK step 1 “First drafts, versions and variations, resizes and production, checks against the brand.” and step 2 “Strategy, creative direction, taste and curation, and the final call.”?',
+    pages: ['/explore/design-a/ai-for-teams'],
+    meanwhile: 'Shown as drafted.',
+  },
+  'design-a-ai-creative-buy': {
+    label: 'how AI Creative is bought',
+    ask: 'The AI Creative area page sells it through the Creative Retainer. That is a draft guess (Brief §5 does not map it). Retainer, its own sprint, or something else?',
+    pages: ['/explore/design-a/ai-creative'],
+    meanwhile: 'Creative Retainer under a Draft badge; turnaround and minimum term shown as “Terms to come”.',
   },
 } satisfies Record<string, HeldItem>;
 
