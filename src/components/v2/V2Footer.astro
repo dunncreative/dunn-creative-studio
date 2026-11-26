@@ -1,5 +1,5 @@
 ---
-// Site footer for the v2 pages. The line "Real results" stays as written until Freeman changes it (held: footer-line).
+// Site footer for the v2 pages. Footer line "Built to perform." per Freeman, 24 Nov review (held: footer-line, answered).
 import { SERVICE_AREAS, TALK, PLACE } from '../../lib/site';
 const studio = [
   { label: 'Work', href: '/work/' },
@@ -12,7 +12,7 @@ const studio = [
   <div class="grid">
     <div>
       <img src="/v2/assets/dunn-creative-logo-black.png" alt="Dunn Creative" width="84" height="40" />
-      <p>Strategic thinking. Clean design. Real results.</p>
+      <p>Strategic thinking. Clean design. Built to perform.</p>
       <p class="cap">Creative studio · {PLACE}</p>
     </div>
     <div><h4>Services</h4><ul>{SERVICE_AREAS.map((s) => <li><a href={s.href}>{s.label}</a></li>)}</ul></div>

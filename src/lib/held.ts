@@ -6,7 +6,8 @@
 //
 // Nothing here is a fact until Freeman answers it. Never fill `answer` from anywhere but Freeman.
 
-export const SHOW_HELD = true;
+// Off on the live site: Netlify sets CONTEXT=production for main. Deploy Previews and local builds show chips (v04 · 10).
+export const SHOW_HELD = process.env.CONTEXT !== 'production';
 
 export interface HeldItem {
   /** Short label shown on the chip. */
@@ -26,6 +27,7 @@ export const held = {
     label: 'response-time promise',
     ask: 'How fast do you reply to an inquiry (for example, within one business day)?',
     pages: ['Home', 'Contact'],
+    answer: '24 Nov: A. No response-time promise at launch.',
   },
   'audit-format': {
     label: 'audit: free or paid, format, turnaround',
@@ -43,6 +45,7 @@ export const held = {
     label: 'budget range values',
     ask: 'What are the four budget ranges on the contact form? (Chips are approved; values are not set.)',
     pages: ['Contact'],
+    meanwhile: 'Live site (CONTEXT=production): the budget step is left out and the form runs in five steps. Deploy Previews keep the Range 1/2/3 placeholder step (v04 · 10 QA).',
   },
   platforms: {
     label: 'build platforms',
@@ -135,6 +138,7 @@ export const held = {
     label: 'Deeper DVD menu asset',
     ask: 'Is there an image or capture of the Deeper DVD menu to show?',
     pages: ['Deeper case study'],
+    meanwhile: 'The four DVD menu screens from the Deeper selects folder (Main, Chapters, Extras, Unplugged) are on the case study.',
   },
   results: {
     label: 'results',
@@ -155,7 +159,7 @@ export const held = {
     label: 'Lab pieces and dates',
     ask: 'Which Lab pieces go up first, and when? (Celtic / triskele, Hoverboarding, Money history, Client Zero, Agent studio, Workflows.)',
     pages: ['Home', 'Lab', 'AI'],
-    meanwhile: 'Titles from the wireframe; no dates, no pages behind them yet.',
+    meanwhile: 'Titles from the wireframe, no dates. Live site (CONTEXT=production): each Lab story page shows its title and one line, “Full story coming soon.” Deploy Previews keep the full story template with “To come” chips (v04 · 10 QA).',
   },
   newsletter: {
     label: 'email tool and send rhythm',
@@ -189,7 +193,13 @@ export const held = {
     label: 'privacy policy text',
     ask: 'The privacy page needs real policy text before launch (what the contact form collects, analytics, who to contact).',
     pages: ['Privacy'],
-    meanwhile: 'Section titles with lorem ipsum. Not a real policy.',
+    meanwhile: 'Live site (CONTEXT=production): one holding line, “Our privacy policy is being finalized. Ask us anything on the contact page.” Deploy Previews: section titles with lorem ipsum. Not a real policy, and studio agents do not draft one (v04 · 10 QA).',
+  },
+  'ai-statement-copy': {
+    label: 'AI statement text',
+    ask: 'The /ai-statement/ page has no approved text yet. Please write or approve the statement (what AI does, what people decide, disclosure, files and data, ownership, tools).',
+    pages: ['AI statement'],
+    meanwhile: 'Live site (CONTEXT=production): one holding line, “Our AI statement is being finalized. Ask us anything on the contact page.”, plus a link to /ai/. Deploy Previews: real section titles with the draft lines and lorem ipsum (v04 · 10 QA).',
   },
   'sprint-prices': {
     label: 'sprint prices',
@@ -208,12 +218,19 @@ export const held = {
     ask: 'The footer still says “Strategic thinking. Clean design. Real results.” Keep it or change it?',
     pages: ['Every page'],
     meanwhile: 'Kept as written (your call, 24 Nov).',
+    answer: 'Strategic thinking. Clean design. Built to perform.',
   },
   'case-images': {
     label: 'case study selects',
-    ask: 'Case studies use the images already in the repo plus your Mountain Mind uploads. Swap in more from each project’s _website-case-study-selects folder?',
+    ask: 'The selects from each project’s _website-case-study-selects folder are now on the four case studies. Anything to add, drop or reorder?',
     pages: ['Case studies'],
-    meanwhile: 'The 24 Nov build could not download the selects folder; Ironwood’s AI mockups all carry an AI label.',
+    meanwhile: 'Selects in (24 Nov overnight build): Ironwood AI mockups (each labelled), Mountain Mind site mockups, photos and three marketing plan pages, Deeper packaging, discs, ads and DVD menus, Asymbol launch, social and email. Not used: Ironwood logo PNGs, brand guidelines PDF and business card proof PDF (the logo system and business card images already cover them). Case study years still held.',
+  },
+  'film-motion-copy': {
+    label: 'Film & Motion page copy',
+    ask: 'The new /services/film-motion/ stub has drafted lines: the description, the section title and one line per sub-service. Juno writes the final copy in v04 · 3. Keep the drafts until then?',
+    pages: ['Film & Motion'],
+    meanwhile: 'Drafted lines (v04 · 10), shown with a “To come” chip on previews.',
   },
   'lab-lines': {
     label: 'Lab one-liners and images',
