@@ -838,3 +838,18 @@ a.chiplink{font-size:15px;color:var(--ink);text-decoration:none;border:1px solid
 @media (max-width:560px){.fit{grid-template-columns:1fr}}
 .plans.sprints .foot2 .held{justify-self:start}
 #sprints,#menu,#how,#talk{scroll-margin-top:80px}
+
+/* ---------- v04 · 11 trim pass ---------- */
+/* Home: the old hero headline is the services band's headline; its accent words keep the hero's treatment (teal-deep on light). */
+.sechead h2 em{font-style:normal;color:var(--teal-deep,#10777A)}
+/* Home: client names sit in the hero's bottom row (the proof strip folded in). */
+.hero.hk .meta{justify-content:flex-start;gap:10px 28px}
+.hero.hk .meta span:first-child{text-transform:uppercase;letter-spacing:.08em;font-size:12px;color:#9a9da1}
+/* Sprints: who it's for, folded into the hero. */
+.hero .who{margin-top:clamp(32px,4vw,56px);padding-top:18px;border-top:1px solid #2a2c2f;max-width:78ch;display:grid;gap:8px}
+.hero .who p:not(.lbl){color:#c9cbce;font-size:16px}.hero .who b{color:#fff;font-weight:500}
+/* Sprints: start form. */
+#start .form fieldset[hidden]{display:none}
+#start .form .ctas{margin-top:4px}
+/* Services hub: one list, six rows. */
+.smap+.smap{margin-top:clamp(40px,5vw,72px);padding-top:clamp(40px,5vw,72px);border-top:var(--rule)}
