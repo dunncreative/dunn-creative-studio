@@ -21,9 +21,8 @@ if (hideHeld) body = body.replace(/<span class="held"[^>]*>[^<]*<\/span>/g, '');
     <meta name="robots" content="noindex, nofollow" />
     <title>{title}</title>
     {description && <meta name="description" content={description} />}
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <!-- Type option 1 (v04 · 1): self-hosted, see public/fonts/ and the @font-face rules in public/v2/v2.css. -->
+    <link rel="preload" href="/fonts/inter-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="/v2/v2.css" />
     {hideHeld && <style is:inline set:html=".held{display:none!important}" />}
   </head>

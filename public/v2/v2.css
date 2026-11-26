@@ -1,3 +1,7 @@
+/* Type option 1 (v04 · 1, Freeman's pick from /explore/type/): self-hosted fonts, latin subset, OFL (licences in /fonts/).
+   Inter variable with the opsz (14–32) and wght axes serves both the body (Inter) and the headlines (Inter Display = opsz 32). */
+@font-face{font-family:Inter;font-style:normal;font-weight:100 900;font-display:swap;src:url(/fonts/inter-latin-opsz-normal.woff2) format('woff2-variations'),url(/fonts/inter-latin-opsz-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Instrument Serif';font-style:italic;font-weight:400;font-display:swap;src:url(/fonts/instrument-serif-latin-400-italic.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 
 :root{--white:#fff;--g50:#f5f5f7;--g200:#e3e3e6;--g500:#8a8d91;--caption:#6b6e72;--dg:#333;--ink:#0b0c0d;--teal:#1aa6aa;--teal-deep:#10777a;--r-tile:22px;--r-btn:10px;--max:1240px;--gut:clamp(16px,4vw,48px);--rule:1px solid var(--g200)}
 *{box-sizing:border-box}html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
@@ -842,3 +846,14 @@ a.chiplink{font-size:15px;color:var(--ink);text-decoration:none;border:1px solid
 .snapgrid.more .wimg{aspect-ratio:4/3}
 .snapgrid.more .wimg.logo img{padding:0}
 .more-work{border-top:var(--rule)}
+
+/* ---------- Type option 1 (v04 · 1): Inter Display Light headlines, Instrument Serif Italic accent, Inter body ----------
+   Set as in the specimen (src/pages/explore/type.astro, .o1): weight 300, opsz 32, tracking -3.5%.
+   !important because the page rules above set weight/tracking per component with higher specificity;
+   only these type properties are forced. Sizes, line-heights, colours and layout are unchanged. */
+h1,h2,
+.bigline,.plan h3,.vs h3,.signup h3,.wrow.r2 .wc h3{font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;font-weight:300!important;font-optical-sizing:auto;font-variation-settings:'opsz' 32;letter-spacing:-.035em!important}
+/* Mid-size display h3s (26–36px) read better a touch looser. */
+.plan h3,.vs h3,.signup h3,.wrow.r2 .wc h3{letter-spacing:-.03em!important}
+/* The accent word: an <em> already in a headline's copy renders in Instrument Serif Italic (colour as the page sets it). */
+:is(h1,h2,h3) em{font-family:'Instrument Serif',Georgia,serif;font-style:italic!important;font-weight:400!important;font-variation-settings:normal;letter-spacing:-.01em!important}
