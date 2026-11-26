@@ -11,6 +11,12 @@
   [headers.values]
     X-Robots-Tag = "noindex, nofollow"
 
+# v04 · 11: Websites is renamed Web & Digital (Freeman, 24 Nov evening). Permanent move.
+[[redirects]]
+  from = "/services/websites/"
+  to = "/services/web-digital/"
+  status = 301
+
 # 24 Nov page picks: four case studies only, and three service pages. Older routes point to their new homes.
 # (302s: the content files stay in the repo and these can come back.)
 # v04 · 10: AI Creative and AI for Teams live on /ai/ (its two halves); old typed URLs resolve there.
