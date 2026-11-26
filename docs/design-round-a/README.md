@@ -14,6 +14,15 @@ The working canvas is a Claude Design artifact Freeman owns: https://claude.ai/a
   over a bottom gradient, the CTA buttons inside the panel.
 - Services hero image: `public/explore/design-a/assets/services-hero-moons.webp` (Freeman's own image, labelled
   "AI-directed image").
+- Sprints hero image (25 Nov): `public/explore/design-a/assets/sprints-hero-galaxy.webp` (Freeman's own galaxy
+  image, labelled "AI-directed image"), shown in `sprints-v2.html`. Use it for every Sprints hero, including
+  `sprints-a2`. Frame it so the swirl sits above the headline (`background-position: center 95%`).
+  A second option, `assets/sprints-hero-galaxy-2.webp` (diagonal galaxy, `center 15%`), is in `sprints-v3.html`.
+  Freeman picks between the two; until then sprints-a2 uses the first.
+- Brand Identity hero image (25 Nov): `public/explore/design-a/assets/brand-identity-hero.webp` (Freeman's own
+  galaxy-over-trees image, labelled "AI-directed image"), framed `center 75% / 108% auto` so the galaxy fills the
+  top half of the panel. Use it on `brand-identity.html`; the other area pages keep the placeholder until Freeman
+  sends theirs.
 - The Deeper key art is **not** a hero image (it distorts). Mountain photo `/v2/assets/hero-mountain-ai.webp` is the
   placeholder elsewhere, labelled "Placeholder image · AI-directed".
 
@@ -30,6 +39,7 @@ The working canvas is a Claude Design artifact Freeman owns: https://claude.ai/a
 ## The page system (use it for every new page)
 1. **Image hero panel**: `border-radius:20px`, ~520–600px tall, image `cover`, gradient
    `transparent 25% → .62 at 55% → rgba(11,12,13,.9)` (stronger at ≤760px; updated 25 Nov so hero text stays ≥4.5:1), eyebrow (13px caps), H1 in white at ~100px max with one italic word,
+   `transparent 45% → rgba(11,12,13,.85)`, eyebrow (13px caps), H1 in white at ~100px max with one italic word,
    one line under it, two buttons (white solid + white outline) bottom right. Corner tag for any AI or placeholder
    image. One image per page; never reuse the same crop on two pages.
 2. Sections: 7 or fewer per page, intros under 25 words, card lines under 12 words.
@@ -41,6 +51,7 @@ The working canvas is a Claude Design artifact Freeman owns: https://claude.ai/a
 6. Render-check 1440 and 390: no horizontal overflow (use `minmax(min(100%,340px),1fr)` grids), "Let's talk" visible in the
    header (at ≤760px the nav links fold into a "Menu" `<details>`; classes `ahdr`, `anav`, `amenu`, `acta`), and
    hero text contrast ≥4.5:1 (body) and ≥3:1 (large) measured over the image.
+6. Render-check 1440 and 390: no horizontal overflow (use `minmax(min(100%,340px),1fr)` grids).
 
 ## The area page template
 `brand-identity.html` is the template for all six area pages: hero → What's included (the locked sub-services
