@@ -43,6 +43,9 @@ Owner and creative director: Freeman (Chris Dunn).
   entry first), Dropbox `03_Work/dunncreative_clientzero_content-decisions_v03.md`, then Website Master Brief
   v04 (`01_Briefs/dunncreative_clientzero_website-brief_v04.md`). This week's priorities are the Notion Week
   Plan's "This week: 24–30 Nov" section. Creative Brief v03 and the 22–28 Nov week plan Doc are superseded.
+- **Design round A (24–25 Nov): Freeman picked Direction A (Unfold light).** Read `docs/design-round-a/README.md`
+  first for any page or design work. The A artboards are static pages at `/explore/design-a/`; Home and Services
+  versions, and fonts, still wait on Freeman's pick. New pages are built as A alternates there (tasks v04 · 12, 13).
 - `docs/duet/` holds Freeman's Claude Duet concepts (24 Nov): the sprint one-pager that `/sprints` builds
   from, the page layout explorations, and the buyer sentence Freeman settled. Read `docs/duet/README.md`.
 - The Notion board (Decisions, task handoff notes, Inbox) is the record of what's decided, including copy and
