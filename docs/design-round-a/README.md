@@ -23,6 +23,12 @@ The working canvas is a Claude Design artifact Freeman owns: https://claude.ai/a
   galaxy-over-trees image, labelled "AI-directed image"), framed `center 75% / 108% auto` so the galaxy fills the
   top half of the panel. Use it on `brand-identity.html`; the other area pages keep the placeholder until Freeman
   sends theirs.
+- Work, case study and Lab (26 Nov, Freeman's chat): `work-v2`, `case-ironwood-v2`, `lab-v2` and
+  `lab-post-celtic` refine the v04 · 14 pages. Work adds filter chips; the Ironwood case study uses the truck-door
+  mockup as its hero (labelled "AI-directed mockup"); the Lab hero and Celtic card use Freeman's Triskele Worlds art.
+  `lab-post-celtic` is the Lab post template, built around his 12 images in
+  `assets/lab/celtic/` (Triskele Worlds and Celtic Ink Spirals, all labelled AI-directed). Body copy there is
+  placeholder until Freeman writes it.
 - The Deeper key art is **not** a hero image (it distorts). Mountain photo `/v2/assets/hero-mountain-ai.webp` is the
   placeholder elsewhere, labelled "Placeholder image · AI-directed".
 
