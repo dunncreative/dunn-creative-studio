@@ -40,7 +40,7 @@ export const caseStudies: CaseStudy[] = [
     card: dp('jeremy-jones-deeper.webp', 1400, 1054, 'Deeper key art: the film title over a black-and-white mountain face'),
     hero: dp('jeremy-jones-deeper.webp', 1400, 1054, 'Deeper key art: the film title over a black-and-white mountain face'),
     heroFit: 'contain',
-    facts: [['Client', 'Teton Gravity Research'], ['Made', 'In-house at Teton Gravity Research'], ['Services', 'Art direction, packaging, poster, magazine ads, DVD menu, marketing collateral']],
+    facts: [['For', 'Teton Gravity Research'], ['Made', 'In-house at Teton Gravity Research'], ['Services', 'Art direction, packaging, poster, magazine ads, DVD menu, marketing collateral']],
     chapters: [
       { id: 'project', title: 'The project', text: "Deeper is Teton Gravity Research's snowboard film with Jeremy Jones, the first in the Deeper, Further, Higher trilogy, following Jeremy and other top freeriders past the reach of helicopters, snowmobiles and lifts into untouched terrain. Chris made this work in-house as TGR's Creative Director, working closely with Jeremy and Director of Photography and Producer Chris Edmands on the art direction, reviews and revisions. The look was built from the trip photographers' images and frames pulled from the film, with some scenes composited to tell the story better, like tents camped in the snow added to the mountain shot with hikers. Jeremy's own hand-drawn notes run across the inside of the DVD box. The work covered the DVD packaging, poster, magazine ads, DVD menu and the marketing collateral around the release." },
       { id: 'packaging', title: 'Packaging and ads', images: [
@@ -52,6 +52,7 @@ export const caseStudies: CaseStudy[] = [
         [dp('dvd-menu-main.webp', 2400, 1350, 'Deeper DVD main menu: the film title over a snowy forest with Play, Chapters and Extras', 'DVD menu: main.'), dp('dvd-menu-chapters.webp', 2400, 1350, 'Deeper DVD chapters menu listing the movie chapters', 'DVD menu: chapters.')],
         [dp('dvd-menu-extras.webp', 2400, 1350, 'Deeper DVD extra features menu', 'DVD menu: extras.'), dp('dvd-menu-unplugged.webp', 2400, 1350, 'Deeper Unplugged DVD menu listing short segments', 'DVD menu: Deeper Unplugged.')],
       ] },
+      { id: 'delivered', title: 'What Chris made', tags: ['Art direction', 'Packaging', 'Poster', 'Magazine ads', 'DVD menu', 'Marketing collateral'] },
       { id: 'delivered', title: 'What we delivered', tags: ['Art direction', 'Packaging', 'Poster', 'Magazine ads', 'DVD menu', 'Marketing collateral'] },
     ],
   },
@@ -115,7 +116,7 @@ export const caseStudies: CaseStudy[] = [
     title: 'Mountain Mind Project',
     category: 'Websites',
     titleLine: 'The ability to live fully can be trained.',
-    summary: 'A full redesign for a mindfulness training company, with our own photography.',
+    summary: 'Website, photography and a marketing plan for a mindfulness practice.',
     card: mm('screen-home-1440.webp', 1440, 900, 'Mountain Mind Project home page'),
     hero: mm('site-laptop-home.webp', 2400, 1385, 'Mountain Mind Project home page on a laptop, over a mountain landscape'),
     liveUrl: 'https://mountainmindproject.com/',
@@ -131,6 +132,10 @@ export const caseStudies: CaseStudy[] = [
       ] },
       { id: 'photography', title: 'Photography', note: 'Photos by Chris Dunn.', images: [
         [mm('photo-teton-peaks.webp', 800, 600, 'Snow-covered Teton peaks under a blue sky'), mm('photo-sasha-portrait.webp', 800, 532, 'Portrait of Sasha Dingle smiling in warm light')],
+        [mm('photo-meditation-class.webp', 800, 532, 'A live meditation class standing in a studio'), mm('photo-group-meditation.webp', 800, 532, 'Three people meditating side by side on cushions in a sunlit room')],
+        [mm('photo-seated-meditation.webp', 532, 800, 'Seated meditation on a studio floor')],
+        [mm('photo-rock-peaks.webp', 800, 532, 'Jagged rock peaks above a valley'), mm('photo-snow-trail.webp', 800, 533, 'A hiker with a red pack on a snowy trail through pines')],
+        [mm('photo-teton-ridge.webp', 800, 457, 'Snow-covered mountain ridge under a clear sky')],
         [mm('photo-meditation-class.webp', 800, 532, 'A live meditation class standing in a studio'), mm('photo-seated-meditation.webp', 532, 800, 'Seated meditation on a studio floor')],
         [mm('photo-group-meditation.webp', 800, 532, 'Three people meditating side by side on cushions in a sunlit room'), mm('photo-rock-peaks.webp', 800, 532, 'Jagged rock peaks above a valley')],
         [mm('photo-snow-trail.webp', 800, 533, 'A hiker with a red pack on a snowy trail through pines'), mm('photo-teton-ridge.webp', 800, 457, 'Snow-covered mountain ridge under a clear sky')],

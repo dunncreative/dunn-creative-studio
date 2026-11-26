@@ -226,6 +226,12 @@ export const held = {
     pages: ['Case studies'],
     meanwhile: 'Selects in (24 Nov overnight build): Ironwood AI mockups (each labelled), Mountain Mind site mockups, photos and three marketing plan pages, Deeper packaging, discs, ads and DVD menus, Asymbol launch, social and email. Not used: Ironwood logo PNGs, brand guidelines PDF and business card proof PDF (the logo system and business card images already cover them). Case study years still held.',
   },
+  'more-work': {
+    label: 'More work picks',
+    ask: 'The Work page now has a More work strip: 13 projects, name and one image each, no case study pages. Anything to drop, add or swap an image for?',
+    pages: ['Work'],
+    meanwhile: 'One image per project from Portfolio-Work/Website-Other-Projects-Clients (v04 · 5, 25 Nov): Animal Hospital of Boone, Connecticut Signcraft, Drinkwater Studios, Dwelling, Florio Imports, GU Energy, Hines Goldsmiths, Jackson Hole Public Art, Lateral Designs, Mountain Cowork Alliance, Peace Park, VALE, Wind River Builders. Same list as the PR #1 work collection minus the four case studies. Not added: Brain Farm, Stio, Carter Andrews, NewFlight Charters, SquidTek (tabled 17 Nov).',
+  },
   'film-motion-copy': {
     label: 'Film & Motion page copy',
     ask: 'The new /services/film-motion/ stub has drafted lines: the description, the section title and one line per sub-service. Juno writes the final copy in v04 · 3. Keep the drafts until then?',
