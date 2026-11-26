@@ -38,6 +38,7 @@ The working canvas is a Claude Design artifact Freeman owns: https://claude.ai/a
 
 ## The page system (use it for every new page)
 1. **Image hero panel**: `border-radius:20px`, ~520–600px tall, image `cover`, gradient
+   `transparent 25% → .62 at 55% → rgba(11,12,13,.9)` (stronger at ≤760px; updated 25 Nov so hero text stays ≥4.5:1), eyebrow (13px caps), H1 in white at ~100px max with one italic word,
    `transparent 45% → rgba(11,12,13,.85)`, eyebrow (13px caps), H1 in white at ~100px max with one italic word,
    one line under it, two buttons (white solid + white outline) bottom right. Corner tag for any AI or placeholder
    image. One image per page; never reuse the same crop on two pages.
@@ -47,6 +48,9 @@ The working canvas is a Claude Design artifact Freeman owns: https://claude.ai/a
 4. One black panel per page for "How to buy it" / "How to work with us" (Audit → Sprint → Retainer), and one black
    closing CTA panel.
 5. Teal only for small accents and the CTA button inside black panels. Logo black on light.
+6. Render-check 1440 and 390: no horizontal overflow (use `minmax(min(100%,340px),1fr)` grids), "Let's talk" visible in the
+   header (at ≤760px the nav links fold into a "Menu" `<details>`; classes `ahdr`, `anav`, `amenu`, `acta`), and
+   hero text contrast ≥4.5:1 (body) and ≥3:1 (large) measured over the image.
 6. Render-check 1440 and 390: no horizontal overflow (use `minmax(min(100%,340px),1fr)` grids).
 
 ## The area page template

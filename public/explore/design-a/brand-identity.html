@@ -8,6 +8,33 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500&amp;family=Inter:wght@400;500&amp;family=Instrument+Serif:ital@1&amp;display=swap">
 <style>
 body{margin:0}
+a{color:#0B0C0D}a:hover{color:#10777A}.ahero{background:#0B0C0D url('/explore/design-a/assets/brand-identity-hero.webp') center 75%/108% auto no-repeat}@media(max-width:760px){.ahero{background-size:auto 62%;background-position:center top}}.ahero::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,12,13,0) 0%,rgba(11,12,13,0) 25%,rgba(11,12,13,.62) 55%,rgba(11,12,13,.9) 100%)}.ahero>*:not(.atag){position:relative}
+/* Header: at phone width the nav links fold into a Menu so the logo and Let's talk stay on one row */
+.amenu{display:none;position:relative;margin-left:auto}
+.amenu>summary{list-style:none;cursor:pointer;font-size:15px;color:#0B0C0D;padding:12px 6px;min-height:44px;box-sizing:border-box;display:flex;align-items:center}
+.amenu>summary::-webkit-details-marker{display:none}
+.amenu>div{position:absolute;right:0;top:calc(100% + 6px);z-index:20;background:#FFFFFF;border:1px solid #E6E6E3;border-radius:14px;padding:8px;display:flex;flex-direction:column;min-width:180px;box-shadow:0 12px 32px rgba(11,12,13,.12)}
+.amenu>div a{padding:12px;text-decoration:none;font-size:15px;color:#0B0C0D}
+@media (max-width:760px){
+.ahdr{flex-wrap:nowrap!important;gap:12px!important;height:72px!important}
+.ahdr>.anav{display:none!important}
+.amenu{display:block}
+.ahdr>.acta{min-height:44px;box-sizing:border-box;display:inline-flex;align-items:center;white-space:nowrap}
+/* Hero: darker scrim behind the text on phones (text sits on bright snow otherwise) */
+.ahero::before{background:linear-gradient(180deg,rgba(11,12,13,0) 0%,rgba(11,12,13,.35) 18%,rgba(11,12,13,.88) 48%,rgba(11,12,13,.92) 100%)!important}
+}
+</style>
+</head>
+<body>
+<div style="font-family:Inter,system-ui,sans-serif;color:#0B0C0D;background:#FFFFFF;width:100%;"><header class="ahdr" style="max-width:1280px;margin:0 auto;padding:0 clamp(20px,4vw,48px);box-sizing:border-box;display:flex;align-items:center;gap:32px;height:80px;flex-wrap:wrap">
+<img src="/v2/assets/dunn-creative-logo-black.png" alt="Dunn Creative" style="height:30px;width:auto">
+<nav class="anav" aria-label="Main" style="display:flex;gap:28px;margin-left:auto;flex-wrap:wrap"><a href="#" style="text-decoration:none;color:#6B6E72;font-size:15px">Work</a><a href="#" style="text-decoration:none;color:#0B0C0D;font-size:15px">Services</a><a href="#" style="text-decoration:none;color:#6B6E72;font-size:15px">Sprints</a><a href="#" style="text-decoration:none;color:#6B6E72;font-size:15px">Lab</a><a href="#" style="text-decoration:none;color:#6B6E72;font-size:15px">About</a></nav>
+<details class="amenu"><summary aria-label="Menu">Menu</summary><div><a href="#">Work</a><a href="#">Services</a><a href="#">Sprints</a><a href="#">Lab</a><a href="#">About</a></div></details>
+<a class="acta" href="#" style="text-decoration:none;font-size:15px;border:1px solid #0B0C0D;border-radius:10px;padding:10px 16px">Let’s talk</a>
+</header>
+<section style="max-width:1280px;margin:0 auto;padding:0 clamp(20px,4vw,48px);box-sizing:border-box;padding-top:28px;padding-bottom:24px">
+<div class="ahero" style="position:relative;border-radius:20px;overflow:hidden;height:520px;display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(32px,4.5vw,64px);color:#FFFFFF">
+<span class="atag" style="position:absolute;right:20px;top:20px;font-size:12px;background:rgba(255,255,255,.92);color:#0B0C0D;border-radius:999px;padding:5px 10px">AI-directed image</span>
 a{color:#0B0C0D}a:hover{color:#10777A}.ahero{background:#0B0C0D url('/v2/assets/hero-mountain-ai.webp') center 35%/cover no-repeat}.ahero::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,12,13,0) 0%,rgba(11,12,13,0) 45%,rgba(11,12,13,.85) 100%)}.ahero>*:not(.atag){position:relative}
 </style>
 </head>

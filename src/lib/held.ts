@@ -238,6 +238,44 @@ export const held = {
     pages: ['Lab', 'Lab pieces'],
     meanwhile: 'Grey image blocks and “To come: one line” chips.',
   },
+  // Design round A area pages (task #58, PR #18): static noindex alternates in /explore/design-a/.
+  // Each item lists the lines that are drafted or adapted, not verbatim from the brief, the live site or case copy v03.
+  'design-a-web-lines': {
+    label: 'Web & Digital drafted lines',
+    ask: 'Web & Digital area page (web-digital and web-digital-b): OK these lines? Custom website development: “Design and build in Astro, with easy editing.” (from your Web Sprint one-pager; names a platform, which is still held). Custom CMS: “Adds a CMS and blog so your team can publish.” (from the Web Sprint Plus line). E-commerce: “An online store, so customers can buy direct.” Get found: SEO and AEO: “So people, and the AI tools they ask, can find you.” Care and updates: “Web pages and updates, ordered as you need them.” Case eyebrow: “Website · Jackson, WY”.',
+    pages: ['/explore/design-a/web-digital', '/explore/design-a/web-digital-b'],
+    meanwhile: 'Shown as drafted.',
+  },
+  'design-a-marketing-lines': {
+    label: 'Marketing Creative drafted lines',
+    ask: 'Marketing Creative area page: OK the case eyebrow “Marketing creative · Jackson, WY”? Sub-service titles drop the brief’s qualifiers (“Ad creative” without “(static and animated)”): keep them short like this?',
+    pages: ['/explore/design-a/marketing-creative'],
+    meanwhile: 'Shown as drafted.',
+  },
+  'design-a-film-lines': {
+    label: 'Film & Motion drafted lines',
+    ask: 'Film & Motion area page: OK these lines? Intro: “Motion and video, directed from the brand system.” (the live Home card line, reused as the intro). Key art and film packaging: “One film, one look, across every release piece.” (adapted from a case-study exploration heading). Titles and intros: “Title sequences and motion logos, made from the brand.” Edits and cutdowns: “Cutdowns in 16:9, 4:5 and 9:16.” (from the Launch Film one-pager). Deeper eyebrow: “Key art and packaging · TGR”. Deeper credit: “Made in-house at Teton Gravity Research while Chris was Creative Director.”',
+    pages: ['/explore/design-a/film-motion'],
+    meanwhile: 'Shown as drafted.',
+  },
+  'design-a-ai-creative-lines': {
+    label: 'AI Creative drafted lines',
+    ask: 'AI Creative area page: OK these lines? AI illustration: “Custom illustration that extends the identity.” (the Illustration line from the live Marketing Creative page). Ironwood eyebrow: “AI-directed mockups · Star Valley, WY”. Ironwood note: “Every scene is an AI-directed mockup, made to show the identity on real touchpoints.”',
+    pages: ['/explore/design-a/ai-creative'],
+    meanwhile: 'Shown as drafted.',
+  },
+  'design-a-ai-teams-lines': {
+    label: 'AI for Teams pipeline steps',
+    ask: 'AI for Teams area page, “How the pipeline works” (adapted from the AI page): OK step 1 “First drafts, versions and variations, resizes and production, checks against the brand.” and step 2 “Strategy, creative direction, taste and curation, and the final call.”?',
+    pages: ['/explore/design-a/ai-for-teams'],
+    meanwhile: 'Shown as drafted.',
+  },
+  'design-a-ai-creative-buy': {
+    label: 'how AI Creative is bought',
+    ask: 'The AI Creative area page sells it through the Creative Retainer. That is a draft guess (Brief §5 does not map it). Retainer, its own sprint, or something else?',
+    pages: ['/explore/design-a/ai-creative'],
+    meanwhile: 'Creative Retainer under a Draft badge; turnaround and minimum term shown as “Terms to come”.',
+  },
 } satisfies Record<string, HeldItem>;
 
 export type HeldId = keyof typeof held;
