@@ -46,12 +46,14 @@ export const caseStudies: CaseStudy[] = [
       { id: 'packaging', title: 'Packaging and ads', images: [
         [dp('jeremy-jones-deeper-box-wide.webp', 1239, 800, 'Deeper DVD packaging, back and front covers', 'DVD packaging, back and front.')],
         [dp('box-inside.webp', 1239, 800, 'Inside of the Deeper DVD box: a black-and-white mountain photo covered in hand-drawn notes, with tents at the bottom', 'Inside the box, with Jeremy’s hand-drawn notes.')],
+        [dp('box-art-front.webp', 589, 800, 'Deeper DVD cover art, front, labelled Special Collectors Edition 2 Disc Set', 'Cover art, front.'), dp('box-art-back.webp', 589, 800, 'Deeper DVD cover art, back, with the film description and credits', 'Cover art, back.')],
         [dp('disc-feature.webp', 500, 500, 'Deeper feature film disc with a snowboarder on a snow ridge', 'Feature film disc.'), dp('disc-bonus.webp', 500, 500, 'Deeper bonus disc with a climber in a red jacket and a close-up face', 'Bonus disc.')],
         [dp('jeremy-jones-deeper-magazine-ad.webp', 662, 880, 'Deeper magazine ad, portrait format', 'Magazine ad.'), dp('magazine-ad-landscape.webp', 1200, 775, 'Deeper magazine ad in a landscape format, the film title over a fluted mountain face', 'Magazine ad, landscape.')],
         [dp('dvd-menu-main.webp', 2400, 1350, 'Deeper DVD main menu: the film title over a snowy forest with Play, Chapters and Extras', 'DVD menu: main.'), dp('dvd-menu-chapters.webp', 2400, 1350, 'Deeper DVD chapters menu listing the movie chapters', 'DVD menu: chapters.')],
         [dp('dvd-menu-extras.webp', 2400, 1350, 'Deeper DVD extra features menu', 'DVD menu: extras.'), dp('dvd-menu-unplugged.webp', 2400, 1350, 'Deeper Unplugged DVD menu listing short segments', 'DVD menu: Deeper Unplugged.')],
       ] },
       { id: 'delivered', title: 'What Chris made', tags: ['Art direction', 'Packaging', 'Poster', 'Magazine ads', 'DVD menu', 'Marketing collateral'] },
+      { id: 'delivered', title: 'What we delivered', tags: ['Art direction', 'Packaging', 'Poster', 'Magazine ads', 'DVD menu', 'Marketing collateral'] },
     ],
   },
   {
@@ -134,6 +136,9 @@ export const caseStudies: CaseStudy[] = [
         [mm('photo-seated-meditation.webp', 532, 800, 'Seated meditation on a studio floor')],
         [mm('photo-rock-peaks.webp', 800, 532, 'Jagged rock peaks above a valley'), mm('photo-snow-trail.webp', 800, 533, 'A hiker with a red pack on a snowy trail through pines')],
         [mm('photo-teton-ridge.webp', 800, 457, 'Snow-covered mountain ridge under a clear sky')],
+        [mm('photo-meditation-class.webp', 800, 532, 'A live meditation class standing in a studio'), mm('photo-seated-meditation.webp', 532, 800, 'Seated meditation on a studio floor')],
+        [mm('photo-group-meditation.webp', 800, 532, 'Three people meditating side by side on cushions in a sunlit room'), mm('photo-rock-peaks.webp', 800, 532, 'Jagged rock peaks above a valley')],
+        [mm('photo-snow-trail.webp', 800, 533, 'A hiker with a red pack on a snowy trail through pines'), mm('photo-teton-ridge.webp', 800, 457, 'Snow-covered mountain ridge under a clear sky')],
       ] },
       { id: 'plan', title: 'Website and marketing plan', images: [
         [mm('plan-page-1.webp', 1089, 1449, 'Plan page: Website Pages, with layout notes for the home, About, About Sasha and Courses pages'), mm('plan-page-3.webp', 1087, 1439, 'Plan page: Website Implementations and Digital Marketing, starting with SEO')],
