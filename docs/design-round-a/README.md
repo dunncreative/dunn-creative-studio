@@ -11,11 +11,17 @@ The picked pages are the **template** (layout, sections, type, imagery style). W
 content, keep that content and pour it into the new template. Placeholder text in the artboards never replaces
 real copy.
 
-- **Case studies, all four**, through the picked Ironwood case-study layout (`case-ironwood-v2.html`): Ironwood
-  Homes, Jeremy Jones' Deeper, Mountain Mind Project and Asymbol, at `/work/<slug>/`. Copy, chapters, image lists
-  and "What we delivered" tags come from `src/data/caseStudies.ts` (case study copy v03, approved) and images from
-  `public/work/<slug>/` and `src/assets/work/`. Keep every AI-directed label and note (Ironwood "In use"), the
-  Deeper "What Chris made" line, the Mountain Mind "Photos by Chris Dunn." note.
+- **Case studies, all four: KEEP THE LIVE PAGES AS THEY ARE (Freeman, 27 Nov evening).** Freeman loves the live
+  case study pages and wants them kept: https://dunncreative.netlify.app/work/ironwood-homes/, `/work/jeremy-jones-deeper/`,
+  `/work/asymbol/`, `/work/mountain-mind-project/`. Keep their layout, sections, order, copy, images, captions,
+  chapters, "What we delivered" tags, AI-directed labels and notes (Ironwood "In use", the Deeper "What Chris made"
+  line, the Mountain Mind "Photos by Chris Dunn." note) exactly as live, from `src/pages/work/[slug].astro`,
+  `src/data/caseStudies.ts` (copy v03) and `public/work/<slug>/` / `src/assets/work/`. **Only apply the new master
+  template:** the Direction A header and nav, footer, type (option 1, PR #23 fonts), colour tokens, spacing scale,
+  buttons and the closing CTA panel, so the case studies sit in the same site as the picked pages. Don't move them
+  into `case-ironwood-v2.html`'s layout; that artboard (truck-door hero) is now reference only, and the Ironwood
+  page keeps its live hero. If a shell change would visibly alter a case study's body layout, stop and ask Freeman
+  in Decisions with before/after screenshots.
 - **Celtic / triskele Lab post** at `/lab/celtic-triskele/`: build it from `lab-post-celtic.html` with Freeman's 12
   images in `public/explore/design-a/assets/lab/celtic/` (Triskele Worlds, Celtic Ink Spirals). That page is the
   Lab post template. Its body copy stays the marked placeholder until Freeman writes it; the other Lab entries in
@@ -50,7 +56,7 @@ templates, copy, imagery and details, so build them as reusable components, not 
 | Sprints | A · Sprints v2 (galaxy image hero) | `sprints-v2.html` (galaxy image 1) | `/sprints/` |
 | Brand Sprint | A · Brand Sprint (single sprint page) | `brand-sprint.html` (galaxy image 2) | `/sprints/brand-sprint/` |
 | Work | A · Work v3 (v2 + bigger closing CTA) | `work-v4.html` (six projects, two per row) | `/work/` |
-| Case study | A · Case study · Ironwood Homes | `case-ironwood-v2.html` (truck-door hero) | `/work/ironwood-homes/` |
+| Case study | A · Case study · Ironwood Homes | `case-ironwood-v2.html` (truck-door hero) — **superseded 27 Nov evening: keep the live case study pages, apply only the new shell (see CONTENT CARRY-OVER)** | `/work/ironwood-homes/` |
 | Lab | A · Lab | `lab-v2.html` | `/lab/` |
 | Lab post | A · Lab post · Celtic triskele | `lab-post-celtic.html` | `/lab/celtic-triskele/` |
 | Contact | A · Contact (from the agents' contact-a) | `contact-a.html` (on PR #19's branch) | `/contact/` |
