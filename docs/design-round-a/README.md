@@ -5,6 +5,31 @@ The working canvas is a Claude Design artifact Freeman owns: https://claude.ai/a
 (agents can't open it; the A artboards are exported as static pages in `public/explore/design-a/`, served at
 `/explore/design-a/` on every Deploy Preview).
 
+## CONTENT CARRY-OVER — 27 Nov (Freeman): new template, keep the real content
+
+The picked pages are the **template** (layout, sections, type, imagery style). Where a live page already has real
+content, keep that content and pour it into the new template. Placeholder text in the artboards never replaces
+real copy.
+
+- **Case studies, all four**, through the picked Ironwood case-study layout (`case-ironwood-v2.html`): Ironwood
+  Homes, Jeremy Jones' Deeper, Mountain Mind Project and Asymbol, at `/work/<slug>/`. Copy, chapters, image lists
+  and "What we delivered" tags come from `src/data/caseStudies.ts` (case study copy v03, approved) and images from
+  `public/work/<slug>/` and `src/assets/work/`. Keep every AI-directed label and note (Ironwood "In use"), the
+  Deeper "What Chris made" line, the Mountain Mind "Photos by Chris Dunn." note.
+- **Celtic / triskele Lab post** at `/lab/celtic-triskele/`: build it from `lab-post-celtic.html` with Freeman's 12
+  images in `public/explore/design-a/assets/lab/celtic/` (Triskele Worlds, Celtic Ink Spirals). That page is the
+  Lab post template. Its body copy stays the marked placeholder until Freeman writes it; the other Lab entries in
+  `src/data/lab.ts` keep their titles and stay unpublished or marked until Freeman's images and words arrive.
+- **Work index**: the six picked projects link to the four case studies; Peace Park and GU Energy cards use their
+  existing images in `public/work/` and `src/assets/work/` (no case study pages).
+- **Keep and reuse:** client logos and Freeman's logo files, Chris's portraits (`src/assets/studio/`, plus the new
+  `heroes/chris-dunn-portrait-5.webp`), the hero images in `public/explore/design-a/assets/`, the Sprints and
+  services copy already live where the picked page uses the same line, `src/lib/held.ts` items, redirects in
+  `netlify.toml`, `noindex`, and the type files from PR #23.
+- **Retire on the picked routes:** the Ridge/V2 page layouts those routes used (keep the files until Freeman
+  confirms, then remove in a later PR), the "More work" strip on `/work/`, the mountain placeholder hero.
+- **About** stays on its live layout and content until Freeman picks a new one.
+
 ## FREEMAN'S PAGE PICKS — 27 Nov 2026 (LOCKED: build the development site from these)
 
 Freeman picked the pages below as the foundation of the new site: the web design, structure, voice and pages to

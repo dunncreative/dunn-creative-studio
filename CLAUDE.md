@@ -49,7 +49,8 @@ Owner and creative director: Freeman (Chris Dunn).
   design round A (Home v2c, Services v2, the five area pages, Sprints v2, Brand Sprint, Work v3, Ironwood case
   study, Lab, Lab post, Contact). The table is at the top of `docs/design-round-a/README.md`; PNGs in Dropbox
   `00_Brand-Brain/112726-Dunn-Creative-Website-Page-Designs/`. They replace the 24 Nov picks for those pages.
-  Task v04 · 12 builds them onto the live routes.
+  Task v04 · 12 builds them onto the live routes as the new template, carrying over the real content (all four
+  case studies, the Celtic / triskele post with Freeman's images): see "CONTENT CARRY-OVER" in that README.
 - **Design round A (24–25 Nov): Freeman picked Direction A (Unfold light).** Read `docs/design-round-a/README.md`
   first for any page or design work. The A artboards are static pages at `/explore/design-a/`; Freeman's 27 Nov picks and his
   hero images are in the same README. New pages are built as A alternates there (tasks v04 · 12, 13).
