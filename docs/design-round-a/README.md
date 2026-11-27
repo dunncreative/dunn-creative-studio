@@ -33,8 +33,8 @@ templates, copy, imagery and details, so build them as reusable components, not 
 Settled by the picks:
 - **Look:** Direction A everywhere. Image hero panel at the top of every page; grey offer cards with Includes
   capsules on area pages; one black "How to buy it" panel; black closing CTA.
-- **Type:** the picked pages use Inter Tight Light headlines with one Instrument Serif italic accent word (the
-  same idea as the type specimen's option 1). Build with this pairing; Freeman can still swap it.
+- **Type (CONFIRMED by Freeman, 27 Nov):** Inter Tight Light headlines with one Instrument Serif italic accent
+  word; Inter for body and UI. This settles the type specimen (task v04 · 1). Use it on every page.
 - **Brand Sprint rhythm:** check-ins on days 1, 3, 5, 8 and 10, as on the picked Sprints and Brand Sprint pages.
 - **Brand Identity offers (replaces the brief's locked list):** Brand strategy · Logo and identity system ·
   Brand guidelines · Story and messaging · Branded imagery · Rebrand and refresh.
@@ -42,8 +42,31 @@ Settled by the picks:
 - **Not picked, keep as reference only:** the other Home, Services, Work, Brand Identity v1, AI Creative v2
   (the AI story), Brand Sprint v2 and the agents' alternates.
 
-Still to come from Freeman (keep placeholders, don't invent): hero images for Home, Web & Digital, Marketing
-Creative, AI for Teams, Work and Contact; prices and terms; the Celtic post's own words; Ironwood project facts;
+**Hero images (Freeman's, 27 Nov).** Source folder: Dropbox `00_Brand-Brain/112726-Dunn-Creative-Website-Page-Designs/Images/`.
+WebP copies in `public/explore/design-a/assets/heroes/`. All are AI-directed: tag every one "AI-directed image".
+The named ones are Freeman's; the rest are Claude's proposed mapping, which Freeman can swap.
+
+| Page | Image | Source file |
+| --- | --- | --- |
+| Home | `heroes/home-hero-cd-book.webp` (proposed) | `dunncreative-website-hero-image-1.PNG` |
+| Services | `services-hero-moons.webp` | `dc-services-hero-image.jpg` |
+| Brand Identity | `brand-identity-hero.webp` | (galaxy over trees, sent in chat) |
+| Web & Digital | `heroes/web-digital-hero-orbits.webp` (proposed) | `dc-alternate-hero-image-2.JPG` |
+| Marketing Creative | `heroes/marketing-creative-hero-hoverboard.webp` (proposed) | `Dunncreative-website hero image-25.JPG` |
+| AI Creative | `heroes/ai-creative-hero.webp` | `dc-ai-creative-hero-image.JPG` |
+| AI for Teams | `heroes/ai-for-teams-hero.webp` | `dc-ai-teams-hero-image.JPG` |
+| Sprints | `sprints-hero-galaxy.webp` | `dc-sprints-hero-image.JPG` |
+| Brand Sprint | `sprints-hero-galaxy-2.webp` | `dc-alternate-hero-image-5.JPG` |
+| Work | `heroes/work-hero-cd-armor.webp` (proposed) | `Dunn-Creative-Graphics-Armor-009-Wide.png` |
+| Contact | `heroes/contact-hero-cd-moon.webp` (proposed) | `dunncreative-website-hero-image-4.JPG` |
+| Spares | `heroes/spare-hero-galaxy-*.webp` | `dc-alternate-hero-image.JPG`, `-3`, `-4` |
+
+New portrait: `heroes/chris-dunn-portrait-5.webp` (`Images/Chris-Dunn-Portraits/Chris-Dunn-Portrait-5.jpg`), for About
+and the studio sections. Section and Lab graphics (stone, moss, frost, iron, molten metal, armor, cliff light, landscapes,
+about 35 files) are in `Images/Dunn-Creative-Lab-and-Section-Images/`: pull only the ones a section uses, convert to WebP
+at 2400px or less, and keep each page's media small.
+
+Still to come from Freeman (keep placeholders, don't invent): prices and terms; the Celtic post's own words; Ironwood project facts;
 the About page pick (not in this set: keep the live About until he picks).
 
 ## What's decided (Freeman)

@@ -35,7 +35,8 @@ Owner and creative director: Freeman (Chris Dunn).
   replaces the old campaigns, print and decks pages, which redirect to it. Its lines "One brand, every channel.",
   the five How it runs steps and "Have a launch coming up?" are drafted and wait on Freeman's check. Don't rename
   or regroup the service areas until Freeman decides (see the Project Direction field).
-- `/explore/type/` (PR #12) is the type specimen. No page changes fonts until Freeman picks option 1 or 2.
+- Type is SETTLED (Freeman, 27 Nov): Inter Tight Light headlines with one Instrument Serif italic accent word,
+  Inter for body. `/explore/type/` (PR #12) was the specimen; it's closed.
 - Home and About use the portrait Freeman approved: `src/assets/studio/chris-dunn-portrait-bw.webp`.
 - Draft PR #7 (`feat/client-logo-bar`, Freeman's client logos in the homepage logo bar) stays parked. Freeman's
   chat session owns that branch. Studio runs don't push to it; send changes for it through the Notion Inbox.
@@ -49,8 +50,8 @@ Owner and creative director: Freeman (Chris Dunn).
   `00_Brand-Brain/112726-Dunn-Creative-Website-Page-Designs/`. They replace the 24 Nov picks for those pages.
   Task v04 · 12 builds them onto the live routes.
 - **Design round A (24–25 Nov): Freeman picked Direction A (Unfold light).** Read `docs/design-round-a/README.md`
-  first for any page or design work. The A artboards are static pages at `/explore/design-a/`; Home and Services
-  versions, and fonts, still wait on Freeman's pick. New pages are built as A alternates there (tasks v04 · 12, 13).
+  first for any page or design work. The A artboards are static pages at `/explore/design-a/`; Freeman's 27 Nov picks and his
+  hero images are in the same README. New pages are built as A alternates there (tasks v04 · 12, 13).
 - `docs/duet/` holds Freeman's Claude Duet concepts (24 Nov): the sprint one-pager that `/sprints` builds
   from, the page layout explorations, and the buyer sentence Freeman settled. Read `docs/duet/README.md`.
 - The Notion board (Decisions, task handoff notes, Inbox) is the record of what's decided, including copy and
