@@ -6,7 +6,7 @@ const path = Astro.url.pathname;
 const current = (href: string) => (path === href || path.startsWith(href) ? 'page' : undefined);
 ---
 <header class="ahdr"><div class="a-wrap">
-  <a class="a-logo" href="/" aria-label="Dunn Creative home"><img src="/v2/assets/dunn-creative-logo-black.png" alt="Dunn Creative" width="63" height="30" /></a>
+  <a class="a-logo" href="/" aria-label="Dunn Creative home"><img src="/v2/assets/dunn-creative-logo-black.png" alt="Dunn Creative" width="84" height="40" /></a>
   <nav aria-label="Main"><ul class="anav">{NAV.map((n) => <li><a href={n.href} aria-current={current(n.href)}>{n.label}</a></li>)}</ul></nav>
   <details class="amenu"><summary>Menu</summary><div class="a-menu-panel">
     {NAV.map((n) => <a href={n.href} aria-current={current(n.href)}>{n.label}</a>)}
