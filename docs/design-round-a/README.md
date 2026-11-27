@@ -29,6 +29,11 @@ The working canvas is a Claude Design artifact Freeman owns: https://claude.ai/a
   `lab-post-celtic` is the Lab post template, built around his 12 images in
   `assets/lab/celtic/` (Triskele Worlds and Celtic Ink Spirals, all labelled AI-directed). Body copy there is
   placeholder until Freeman writes it.
+- Area pages, 27 Nov (Freeman's chat): `brand-identity-offer-v1` (Freeman's own 'What we offer' text, eight
+  offers with Includes capsules), `brand-identity-offer-v2` (reworked to six offers, one per locked sub-service,
+  hero 'A brand that lasts.') and `web-digital-v2` (same layout: six offer cards, Mountain Mind, the Web Sprint
+  day plan). The 'What we offer' card grid replaces 'What's included' on area pages. Freeman still picks v1 or v2
+  for Brand Identity; this changes the brief's locked sub-service list, so don't touch the live routes until then.
 - The Deeper key art is **not** a hero image (it distorts). Mountain photo `/v2/assets/hero-mountain-ai.webp` is the
   placeholder elsewhere, labelled "Placeholder image · AI-directed".
 
