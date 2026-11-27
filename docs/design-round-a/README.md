@@ -34,7 +34,12 @@ real copy.
   `netlify.toml`, `noindex`, and the type files from PR #23.
 - **Retire on the picked routes:** the Ridge/V2 page layouts those routes used (keep the files until Freeman
   confirms, then remove in a later PR), the "More work" strip on `/work/`, the mountain placeholder hero.
-- **About** stays on its live layout and content until Freeman picks a new one.
+- **About: Freeman picked About v3 (27 Nov evening).** Build `/about/` from `about-v3.html` (see the picks table). It uses the
+  real facts already on the live About page (20+ years, the five credits, Jackson, WY) and Freeman's new portrait
+  (`assets/about/chris-dunn-portrait-about.webp`, shown in greyscale). The portrait column is `position: sticky` on
+  desktop, so the bio, credits and How we work scroll past it; it unsticks below 900px. Sprint cards show no lengths
+  or prices (held). The closing CTA uses `assets/about/about-cta-galaxy-color.webp` under a dark overlay, tagged
+  AI-directed image; the hero uses `heroes/spare-hero-galaxy-bw.webp`, also tagged.
 
 ## FREEMAN'S PAGE PICKS — 27 Nov 2026 (LOCKED: build the development site from these)
 
@@ -60,6 +65,7 @@ templates, copy, imagery and details, so build them as reusable components, not 
 | Lab | A · Lab | `lab-v2.html` | `/lab/` |
 | Lab post | A · Lab post · Celtic triskele | `lab-post-celtic.html` | `/lab/celtic-triskele/` |
 | Contact | A · Contact (from the agents' contact-a) | `contact-a.html` (on PR #19's branch) | `/contact/` |
+| About (added 27 Nov evening) | A · About v3 (v1 top + v2 bottom) | `about-v3.html` (galaxy B&W hero, three cards, sticky portrait with credits and How we work, Why Dunn Creative, Creative Sprints, colour galaxy CTA) | `/about/` |
 
 Settled by the picks:
 - **Look:** Direction A everywhere. Image hero panel at the top of every page; grey offer cards with Includes
@@ -92,6 +98,7 @@ The named ones are Freeman's; the rest are Claude's proposed mapping, which Free
 | Brand Sprint | `sprints-hero-galaxy-2.webp` | `dc-alternate-hero-image-5.JPG` |
 | Work | `heroes/work-hero-cd-armor.webp` (proposed) | `Dunn-Creative-Graphics-Armor-009-Wide.png` |
 | Contact | `heroes/contact-hero-cd-moon.webp` (proposed) | `dunncreative-website-hero-image-4.JPG` |
+| About | `heroes/spare-hero-galaxy-bw.webp` (hero) · `about/about-cta-galaxy-color.webp` (closing CTA) | spare hero · `dc-alternate-hero-image.JPG` (sent in chat) |
 | Spares | `heroes/spare-hero-galaxy-*.webp` | `dc-alternate-hero-image.JPG`, `-3`, `-4` |
 
 New portrait: `heroes/chris-dunn-portrait-5.webp` (`Images/Chris-Dunn-Portraits/Chris-Dunn-Portrait-5.jpg`), for About
@@ -100,7 +107,7 @@ about 35 files) are in `Images/Dunn-Creative-Lab-and-Section-Images/`: pull only
 at 2400px or less, and keep each page's media small.
 
 Still to come from Freeman (keep placeholders, don't invent): prices and terms; the Celtic post's own words; Ironwood project facts;
-the About page pick (not in this set: keep the live About until he picks).
+(About is now picked: About v3, 27 Nov evening.)
 
 ## What's decided (Freeman)
 - Direction **A** for the whole site: white pages, wide margins, black rounded panels, light headlines with one
