@@ -5,6 +5,47 @@ The working canvas is a Claude Design artifact Freeman owns: https://claude.ai/a
 (agents can't open it; the A artboards are exported as static pages in `public/explore/design-a/`, served at
 `/explore/design-a/` on every Deploy Preview).
 
+## FREEMAN'S PAGE PICKS — 27 Nov 2026 (LOCKED: build the development site from these)
+
+Freeman picked the pages below as the foundation of the new site: the web design, structure, voice and pages to
+build. PNGs of each are in Dropbox `/Dunn Creative Studio/Clients/Dunn Creative/00_Brand-Brain/112726-Dunn-Creative-Website-Page-Designs/`.
+The static source for each is in `public/explore/design-a/`. These replace the 24 Nov Page Explorations v2 picks
+(Home K, About E, ...) for every page listed here. Freeman will keep refining the master template, the section
+templates, copy, imagery and details, so build them as reusable components, not one-off pages.
+
+| Page | Canvas artboard (Dropbox PNG name) | Source in `/explore/design-a/` | Live route |
+| --- | --- | --- | --- |
+| Home | A · Home v2c (v2 hero, service list first) | `home-v2c.html` + headline "Big-studio craft. *Small-studio care.*", Selected work two per row | `/` |
+| Services hub | A · Services v2 (image hero, two-column cards) | `services-v2.html` (moon hero) | `/services/` |
+| Brand Identity | A · Brand Identity v2 (reworked offer and hero) | `brand-identity-offer-v2.html` | `/services/brand-identity/` |
+| Web & Digital | A · Web & Digital (area page) | `web-digital-v2.html` | `/services/web-digital/` |
+| Marketing Creative | A · Marketing Creative (area page) | `marketing-creative-v2.html` | `/services/marketing-creative/` |
+| AI Creative | A · AI Creative (area page) | `ai-creative-v2.html` | `/services/ai-creative/` |
+| AI for Teams | A · AI for Teams (area page) | `ai-for-teams-v2.html` | `/services/ai-for-teams/` |
+| Sprints | A · Sprints v2 (galaxy image hero) | `sprints-v2.html` (galaxy image 1) | `/sprints/` |
+| Brand Sprint | A · Brand Sprint (single sprint page) | `brand-sprint.html` (galaxy image 2) | `/sprints/brand-sprint/` |
+| Work | A · Work v3 (v2 + bigger closing CTA) | `work-v4.html` (six projects, two per row) | `/work/` |
+| Case study | A · Case study · Ironwood Homes | `case-ironwood-v2.html` (truck-door hero) | `/work/ironwood-homes/` |
+| Lab | A · Lab | `lab-v2.html` | `/lab/` |
+| Lab post | A · Lab post · Celtic triskele | `lab-post-celtic.html` | `/lab/celtic-triskele/` |
+| Contact | A · Contact (from the agents' contact-a) | `contact-a.html` (on PR #19's branch) | `/contact/` |
+
+Settled by the picks:
+- **Look:** Direction A everywhere. Image hero panel at the top of every page; grey offer cards with Includes
+  capsules on area pages; one black "How to buy it" panel; black closing CTA.
+- **Type:** the picked pages use Inter Tight Light headlines with one Instrument Serif italic accent word (the
+  same idea as the type specimen's option 1). Build with this pairing; Freeman can still swap it.
+- **Brand Sprint rhythm:** check-ins on days 1, 3, 5, 8 and 10, as on the picked Sprints and Brand Sprint pages.
+- **Brand Identity offers (replaces the brief's locked list):** Brand strategy · Logo and identity system ·
+  Brand guidelines · Story and messaging · Branded imagery · Rebrand and refresh.
+- **Work page:** six projects only (the four case studies, Peace Park, GU Energy); the "More work" strip is gone.
+- **Not picked, keep as reference only:** the other Home, Services, Work, Brand Identity v1, AI Creative v2
+  (the AI story), Brand Sprint v2 and the agents' alternates.
+
+Still to come from Freeman (keep placeholders, don't invent): hero images for Home, Web & Digital, Marketing
+Creative, AI for Teams, Work and Contact; prices and terms; the Celtic post's own words; Ironwood project facts;
+the About page pick (not in this set: keep the live About until he picks).
+
 ## What's decided (Freeman)
 - Direction **A** for the whole site: white pages, wide margins, black rounded panels, light headlines with one
   italic accent word, colour only in the work, light nav (Work · Services · Sprints · Lab · About + "Let's talk").

@@ -43,6 +43,11 @@ Owner and creative director: Freeman (Chris Dunn).
   entry first), Dropbox `03_Work/dunncreative_clientzero_content-decisions_v03.md`, then Website Master Brief
   v04 (`01_Briefs/dunncreative_clientzero_website-brief_v04.md`). This week's priorities are the Notion Week
   Plan's "This week: 24–30 Nov" section. Creative Brief v03 and the 22–28 Nov week plan Doc are superseded.
+- **27 Nov: Freeman's page picks are LOCKED as the foundation for the development site.** Fourteen pages from
+  design round A (Home v2c, Services v2, the five area pages, Sprints v2, Brand Sprint, Work v3, Ironwood case
+  study, Lab, Lab post, Contact). The table is at the top of `docs/design-round-a/README.md`; PNGs in Dropbox
+  `00_Brand-Brain/112726-Dunn-Creative-Website-Page-Designs/`. They replace the 24 Nov picks for those pages.
+  Task v04 · 12 builds them onto the live routes.
 - **Design round A (24–25 Nov): Freeman picked Direction A (Unfold light).** Read `docs/design-round-a/README.md`
   first for any page or design work. The A artboards are static pages at `/explore/design-a/`; Home and Services
   versions, and fonts, still wait on Freeman's pick. New pages are built as A alternates there (tasks v04 · 12, 13).
