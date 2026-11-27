@@ -74,7 +74,7 @@ export const brandSprint = {
     ['Timeline', '10 working days'],
     ['Live calls', 'One hour or less each'],
     ['Best for', 'Launches and relaunches'],
-    ['Price', 'Fixed [[To come: Brand Sprint price]]'],
+    ['Price', 'Fixed, to come [[To come: Brand Sprint price]]'],
   ] as [string, string][],
   parts: {
     eyebrow: 'What you walk away with',

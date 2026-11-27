@@ -42,7 +42,7 @@ const notSure: Cta = { title: 'Not sure where to *start?*', ctas: [{ label: 'Let
 const retainerSteps: Step[] = [
   { k: 'How it works', t: 'One request at a time', p: 'As many as fit the month.' },
   { k: 'Who does it', t: 'The same senior eye', p: 'On everything, every month.' },
-  { k: 'Terms', t: '[[To come: retainer terms]]', p: 'Draft, not final.' },
+  { k: 'Terms', t: 'To come', p: 'Draft, not final. [[To come: retainer terms]]' },
 ];
 const SPRINT_BRAND = '/sprints/brand-sprint/';
 

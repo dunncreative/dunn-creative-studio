@@ -2,9 +2,11 @@
 // About E, Freeman's pick (24 Nov page picks). Markup comes from Page Explorations v2
 // (src/v2/about.html, links pointed at the real routes). Other versions: /explore/pages/.
 // "To come" chips mark content still to supply; the list is on /held.
-import V2 from '../layouts/V2.astro';
+// v04 · 12: About is not in the 27 Nov picks, so its body stays exactly as live (v2.css, `legacy`); only the
+// Direction A header and footer are applied (body checked pixel-identical against main at 1440 and 390).
+import A from '../layouts/A.astro';
 import html from '../v2/about.html?raw';
 ---
-<V2 title={'About · Dunn Creative'} description={'Chris Dunn directs every Dunn Creative project: 20+ years across creative direction, brand, web and content, based in Jackson, WY.'}>
+<A legacy title={'About · Dunn Creative'} description={'Chris Dunn directs every Dunn Creative project: 20+ years across creative direction, brand, web and content, based in Jackson, WY.'}>
   <Fragment set:html={html} />
-</V2>
+</A>
