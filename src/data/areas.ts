@@ -130,7 +130,7 @@ export const areas: Area[] = [
       offersSide: 'A first site, a redesign or one landing page, designed and built by the same team.',
       offers: [
         { name: 'Web design', line: 'Sites built around your audience, your content and the one thing you want visitors to do.', caps: ['Sitemap and page goals', 'Wireframes', 'Page design', 'Responsive layouts', 'Design system'] },
-        { name: 'Website development', line: 'Built on the platform that fits how you work, with editing your team can handle.', caps: ['Astro builds', 'Webflow builds', 'Custom CMS', 'Blog setup', 'Speed and accessibility'] },
+        { name: 'Website development', line: 'Built on the platform that fits how you work, with editing your team can handle.', caps: ['Astro builds', '[[To come: Webflow builds]]', 'Custom CMS', 'Blog setup', 'Speed and accessibility'] },
         { name: 'Landing pages', line: 'One page, one goal, for a launch, a campaign or an offer.', caps: ['Launch pages', 'Campaign pages', 'Lead forms', 'Test variations'] },
         { name: 'E-commerce', line: 'An online store, so customers can buy from you direct.', caps: ['Store design', 'Product pages', 'Collections', 'Checkout flow'] },
         { name: 'Get found: SEO and AEO', line: 'So people, and the AI tools they ask, can find you.', caps: ['Technical SEO', 'Site structure', 'Schema markup', 'Search-ready copy', 'Local search'] },
@@ -299,7 +299,7 @@ export const areas: Area[] = [
       offersSide: 'We set up the same human-led pipeline we run every day, in your tools, for the jobs your team does every week.',
       offers: [
         { name: 'AI workflow setup', line: 'AI built into the work you already do: brand, social, campaigns, decks, web and video.', caps: ['Workflow map', 'Tool setup', 'Template library', 'Brand rules for AI', 'QA checklist'] },
-        { name: 'Team training', line: 'Prompting and AI-assisted design and writing, used well and responsibly.', caps: ['Live team session', 'Recorded walkthrough', 'How-we-use-AI guide', '30-day check-in'] },
+        { name: 'Team training', line: 'Prompting and AI-assisted design and writing, used well and responsibly.', caps: ['Live team session', 'Recorded walkthrough', 'How-we-use-AI guide', '[[To come: 30-day check-in]]'] },
         { name: 'AI consulting and strategy', line: 'Where AI fits your workflows, skills and readiness, with quick wins first.', caps: ['Readiness review', 'Tool choices', 'Roadmap', 'Quick wins'] },
       ],
       extra: {

@@ -64,7 +64,7 @@ export const brandSprint = {
   hero: {
     eyebrow: 'Sprints · 02 · Brand Sprint',
     title: 'A brand in *ten working days.*',
-    line: 'Logo system, color, type and six real pieces of your brand in use, plus the guidelines and files your team needs to run with it.',
+    line: 'Logo system, color, type and real pieces of your brand in use, plus the guidelines and files your team needs to run with it. [[To come: how many applications]]',
     image: { src: '/explore/design-a/assets/sprints-hero-galaxy-2.webp', w: 1152, h: 768, pos: 'center 15%' },
     ctas: [bookCall, { label: 'See what’s included', href: '#included', style: 'light-o' }],
     height: 540,
@@ -78,21 +78,21 @@ export const brandSprint = {
   ] as [string, string][],
   parts: {
     eyebrow: 'What you walk away with',
-    title: 'Three parts. *You choose six.*',
-    side: 'The same for every Brand Sprint. Only the six applications change, and you pick those at kickoff.',
+    title: 'Three parts. *You choose.*',
+    side: 'The same for every Brand Sprint. Only the applications change, and you pick those at kickoff. [[To come: how many applications]]',
     cards: [
       { name: 'The identity', intro: 'The core system everything else is built from.', items: ['Logo, wordmark and mark', 'Color for screen and print', 'Type system', 'Image direction', 'One graphic element'] },
-      { name: 'Your brand in use', intro: 'Real pieces, designed and exported. Not mockups for a deck.', items: ['Six applications from the menu', 'Launch-ready exports', 'Social profile kit'] },
+      { name: 'Your brand in use', intro: 'Real pieces, designed and exported. Not mockups for a deck.', items: ['Applications from the menu', 'Launch-ready exports', 'Social profile kit'] },
       { name: 'Handover', intro: 'Everything your team needs to keep it consistent.', items: ['Guidelines in Figma and PDF', 'Figma library of styles and parts', 'Exported asset kit', 'Recorded handover call'], dark: true },
     ],
   },
   menu: {
     eyebrow: 'The menu',
-    title: 'Choose *your six.*',
+    title: 'Choose *your pieces.*',
     side: 'The pieces you need for what you’re launching. Chosen at kickoff, finished by day 10.',
     items: [
       ['Website hero', 'Desktop and mobile'], ['Product or app screen', 'One key screen'], ['Pitch deck template', 'Ten master slides'],
-      ['Social set', 'Nine posts and profile kit'], ['Ad set', 'Six sizes'], ['Signage', 'One sign or banner'],
+      ['Social set', 'Posts and profile kit [[To come: how many posts]]'], ['Ad set', '[[To come: how many sizes]]'], ['Signage', 'One sign or banner'],
       ['Packaging', 'One item, front and back'], ['Merch', 'Two items'], ['Email kit', 'Header and signature'],
     ] as [string, string][],
   },
@@ -102,10 +102,10 @@ export const brandSprint = {
     side: 'A short questionnaire before day 1. Decisions happen on live calls, and nothing sits waiting for feedback.',
     decisionDays: [1, 3, 5, 8, 10],
     days: [
-      { k: 'Day 1', t: 'Kickoff', p: 'Your questionnaire answers become the brief. We lock your six.' },
+      { k: 'Day 1', t: 'Kickoff', p: 'Your questionnaire answers become the brief. We lock your applications.' },
       { k: 'Day 3', t: 'Two directions', p: 'Shown live. You pick one on the call and tell us what to push.' },
       { k: 'Day 5', t: 'System review', p: 'Logo, type and color refined.' },
-      { k: 'Day 8', t: 'Your six, in use', p: 'The chosen pieces in the chosen direction, adjusted live.' },
+      { k: 'Day 8', t: 'Your pieces, in use', p: 'The chosen pieces in the chosen direction, adjusted live.' },
       { k: 'Day 10', t: 'Handover', p: 'Guidelines, library and every file, walked through and in your name.' },
     ] as Step[],
   },
@@ -125,7 +125,7 @@ export const brandSprint = {
       { k: '', t: '30 days of fixes', p: 'Anything that doesn’t work as agreed is fixed free.' },
     ] as Step[],
     addonsTitle: 'Add-ons, agreed before kickoff',
-    addons: ['Strategy and positioning day', 'Naming, adds five days', 'Motion logo', 'Full pitch deck', 'Extra application', 'Photography direction'],
+    addons: ['Strategy and positioning day', 'Naming [[To come: added days]]', 'Motion logo', 'Full pitch deck', 'Extra application', 'Photography direction'],
     addonsNote: 'Each keeps the ten-day timeline unless noted. [[To come: add-on prices]]',
   },
   faq: [
@@ -134,7 +134,7 @@ export const brandSprint = {
     { q: 'What do you need from us?', a: 'The questionnaire, about twenty minutes, and the people who decide on short calls of an hour or less.' },
     { q: 'What if we don’t like either direction?', a: 'It’s rare, because the questionnaire sets the brief. If it happens, we take what worked from both and show a third route by day 5.' },
     { q: 'Do we own everything?', a: 'Yes. Final files, source files and rights to the finished identity are yours at handover.' },
-    { q: 'Can we add a website?', a: 'Yes. The Web Sprint can start the week after handover, so you can be live with a new brand and site in about seven weeks.' },
+    { q: 'Can we add a website?', a: 'Yes. The Web Sprint can start the week after handover. [[To come: brand and site timeline]]' },
   ],
   others: {
     eyebrow: 'Other sprints',
@@ -146,7 +146,7 @@ export const brandSprint = {
   cta: {
     eyebrow: 'Start a Brand Sprint',
     title: 'Let’s talk about *your brand.*',
-    lead: 'Book a 30-minute call. We’ll check the fit, confirm the sprint and agree your start week.',
+    lead: 'Book a call [[To come: call length]]. We’ll check the fit, confirm the sprint and agree your start week.',
     ctas: [{ label: 'Book a call', href: AUDIT_CALL, style: 'teal' }, { label: 'Get a free audit', href: AUDIT_FREE, style: 'dark-o' }],
   } as Cta,
 };

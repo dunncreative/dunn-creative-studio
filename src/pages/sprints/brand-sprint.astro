@@ -46,7 +46,7 @@ feature.item = { ...feature.item, caps: undefined, img: { src: feature.item.img.
         <div><p class="a-eyebrow">{b.menu.eyebrow}</p><h2 class="a-d a-h2" style="margin-top:16px" set:html={rich(b.menu.title)} /></div>
         <div class="a-shead__side"><p class="a-body">{b.menu.side}</p></div>
       </div>
-      <ul class="a-menu">{b.menu.items.map(([n, d]) => <li><b>{n}</b><span>{d}</span></li>)}</ul>
+      <ul class="a-menu">{b.menu.items.map(([n, d]) => <li><b>{n}</b><span set:html={rich(d)} /></li>)}</ul>
     </div>
   </section>
 
@@ -73,7 +73,7 @@ feature.item = { ...feature.item, caps: undefined, img: { src: feature.item.img.
       <Steps steps={b.yours.steps} />
       <div style="margin-top:48px">
         <p class="a-eyebrow">{b.yours.addonsTitle}</p>
-        <ul class="a-caps" style="margin-top:14px">{b.yours.addons.map((t) => <li>{t}</li>)}</ul>
+        <ul class="a-caps" style="margin-top:14px">{b.yours.addons.map((t) => <li set:html={rich(t)} />)}</ul>
         <p class="a-panel__note" set:html={rich(b.yours.addonsNote)} />
       </div>
     </div>

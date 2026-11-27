@@ -406,3 +406,13 @@ select.a-field{appearance:none;background-image:linear-gradient(45deg,transparen
 .a-timeline p{margin:4px 0 0;color:var(--a-g600);font-size:15px;line-height:1.5}
 .a-two{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:clamp(32px,5vw,72px);align-items:start}
 @media (max-width:900px){.a-two{grid-template-columns:1fr}}
+
+/* Held lines (Decision D, Freeman 27 Nov): a cap that is only a 'To come' chip shows the chip alone; on production
+   the chip is stripped, so the empty item hides. */
+.a-caps>.is-held{border:0;background:none;padding:0}
+.a-caps>li:empty,.a-menu span:empty{display:none}
+
+/* Case studies keep their live body (Decision B, Freeman 27 Nov): only the headings switch to type option 1,
+   Inter Display Light (Inter at the display optical size, weight 300). Sizes, spacing and order stay as live. */
+.a-legacy :is(.lhero h1,.chap h2,.featw h2){font-family:var(--a-font);font-weight:300;font-optical-sizing:auto;font-variation-settings:'opsz' 32;letter-spacing:-.035em}
+.a-legacy :is(.lhero h1,.chap h2,.featw h2) em{font-family:var(--a-serif);font-style:italic;font-weight:400;font-variation-settings:normal;letter-spacing:-.01em;color:inherit}
