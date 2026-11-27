@@ -5,6 +5,42 @@ The working canvas is a Claude Design artifact Freeman owns: https://claude.ai/a
 (agents can't open it; the A artboards are exported as static pages in `public/explore/design-a/`, served at
 `/explore/design-a/` on every Deploy Preview).
 
+## CONTENT CARRY-OVER — 27 Nov (Freeman): new template, keep the real content
+
+The picked pages are the **template** (layout, sections, type, imagery style). Where a live page already has real
+content, keep that content and pour it into the new template. Placeholder text in the artboards never replaces
+real copy.
+
+- **Case studies, all four: KEEP THE LIVE PAGES AS THEY ARE (Freeman, 27 Nov evening).** Freeman loves the live
+  case study pages and wants them kept: https://dunncreative.netlify.app/work/ironwood-homes/, `/work/jeremy-jones-deeper/`,
+  `/work/asymbol/`, `/work/mountain-mind-project/`. Keep their layout, sections, order, copy, images, captions,
+  chapters, "What we delivered" tags, AI-directed labels and notes (Ironwood "In use", the Deeper "What Chris made"
+  line, the Mountain Mind "Photos by Chris Dunn." note) exactly as live, from `src/pages/work/[slug].astro`,
+  `src/data/caseStudies.ts` (copy v03) and `public/work/<slug>/` / `src/assets/work/`. **Only apply the new master
+  template:** the Direction A header and nav, footer, type (option 1, PR #23 fonts), colour tokens, spacing scale,
+  buttons and the closing CTA panel, so the case studies sit in the same site as the picked pages. Don't move them
+  into `case-ironwood-v2.html`'s layout; that artboard (truck-door hero) is now reference only, and the Ironwood
+  page keeps its live hero. If a shell change would visibly alter a case study's body layout, stop and ask Freeman
+  in Decisions with before/after screenshots.
+- **Celtic / triskele Lab post** at `/lab/celtic-triskele/`: build it from `lab-post-celtic.html` with Freeman's 12
+  images in `public/explore/design-a/assets/lab/celtic/` (Triskele Worlds, Celtic Ink Spirals). That page is the
+  Lab post template. Its body copy stays the marked placeholder until Freeman writes it; the other Lab entries in
+  `src/data/lab.ts` keep their titles and stay unpublished or marked until Freeman's images and words arrive.
+- **Work index**: the six picked projects link to the four case studies; Peace Park and GU Energy cards use their
+  existing images in `public/work/` and `src/assets/work/` (no case study pages).
+- **Keep and reuse:** client logos and Freeman's logo files, Chris's portraits (`src/assets/studio/`, plus the new
+  `heroes/chris-dunn-portrait-5.webp`), the hero images in `public/explore/design-a/assets/`, the Sprints and
+  services copy already live where the picked page uses the same line, `src/lib/held.ts` items, redirects in
+  `netlify.toml`, `noindex`, and the type files from PR #23.
+- **Retire on the picked routes:** the Ridge/V2 page layouts those routes used (keep the files until Freeman
+  confirms, then remove in a later PR), the "More work" strip on `/work/`, the mountain placeholder hero.
+- **About: Freeman picked About v3 (27 Nov evening).** Build `/about/` from `about-v3.html` (see the picks table). It uses the
+  real facts already on the live About page (20+ years, the five credits, Jackson, WY) and Freeman's new portrait
+  (`assets/about/chris-dunn-portrait-about.webp`, shown in greyscale). The portrait column is `position: sticky` on
+  desktop, so the bio, credits and How we work scroll past it; it unsticks below 900px. Sprint cards show no lengths
+  or prices (held). The closing CTA uses `assets/about/about-cta-galaxy-color.webp` under a dark overlay, tagged
+  AI-directed image; the hero uses `heroes/spare-hero-galaxy-bw.webp`, also tagged.
+
 ## FREEMAN'S PAGE PICKS — 27 Nov 2026 (LOCKED: build the development site from these)
 
 Freeman picked the pages below as the foundation of the new site: the web design, structure, voice and pages to
@@ -25,10 +61,11 @@ templates, copy, imagery and details, so build them as reusable components, not 
 | Sprints | A · Sprints v2 (galaxy image hero) | `sprints-v2.html` (galaxy image 1) | `/sprints/` |
 | Brand Sprint | A · Brand Sprint (single sprint page) | `brand-sprint.html` (galaxy image 2) | `/sprints/brand-sprint/` |
 | Work | A · Work v3 (v2 + bigger closing CTA) | `work-v4.html` (six projects, two per row) | `/work/` |
-| Case study | A · Case study · Ironwood Homes | `case-ironwood-v2.html` (truck-door hero) | `/work/ironwood-homes/` |
+| Case study | A · Case study · Ironwood Homes | `case-ironwood-v2.html` (truck-door hero) — **superseded 27 Nov evening: keep the live case study pages, apply only the new shell (see CONTENT CARRY-OVER). Freeman removed this PNG from the picks folder.** | `/work/ironwood-homes/` |
 | Lab | A · Lab | `lab-v2.html` | `/lab/` |
 | Lab post | A · Lab post · Celtic triskele | `lab-post-celtic.html` | `/lab/celtic-triskele/` |
 | Contact | A · Contact (from the agents' contact-a) | `contact-a.html` (on PR #19's branch) | `/contact/` |
+| About (added 27 Nov evening) | A · About v3 (v1 top + v2 bottom) | `about-v3.html` (galaxy B&W hero, three cards, sticky portrait with credits and How we work, Why Dunn Creative, Creative Sprints, colour galaxy CTA) | `/about/` |
 
 Settled by the picks:
 - **Look:** Direction A everywhere. Image hero panel at the top of every page; grey offer cards with Includes
@@ -61,6 +98,7 @@ The named ones are Freeman's; the rest are Claude's proposed mapping, which Free
 | Brand Sprint | `sprints-hero-galaxy-2.webp` | `dc-alternate-hero-image-5.JPG` |
 | Work | `heroes/work-hero-cd-armor.webp` (proposed) | `Dunn-Creative-Graphics-Armor-009-Wide.png` |
 | Contact | `heroes/contact-hero-cd-moon.webp` (proposed) | `dunncreative-website-hero-image-4.JPG` |
+| About | `heroes/spare-hero-galaxy-bw.webp` (hero) · `about/about-cta-galaxy-color.webp` (closing CTA) | spare hero · `dc-alternate-hero-image.JPG` (sent in chat) |
 | Spares | `heroes/spare-hero-galaxy-*.webp` | `dc-alternate-hero-image.JPG`, `-3`, `-4` |
 
 New portrait: `heroes/chris-dunn-portrait-5.webp` (`Images/Chris-Dunn-Portraits/Chris-Dunn-Portrait-5.jpg`), for About
@@ -69,7 +107,7 @@ about 35 files) are in `Images/Dunn-Creative-Lab-and-Section-Images/`: pull only
 at 2400px or less, and keep each page's media small.
 
 Still to come from Freeman (keep placeholders, don't invent): prices and terms; the Celtic post's own words; Ironwood project facts;
-the About page pick (not in this set: keep the live About until he picks).
+(About is now picked: About v3, 27 Nov evening.)
 
 ## What's decided (Freeman)
 - Direction **A** for the whole site: white pages, wide margins, black rounded panels, light headlines with one
