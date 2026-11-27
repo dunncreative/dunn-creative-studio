@@ -1,56 +1,32 @@
 ---
-// Sprints (24 Nov). No exploration pick exists for this page (Plans A was never built; Sprints
-// replaces it), so it is built in the picked pages' v2 style from the sprint one-pager concept
-// (docs/duet/sprint-one-pager), per Website Master Brief v04 §5 and content-decisions v03.
-// Prices and the open-slots badge stay off (held: sprint-prices). The Refresh Package stays off.
-// v04 · 11 trim pass: six sections (hero with the buyer sentence, offers in buying-path order, tabs, what you own,
-// FAQ, start form). The proof band, menu picker, five rules, work cards and founder/fit band fold into lines and the FAQ.
-import V2 from '../layouts/V2.astro';
-import html from '../v2/sprints.html?raw';
+// Sprints (v04 · 12): Freeman's 27 Nov pick, A · Sprints v2 (public/explore/design-a/sprints-v2.html, galaxy image 1),
+// on the Direction A template. Copy: src/data/sprints.ts. No prices (held: sprint-prices).
+// Kept from the live page: the FAQ answers (real copy). Not carried over: the live page's tabs for the other three
+// sprint plans and its start form; the sprint buttons now go to /contact/ (Brand Sprint to its own page).
+// The 24 Nov markup (src/v2/sprints.html) stays in the repo until Freeman confirms it can go.
+import A from '../layouts/A.astro';
+import AHero from '../components/a/AHero.astro';
+import ASection from '../components/a/ASection.astro';
+import SprintCards from '../components/a/SprintCards.astro';
+import BuyPanel from '../components/a/BuyPanel.astro';
+import Steps from '../components/a/Steps.astro';
+import Faq from '../components/a/Faq.astro';
+import CtaPanel from '../components/a/CtaPanel.astro';
+import { sprints, sprintsHero, brandSprintDays, owned, sprintsFaq, sprintsCta, BRAND_SPRINT } from '../data/sprints';
+import { nn } from '../lib/rich';
 ---
-<V2 title="Sprints · Dunn Creative" description="Fixed-scope sprints from Dunn Creative: a free Audit, a Brand Sprint, a Web Sprint, a Launch Film, an AI Workflow Sprint and a monthly Creative Retainer, each with a day-by-day plan.">
-  <Fragment set:html={html} />
-  <script is:inline>
-    (function () {
-      var bar = document.querySelector('[data-sprint-tabs]');
-      if (bar) {
-        var wrap = bar.parentNode;
-        var btns = bar.querySelectorAll('button');
-        var panels = wrap.querySelectorAll('[data-panel]');
-        function show(key) {
-          btns.forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.tab === key ? 'true' : 'false'); });
-          panels.forEach(function (p) { p.hidden = p.dataset.panel !== key; });
-        }
-        bar.hidden = false;
-        wrap.classList.add('tabs-on');
-        btns.forEach(function (b) { b.addEventListener('click', function () { show(b.dataset.tab); }); });
-        show(btns[0].dataset.tab);
-      }
-      // Start form (v04 · 11): offer buttons preselect "What do you need?"; the site-size question shows for Web Sprint only.
-      var form = document.querySelector('[data-start-form]');
-      if (form) {
-        var size = form.querySelector('[data-web-only]');
-        var status = form.querySelector('[data-start-status]');
-        function sync() {
-          var web = form.querySelector('input[name=need][value="Web Sprint"]');
-          if (size) size.hidden = !(web && web.checked);
-        }
-        form.addEventListener('change', sync);
-        document.querySelectorAll('[data-need]').forEach(function (a) {
-          a.addEventListener('click', function () {
-            var r = form.querySelector('input[name=need][value="' + a.dataset.need + '"]');
-            if (r) r.checked = true;
-            sync();
-          });
-        });
-        form.addEventListener('submit', function (e) {
-          e.preventDefault();
-          var n = form.querySelector('#sp-name'), m = form.querySelector('#sp-email');
-          if (!n.checkValidity() || !m.checkValidity()) { status.textContent = 'Please add your name and a valid email.'; return; }
-          status.textContent = 'Preview only. Nothing was sent.';
-        });
-        sync();
-      }
-    })();
-  </script>
-</V2>
+<A title="Sprints · Dunn Creative" description="Fixed-scope sprints from Dunn Creative: a free Audit, a Brand Sprint, a Web Sprint, a Launch Film, an AI Workflow Sprint and a monthly Creative Retainer, each with a day-by-day plan.">
+  <AHero hero={sprintsHero} />
+  <section class="a-wrap a-sec is-tight" id="sprints" aria-label="The sprints">
+    <p style="margin-bottom:20px"><span class="held">To come: sprint lengths and terms</span></p>
+    <SprintCards items={sprints.map((s, i) => ({ s, n: nn(i + 1) }))} firstGrey />
+  </section>
+  <BuyPanel panel={{ eyebrow: 'How a Brand Sprint runs', title: 'Counted in days, decided on calls.', steps: brandSprintDays, ctas: [{ label: 'See the Brand Sprint', href: BRAND_SPRINT, style: 'teal' }] }} />
+  <ASection title="Everything is *yours.*" size="md" space="tight">
+    <Steps steps={owned} tone="plain" />
+  </ASection>
+  <ASection title="Straight *answers.*" eyebrow="FAQ" size="md" space="tight">
+    <Faq items={sprintsFaq} />
+  </ASection>
+  <CtaPanel cta={sprintsCta} id="start" />
+</A>

@@ -1,0 +1,18 @@
+---
+// Sprint cards (sprints-v2, brand-sprint "Other sprints"): number, length, name, one line, a link. The first card
+// can be grey to mark the starting point (the Audit).
+import type { Sprint } from '../../data/sprints';
+import { rich } from '../../lib/rich';
+interface Props { items: { s: Sprint; n: string; line?: string; cta?: string }[]; firstGrey?: boolean }
+const { items, firstGrey = false } = Astro.props;
+---
+<ul class="a-cards is-narrow">
+  {items.map(({ s, n, line, cta }, i) => (
+    <li class={`a-card is-line${firstGrey && i === 0 ? ' is-first' : ''}`}>
+      <div class="a-card__meta"><span>{n}</span><span>{s.term}</span></div>
+      <h3 class="a-d a-card__name">{s.name}</h3>
+      <p class="a-card__line" set:html={rich(line ?? s.line)} />
+      <a class="a-card__act" href={s.href}>{cta ?? s.cta}</a>
+    </li>
+  ))}
+</ul>
