@@ -1,0 +1,25 @@
+---
+// Image hero panel (README page system, rule 1): rounded image panel, white text over a bottom gradient,
+// eyebrow, one h1 with one italic accent word, one line, two buttons inside the panel, and a corner tag for
+// any AI or placeholder image. Slot: content under the panel (client names, back/next links, fact strip).
+import type { Hero } from '../../lib/a';
+import { rich, plain } from '../../lib/rich';
+import ABtns from './ABtns.astro';
+interface Props { hero: Hero }
+const { hero } = Astro.props;
+const { image } = hero;
+const style = `--h:${hero.height ?? 560}px;--hm:${Math.min(hero.height ?? 560, 540)}px`;
+---
+<section class="a-wrap a-hero">
+  <div class="a-hero__panel" style={style}>
+    <img class="a-hero__img" src={image.src} alt={image.alt ?? ''} width={image.w} height={image.h} style={image.pos ? `--pos:${image.pos}` : undefined} fetchpriority="high" decoding="async" />
+    <span class="a-tag">{image.tag ?? 'AI-directed image'}</span>
+    <p class="a-eyebrow">{plain(hero.eyebrow)}</p>
+    <h1 class={`a-d a-h1 a-hero__title${hero.small ? ' is-sm' : ''}`} set:html={rich(hero.title)} />
+    <div class="a-hero__row">
+      {hero.line && <p class={`a-hero__line${hero.wideLine ? ' is-wide' : ''}`} set:html={rich(hero.line)} />}
+      <ABtns items={hero.ctas} />
+    </div>
+  </div>
+  <slot />
+</section>

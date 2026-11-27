@@ -1,10 +1,77 @@
 ---
-// About E, Freeman's pick (24 Nov page picks). Markup comes from Page Explorations v2
-// (src/v2/about.html, links pointed at the real routes). Other versions: /explore/pages/.
-// "To come" chips mark content still to supply; the list is on /held.
-import V2 from '../layouts/V2.astro';
-import html from '../v2/about.html?raw';
+// About (v04 · 18): Freeman's pick A · About v3 (public/explore/design-a/about-v3.html, picked 27 Nov evening), on the
+// Direction A template. Copy: src/data/about.ts. Replaces the 24 Nov About E body (src/v2/about.html stays in the
+// repo until Freeman confirms it can go). Both images are AI-directed and tagged.
+import A from '../layouts/A.astro';
+import AHero from '../components/a/AHero.astro';
+import ASection from '../components/a/ASection.astro';
+import ABtns from '../components/a/ABtns.astro';
+import CtaPanel from '../components/a/CtaPanel.astro';
+import { aboutHero, aboutWhat, aboutLed, aboutWhy, aboutSprints, aboutCta } from '../data/about';
+import { rich, nn } from '../lib/rich';
+const L = aboutLed;
 ---
-<V2 title={'About · Dunn Creative'} description={'Chris Dunn directs every Dunn Creative project: 20+ years across creative direction, brand, web and content, based in Jackson, WY.'}>
-  <Fragment set:html={html} />
-</V2>
+<A title="About · Dunn Creative" description="Chris Dunn directs every Dunn Creative project: 20+ years across creative direction, brand, web and content, based in Jackson, WY.">
+  <AHero hero={aboutHero} />
+
+  <ASection id="studio" eyebrow={aboutWhat.eyebrow} title={aboutWhat.title} side={aboutWhat.side}>
+    <ul class="a-cards a-about-cards">
+      {aboutWhat.cards.map((c, i) => (
+        <li class="a-card"><span class="a-num">{nn(i + 1)}</span><div><h3 class="a-d a-card__name">{c.name}</h3><p class="a-card__line">{c.line}</p></div></li>
+      ))}
+    </ul>
+  </ASection>
+
+  <section class="a-wrap a-sec is-tight">
+    <div class="a-about-led">
+      <figure class="a-about-led__fig">
+        <img src={L.portrait.src} alt={L.portrait.alt} width={L.portrait.w} height={L.portrait.h} loading="lazy" decoding="async" />
+        <figcaption><span>{L.caption[0]}</span><span>{L.caption[1]}</span></figcaption>
+      </figure>
+      <div>
+        <p class="a-eyebrow">{L.eyebrow}</p>
+        <h2 class="a-d a-h2 a-about-led__h" set:html={rich(L.title)} />
+        <p class="a-about-led__body">{L.body}</p>
+        <p class="a-eyebrow a-about-led__lbl">Credits</p>
+        <ul class="a-about-credits">{L.credits.map(([n, r]) => <li><span class="a-d">{n}</span><span>{r}</span></li>)}</ul>
+        <p class="a-eyebrow a-about-led__lbl is-how">{L.howEyebrow}</p>
+        <h3 class="a-d a-about-led__h3" set:html={rich(L.howTitle)} />
+        <ol class="a-about-how">{L.how.map(([t, p], i) => <li><span>{nn(i + 1)}</span><h4 class="a-d">{t}</h4><p>{p}</p></li>)}</ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="a-wrap a-sec is-tight">
+    <div class="a-panel a-about-why" style={`--tile:url(${aboutWhy.tile})`}>
+      <div class="a-panel__head">
+        <div><p class="a-eyebrow">{aboutWhy.eyebrow}</p><h2 class="a-d a-h2" set:html={rich(aboutWhy.title)} /></div>
+        <p class="a-panel__side">{aboutWhy.side}</p>
+      </div>
+      <ol class="a-about-points">{aboutWhy.points.map(([t, p], i) => <li><span>{nn(i + 1)}</span><h3 class="a-d">{t}</h3><p>{p}</p></li>)}</ol>
+    </div>
+  </section>
+
+  <section class="a-wrap a-sec is-tight">
+    <div class="a-well a-about-well">
+      <div class="a-shead">
+        <div><p class="a-eyebrow">{aboutSprints.eyebrow}</p><h2 class="a-d a-h2" style="margin-top:16px" set:html={rich(aboutSprints.title)} /></div>
+        <div class="a-shead__side"><p class="a-body">{aboutSprints.side}</p></div>
+      </div>
+      <ul class="a-about-sprints">
+        {aboutSprints.cards.map((c, i) => (
+          <li><a class="a-card is-line" href={c.href}>
+            <div class="a-card__meta"><span>{nn(i + 1)}</span><span class="a-about-go" aria-hidden="true">→</span></div>
+            <h3 class="a-d a-card__name">{c.name}</h3>
+            <p class="a-card__line">{c.line}</p>
+          </a></li>
+        ))}
+      </ul>
+      <div class="a-about-foot">
+        <p>{aboutSprints.footLine}</p>
+        <ABtns items={aboutSprints.footCtas} />
+      </div>
+    </div>
+  </section>
+
+  <CtaPanel cta={aboutCta.cta} image={aboutCta.image} />
+</A>

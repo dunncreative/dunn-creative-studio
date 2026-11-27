@@ -1,0 +1,22 @@
+---
+// Services hub cards (services-v2): big grey link cards with a round arrow button, sub-services as capsules,
+// and "Buy it as" / "See it in".
+import type { Area } from '../../data/areas';
+import { rich, nn } from '../../lib/rich';
+interface Props { areas: Area[] }
+const { areas } = Astro.props;
+---
+<ul class="a-cards is-wide">
+  {areas.map((a, i) => (
+    <li style="display:flex;min-width:0"><a class="a-card is-svc" href={a.href} style="flex:1">
+      <div class="a-card__top"><span class="a-num">{nn(i + 1)}</span><span class="a-go" aria-hidden="true">→</span></div>
+      <h2 class="a-d a-card__name">{a.name}</h2>
+      <p class="a-card__line" set:html={rich(a.line)} />
+      <ul class="a-caps is-lg">{a.caps.map((c) => <li>{c}</li>)}</ul>
+      <div class="a-card__foot"><dl>
+        <div><dt>Buy it as</dt><dd>{a.buyAs.name}{a.buyAs.term && <span set:html={rich(` · ${a.buyAs.term}`)} />}</dd></div>
+        {a.seeIn && <div><dt>See it in</dt><dd>{a.seeIn}</dd></div>}
+      </dl></div>
+    </a></li>
+  ))}
+</ul>

@@ -1,0 +1,18 @@
+---
+// Step / day list. tone: 'dark' (inside a black panel), 'light' (ink rules on white), 'plain' (grey rules on white).
+import type { Step } from '../../lib/a';
+import { rich } from '../../lib/rich';
+interface Props { steps: Step[]; tone?: 'dark' | 'light' | 'plain'; big?: boolean; level?: 'h3' | 'h4' }
+const { steps, tone = 'dark', big = false, level = 'h3' } = Astro.props;
+const H = level;
+const cls = ['a-steps', tone !== 'dark' && `is-${tone}`, big && 'is-big'].filter(Boolean).join(' ');
+---
+<ol class={cls}>
+  {steps.map((s) => (
+    <li>
+      {s.k && <p class="a-steps__k" set:html={rich(s.k)} />}
+      <H class="a-steps__t" set:html={rich(s.t)} />
+      {s.p && <p class="a-steps__p" set:html={rich(s.p)} />}
+    </li>
+  ))}
+</ol>

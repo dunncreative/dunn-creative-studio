@@ -1,0 +1,91 @@
+---
+// Brand Sprint (v04 · 12): Freeman's 27 Nov pick, A · Brand Sprint (public/explore/design-a/brand-sprint.html,
+// galaxy image 2), on the Direction A template. Copy: src/data/sprints.ts (brandSprint). No prices: the price,
+// the add-on prices and the FAQ price answer are held chips.
+import A from '../../layouts/A.astro';
+import AHero from '../../components/a/AHero.astro';
+import ASection from '../../components/a/ASection.astro';
+import FactStrip from '../../components/a/FactStrip.astro';
+import Steps from '../../components/a/Steps.astro';
+import FeatureWork from '../../components/a/FeatureWork.astro';
+import SprintCards from '../../components/a/SprintCards.astro';
+import Faq from '../../components/a/Faq.astro';
+import CtaPanel from '../../components/a/CtaPanel.astro';
+import { brandSprint as b, sprints } from '../../data/sprints';
+import { area } from '../../data/areas';
+import { rich, nn } from '../../lib/rich';
+const others = b.others.slugs.map((s) => {
+  const i = sprints.findIndex((x) => x.slug === s);
+  const sp = sprints[i];
+  return { s: sp, n: nn(i + 1), line: b.others.lines[s], cta: `See ${sp.name} →` };
+});
+const feature = { ...area('brand-identity').page!.feature!, eyebrow: 'Brand work' };
+feature.item = { ...feature.item, caps: undefined, img: { src: feature.item.img.src, alt: 'Ironwood Homes identity on an entrance sign, AI-directed mockup' } };
+---
+<A title="Brand Sprint · Sprints · Dunn Creative" description="A Brand Sprint from Dunn Creative: a logo system, color, type and six real pieces of your brand in use, in ten working days.">
+  <AHero hero={b.hero}>
+    <FactStrip facts={b.facts} style="margin-top:28px" />
+    <p style="margin-top:20px"><a class="a-quiet" href="/sprints/">← All sprints</a></p>
+  </AHero>
+
+  <ASection id="included" eyebrow={b.parts.eyebrow} title={b.parts.title} side={b.parts.side}>
+    <ul class="a-cards is-narrow">
+      {b.parts.cards.map((c) => (
+        <li class={`a-card${c.dark ? ' is-dk' : ''}`}>
+          <h3 class="a-d a-card__name" style="margin-top:0">{c.name}</h3>
+          <p class="a-card__intro">{c.intro}</p>
+          <ol class="a-card__list">{c.items.map((it, i) => <li><span>{nn(i + 1)}</span>{it}</li>)}</ol>
+        </li>
+      ))}
+    </ul>
+  </ASection>
+
+  <section class="a-wrap a-sec is-tight">
+    <div class="a-well">
+      <div class="a-shead">
+        <div><p class="a-eyebrow">{b.menu.eyebrow}</p><h2 class="a-d a-h2" style="margin-top:16px" set:html={rich(b.menu.title)} /></div>
+        <div class="a-shead__side"><p class="a-body">{b.menu.side}</p></div>
+      </div>
+      <ul class="a-menu">{b.menu.items.map(([n, d]) => <li><b>{n}</b><span set:html={rich(d)} /></li>)}</ul>
+    </div>
+  </section>
+
+  <ASection eyebrow={b.runs.eyebrow} title={b.runs.title} side={b.runs.side}>
+    <ol class="a-days" aria-label="Working days 1 to 10; decision days marked">
+      {Array.from({ length: 10 }, (_, i) => i + 1).map((d) => <li class={b.runs.decisionDays.includes(d) ? 'is-on' : undefined}>{d}</li>)}
+    </ol>
+    <p class="a-cap" style="margin:12px 0 40px">Working days. Decision days in black.</p>
+    <Steps steps={b.runs.days} tone="light" />
+  </ASection>
+
+  <FeatureWork feature={feature} />
+
+  <ASection eyebrow={b.fit.eyebrow} title={b.fit.title} side={b.fit.side}>
+    <div class="a-fit">
+      <div class="a-card a-fitcard"><p class="a-eyebrow">A good fit if</p><ul>{b.fit.good.map((t) => <li><span aria-hidden="true">✓</span>{t}</li>)}</ul></div>
+      <div class="a-card is-dk a-fitcard"><p class="a-eyebrow">Not a fit if</p><ul>{b.fit.not.map((t) => <li><span aria-hidden="true">—</span>{t}</li>)}</ul></div>
+    </div>
+  </ASection>
+
+  <section class="a-wrap a-sec is-tight">
+    <div class="a-panel">
+      <div class="a-panel__head"><div><p class="a-eyebrow">{b.yours.eyebrow}</p><h2 class="a-d a-h2 is-md" set:html={rich(b.yours.title)} /></div></div>
+      <Steps steps={b.yours.steps} />
+      <div style="margin-top:48px">
+        <p class="a-eyebrow">{b.yours.addonsTitle}</p>
+        <ul class="a-caps" style="margin-top:14px">{b.yours.addons.map((t) => <li set:html={rich(t)} />)}</ul>
+        <p class="a-panel__note" set:html={rich(b.yours.addonsNote)} />
+      </div>
+    </div>
+  </section>
+
+  <ASection eyebrow="Questions" title="Good *questions.*">
+    <Faq items={b.faq} />
+  </ASection>
+
+  <ASection eyebrow={b.others.eyebrow} title={b.others.title} side={b.others.side} space="tight">
+    <SprintCards items={others} />
+  </ASection>
+
+  <CtaPanel cta={b.cta} />
+</A>

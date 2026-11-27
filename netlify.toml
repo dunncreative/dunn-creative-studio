@@ -19,15 +19,8 @@
 
 # 24 Nov page picks: four case studies only, and three service pages. Older routes point to their new homes.
 # (302s: the content files stay in the repo and these can come back.)
-# v04 · 10: AI Creative and AI for Teams live on /ai/ (its two halves); old typed URLs resolve there.
-[[redirects]]
-  from = "/services/ai-creative/"
-  to = "/ai/"
-  status = 302
-[[redirects]]
-  from = "/services/ai-for-teams/"
-  to = "/ai/#team"
-  status = 302
+# v04 · 10 sent /services/ai-creative/ and /services/ai-for-teams/ to /ai/. v04 · 12 (Freeman's 27 Nov picks)
+# gives both their own area pages again, so those two redirects are gone; /ai/ itself stays live.
 [[redirects]]
   from = "/services/campaigns-content/"
   to = "/services/marketing-creative/"

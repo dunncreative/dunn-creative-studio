@@ -2,7 +2,13 @@
 // Case study template: Case study G, Freeman's 24 Nov pick (a sticky project rail while the chapters
 // scroll past; "revise and explore other options later"). Four case studies only (src/data/caseStudies.ts,
 // copy v03 as written). The older project pages redirect to /work/ (netlify.toml); their content files stay.
-import V2 from '../../layouts/V2.astro';
+//
+// v04 · 12 (Freeman, 27 Nov late evening): KEEP THE LIVE CASE STUDY PAGES AS THEY ARE. Only the master template
+// changes: the Direction A header and footer and the closing CTA panel come from the A layout; the body (hero,
+// rail, chapters, images, captions, tags, AI labels and notes, Next project) is unchanged and still renders with
+// public/v2/v2.css (`legacy`). Don't move them into the case-ironwood-v2 artboard layout.
+import A from '../../layouts/A.astro';
+import CtaPanel from '../../components/a/CtaPanel.astro';
 import { caseStudies, caseHref, type CaseStudy, type CsImage } from '../../data/caseStudies';
 import { TALK } from '../../lib/site';
 
@@ -15,7 +21,7 @@ const ratio = (im: CsImage) => `aspect-ratio:${im.w}/${im.h}`;
 const heroDark = cs.heroFit === 'contain';
 const pill = 'AI-directed mockup';
 ---
-<V2 title={`${cs.title} · Work · Dunn Creative`} description={cs.summary}>
+<A title={`${cs.title} · Work · Dunn Creative`} description={cs.summary} legacy>
   <section class="lhero"><div class="wrap">
     <p class="lbl">Work / {cs.category}</p>
     <h1>{cs.title}</h1>
@@ -76,9 +82,9 @@ const pill = 'AI-directed mockup';
       <div class="t"><p class="lbl">{next.category}</p><h2>{next.title}</h2><p>{next.summary}</p><span class="tlink" style="margin-top:18px">View project +</span></div>
     </a>
   </div></section>
-  <section class="dark tex ctabar"><div class="wrap">
-    <h2>Have a project in mind?</h2>
-    <p>Dunn Creative helps brands build identities, websites, content and campaigns that connect and perform.</p>
-    <div class="ctas"><a class="btn" href={TALK}>Start a project →</a><a class="btn ghost" href={TALK}>Get in touch</a></div>
-  </div></section>
-</V2>
+  <CtaPanel cta={{
+    title: 'Have a project in mind?',
+    lead: 'Dunn Creative helps brands build identities, websites, content and campaigns that connect and perform.',
+    ctas: [{ label: 'Start a project →', href: TALK, style: 'teal' }, { label: 'Get in touch', href: TALK, style: 'dark-o' }],
+  }} />
+</A>

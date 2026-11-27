@@ -1,0 +1,40 @@
+---
+// Closing CTA: one black panel at the end of every page. With `image`, the big Work version (image, lead,
+// Audit → Sprint → Retainer, email link).
+import type { Cta, HeroImage, Step } from '../../lib/a';
+import { rich } from '../../lib/rich';
+import { EMAIL } from '../../lib/site';
+import ABtns from './ABtns.astro';
+import Steps from './Steps.astro';
+interface Props { cta: Cta; image?: HeroImage; steps?: Step[]; mail?: boolean; id?: string }
+const { cta, image, steps, mail = false, id = 'talk' } = Astro.props;
+---
+<section class="a-wrap a-sec is-tight is-end" id={id}>
+  {image ? (
+    <div class="a-cta is-image">
+      <img class="a-hero__img" src={image.src} alt={image.alt ?? ''} width={image.w} height={image.h} style={image.pos ? `--pos:${image.pos}` : undefined} loading="lazy" decoding="async" />
+      <span class="a-tag">{image.tag ?? 'AI-directed image'}</span>
+      <div>
+        {cta.eyebrow && <p class="a-eyebrow" set:html={rich(cta.eyebrow)} />}
+        <h2 class="a-d" set:html={rich(cta.title)} />
+        {cta.lead && <p class="a-cta__lead" set:html={rich(cta.lead)} />}
+      </div>
+      <div>
+        {steps && <Steps steps={steps} />}
+        <div class="a-cta__base">
+          <ABtns items={cta.ctas} />
+          {mail && <a class="a-cta__mail" href={`mailto:${EMAIL}`}>{EMAIL}</a>}
+        </div>
+      </div>
+    </div>
+  ) : (
+    <div class="a-cta">
+      <div>
+        {cta.eyebrow && <p class="a-eyebrow" set:html={rich(cta.eyebrow)} />}
+        <h2 class="a-d" set:html={rich(cta.title)} />
+        {cta.lead && <p class="a-cta__lead" set:html={rich(cta.lead)} />}
+      </div>
+      <ABtns items={cta.ctas} />
+    </div>
+  )}
+</section>

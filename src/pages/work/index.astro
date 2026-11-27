@@ -1,10 +1,47 @@
 ---
-// Work E, Freeman's pick (24 Nov page picks). Markup comes from Page Explorations v2
-// (src/v2/work.html, links pointed at the real routes). Other versions: /explore/pages/.
-// "To come" chips mark content still to supply; the list is on /held.
-import V2 from '../../layouts/V2.astro';
-import html from '../../v2/work.html?raw';
+// Work index (v04 · 12): Freeman's 27 Nov pick, A · Work v3 (work-v4.html): six projects two per row, filter chips
+// and the big closing CTA. Data: src/data/workIndex.ts. The "More work" strip is retired here; the 24 Nov Work E
+// markup (src/v2/work.html) stays in the repo until Freeman confirms it can go.
+import A from '../../layouts/A.astro';
+import AHero from '../../components/a/AHero.astro';
+import WorkGrid from '../../components/a/WorkGrid.astro';
+import CtaPanel from '../../components/a/CtaPanel.astro';
+import { work, workHero, workFilters, workCta } from '../../data/workIndex';
+import { area } from '../../data/areas';
+const cases = work.filter((w) => w.href).length;
 ---
-<V2 title={'Work · Dunn Creative'} description={'Brand work, websites and campaigns from Dunn Creative, a creative studio in Jackson, WY.'}>
-  <Fragment set:html={html} />
-</V2>
+<A title="Work · Dunn Creative" description="Brand work, websites, campaigns and film packaging from Dunn Creative, a creative studio in Jackson, WY.">
+  <AHero hero={workHero} />
+  <section class="a-wrap" style="padding-top:8px">
+    <div class="a-chips" data-work-filter role="group" aria-label="Filter the work">
+      <button type="button" class="a-chip" data-f="all" aria-pressed="true">All work</button>
+      {workFilters.map((s) => <button type="button" class="a-chip" data-f={s} aria-pressed="false">{area(s).name}</button>)}
+      <span class="a-chips__count" data-work-count>{work.length} projects · {cases} case studies</span>
+    </div>
+  </section>
+  <section class="a-wrap a-sec" aria-label="Projects">
+    <WorkGrid items={work} />
+  </section>
+  <CtaPanel cta={workCta.cta} image={workCta.image} steps={workCta.steps} mail />
+  <script is:inline>
+    (function () {
+      var bar = document.querySelector('[data-work-filter]');
+      var grid = document.querySelector('[data-work-grid]');
+      if (!bar || !grid) return;
+      var items = grid.querySelectorAll('li');
+      var count = document.querySelector('[data-work-count]');
+      var base = count ? count.textContent : '';
+      bar.addEventListener('click', function (e) {
+        var b = e.target.closest('button[data-f]');
+        if (!b) return;
+        var f = b.dataset.f, n = 0;
+        bar.querySelectorAll('button').forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+        items.forEach(function (li) {
+          var show = f === 'all' || (li.dataset.areas || '').split('|').indexOf(f) > -1;
+          li.hidden = !show; if (show) n++;
+        });
+        if (count) count.textContent = f === 'all' ? base : n + (n === 1 ? ' project' : ' projects');
+      });
+    })();
+  </script>
+</A>

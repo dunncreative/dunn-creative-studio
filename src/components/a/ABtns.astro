@@ -1,0 +1,9 @@
+---
+// Button row. Sentence-case labels, rounded corners (Brand Guidelines v1). Styles: light / light-o on images,
+// teal / dark-o inside black panels, ink / ink-o on white.
+import type { Btn } from '../../lib/a';
+interface Props { items?: Btn[]; class?: string }
+const { items = [], class: cls = '' } = Astro.props;
+const attrs = (b: Btn) => Object.fromEntries(Object.entries(b.data ?? {}).map(([k, v]) => [`data-${k}`, v]));
+---
+{items.length > 0 && <div class={`a-btns ${cls}`.trim()}>{items.map((b) => <a class={`a-btn is-${b.style ?? 'ink'}`} href={b.href} {...attrs(b)}>{b.label}</a>)}</div>}

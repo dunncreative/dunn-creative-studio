@@ -1,10 +1,27 @@
 ---
-// Services I, Freeman's pick (24 Nov page picks). Markup comes from Page Explorations v2
-// (src/v2/services.html, links pointed at the real routes). Other versions: /explore/pages/.
-// "To come" chips mark content still to supply; the list is on /held.
-import V2 from '../../layouts/V2.astro';
-import html from '../../v2/services.html?raw';
+// Services hub (v04 · 12): Freeman's 27 Nov pick, A · Services v2 (services-v2.html, moon hero, two-column cards
+// with capsules, "Buy it as" and "See it in"). Cards: src/data/areas.ts. The 24 Nov Services I markup
+// (src/v2/services.html) stays in the repo until Freeman confirms it can go.
+import A from '../../layouts/A.astro';
+import AHero from '../../components/a/AHero.astro';
+import ServiceCards from '../../components/a/ServiceCards.astro';
+import CtaPanel from '../../components/a/CtaPanel.astro';
+import { areas } from '../../data/areas';
+import { AUDIT_FREE, TALK } from '../../lib/site';
+import type { Hero } from '../../lib/a';
+const hero: Hero = {
+  eyebrow: 'Services',
+  title: 'Six areas. *One* studio.',
+  line: 'One creative director on every project, specialists by the job, and AI in the production line. Buy any of it as a sprint.',
+  image: { src: '/explore/design-a/assets/services-hero-moons.webp', w: 1600, h: 1200, pos: 'center 55%' },
+  ctas: [{ label: 'See the sprints', href: '/sprints/', style: 'light' }, { label: 'Get a free audit', href: AUDIT_FREE, style: 'light-o' }],
+  height: 520,
+};
 ---
-<V2 title={'Services · Dunn Creative'} description={'Brand Identity, Web & Digital, Marketing Creative, Film & Motion, AI Creative and AI for Teams from Dunn Creative in Jackson, WY.'}>
-  <Fragment set:html={html} />
-</V2>
+<A title="Services · Dunn Creative" description="Brand Identity, Web & Digital, Marketing Creative, Film & Motion, AI Creative and AI for Teams from Dunn Creative in Jackson, WY.">
+  <AHero hero={hero} />
+  <section class="a-wrap a-sec is-tight" aria-label="The six areas">
+    <ServiceCards areas={areas} />
+  </section>
+  <CtaPanel cta={{ title: 'Not sure where to *start?*', ctas: [{ label: 'Let’s talk', href: TALK, style: 'teal' }, { label: 'Get a free audit', href: AUDIT_FREE, style: 'dark-o' }] }} />
+</A>

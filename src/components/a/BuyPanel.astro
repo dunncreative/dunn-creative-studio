@@ -1,0 +1,25 @@
+---
+// The one black panel per page: "How to buy it" (an area's sprint day plan, no price) or "How to work with us"
+// (Audit → Sprint → Retainer).
+import type { BuyPanel } from '../../lib/a';
+import { rich } from '../../lib/rich';
+import Steps from './Steps.astro';
+import ABtns from './ABtns.astro';
+interface Props { panel: BuyPanel; id?: string }
+const { panel, id } = Astro.props;
+---
+<section class="a-wrap a-sec is-tight" id={id}>
+  <div class="a-panel">
+    <div class="a-panel__head">
+      <div>
+        <p class="a-eyebrow" set:html={rich(panel.eyebrow)} />
+        <h2 class="a-d a-h2 is-md" set:html={rich(panel.title)} />
+      </div>
+      {panel.side && <p class="a-panel__side" set:html={rich(panel.side)} />}
+    </div>
+    <Steps steps={panel.steps} big={panel.big} />
+    {panel.note && <p class="a-panel__note" set:html={rich(panel.note)} />}
+    <ABtns items={panel.ctas} class="a-panel__acts" />
+    <slot />
+  </div>
+</section>

@@ -1,0 +1,20 @@
+---
+// "What we offer" grid: grey cards with a number, name, one line and "Includes" capsules. At most one dark card.
+import type { Offer } from '../../lib/a';
+import { rich, nn } from '../../lib/rich';
+interface Props { offers: Offer[] }
+const { offers } = Astro.props;
+---
+<ul class="a-cards">
+  {offers.map((o, i) => (
+    <li class={`a-card${o.dark ? ' is-dk' : ''}`}>
+      <span class="a-num">{nn(i + 1)}</span>
+      <h3 class="a-d a-card__name" set:html={rich(o.name)} />
+      <p class="a-card__line" set:html={rich(o.line)} />
+      <div class="a-card__inc">
+        <p class="a-eyebrow">{o.label ?? 'Includes'}</p>
+        <ul class="a-caps">{o.caps.map((c) => <li class={/^\[\[.*\]\]$/.test(c) ? 'is-held' : undefined} set:html={rich(c)} />)}</ul>
+      </div>
+    </li>
+  ))}
+</ul>

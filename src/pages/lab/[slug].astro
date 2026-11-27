@@ -1,102 +1,112 @@
 ---
-// Lab post template: Lab post B, Freeman's 24 Nov pick, reworked per his note: Lab post A's title and
-// lead image, then E's fact strip, numbered sections and AI band. Nothing is written yet, so every
-// body is a "To come" chip under the real section titles from src/data/lab.ts (held: lab-posts, lab-ai).
-import V2 from '../../layouts/V2.astro';
+// Lab post template (v04 · 12): Freeman's 27 Nov pick, A · Lab post · Celtic triskele
+// (public/explore/design-a/lab-post-celtic.html), on the Direction A template. One template for every piece in
+// src/data/lab.ts; images, facts and blocks come from src/data/labPosts.ts. Only /lab/celtic-triskele/ has images.
+//
+// Nothing in the Lab is written yet. Deploy Previews show the artboard's placeholder copy with a "Placeholder copy"
+// chip and held chips for the rest; production (CONTEXT=production) leaves placeholder copy out and says
+// "Full story coming soon." (as the live Lab posts did, v04 · 10 QA).
+import A from '../../layouts/A.astro';
+import AHero from '../../components/a/AHero.astro';
+import FactStrip from '../../components/a/FactStrip.astro';
+import CtaPanel from '../../components/a/CtaPanel.astro';
 import { lab, labHref, type LabPiece } from '../../data/lab';
-import { TALK } from '../../lib/site';
+import { labPosts, type LabPost } from '../../data/labPosts';
 import { SHOW_HELD } from '../../lib/held';
+import { TALK } from '../../lib/site';
+import { rich, plain, nn } from '../../lib/rich';
+import type { Hero } from '../../lib/a';
 
 export function getStaticPaths() {
-  return lab.map((p, i) => ({
-    params: { slug: p.slug },
-    props: { p, nextTwo: [lab[(i + 1) % lab.length], lab[(i + 2) % lab.length]] },
-  }));
+  return lab.map((p, i) => ({ params: { slug: p.slug }, props: { p, nextTwo: [lab[(i + 1) % lab.length], lab[(i + 2) % lab.length]] } }));
 }
 const { p, nextTwo } = Astro.props as { p: LabPiece; nextTwo: LabPiece[] };
-// Live site (CONTEXT=production, v04 · 10 QA): no shell text. The page is the title block plus one plain line,
-// and held titles show the piece's label. Deploy Previews keep the full template with its "To come" chips.
 const live = !SHOW_HELD;
 const cardTitle = (x: LabPiece) => (x.titleHeld ? (live ? x.label : 'Field guide title to come') : x.title);
 const title = cardTitle(p);
-const n = (i: number) => String(i + 1).padStart(2, '0');
-const [first, second, ...rest] = p.sections;
-const tones = ['ink', 'stone', 'fog'];
-const lc = (s: string) => s.charAt(0).toLowerCase() + s.slice(1);
+// Pieces without their own post data get the template's blocks under their real section titles, all held.
+const post: LabPost = labPosts[p.slug] ?? {
+  facts: [['Type', p.label], ['Topic', p.titleHeld ? '[[To come: topic]]' : p.title], ['Tools', '[[To come: tools]]'], ['AI use', '[[To come: what AI did]]'], ['Year', '[[To come: year]]']],
+  blocks: p.sections.map((s) => ({ title: s })),
+  ai: '',
+};
+// The hero needs an image: pieces without one use the Lab's spare galaxy image, tagged as a placeholder.
+const hero: Hero = {
+  eyebrow: `Lab · ${p.label}`,
+  title: p.slug === 'celtic-triskele' ? 'Celtic / *triskele*' : title,
+  line: live ? 'Full story coming soon.' : (post.line ? `${post.line} [[Placeholder line]]` : '[[To come: standfirst]]'),
+  image: post.hero
+    ? { ...post.hero }
+    : { src: '/explore/design-a/assets/heroes/spare-hero-galaxy-bw.webp', w: 1152, h: 768, pos: 'center 50%', tag: 'Placeholder image · AI-directed' },
+  ctas: [{ label: 'Start reading ↓', href: '#read', style: 'light' }, { label: 'All Lab pieces', href: '/lab/', style: 'light-o' }],
+  height: 560,
+};
+const lc = (s: string) => plain(s).charAt(0).toLowerCase() + plain(s).slice(1);
+const nextCard = (x: LabPiece) => labPosts[x.slug]?.card;
 ---
-<V2 title={`${p.titleHeld ? p.label : p.title} · Lab · Dunn Creative`} description={`${p.label} from the Dunn Creative Lab.`}>
-  <section class="band tight"><div class="wrap"><div class="read">
-    <p class="lbl">Lab · {p.label}</p>
-    <h1 style="font-size:clamp(40px,6vw,80px);font-weight:400;letter-spacing:-.04em;line-height:1;margin:14px 0 22px">{title}</h1>
-    {live
-      ? <p class="stand" style="max-width:none">Full story coming soon.</p>
-      : <p class="stand" style="max-width:none"><span class="held">To come: standfirst</span></p>}
-    <div style="margin-top:28px"><div class="author">
-      <img src="/v2/assets/chris-portrait.webp" alt="Chris Dunn" loading="lazy" decoding="async" />
-      <div><b>Chris Dunn</b><span class="cap" style="margin:0">Founder and creative director</span></div>
-      {!live && <span style="margin-left:auto"><span class="held">To come: publish date</span></span>}
-    </div></div>
-  </div></div></section>
-  {!live && (<>
-  <div class="wrap"><div class="wide">
-    <div class="grad ink" style="aspect-ratio:16/9;">Lead image · Fig. 01</div>
-    <p class="cap">Fig. 01 · Caption to come.</p>
-  </div></div>
-  <section class="band tight"><div class="wrap">
-    <dl class="fstrip">
-      <div><dt>Type</dt><dd>{p.label}</dd></div>
-      <div><dt>Topic</dt><dd>{p.titleHeld ? <span class="held">To come: topic</span> : p.title}</dd></div>
-      <div><dt>Tools</dt><dd><span class="held">To come: tools</span></dd></div>
-      <div><dt>AI use</dt><dd><span class="held">To come: what AI did</span></dd></div>
-      <div><dt>Year</dt><dd><span class="held">To come: year</span></dd></div>
-    </dl>
-  </div></section>
-  <section class="band" style="padding-top:0"><div class="wrap">
-    <div class="read">
-      <p class="lbl" style="margin-top:56px">01</p>
-      <h2 style="margin-top:8px">{first}</h2>
-      <p><span class="held">To come: {lc(first)} copy</span></p>
-      <p class="lbl" style="margin-top:56px">02</p>
-      <h2 style="margin-top:8px">{second}</h2>
-      {p.kind !== 'series' && <p><span class="held">To come: {lc(second)} copy</span></p>}
-    </div>
-    {p.kind === 'series' && (
-      <div class="wide" style="margin:clamp(36px,5vw,56px) auto">
-        <div class="mods c2" style="grid-template-columns:2fr 1fr"><div class="grad stone" style="aspect-ratio:4/3;">Fig. 02</div><div class="grad " style="aspect-ratio:2/3;">Fig. 03</div></div>
-        <div class="mods c3" style="grid-template-columns:repeat(3,1fr);margin-top:12px"><div class="grad " style="aspect-ratio:1/1;">Fig. 04</div><div class="grad ink" style="aspect-ratio:1/1;">Fig. 05</div><div class="grad fog" style="aspect-ratio:1/1;">Fig. 06</div></div>
-        <div style="margin-top:12px"><div class="grad ink" style="aspect-ratio:21/9;">Fig. 07 · full width</div></div>
-        <p class="cap">The series: one large, one tall, a row of three, then full width. Captions to come.</p>
+<A title={`${p.titleHeld ? p.label : p.title} · Lab · Dunn Creative`} description={`${p.label} from the Dunn Creative Lab. Every piece says what was AI-assisted.`}>
+  <AHero hero={hero} />
+
+  <section class="a-wrap a-sec is-tight" id="read">
+    <div class="a-read">
+      <div class="a-author">
+        <img src="/v2/assets/chris-portrait.webp" alt="Chris Dunn" width="52" height="52" loading="lazy" decoding="async" />
+        <div><b>Chris Dunn</b><span>Founder and creative director</span></div>
+        {!live && <span style="margin-left:auto"><span class="held">Placeholder copy · date to come</span></span>}
       </div>
-    )}
-    <div class="read">
-      {rest.map((s, i) => (
-        <>
-          <p class="lbl" style="margin-top:56px">{n(i + 2)}</p>
-          <h2 style="margin-top:8px">{s}</h2>
-          <p><span class="held">To come: {lc(s)} copy</span></p>
-        </>
-      ))}
+      <FactStrip facts={post.facts} style="margin-top:28px" />
     </div>
-  </div></section>
-  <section class="band dark tex"><div class="wrap split">
-    <div><p class="lbl">{n(p.sections.length)} · AI use</p><h2 style="margin-top:14px">What AI did on this piece.</h2></div>
-    <div><p><span class="held">To come: what AI did on this piece</span></p><p class="stand" style="margin-top:16px">Every Lab piece says what was AI-assisted.</p></div>
-  </div></section>
-  <section class="band tight"><div class="wrap"><div class="read"><div class="tags"><span>{p.label}</span><span>Lab</span></div></div></div></section>
-  </>)}
-  <section class="band grey"><div class="wrap">
-    <div class="sechead"><h2>Next in the Lab</h2><a class="tlink" href="/lab/">The Lab +</a></div>
-    <div class="wrow r2">
-      {nextTwo.map((x, i) => (
-        <a class="wc" href={labHref(x.slug)}>
-          <div class={`grad ${tones[i % 3]}`} style="aspect-ratio:16/10;">{!live && 'Lab image'}</div>
-          <p class="lbl">{x.label}</p><h3>{cardTitle(x)}</h3>
-        </a>
-      ))}
+  </section>
+
+  <section class="a-wrap a-sec is-flush">
+    {post.blocks.map((b, i) => (
+      <>
+        <div class="a-read" style="margin-top:56px">
+          <p class="a-eyebrow">{nn(i + 1)}</p>
+          <h2 class="a-d" set:html={rich(b.title)} />
+          {!live && (b.draft
+            ? <p class="a-body">{b.draft} <span class="held">Placeholder copy</span></p>
+            : <p class="a-body"><span class="held">To come: {lc(b.title)} copy</span></p>)}
+        </div>
+        {b.rows && (
+          <figure class={`a-gallery${b.well ? ' is-well' : ''}`}>
+            {b.rows.map((r) => (
+              <div class="a-gallery__row" style={`--min:${r.min}px;--ar:${r.ar}`}>
+                {r.images.map((im) => <div class="a-media"><img src={im.src} alt={im.alt} loading="lazy" decoding="async" /><span class="a-pill">AI-directed image</span></div>)}
+              </div>
+            ))}
+            {b.caption && <figcaption class="a-cap">{b.caption}</figcaption>}
+          </figure>
+        )}
+      </>
+    ))}
+  </section>
+
+  <section class="a-wrap a-sec is-tight">
+    <div class="a-band">
+      <div><p class="a-eyebrow">AI use</p><h2 class="a-d a-h2 is-md">What AI did on this <em>piece</em>.</h2></div>
+      <div>
+        {post.ai && <p class="a-body" style="color:#fff">{post.ai}</p>}
+        <p style="margin-top:12px"><span class="held">To come: tools and what AI did</span></p>
+        <p class="a-body" style="margin-top:12px">Every Lab piece says what was AI-assisted.</p>
+      </div>
     </div>
-  </div></section>
-  <section class="band cta" id="talk"><div class="wrap">
-    <h2>Want this thinking on your brand?</h2>
-    <div class="side"><p class="stand">Tell us what you're building.</p><a class="btn" href={TALK}>Let's talk</a></div>
-  </div></section>
-</V2>
+  </section>
+
+  <section class="a-wrap a-sec is-tight">
+    <div class="a-shead"><h2 class="a-d a-h2">Next in the <em>Lab</em></h2><a class="a-link" href="/lab/">The Lab →</a></div>
+    <ul class="a-work">
+      {nextTwo.map((x) => (
+        <li><a class="a-wcard" href={labHref(x.slug)}>
+          <div class="a-media" style="aspect-ratio:16/10">
+            {nextCard(x) ? <><img src={nextCard(x)!.src} alt={nextCard(x)!.alt} loading="lazy" decoding="async" /><span class="a-pill">AI-directed image</span></> : <div class="a-ph">{live ? '' : 'Lab image · placeholder'}</div>}
+          </div>
+          <p class="a-eyebrow">{x.label}</p>
+          <h3 class="a-d a-wcard__name">{cardTitle(x)}</h3>
+        </a></li>
+      ))}
+    </ul>
+  </section>
+
+  <CtaPanel cta={{ title: 'Want this thinking on your *brand?*', lead: 'Tell us what you’re building.', ctas: [{ label: 'Let’s talk', href: TALK, style: 'teal' }, { label: 'Get a free audit', href: '/contact/?way=free#audit', style: 'dark-o' }] }} />
+</A>

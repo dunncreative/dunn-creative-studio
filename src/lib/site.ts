@@ -68,12 +68,13 @@ export const defaults = [
 /** Nav look for every page: 'light' for now (Freeman, 18 Nov). A page can pass nav="dark" to Work. */
 export const NAV_THEME: 'light' | 'dark' = 'light';
 
-/** The six service areas, everywhere on the site (24 Nov page picks). */
+/** The six service areas, everywhere on the site (24 Nov page picks). v04 · 12 (27 Nov picks): AI Creative and
+ *  AI for Teams have their own area pages again; /ai/ stays live as it was. */
 export const SERVICE_AREAS = [
   { label: 'Brand Identity', href: '/services/brand-identity/' },
   { label: 'Web & Digital', href: '/services/web-digital/' },
   { label: 'Marketing Creative', href: '/services/marketing-creative/' },
   { label: 'Film & Motion', href: '/services/film-motion/' },
-  { label: 'AI Creative', href: '/ai/' },
-  { label: 'AI for Teams', href: '/ai/#team' },
+  { label: 'AI Creative', href: '/services/ai-creative/' },
+  { label: 'AI for Teams', href: '/services/ai-for-teams/' },
 ];

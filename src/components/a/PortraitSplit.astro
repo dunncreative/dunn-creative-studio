@@ -1,0 +1,16 @@
+---
+// Portrait + statement ("Who you work with").
+import { rich } from '../../lib/rich';
+interface Props { img: { src: string; alt: string; w?: number; h?: number }; eyebrow: string; title: string; body?: string }
+const { img, eyebrow, title, body } = Astro.props;
+---
+<section class="a-wrap a-sec is-tight is-end">
+  <div class="a-split">
+    <img class="a-split__img" src={img.src} alt={img.alt} width={img.w} height={img.h} loading="lazy" decoding="async" />
+    <div class="a-split__text">
+      <p class="a-eyebrow">{eyebrow}</p>
+      <h2 class="a-d" set:html={rich(title)} />
+      {body && <p class="a-body" set:html={rich(body)} />}
+    </div>
+  </div>
+</section>

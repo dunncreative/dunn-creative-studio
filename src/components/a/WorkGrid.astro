@@ -1,0 +1,27 @@
+---
+// Work cards, two per row: 4:3 image, AI pill where the image is AI-directed, label, title, one line.
+// Cards without an href (no case study page) render as plain blocks, not links.
+import type { WorkItem } from '../../lib/a';
+import { rich } from '../../lib/rich';
+interface Props { items: WorkItem[]; variant?: 'home' | 'index'; level?: 'h2' | 'h3' }
+const { items, variant = 'index', level = 'h3' } = Astro.props;
+const H = level;
+---
+<ul class={`a-work${variant === 'home' ? ' is-home' : ''}`} data-work-grid>
+  {items.map((w) => {
+    const Tag = w.href ? 'a' : 'div';
+    return (
+      <li data-areas={(w.areas ?? []).join('|')}>
+        <Tag class="a-wcard" href={w.href}>
+          <div class={`a-media${w.img.dark ? ' is-dark' : ''}`}>
+            <img src={w.img.src} alt={w.img.alt} width={w.img.w} height={w.img.h} loading="lazy" decoding="async" class={w.img.fit === 'contain' ? 'is-contain' : undefined} style={w.img.pos ? `object-position:${w.img.pos}` : undefined} />
+            {w.ai && <span class="a-pill">{w.ai}</span>}
+          </div>
+          <p class="a-eyebrow" set:html={rich(w.label)} />
+          <H class="a-d a-wcard__name" set:html={rich(w.title)} />
+          {w.line && <p class="a-wcard__line" set:html={rich(w.line)} />}
+        </Tag>
+      </li>
+    );
+  })}
+</ul>

@@ -1,26 +1,79 @@
 ---
-// Contact E, Freeman's pick (24 Nov page picks). Markup comes from Page Explorations v2
-// (src/v2/contact.html, links pointed at the real routes). Other versions: /explore/pages/.
-// "To come" chips mark content still to supply; the list is on /held.
-import V2 from '../layouts/V2.astro';
-import raw from '../v2/contact.html?raw';
-import { SHOW_HELD } from '../lib/held';
-
-// Budget ranges are held (held: budget-ranges). On the live site (CONTEXT=production) step 5 "Roughly what
-// budget?" is left out and the form runs in five steps; Deploy Previews keep the placeholder step.
-function dropBudgetStep(html: string): string {
-  const start = html.indexOf('<div class="q"><p class="lbl">Step 5 of 6</p>');
-  const end = html.indexOf('<div class="q"><p class="lbl">Step 6 of 6</p>');
-  if (start < 0 || end < start) throw new Error('contact.html: budget step markers not found');
-  const bar6 = '<div class="bar" aria-hidden="true"><i class=on></i><i></i><i></i><i></i><i></i><i></i></div>';
-  if (!html.includes(bar6)) throw new Error('contact.html: step bar marker not found');
-  return (html.slice(0, start) + html.slice(end))
-    .replace(bar6, '<div class="bar" aria-hidden="true"><i class=on></i><i></i><i></i><i></i><i></i></div>')
-    .replace('Step 6 of 6', 'Step 5 of 5')
-    .replace(/Step ([1-4]) of 6/g, 'Step $1 of 5');
-}
-const html = SHOW_HELD ? raw : dropBudgetStep(raw);
+// Contact (v04 · 12): Freeman's 27 Nov pick, A · Contact (public/explore/design-a/contact-a.html), on the Direction A
+// template. Copy and form options: src/data/contact.ts. The budget step stays out (held: budget-ranges).
+// The form is a preview, as on the live page: it validates and says nothing was sent. The 24 Nov Contact E markup
+// (src/v2/contact.html, six-step form) stays in the repo until Freeman confirms it can go.
+import A from '../layouts/A.astro';
+import AHero from '../components/a/AHero.astro';
+import ASection from '../components/a/ASection.astro';
+import { contactHero, needs, kinds, timings, nextSteps, otherWays } from '../data/contact';
+import { EMAIL, PLACE } from '../lib/site';
+import { nn } from '../lib/rich';
 ---
-<V2 title={"Let's talk · Dunn Creative"} description={"Tell Dunn Creative what you're building, or start smaller with an audit."}>
-  <Fragment set:html={html} />
-</V2>
+<A title="Let’s talk · Dunn Creative" description="Tell Dunn Creative what you’re building, or start smaller with a free audit.">
+  <AHero hero={contactHero} />
+
+  <ASection id="form" eyebrow="Your project" title="A few quick *questions.*" side="Skip what doesn’t fit.">
+    <div class="a-two">
+      <form class="a-form a-card" style="background:var(--a-card)" data-contact-form novalidate>
+        <fieldset>
+          <legend>What do you need help with?</legend>
+          <div class="a-checks">{needs.map((n) => <label><input type="checkbox" name="area" value={n} /><span>{n}</span></label>)}</div>
+        </fieldset>
+        <div class="a-row2">
+          <label class="a-label">What kind of project is it?
+            <select class="a-field" name="kind"><option value="">Choose one</option>{kinds.map((k) => <option>{k}</option>)}</select>
+          </label>
+          <label class="a-label">When do you need it?
+            <select class="a-field" name="timing"><option value="">Choose one</option>{timings.map((k) => <option>{k}</option>)}</select>
+          </label>
+        </div>
+        <div class="a-row2">
+          <label class="a-label">Name*<input class="a-field" name="name" required autocomplete="name" /></label>
+          <label class="a-label">Email*<input class="a-field" name="email" type="email" required autocomplete="email" /></label>
+        </div>
+        <label class="a-label">Company or brand<input class="a-field" name="company" autocomplete="organization" /></label>
+        <label class="a-label">What’s the main goal?<textarea class="a-field" name="goal" rows="4"></textarea></label>
+        <div class="a-btns"><button type="submit" class="a-btn is-ink">Send</button><p class="a-status" role="status" aria-live="polite" data-contact-status></p></div>
+      </form>
+      <div>
+        <p class="a-eyebrow">What happens next</p>
+        <ol class="a-timeline" style="margin-top:16px">{nextSteps.map((s, i) => <li><span>{nn(i + 1)}</span><div><b>{s.t}</b><p>{s.p}</p></div></li>)}</ol>
+        <p class="a-eyebrow" style="margin-top:32px">Or write directly</p>
+        <p style="margin-top:8px"><a class="a-link" href={`mailto:${EMAIL}`}>{EMAIL}</a> <span style="color:var(--a-g600)">· {PLACE}</span></p>
+      </div>
+    </div>
+  </ASection>
+
+  <ASection id="audit" title="Other ways to *start*" size="md" space="tight end">
+    <ul class="a-cards is-narrow">
+      {otherWays.map((w, i) => (
+        <li class={`a-card${i === 2 ? ' is-dk' : ''}`} data-way={w.id}>
+          <span class="a-num">{nn(i + 1)}</span>
+          <h3 class="a-d a-card__name">{w.name}</h3>
+          <p class="a-card__line">{w.line}</p>
+          <div class="a-card__inc"><span class="held">{w.held}</span></div>
+        </li>
+      ))}
+    </ul>
+  </ASection>
+
+  <script is:inline>
+    (function () {
+      var form = document.querySelector('[data-contact-form]');
+      if (form) {
+        var status = form.querySelector('[data-contact-status]');
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          var n = form.elements.namedItem('name'), m = form.elements.namedItem('email');
+          if (!n.checkValidity() || !m.checkValidity()) { status.textContent = 'Please add your name and a valid email.'; return; }
+          status.textContent = 'Preview only. Nothing was sent.';
+        });
+      }
+      // ?way=free|call|advanced (the site's audit links) marks that way in.
+      var way = new URLSearchParams(location.search).get('way');
+      var card = way && document.querySelector('[data-way="' + way + '"]');
+      if (card) card.style.outline = '2px solid #1AA6AA';
+    })();
+  </script>
+</A>
