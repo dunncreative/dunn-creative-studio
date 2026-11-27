@@ -35,7 +35,7 @@ export const FOOTER_NAV = [...NAV, { label: 'Contact', href: '/contact/' }];
 export const defaults = [
   {
     q: 'Six service cards, not the Content Plan’s five',
-    applied: 'Settled 24 Nov (page picks): six areas everywhere: Brand Identity, Websites, Marketing Creative, Film & Motion, AI Creative, AI for Teams. AI Creative and AI for Teams link to /ai.',
+    applied: 'Settled 24 Nov (page picks): six areas everywhere: Brand Identity, Web & Digital (renamed from Websites, 24 Nov evening), Marketing Creative, Film & Motion, AI Creative, AI for Teams. AI Creative and AI for Teams link to /ai.',
     where: 'src/lib/site.ts (SERVICE_AREAS) and the v2 page markup',
   },
   {
@@ -71,9 +71,9 @@ export const NAV_THEME: 'light' | 'dark' = 'light';
 /** The six service areas, everywhere on the site (24 Nov page picks). */
 export const SERVICE_AREAS = [
   { label: 'Brand Identity', href: '/services/brand-identity/' },
-  { label: 'Websites', href: '/services/websites/' },
+  { label: 'Web & Digital', href: '/services/web-digital/' },
   { label: 'Marketing Creative', href: '/services/marketing-creative/' },
-  { label: 'Film & Motion', href: '/services/#video' },
+  { label: 'Film & Motion', href: '/services/film-motion/' },
   { label: 'AI Creative', href: '/ai/' },
   { label: 'AI for Teams', href: '/ai/#team' },
 ];

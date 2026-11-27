@@ -3,10 +3,12 @@
 // replaces it), so it is built in the picked pages' v2 style from the sprint one-pager concept
 // (docs/duet/sprint-one-pager), per Website Master Brief v04 §5 and content-decisions v03.
 // Prices and the open-slots badge stay off (held: sprint-prices). The Refresh Package stays off.
+// v04 · 11 trim pass: six sections (hero with the buyer sentence, offers in buying-path order, tabs, what you own,
+// FAQ, start form). The proof band, menu picker, five rules, work cards and founder/fit band fold into lines and the FAQ.
 import V2 from '../layouts/V2.astro';
 import html from '../v2/sprints.html?raw';
 ---
-<V2 title="Sprints · Dunn Creative" description="Fixed-scope sprints from Dunn Creative: an Audit, a Brand Sprint, a Web Sprint, a Launch Film, an AI Workflow Sprint and a monthly Creative Retainer, each with a day-by-day plan.">
+<V2 title="Sprints · Dunn Creative" description="Fixed-scope sprints from Dunn Creative: a free Audit, a Brand Sprint, a Web Sprint, a Launch Film, an AI Workflow Sprint and a monthly Creative Retainer, each with a day-by-day plan.">
   <Fragment set:html={html} />
   <script is:inline>
     (function () {
@@ -24,13 +26,30 @@ import html from '../v2/sprints.html?raw';
         btns.forEach(function (b) { b.addEventListener('click', function () { show(b.dataset.tab); }); });
         show(btns[0].dataset.tab);
       }
-      var menu = document.querySelector('[data-menu]');
-      var out = document.querySelector('[data-menu-count]');
-      if (menu && out) {
-        menu.addEventListener('change', function () {
-          var n = menu.querySelectorAll('input:checked').length;
-          out.textContent = n === 0 ? 'Pick four to six.' : n < 4 ? n + ' picked. Pick ' + (4 - n) + ' more.' : n <= 6 ? n + ' picked. That fits a Brand Sprint.' : n + ' picked. A Brand Sprint takes six at most.';
+      // Start form (v04 · 11): offer buttons preselect "What do you need?"; the site-size question shows for Web Sprint only.
+      var form = document.querySelector('[data-start-form]');
+      if (form) {
+        var size = form.querySelector('[data-web-only]');
+        var status = form.querySelector('[data-start-status]');
+        function sync() {
+          var web = form.querySelector('input[name=need][value="Web Sprint"]');
+          if (size) size.hidden = !(web && web.checked);
+        }
+        form.addEventListener('change', sync);
+        document.querySelectorAll('[data-need]').forEach(function (a) {
+          a.addEventListener('click', function () {
+            var r = form.querySelector('input[name=need][value="' + a.dataset.need + '"]');
+            if (r) r.checked = true;
+            sync();
+          });
         });
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          var n = form.querySelector('#sp-name'), m = form.querySelector('#sp-email');
+          if (!n.checkValidity() || !m.checkValidity()) { status.textContent = 'Please add your name and a valid email.'; return; }
+          status.textContent = 'Preview only. Nothing was sent.';
+        });
+        sync();
       }
     })();
   </script>

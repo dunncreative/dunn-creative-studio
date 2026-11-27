@@ -5,6 +5,13 @@ import V2Header from '../components/v2/V2Header.astro';
 import V2Footer from '../components/v2/V2Footer.astro';
 interface Props { title: string; description?: string }
 const { title, description } = Astro.props;
+// 'To come' chips (.held) show on Deploy Previews and /held, never on the live site (v04 · 10).
+// Netlify sets CONTEXT=production for main; local builds and previews keep the chips visible.
+const hideHeld = process.env.CONTEXT === 'production' && !Astro.url.pathname.startsWith('/held');
+// On production the chips are also taken out of the HTML (not only hidden), so no "To come" text ships in dist/.
+// Chips are plain-text spans; anything else stays as written.
+let body = await Astro.slots.render('default');
+if (hideHeld) body = body.replace(/<span class="held"[^>]*>[^<]*<\/span>/g, '');
 ---
 <!doctype html>
 <html lang="en">
@@ -14,14 +21,14 @@ const { title, description } = Astro.props;
     <meta name="robots" content="noindex, nofollow" />
     <title>{title}</title>
     {description && <meta name="description" content={description} />}
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <!-- Type option 1 (v04 · 1): self-hosted, see public/fonts/ and the @font-face rules in public/v2/v2.css. -->
+    <link rel="preload" href="/fonts/inter-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="/v2/v2.css" />
+    {hideHeld && <style is:inline set:html=".held{display:none!important}" />}
   </head>
   <body>
     <V2Header />
-    <main><slot /></main>
+    <main><Fragment set:html={body} /></main>
     <V2Footer />
   </body>
 </html>

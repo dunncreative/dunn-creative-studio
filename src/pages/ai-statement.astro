@@ -1,10 +1,12 @@
 ---
-// AI statement (footer link). The stance line is the approved copy from the AI page;
-// the sections under it are real titles with lorem ipsum until the statement is written.
-import Work from '../layouts/Work.astro';
+// AI statement (footer link), on the V2 layout and footer (v04 · 10 QA).
+// No approved statement copy exists yet (held: ai-statement-copy). The live site (CONTEXT=production) shows one
+// neutral holding line; Deploy Previews keep the draft structure (real section titles, the draft lines and
+// lorem ipsum) so the shape can be reviewed. Nothing here is a commitment until Freeman approves the text.
+import V2 from '../layouts/V2.astro';
 import Held from '../components/Held.astro';
-import CtaBox from '../components/CtaBox.astro';
 import { LOREM } from '../lib/lorem';
+import { SHOW_HELD } from '../lib/held';
 import { TALK } from '../lib/site';
 const sections = [
   ['What AI does here', 'AI drafts, versions and preps.'],
@@ -15,40 +17,28 @@ const sections = [
   ['Tools we use', 'We pick for your workflow: ChatGPT, Claude, Midjourney, Adobe Firefly, Runway and others. For client imagery we use commercially safe models only.'],
 ];
 ---
-<Work title="AI statement · Dunn Creative" description="How Dunn Creative uses AI, and what people always decide.">
-  <section class="band">
-    <div class="wrap">
-      <p class="eyebrow">AI statement</p>
-      <h1>Directed, not generated.</h1>
-      <p class="lede">AI drafts, versions and preps. People make the strategy, the direction and the final calls. We tell you what’s AI-assisted, every time.</p>
-      <p class="meta"><Held id="draft-copy" note="statement detail copy" /></p>
+<V2 title="AI statement · Dunn Creative" description="How Dunn Creative uses AI.">
+  <section class="lhero"><div class="wrap">
+    <p class="lbl">AI statement</p>
+    <h1>AI statement</h1>
+    <div class="lh2">
+      {SHOW_HELD
+        ? <p class="stand">Draft structure only (preview). <Held id="ai-statement-copy" /></p>
+        : <p class="stand">Our AI statement is being finalized. Ask us anything on the <a href={TALK}>contact page</a>.</p>}
+      <div class="ctas"><a class="tlink" href="/ai/">How we use AI +</a></div>
     </div>
-  </section>
-  <section class="band grey">
-    <div class="wrap">
-      <ol class="rows">
-        {sections.map(([t, line], i) => (
-          <li>
-            <span class="n">{String(i + 1).padStart(2, '0')}</span>
-            <h2>{t}</h2>
-            <div>{line && <p class="first">{line}</p>}<p>{LOREM[i % 3]}</p></div>
-          </li>
-        ))}
-      </ol>
-      {/* Ownership answer is a held item on the AI page FAQ too. */}
-      <p class="meta"><Held id="ownership" /></p>
-    </div>
-  </section>
-  <CtaBox title="Questions about how we use AI?" button="Let's talk" href={TALK} />
-</Work>
-<style>
-  h1 { max-width: 14ch; }
-  .meta { margin-top: 24px; }
-  .rows { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--grey-200); }
-  .rows li { display: grid; gap: 8px 32px; padding: 28px 0; border-bottom: 1px solid var(--grey-200); margin: 0; }
-  @media (min-width: 880px) { .rows li { grid-template-columns: 64px minmax(0, 4fr) minmax(0, 7fr); align-items: baseline; } }
-  .rows .n { color: var(--caption); font-variant-numeric: tabular-nums; }
-  .rows h2 { font-size: var(--fs-card); }
-  .rows p { margin: 0 0 10px; }
-  .rows .first { color: var(--ink); font-weight: 600; }
-</style>
+  </div></section>
+  {SHOW_HELD && (
+    <section class="band grey"><div class="wrap"><div class="read">
+      {sections.map(([t, line], i) => (
+        <>
+          <p class="lbl" style="margin-top:48px">{String(i + 1).padStart(2, '0')}</p>
+          <h2 style="margin-top:8px">{t}</h2>
+          {line && <p><b>{line}</b></p>}
+          <p>{LOREM[i % 3]}</p>
+        </>
+      ))}
+      <p style="margin-top:32px"><Held id="ownership" /></p>
+    </div></div></section>
+  )}
+</V2>

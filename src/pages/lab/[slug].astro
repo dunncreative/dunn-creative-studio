@@ -5,6 +5,7 @@
 import V2 from '../../layouts/V2.astro';
 import { lab, labHref, type LabPiece } from '../../data/lab';
 import { TALK } from '../../lib/site';
+import { SHOW_HELD } from '../../lib/held';
 
 export function getStaticPaths() {
   return lab.map((p, i) => ({
@@ -13,7 +14,11 @@ export function getStaticPaths() {
   }));
 }
 const { p, nextTwo } = Astro.props as { p: LabPiece; nextTwo: LabPiece[] };
-const title = p.titleHeld ? 'Field guide title to come' : p.title;
+// Live site (CONTEXT=production, v04 · 10 QA): no shell text. The page is the title block plus one plain line,
+// and held titles show the piece's label. Deploy Previews keep the full template with its "To come" chips.
+const live = !SHOW_HELD;
+const cardTitle = (x: LabPiece) => (x.titleHeld ? (live ? x.label : 'Field guide title to come') : x.title);
+const title = cardTitle(p);
 const n = (i: number) => String(i + 1).padStart(2, '0');
 const [first, second, ...rest] = p.sections;
 const tones = ['ink', 'stone', 'fog'];
@@ -23,13 +28,16 @@ const lc = (s: string) => s.charAt(0).toLowerCase() + s.slice(1);
   <section class="band tight"><div class="wrap"><div class="read">
     <p class="lbl">Lab · {p.label}</p>
     <h1 style="font-size:clamp(40px,6vw,80px);font-weight:400;letter-spacing:-.04em;line-height:1;margin:14px 0 22px">{title}</h1>
-    <p class="stand" style="max-width:none"><span class="held">To come: standfirst</span></p>
+    {live
+      ? <p class="stand" style="max-width:none">Full story coming soon.</p>
+      : <p class="stand" style="max-width:none"><span class="held">To come: standfirst</span></p>}
     <div style="margin-top:28px"><div class="author">
       <img src="/v2/assets/chris-portrait.webp" alt="Chris Dunn" loading="lazy" decoding="async" />
       <div><b>Chris Dunn</b><span class="cap" style="margin:0">Founder and creative director</span></div>
-      <span style="margin-left:auto"><span class="held">To come: publish date</span></span>
+      {!live && <span style="margin-left:auto"><span class="held">To come: publish date</span></span>}
     </div></div>
   </div></div></section>
+  {!live && (<>
   <div class="wrap"><div class="wide">
     <div class="grad ink" style="aspect-ratio:16/9;">Lead image · Fig. 01</div>
     <p class="cap">Fig. 01 · Caption to come.</p>
@@ -75,19 +83,20 @@ const lc = (s: string) => s.charAt(0).toLowerCase() + s.slice(1);
     <div><p><span class="held">To come: what AI did on this piece</span></p><p class="stand" style="margin-top:16px">Every Lab piece says what was AI-assisted.</p></div>
   </div></section>
   <section class="band tight"><div class="wrap"><div class="read"><div class="tags"><span>{p.label}</span><span>Lab</span></div></div></div></section>
+  </>)}
   <section class="band grey"><div class="wrap">
     <div class="sechead"><h2>Next in the Lab</h2><a class="tlink" href="/lab/">The Lab +</a></div>
     <div class="wrow r2">
       {nextTwo.map((x, i) => (
         <a class="wc" href={labHref(x.slug)}>
-          <div class={`grad ${tones[i % 3]}`} style="aspect-ratio:16/10;">Lab image</div>
-          <p class="lbl">{x.label}</p><h3>{x.titleHeld ? 'Field guide title to come' : x.title}</h3>
+          <div class={`grad ${tones[i % 3]}`} style="aspect-ratio:16/10;">{!live && 'Lab image'}</div>
+          <p class="lbl">{x.label}</p><h3>{cardTitle(x)}</h3>
         </a>
       ))}
     </div>
   </div></section>
   <section class="band cta" id="talk"><div class="wrap">
     <h2>Want this thinking on your brand?</h2>
-    <div class="side"><p class="stand">Tell us what you're building.</p><span class="held">To come: response time</span><a class="btn" href={TALK}>Let's talk</a></div>
+    <div class="side"><p class="stand">Tell us what you're building.</p><a class="btn" href={TALK}>Let's talk</a></div>
   </div></section>
 </V2>

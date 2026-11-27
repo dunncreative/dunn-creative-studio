@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Sprints A2 · image hero · Design round A · Dunn Creative</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500&amp;family=Inter:wght@400;500&amp;family=Instrument+Serif:ital@1&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#0B0C0D}a:hover{color:#10777A}
+.pg{font-family:Inter,system-ui,sans-serif;color:#0B0C0D;background:#FFFFFF;width:100%}
+.wrap{max-width:1280px;margin:0 auto;padding:0 clamp(20px,4vw,48px);box-sizing:border-box}
+.d{font-family:'Inter Tight',Inter,sans-serif;font-weight:300;letter-spacing:-0.035em;margin:0}
+.it{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;letter-spacing:-0.01em}
+.lbl{font-size:13px;letter-spacing:0.08em;text-transform:uppercase;color:#6B6E72;margin:0}
+.mut{color:#6B6E72}
+.h2{font-size:clamp(40px,4.6vw,64px)}
+.h3{font-size:30px;font-weight:400}
+.body{margin:0;color:#6B6E72;font-size:17px;line-height:1.55}
+.btn{text-decoration:none;border-radius:10px;padding:14px 20px;font-size:15px;display:inline-block}
+.b-w{background:#FFFFFF;color:#0B0C0D}.b-wo{color:#FFFFFF;border:1px solid rgba(255,255,255,.6)}
+.b-t{background:#1AA6AA;color:#0B0C0D;font-weight:500}.b-do{color:#FFFFFF;border:1px solid #3A3C3E}
+.b-k{background:#0B0C0D;color:#FFFFFF}.b-ko{color:#0B0C0D;border:1px solid #0B0C0D}
+.btns{display:flex;gap:12px;flex-wrap:wrap}
+.head{display:flex;align-items:center;gap:32px;min-height:80px;flex-wrap:wrap}
+.head nav{display:flex;gap:28px;margin-left:auto;flex-wrap:wrap}
+.head nav a{text-decoration:none;color:#6B6E72;font-size:15px}.head nav a.on{color:#0B0C0D}
+.talk{text-decoration:none;font-size:15px;border:1px solid #0B0C0D;border-radius:10px;padding:10px 16px}
+.ahero{position:relative;border-radius:20px;overflow:hidden;min-height:560px;display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(28px,4.5vw,64px);color:#FFFFFF;box-sizing:border-box;background-color:#0B0C0D;background-image:url('/v2/assets/hero-mountain-ai.webp');background-repeat:no-repeat;background-size:cover}
+.ahero::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,12,13,0) 0%,rgba(11,12,13,0) 45%,rgba(11,12,13,.85) 100%)}
+.ahero>*:not(.atag){position:relative}
+.ahero h1{font-size:clamp(46px,6.9vw,100px);line-height:0.98;margin-top:20px}
+.ahero .row{display:flex;justify-content:space-between;align-items:flex-end;gap:28px;flex-wrap:wrap;margin-top:28px}
+.ahero .line{margin:0;font-size:clamp(16px,1.3vw,19px);line-height:1.5;color:#E6E6E3;max-width:54ch}
+.atag{position:absolute;right:20px;top:20px;font-size:12px;background:rgba(255,255,255,.92);color:#0B0C0D;border-radius:999px;padding:5px 10px;z-index:1}
+.pill{position:absolute;left:12px;bottom:12px;font-size:12px;background:rgba(255,255,255,.92);color:#0B0C0D;border-radius:999px;padding:5px 10px}
+.sec{padding-top:72px;padding-bottom:48px}
+.shead{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:40px}
+.shead p{margin:0;color:#6B6E72;font-size:17px;line-height:1.5;max-width:44ch}
+.g2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:20px}
+.g3{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:20px}
+.g4{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:20px}
+.card{background:#F4F4F3;border-radius:20px;padding:36px;display:flex;flex-direction:column;gap:12px;box-sizing:border-box;min-width:0}
+.card.dk{background:#0B0C0D;color:#FFFFFF}.card.dk .mut,.card.dk .body{color:#B9BBBE}
+.num{font-size:14px;color:#6B6E72}
+.caps{display:flex;flex-wrap:wrap;gap:8px}
+.caps span{font-size:14px;border:1px solid #DCDCD9;border-radius:999px;padding:7px 14px}
+.held{display:inline-block;font-size:13px;border:1px dashed #B9BBBE;border-radius:999px;padding:4px 10px;color:#6B6E72;background:#FFFFFF}
+.panel{background:#0B0C0D;border-radius:20px;padding:clamp(32px,6vw,80px);color:#FFFFFF}
+.panel .lbl{color:#B9BBBE}
+.steps{list-style:none;margin:48px 0 0;padding:0;display:flex;gap:28px;flex-wrap:wrap}
+.steps li{flex:1 1 200px;border-top:1px solid #3A3C3E;padding-top:16px}
+.steps .k{font-size:13px;color:#1AA6AA;margin:0}
+.steps h3,.steps h4{margin:8px 0 6px;color:#FFFFFF}
+.steps p{margin:0;color:#B9BBBE;font-size:15px;line-height:1.5}
+.cta{background:#0B0C0D;color:#FFFFFF;border-radius:20px;padding:clamp(32px,6vw,88px);display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap}
+.cta h2{font-size:clamp(40px,5vw,72px);line-height:1;max-width:16ch}
+.cta p{margin:16px 0 0;color:#B9BBBE;font-size:17px;line-height:1.5;max-width:46ch}
+.rowlink{text-decoration:none;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:16px;padding:28px 0;border-top:1px solid #E6E6E3;align-items:baseline}
+.media{position:relative;border-radius:20px;overflow:hidden;background:#F4F4F3}
+.media img{width:100%;height:100%;object-fit:cover;display:block}
+.ph{display:flex;align-items:center;justify-content:center;text-align:center;background:#E6E6E3;color:#6B6E72;font-size:14px;border-radius:20px;padding:16px;box-sizing:border-box}
+.ph.dk{background:#3A3C3E;color:#D9D9D9}
+figure{margin:0}figcaption{margin-top:10px;font-size:14px;color:#6B6E72}
+.foot{padding-top:48px;padding-bottom:48px;display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;border-top:1px solid #E6E6E3}
+.foot span{font-size:14px;color:#6B6E72}
+@media (max-width:640px){.rowlink{grid-template-columns:1fr;gap:6px}.rowlink>*{grid-column:auto!important;text-align:left!important}.card{padding:28px}}
+.ahero{background-image:url('/explore/design-a/assets/sprints-hero-galaxy.webp');background-size:cover;background-position:center 95%}@media (min-width:641px){.ahero::before{background:linear-gradient(180deg,rgba(11,12,13,0) 0%,rgba(11,12,13,.2) 20%,rgba(11,12,13,.72) 42%,rgba(11,12,13,.82) 70%,rgba(11,12,13,.9) 100%)}}.sec{padding-top:96px}
+/* 390: a stronger hero scrim behind the text */
+/* Header (Direction A pattern, from PR #18 brand-identity.html): at phone width the nav links fold into a Menu so the logo and Let's talk stay on one row */
+.amenu{display:none;position:relative;margin-left:auto}
+.amenu>summary{list-style:none;cursor:pointer;font-size:15px;color:#0B0C0D;padding:12px 6px;min-height:44px;box-sizing:border-box;display:flex;align-items:center}
+.amenu>summary::-webkit-details-marker{display:none}
+.amenu>div{position:absolute;right:0;top:calc(100% + 6px);z-index:20;background:#FFFFFF;border:1px solid #E6E6E3;border-radius:14px;padding:8px;display:flex;flex-direction:column;min-width:180px;box-shadow:0 12px 32px rgba(11,12,13,.12)}
+.amenu>div a{padding:12px;text-decoration:none;font-size:15px;color:#0B0C0D}
+@media (max-width:760px){
+.ahdr{flex-wrap:nowrap!important;gap:12px!important;height:72px!important;min-height:0!important}
+.ahdr>.anav{display:none!important}
+.amenu{display:block}
+.ahdr>.acta{min-height:44px;box-sizing:border-box;display:inline-flex;align-items:center;white-space:nowrap}
+}
+@media (max-width:640px){.ahero::before{background:linear-gradient(180deg,rgba(11,12,13,.2) 0%,rgba(11,12,13,.58) 26%,rgba(11,12,13,.88) 52%,rgba(11,12,13,.92) 100%)}}
+</style>
+</head>
+<body>
+<div class="pg"><header class="wrap head ahdr">
+<img src="/v2/assets/dunn-creative-logo-black.png" alt="Dunn Creative" style="height:30px;width:auto">
+<nav class="anav" aria-label="Main"><a href="work-a.html">Work</a><a href="services-a.html">Services</a><a href="sprints-a2.html" class="on" aria-current="page">Sprints</a><a href="lab-a.html">Lab</a><a href="about-a.html">About</a></nav>
+<details class="amenu"><summary aria-label="Menu">Menu</summary><div><a href="work-a.html">Work</a><a href="services-a.html">Services</a><a href="sprints-a2.html" aria-current="page">Sprints</a><a href="lab-a.html">Lab</a><a href="about-a.html">About</a></div></details>
+<a href="contact-a.html" class="talk acta">Let’s talk</a>
+</header>
+
+<section class="wrap" style="padding-top:28px;padding-bottom:24px">
+<div class="ahero">
+<span class="atag">AI-directed image</span>
+<p class="lbl" style="color:#D9D9D9">Sprints</p>
+<h1 class="d">Senior work, on a fixed <span class="it">date</span>.</h1>
+<div class="row"><p class="line">Fixed scope, a day-by-day plan, and the creative director on every call.</p><div class="btns"><a href="contact-a.html" class="btn b-w">Start a sprint</a><a href="contact-a.html" class="btn b-wo">Get a free audit</a></div></div></div>
+</section>
+<section class="wrap" style="padding-top:48px;padding-bottom:48px">
+<div class="panel">
+<div style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap"><div><p class="lbl">How to buy it</p><h2 class="d" style="font-size:clamp(36px,4vw,56px);margin-top:16px">Start small. Scale when it <span class="it">works</span>.</h2></div>
+<p style="margin:0;color:#B9BBBE;font-size:17px;line-height:1.5;max-width:40ch">Start with a free audit if you’re not sure which you need.</p></div>
+<ol class="steps">
+<li><p class="k">01 →</p><h3 class="d" style="font-size:30px;font-weight:400">Audit</h3><p>A free senior review of your brand, site and search, with a fix list.</p></li><li><p class="k">02 →</p><h3 class="d" style="font-size:30px;font-weight:400">Sprint</h3><p>Fixed scope, fixed date: brand, web, film or AI workflow.</p></li><li><p class="k">03</p><h3 class="d" style="font-size:30px;font-weight:400">Retainer</h3><p>The same senior eye on the work that follows, month to month.</p></li>
+</ol></div></section>
+<section class="wrap sec" id="sprints">
+<div class="shead"><h2 class="d h2">The <span class="it">sprints</span></h2><div><p>Each with a set scope and a day-by-day plan.</p><p style="margin-top:12px"><span class="held">To come: sprint durations and terms</span></p></div></div>
+<div class="g2"><div class="card" style="min-height:360px"><div style="display:flex;justify-content:space-between;gap:12px"><span class="num">01</span><span class="num">2 weeks</span></div><h3 class="d" style="font-size:clamp(30px,3vw,40px);margin-top:auto">Brand Sprint</h3><p class="body" style="font-size:16px;max-width:40ch">Two directions on day 3, a finished identity on day 10.</p><div class="caps" style="margin-top:8px"><span style="background:#FFFFFF">Logo suite, type and color</span><span style="background:#FFFFFF">Brand guidelines</span><span style="background:#FFFFFF">4 to 6 menu pieces</span></div><a href="contact-a.html" style="font-size:15px;margin-top:8px">Start with Brand Sprint →</a></div><div class="card" style="min-height:360px"><div style="display:flex;justify-content:space-between;gap:12px"><span class="num">02</span><span class="num">2 or 4 weeks</span></div><h3 class="d" style="font-size:clamp(30px,3vw,40px);margin-top:auto">Web Sprint</h3><p class="body" style="font-size:16px;max-width:40ch">A landing page or up to five pages, live on your domain.</p><div class="caps" style="margin-top:8px"><span style="background:#FFFFFF">Design and build in Astro</span><span style="background:#FFFFFF">Repo and hosting in your name</span><span style="background:#FFFFFF">Recorded walkthrough</span></div><a href="contact-a.html" style="font-size:15px;margin-top:8px">Start with Web Sprint →</a></div><div class="card" style="min-height:360px"><div style="display:flex;justify-content:space-between;gap:12px"><span class="num">03</span><span class="num">3 weeks</span></div><h3 class="d" style="font-size:clamp(30px,3vw,40px);margin-top:auto">Launch Film</h3><p class="body" style="font-size:16px;max-width:40ch">Script to final cut, with every cutdown your launch needs.</p><div class="caps" style="margin-top:8px"><span style="background:#FFFFFF">Script and storyboard</span><span style="background:#FFFFFF">A 30 to 90 second hero cut</span><span style="background:#FFFFFF">Cutdowns in 16:9, 4:5 and 9:16</span></div><a href="contact-a.html" style="font-size:15px;margin-top:8px">Start with Launch Film →</a></div><div class="card" style="min-height:360px"><div style="display:flex;justify-content:space-between;gap:12px"><span class="num">04</span><span class="num">2 weeks</span></div><h3 class="d" style="font-size:clamp(30px,3vw,40px);margin-top:auto">AI Workflow Sprint</h3><p class="body" style="font-size:16px;max-width:40ch">We map how your team makes creative, then set up the pipeline.</p><div class="caps" style="margin-top:8px"><span style="background:#FFFFFF">Workflow review and plan</span><span style="background:#FFFFFF">Agents, board and QA steps</span><span style="background:#FFFFFF">Team training session</span></div><a href="contact-a.html" style="font-size:15px;margin-top:8px">Start with AI Workflow Sprint →</a></div></div></section>
+<section class="wrap sec">
+<div class="shead"><h2 class="d h2">How a Brand Sprint <span class="it">runs</span></h2><p>Counted in days, decided on calls.</p></div>
+<ol style="list-style:none;margin:0;padding:0;display:flex;gap:28px;flex-wrap:wrap">
+<li style="flex:1 1 180px;border-top:1px solid #0B0C0D;padding-top:16px"><p style="font-size:13px;color:#10777A;margin:0">Day 1</p><h4 style="margin:8px 0 6px;font-size:18px;font-weight:500">Kickoff</h4><p style="margin:0;color:#6B6E72;font-size:15px;line-height:1.5">Your answers become the brief.</p></li><li style="flex:1 1 180px;border-top:1px solid #0B0C0D;padding-top:16px"><p style="font-size:13px;color:#10777A;margin:0">Day 3</p><h4 style="margin:8px 0 6px;font-size:18px;font-weight:500">Two directions</h4><p style="margin:0;color:#6B6E72;font-size:15px;line-height:1.5">Shown live. You pick one on the call.</p></li><li style="flex:1 1 180px;border-top:1px solid #0B0C0D;padding-top:16px"><p style="font-size:13px;color:#10777A;margin:0">Day 5</p><h4 style="margin:8px 0 6px;font-size:18px;font-weight:500">System review</h4><p style="margin:0;color:#6B6E72;font-size:15px;line-height:1.5">Logo, type and color refined.</p></li><li style="flex:1 1 180px;border-top:1px solid #0B0C0D;padding-top:16px"><p style="font-size:13px;color:#10777A;margin:0">Day 8</p><h4 style="margin:8px 0 6px;font-size:18px;font-weight:500">Menu pieces</h4><p style="margin:0;color:#6B6E72;font-size:15px;line-height:1.5">Your chosen pieces, adjusted live.</p></li><li style="flex:1 1 180px;border-top:1px solid #0B0C0D;padding-top:16px"><p style="font-size:13px;color:#10777A;margin:0">Day 10</p><h4 style="margin:8px 0 6px;font-size:18px;font-weight:500">Handover</h4><p style="margin:0;color:#6B6E72;font-size:15px;line-height:1.5">Guidelines and every file, in your name.</p></li>
+</ol></section>
+<section class="wrap sec">
+<div class="shead"><h2 class="d h2">Everything is <span class="it">yours</span>.</h2></div>
+<div class="g3"><div class="card" style="min-height:240px"><span class="num">01</span><h3 class="d" style="font-size:26px;font-weight:400;margin-top:auto">In your name</h3><p class="body" style="font-size:16px">Domain, repo, hosting and source files are yours from day one.</p></div><div class="card" style="min-height:240px"><span class="num">02</span><h3 class="d" style="font-size:26px;font-weight:400;margin-top:auto">Recorded walkthrough</h3><p class="body" style="font-size:16px">Every handover comes with a video of how to run it.</p></div><div class="card" style="min-height:240px"><span class="num">03</span><h3 class="d" style="font-size:26px;font-weight:400;margin-top:auto">30 days of fixes</h3><p class="body" style="font-size:16px">Anything that doesn’t work as agreed is fixed free.</p></div></div></section>
+<section class="wrap sec">
+<div class="g2">
+<div class="card" style="min-height:320px"><p class="lbl">A good fit</p><ul style="margin:auto 0 0;padding-left:18px;color:#0B0C0D;font-size:17px;line-height:1.7"><li>A founder or small team with one person who can say yes</li><li>Positioning you can state in a sentence</li><li>A launch, raise or season with a real date</li></ul></div>
+<div class="card" style="min-height:320px;background:#FFFFFF;border:1px solid #E6E6E3"><p class="lbl">Not a fit yet</p><ul style="margin:auto 0 0;padding-left:18px;color:#6B6E72;font-size:17px;line-height:1.7"><li>Sign-off by committee</li><li>Scope that should stay open</li><li>Still deciding what the company is. Start with a free audit.</li></ul></div>
+</div></section>
+<section class="wrap" style="padding-top:48px;padding-bottom:96px">
+<div class="cta"><div><h2 class="d">Tell us about the <span class="it">launch</span>.</h2><p>What you need, when you want to start and who signs off.</p></div><div class="btns"><a href="contact-a.html" class="btn b-t">Start a sprint</a><a href="contact-a.html" class="btn b-do">Get a free audit</a></div></div></section>
+<footer class="wrap foot">
+<span>Strategic thinking. Clean design. Built to perform.</span>
+<span>Dunn Creative · Jackson, WY · chris@dunncreative.com</span></footer></div>
+</body>
+</html>

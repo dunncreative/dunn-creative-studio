@@ -3,7 +3,11 @@
 // (src/v2/lab.html, links pointed at the real routes). Other versions: /explore/pages/.
 // "To come" chips mark content still to supply; the list is on /held.
 import V2 from '../../layouts/V2.astro';
-import html from '../../v2/lab.html?raw';
+import raw from '../../v2/lab.html?raw';
+import { SHOW_HELD } from '../../lib/held';
+// Live site (CONTEXT=production, v04 · 10 QA): the held field guide title reads as its label, and the grey image
+// blocks lose their "Lab image" text (Lab images wait on Freeman). Deploy Previews keep the placeholders.
+const html = SHOW_HELD ? raw : raw.replaceAll('Field guide title to come', 'Field guide').replaceAll('>Lab image</div>', '></div>');
 ---
 <V2 title={'Lab · Dunn Creative'} description={"Chris Dunn's experiments, series and notes. Every piece says what was AI-assisted."}>
   <Fragment set:html={html} />

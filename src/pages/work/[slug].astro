@@ -11,6 +11,7 @@ export function getStaticPaths() {
 }
 const { cs, next } = Astro.props as { cs: CaseStudy; next: CaseStudy };
 const ratio = (im: CsImage) => `aspect-ratio:${im.w}/${im.h}`;
+// A portrait image alone on its row is capped at 480px wide, so it doesn't run full width and very tall (QA #49).
 const heroDark = cs.heroFit === 'contain';
 const pill = 'AI-directed mockup';
 ---
@@ -50,7 +51,7 @@ const pill = 'AI-directed mockup';
               {c.images.map((row) => (
                 <div class={row.length > 1 ? 'mods c2' : ''} style={row.length > 1 ? 'align-items:start' : ''}>
                   {row.map((im) => (
-                    <figure style="margin:0">
+                    <figure style={row.length === 1 && im.h > im.w ? 'margin:0;max-width:min(100%,480px)' : 'margin:0'}>
                       <div class="media" style={ratio(im)}>
                         <img src={im.src} alt={im.alt} width={im.w} height={im.h} loading="lazy" decoding="async" />
                         {im.ai && <span class="aipill">{pill}</span>}

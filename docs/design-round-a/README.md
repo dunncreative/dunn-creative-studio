@@ -115,16 +115,19 @@ the About page pick (not in this set: keep the live About until he picks).
 
 ## The page system (use it for every new page)
 1. **Image hero panel**: `border-radius:20px`, ~520–600px tall, image `cover`, gradient
-   `transparent 45% → rgba(11,12,13,.85)`, eyebrow (13px caps), H1 in white at ~100px max with one italic word,
-   one line under it, two buttons (white solid + white outline) bottom right. Corner tag for any AI or placeholder
-   image. One image per page; never reuse the same crop on two pages.
+   `transparent 25% → .62 at 55% → rgba(11,12,13,.9)` (stronger at ≤760px, so hero text stays at 4.5:1 or better),
+   eyebrow (13px caps), H1 in white at ~100px max with one italic word, one line under it, two buttons (white solid
+   + white outline) bottom right. Corner tag for any AI or placeholder image. One image per page; never reuse the
+   same crop on two pages.
 2. Sections: 7 or fewer per page, intros under 25 words, card lines under 12 words.
 3. Cards: grey `#F4F4F3`, radius 20px, number, round arrow button, name, one line, sub-services as capsules. At
    most one dark card per grid.
 4. One black panel per page for "How to buy it" / "How to work with us" (Audit → Sprint → Retainer), and one black
    closing CTA panel.
 5. Teal only for small accents and the CTA button inside black panels. Logo black on light.
-6. Render-check 1440 and 390: no horizontal overflow (use `minmax(min(100%,340px),1fr)` grids).
+6. Render-check 1440 and 390: no horizontal overflow (use `minmax(min(100%,340px),1fr)` grids), "Let's talk" visible in the
+   header (at ≤760px the nav links fold into a "Menu" `<details>`; classes `ahdr`, `anav`, `amenu`, `acta`), and
+   hero text contrast at 4.5:1 or better (body) and 3:1 or better (large), measured over the image.
 
 ## The area page template
 `brand-identity.html` is the template for all six area pages: hero → What's included (the locked sub-services
