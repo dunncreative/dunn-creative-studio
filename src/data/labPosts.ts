@@ -1,8 +1,8 @@
 // Lab on the Direction A template (v04 · 12): the Lab index (lab-v2) and the Lab post template (lab-post-celtic).
 // The pieces themselves (slugs, titles, labels) stay in src/data/lab.ts.
 //
-// Celtic / triskele is the first post built on the template, with Freeman's 12 images (Triskele Worlds and
-// Celtic Ink Spirals, all AI-directed, public/explore/design-a/assets/lab/celtic/). Its body copy is the artboard's
+// Celtic / triskele is the first post built on the template, with Freeman's 21 images (Triskele Worlds and
+// Celtic Ink Spirals, all AI-directed, public/lab/celtic-triskele/). Its body copy is the artboard's
 // marked placeholder until Freeman writes it: on Deploy Previews it shows with a "Placeholder copy" chip, on
 // production it is left out and the page says "Full story coming soon." The other pieces keep their titles and
 // stay marked (placeholder image, held line, held body).
@@ -26,13 +26,15 @@ export interface LabPost {
   blocks: LabBlock[];
   ai: string;
 }
-const img = (f: string, alt: string): LabImage => ({ src: C + f, alt });
+// Freeman's full Celtic / triskele set (21 images, Dropbox 00_Brand-Brain/References/Lab-Posts/Celtic-Triskele/).
+const T = '/lab/celtic-triskele/';
+const t = (n: number, alt: string): LabImage => ({ src: `${T}celtic-triskele-${n}.webp`, alt });
 
 export const labPosts: Record<string, LabPost> = {
   'celtic-triskele': {
     line: 'Three spirals, one centre. An AI-directed series on the oldest Celtic mark and the worlds it holds.',
-    hero: { src: C + 'worlds-08.webp', pos: 'center 30%', w: 1536, h: 1024 },
-    card: img('worlds-07.webp', 'Triskele Worlds: stag, angel and sea serpent in three spirals'),
+    hero: { src: T + 'celtic-triskele-8.webp', pos: 'center 40%', w: 1200, h: 800 },
+    card: t(9, 'Triskele Worlds: stag, angel and sea figure in three spirals around the knot'),
     facts: [['Type', 'Series'], ['Topic', 'Celtic symbols'], ['Tools', '[[To come: tools]]'], ['AI use', 'AI-directed imagery'], ['Year', '[[To come: year]]']],
     blocks: [
       { title: 'The idea', draft: 'The triskele is three spirals turning out from one centre. This series asks what each arm could hold: the forest, the sky and the sea. Then it lets the symbol grow into whole worlds around it.' },
@@ -40,9 +42,10 @@ export const labPosts: Record<string, LabPost> = {
         title: 'Triskele *Worlds*',
         draft: 'The stag, the angel and the sea creature, each in one arm of the spiral, bound at the centre by the knot.',
         rows: [
-          { ar: '3/2', min: 600, images: [img('worlds-07.webp', 'Triskele Worlds: stag, angel and sea serpent in three spirals of roots')] },
-          { ar: '3/2', min: 320, images: [img('worlds-06.webp', 'Triskele Worlds: the three spirals in clouds'), img('worlds-08.webp', 'Triskele Worlds: the triskele in a field of stars')] },
-          { ar: '2/3', min: 220, images: [img('worlds-09.webp', 'Triskele Worlds, portrait I'), img('worlds-10.webp', 'Triskele Worlds, portrait II'), img('worlds-11.webp', 'Triskele Worlds, portrait III'), img('worlds-angel.webp', 'Triskele Worlds, portrait IV')] },
+          { ar: '3/2', min: 600, images: [t(9, 'Triskele Worlds: stag, angel and sea figure in three spirals around the knot')] },
+          { ar: '3/2', min: 320, images: [t(10, 'Triskele Worlds: tree, angel and sea serpent in a spiral of roots'), t(8, 'Triskele Worlds: the triskele in a field of stars')] },
+          { ar: '2/3', min: 220, images: [t(2, 'Triskele Worlds: eagle, wolf and sea spiral'), t(3, 'Triskele Worlds: three lit doorways with the knot at the centre'), t(4, 'Triskele Worlds: carved doors with the stag and the sea figure'), t(5, 'Triskele Worlds: the angel above a glowing knot')] },
+          { ar: '2/3', min: 220, images: [t(6, 'Triskele Worlds: angel, stag and sea figure along a tree trunk'), t(7, 'Triskele Worlds: angel, stag and sea spiral in starlight'), t(11, 'Triskele Worlds: the three spirals rising through cloud')] },
         ],
         caption: 'Triskele Worlds · all images AI-directed by Chris Dunn.',
       },
@@ -51,8 +54,10 @@ export const labPosts: Record<string, LabPost> = {
         draft: 'The same three-armed spiral, stripped back to ink: tattoo flash, carved stone, watercolour and moonlit roots.',
         well: true,
         rows: [
-          { ar: '2/3', min: 240, images: [img('worlds-003.webp', 'Celtic Ink Spirals: eagle, wolf and seahorse triskele in black ink'), img('ink-005.webp', 'Celtic Ink Spirals: triskele in grey ink and stars'), img('ink-008.webp', 'Celtic Ink Spirals: watercolour triskele of birth, life and death')] },
-          { ar: '1/1', min: 320, images: [img('ink-imagery-002.webp', 'Celtic Ink Spirals: raven on a triskele of roots under a full moon'), img('ink-007.webp', 'Celtic Ink Spirals: carved triskele in coloured light')] },
+          { ar: '2/3', min: 220, images: [t(1, 'Celtic Ink Spirals: eagle, wolf and sea serpent triskele in black ink'), t(15, 'Celtic Ink Spirals: triskele in grey ink and stars'), t(13, 'Celtic Ink Spirals: watercolour triskele with tree, child and skull')] },
+          { ar: '2/3', min: 220, images: [t(17, 'Celtic Ink Spirals: eagle, wolf and mermaid triskele, tattoo flash'), t(18, 'Celtic Ink Spirals: eagle, wolf and mermaid triskele, second version'), t(19, 'Celtic Ink Spirals: eagle, wolf and salmon triskele, tattoo flash')] },
+          { ar: '2/3', min: 220, images: [t(14, 'Celtic Ink Spirals: carved triskele in coloured light'), t(20, 'Celtic Ink Spirals: raven on an ink triskele of roots'), t(21, 'Celtic Ink Spirals: raven on a triskele of roots under a full moon')] },
+          { ar: '3/2', min: 320, images: [t(12, 'Celtic Ink Spirals: raven on a spiral of roots in a dark forest'), t(16, 'Celtic Ink Spirals: two lions around a knotwork compass')] },
         ],
         caption: 'Celtic Ink Spirals · all images AI-directed by Chris Dunn.',
       },
