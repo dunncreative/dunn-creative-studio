@@ -33,8 +33,10 @@ templates, copy, imagery and details, so build them as reusable components, not 
 Settled by the picks:
 - **Look:** Direction A everywhere. Image hero panel at the top of every page; grey offer cards with Includes
   capsules on area pages; one black "How to buy it" panel; black closing CTA.
-- **Type (CONFIRMED by Freeman, 27 Nov):** Inter Tight Light headlines with one Instrument Serif italic accent
-  word; Inter for body and UI. This settles the type specimen (task v04 · 1). Use it on every page.
+- **Type (CONFIRMED by Freeman, 27 Nov; his Decision answer 'A' of 25 Nov):** type specimen option 1, Inter
+  Display Light headlines with tight tracking and one Instrument Serif italic accent word, Inter for body and UI,
+  self-hosted as built in PR #23 (task #45). The canvas artboards use Google's Inter Tight only as a web stand-in
+  for Inter Display; build with PR #23's self-hosted files, not Inter Tight.
 - **Brand Sprint rhythm:** check-ins on days 1, 3, 5, 8 and 10, as on the picked Sprints and Brand Sprint pages.
 - **Brand Identity offers (replaces the brief's locked list):** Brand strategy · Logo and identity system ·
   Brand guidelines · Story and messaging · Branded imagery · Rebrand and refresh.

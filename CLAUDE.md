@@ -35,8 +35,9 @@ Owner and creative director: Freeman (Chris Dunn).
   replaces the old campaigns, print and decks pages, which redirect to it. Its lines "One brand, every channel.",
   the five How it runs steps and "Have a launch coming up?" are drafted and wait on Freeman's check. Don't rename
   or regroup the service areas until Freeman decides (see the Project Direction field).
-- Type is SETTLED (Freeman, 27 Nov): Inter Tight Light headlines with one Instrument Serif italic accent word,
-  Inter for body. `/explore/type/` (PR #12) was the specimen; it's closed.
+- Type is SETTLED (Freeman, 25 and 27 Nov): specimen option 1, Inter Display Light headlines with one Instrument
+  Serif italic accent word, Inter for body, self-hosted as in PR #23. The design-round artboards' Inter Tight is only
+  a stand-in for Inter Display.
 - Home and About use the portrait Freeman approved: `src/assets/studio/chris-dunn-portrait-bw.webp`.
 - Draft PR #7 (`feat/client-logo-bar`, Freeman's client logos in the homepage logo bar) stays parked. Freeman's
   chat session owns that branch. Studio runs don't push to it; send changes for it through the Notion Inbox.
