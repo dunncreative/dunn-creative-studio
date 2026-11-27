@@ -56,7 +56,7 @@ templates, copy, imagery and details, so build them as reusable components, not 
 | Sprints | A · Sprints v2 (galaxy image hero) | `sprints-v2.html` (galaxy image 1) | `/sprints/` |
 | Brand Sprint | A · Brand Sprint (single sprint page) | `brand-sprint.html` (galaxy image 2) | `/sprints/brand-sprint/` |
 | Work | A · Work v3 (v2 + bigger closing CTA) | `work-v4.html` (six projects, two per row) | `/work/` |
-| Case study | A · Case study · Ironwood Homes | `case-ironwood-v2.html` (truck-door hero) — **superseded 27 Nov evening: keep the live case study pages, apply only the new shell (see CONTENT CARRY-OVER)** | `/work/ironwood-homes/` |
+| Case study | A · Case study · Ironwood Homes | `case-ironwood-v2.html` (truck-door hero) — **superseded 27 Nov evening: keep the live case study pages, apply only the new shell (see CONTENT CARRY-OVER). Freeman removed this PNG from the picks folder.** | `/work/ironwood-homes/` |
 | Lab | A · Lab | `lab-v2.html` | `/lab/` |
 | Lab post | A · Lab post · Celtic triskele | `lab-post-celtic.html` | `/lab/celtic-triskele/` |
 | Contact | A · Contact (from the agents' contact-a) | `contact-a.html` (on PR #19's branch) | `/contact/` |
