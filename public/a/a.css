@@ -416,3 +416,51 @@ select.a-field{appearance:none;background-image:linear-gradient(45deg,transparen
    Inter Display Light (Inter at the display optical size, weight 300). Sizes, spacing and order stay as live. */
 .a-legacy :is(.lhero h1,.chap h2,.featw h2){font-family:var(--a-font);font-weight:300;font-optical-sizing:auto;font-variation-settings:'opsz' 32;letter-spacing:-.035em}
 .a-legacy :is(.lhero h1,.chap h2,.featw h2) em{font-family:var(--a-serif);font-style:italic;font-weight:400;font-variation-settings:normal;letter-spacing:-.01em;color:inherit}
+
+/* About v3 (v04 · 18, Freeman's 27 Nov pick about-v3.html). */
+.a-about-cards .a-card{min-height:260px;gap:14px}
+.a-about-cards .a-card>div{margin-top:auto}
+.a-about-cards .a-num{font-size:15px;color:var(--a-g600)}
+.a-about-cards .a-card__name{margin-top:0}
+.a-about-cards .a-card__line{min-height:6.1em}
+.a-about-led{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:clamp(32px,6vw,96px);align-items:start}
+.a-about-led__fig{margin:0;position:sticky;top:24px}
+.a-about-led__fig img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:center 40%;border-radius:20px;display:block;filter:grayscale(1)}
+.a-about-led__fig figcaption{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:14px;color:var(--a-g600);margin-top:14px}
+.a-about-led__h{margin-top:16px;max-width:13ch}
+.a-about-led__body{margin:28px 0 0;font-size:19px;line-height:1.6;color:#3A3C3E;max-width:52ch}
+.a-about-led__lbl{margin-top:56px;margin-bottom:8px}
+.a-about-led__lbl.is-how{margin-top:72px;margin-bottom:0}
+.a-about-led__h3{margin:14px 0 24px;font-size:clamp(32px,3.2vw,44px);line-height:1.05}
+.a-about-credits,.a-about-how{list-style:none;margin:0;padding:0;border-bottom:1px solid var(--a-line)}
+.a-about-credits li{display:flex;justify-content:space-between;align-items:baseline;gap:24px;flex-wrap:wrap;border-top:1px solid var(--a-line);padding:20px 0}
+.a-about-credits .a-d{font-size:clamp(22px,2vw,28px)}
+.a-about-credits li>span:last-child{font-size:15px;color:var(--a-g600)}
+.a-about-how li{display:grid;grid-template-columns:56px minmax(0,.8fr) minmax(0,1.4fr);gap:8px 24px;align-items:baseline;border-top:1px solid var(--a-line);padding:24px 0}
+.a-about-how li>span{font-size:15px;color:var(--a-g600)}
+.a-about-how h4{font-size:clamp(24px,2.2vw,30px)}
+.a-about-how p{margin:0;font-size:17px;line-height:1.5;color:var(--a-g600)}
+.a-about-why{position:relative;overflow:hidden;isolation:isolate}
+.a-about-why::before{content:'';position:absolute;inset:0;z-index:-1;background:var(--tile) 0 0/120px 96px repeat;opacity:.05}
+.a-about-why .a-panel__head{margin-bottom:48px}
+.a-about-why .a-h2{max-width:16ch}
+.a-about-points{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:0 64px;border-bottom:1px solid #2A2C2E}
+.a-about-points li{padding:40px 0;border-top:1px solid #2A2C2E}
+.a-about-points li>span{display:block;font-size:14px;color:var(--a-teal);margin:0 0 14px}
+.a-about-points h3{font-size:clamp(26px,2.4vw,34px);color:var(--a-white)}
+.a-about-points p{margin:14px 0 0;font-size:17px;line-height:1.6;color:var(--a-g400);max-width:46ch}
+.a-about-sprints{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:16px}
+.a-about-sprints .a-card{height:100%;box-sizing:border-box;min-height:200px;border-radius:20px;padding:32px}
+.a-about-sprints .a-card__meta{align-items:center;font-size:15px}
+.a-about-sprints .a-card__name{margin-top:auto;font-size:clamp(26px,2.2vw,32px)}
+.a-about-go{width:40px;height:40px;border-radius:999px;border:1px solid var(--a-line);display:flex;align-items:center;justify-content:center;color:var(--a-ink);transition:transform .15s}
+.a-about-sprints a:hover .a-about-go{transform:translateX(4px)}
+.a-about-foot{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;margin-top:32px;padding-top:28px;border-top:1px solid var(--a-line)}
+.a-about-foot p{margin:0;font-size:17px;color:#3A3C3E}
+.a-about-foot .a-btns{margin:0}
+@media (max-width:900px){.a-about-led__fig{position:static}}
+@media (max-width:700px){.a-about-cards .a-card{min-height:0}.a-about-cards .a-card__line{min-height:0}.a-about-how li{grid-template-columns:40px minmax(0,1fr)}.a-about-how p{grid-column:2}}
+#studio .a-h2{max-width:16ch}#studio .a-shead__side{max-width:42ch}
+.a-about-well .a-h2{max-width:14ch}.a-about-well .a-shead__side{max-width:42ch}
+.a-about-why .a-panel__head{gap:32px}.a-about-why .a-panel__side{max-width:40ch}
+.a-about-why .a-panel__head{flex-wrap:nowrap}.a-about-why .a-panel__head>div{flex:0 1 640px}@media (max-width:900px){.a-about-why .a-panel__head{flex-wrap:wrap}}
