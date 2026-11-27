@@ -1,0 +1,10 @@
+---
+// Film & Motion stub area page (v04 · 10), unchanged. It is not in Freeman's 27 Nov picks, so it keeps its live
+// 24 Nov layout until he picks one (v04 · 12 moved the other area pages to the Direction A template; this route
+// moved out of [service].astro so it keeps working as it was).
+import V2 from '../../layouts/V2.astro';
+import filmMotion from '../../v2/film-motion.html?raw';
+---
+<V2 title="Film & Motion · Services · Dunn Creative" description="Launch films, motion design and film packaging, made to carry the brand.">
+  <Fragment set:html={filmMotion} />
+</V2>

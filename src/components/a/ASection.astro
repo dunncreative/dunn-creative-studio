@@ -1,0 +1,39 @@
+---
+// Section shell: wrap, vertical rhythm and an optional head (eyebrow, h2 with an accent word, side copy).
+import { rich } from '../../lib/rich';
+interface Props {
+  id?: string;
+  eyebrow?: string;
+  title?: string;
+  /** Side copy: the first line dark (lead), the second grey. */
+  lead?: string;
+  side?: string;
+  /** 'md' for the smaller h2 (36–56px). */
+  size?: 'md';
+  /** Spacing modifiers, space separated: tight, flush, end. */
+  space?: string;
+  /** A text link at the right of the head, e.g. "All work →". */
+  link?: { label: string; href: string };
+}
+const { id, eyebrow, title, lead, side, size, space = '', link } = Astro.props;
+const cls = ['a-wrap', 'a-sec', ...space.split(' ').filter(Boolean).map((s) => `is-${s}`)].join(' ');
+const hasSide = Boolean(lead || side);
+---
+<section class={cls} id={id}>
+  {(title || eyebrow) && (
+    <div class="a-shead">
+      <div>
+        {eyebrow && <p class="a-eyebrow" set:html={rich(eyebrow)} />}
+        {title && <h2 class={`a-d a-h2${size === 'md' ? ' is-md' : ''}`} style={eyebrow ? 'margin-top:16px' : undefined} set:html={rich(title)} />}
+      </div>
+      {hasSide && (
+        <div class="a-shead__side">
+          {lead && <p class="a-lead" set:html={rich(lead)} />}
+          {side && <p class="a-body" set:html={rich(side)} />}
+        </div>
+      )}
+      {link && <a class="a-link" href={link.href}>{link.label}</a>}
+    </div>
+  )}
+  <slot />
+</section>

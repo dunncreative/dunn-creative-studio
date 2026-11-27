@@ -1,10 +1,35 @@
 ---
-// Home K, Freeman's pick (24 Nov page picks). Markup comes from Page Explorations v2
-// (src/v2/home.html, links pointed at the real routes). Other versions: /explore/pages/.
-// "To come" chips mark content still to supply; the list is on /held.
-import V2 from '../layouts/V2.astro';
-import html from '../v2/home.html?raw';
+// Home (v04 · 12): Freeman's 27 Nov pick, A · Home v2c (public/explore/design-a/home-v2c.html), on the Direction A
+// template. Copy: src/data/home.ts and src/data/areas.ts. The 24 Nov Home K markup (src/v2/home.html) stays in the
+// repo until Freeman confirms it can go.
+import A from '../layouts/A.astro';
+import AHero from '../components/a/AHero.astro';
+import ASection from '../components/a/ASection.astro';
+import NumberedRows from '../components/a/NumberedRows.astro';
+import WorkGrid from '../components/a/WorkGrid.astro';
+import BuyPanel from '../components/a/BuyPanel.astro';
+import PortraitSplit from '../components/a/PortraitSplit.astro';
+import CtaPanel from '../components/a/CtaPanel.astro';
+import { homeHero, workFor, homeWork, howToWork, whoYouWorkWith, homeCta } from '../data/home';
+import { areas } from '../data/areas';
+import { work } from '../data/workIndex';
+const rows = areas.map((a) => ({ name: a.name, line: a.line, href: a.href }));
+const selected = homeWork.map((s) => {
+  const w = work.find((x) => x.slug === s)!;
+  return { ...w, label: w.homeLabel ?? w.label, img: { ...w.img, fit: undefined, dark: false } };
+});
 ---
-<V2 title={'Dunn Creative · Creative studio in Jackson, WY'} description={'Dunn Creative brings strategy, design and execution together for brands: identity, web and digital, marketing creative, film and motion, and AI.'}>
-  <Fragment set:html={html} />
-</V2>
+<A title="Dunn Creative · Creative studio in Jackson, WY" description="Dunn Creative brings strategy, design and execution together for brands: identity, web and digital, marketing creative, film and motion, and AI.">
+  <AHero hero={homeHero}>
+    <ul class="a-names" aria-label="Work for">{['Work for', ...workFor].map((n) => <li>{n}</li>)}</ul>
+  </AHero>
+  <ASection title="What we do" id="services">
+    <NumberedRows items={rows} />
+  </ASection>
+  <ASection title="Selected *work*" id="work" link={{ label: 'All work →', href: '/work/' }}>
+    <WorkGrid items={selected} variant="home" />
+  </ASection>
+  <BuyPanel panel={howToWork} id="buy" />
+  <PortraitSplit {...whoYouWorkWith} />
+  <CtaPanel cta={homeCta} />
+</A>

@@ -1,0 +1,7 @@
+---
+// Questions as <details> rows.
+import { rich } from '../../lib/rich';
+interface Props { items: { q: string; a: string }[] }
+const { items } = Astro.props;
+---
+<div class="a-faq">{items.map((f) => <details><summary set:html={rich(f.q)} /><div><p class="a-body" set:html={rich(f.a)} /></div></details>)}</div>

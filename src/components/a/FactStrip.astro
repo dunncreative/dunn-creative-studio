@@ -1,0 +1,7 @@
+---
+// Fact strip: label over value, a thin rule above each.
+import { rich } from '../../lib/rich';
+interface Props { facts: [string, string][]; style?: string }
+const { facts, style } = Astro.props;
+---
+<dl class="a-facts" style={style}>{facts.map(([k, v]) => <div><dt>{k}</dt><dd set:html={rich(v)} /></div>)}</dl>

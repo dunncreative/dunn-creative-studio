@@ -1,0 +1,24 @@
+---
+// "Selected work" on area and sprint pages: one case study, image left, text right, services as capsules.
+import type { Feature } from '../../lib/a';
+import { rich } from '../../lib/rich';
+interface Props { feature: Feature }
+const { feature } = Astro.props;
+const it = feature.item;
+---
+<section class="a-wrap a-sec is-tight">
+  <p class="a-eyebrow" style="margin-bottom:24px">{feature.eyebrow}</p>
+  <a class="a-feature" href={it.href}>
+    <div class="a-media">
+      <img src={it.img.src} alt={it.img.alt} loading="lazy" decoding="async" />
+      {it.ai && <span class="a-pill">{it.ai}</span>}
+    </div>
+    <div class="a-feature__text">
+      <p class="a-eyebrow" set:html={rich(it.label)} />
+      <h2 class="a-d" set:html={rich(it.title)} />
+      <p class="a-body" set:html={rich(it.line)} />
+      {it.caps && <ul class="a-caps is-bare">{it.caps.map((c) => <li>{c}</li>)}</ul>}
+      <span class="a-link">{it.link ?? 'View the case study →'}</span>
+    </div>
+  </a>
+</section>

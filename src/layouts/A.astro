@@ -1,0 +1,36 @@
+---
+// Direction A master layout (v04 · 12): Freeman's 27 Nov page picks. Header, footer, tokens and type live in
+// src/components/a/ and public/a/a.css. Pages are built from the section components in src/components/a/ with
+// their copy in src/data/.
+//
+// `legacy`: pages that keep their live body (the four case studies, About) also load public/v2/v2.css, so the
+// body renders exactly as on main while the header, footer and closing CTA come from the A template.
+import AHeader from '../components/a/AHeader.astro';
+import AFooter from '../components/a/AFooter.astro';
+interface Props { title: string; description?: string; legacy?: boolean }
+const { title, description, legacy = false } = Astro.props;
+// 'To come' chips (.held) show on Deploy Previews and /held, never on the live site (same rule as V2.astro, v04 · 10).
+const hideHeld = process.env.CONTEXT === 'production';
+let body = await Astro.slots.render('default');
+if (hideHeld) body = body.replace(/<span class="held"[^>]*>[^<]*<\/span>/g, '');
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    <!-- Type option 1 (PR #23): self-hosted, public/fonts/, @font-face in public/a/a.css. -->
+    <link rel="preload" href="/fonts/inter-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin />
+    {legacy && <link rel="stylesheet" href="/v2/v2.css" />}
+    <link rel="stylesheet" href="/a/a.css" />
+    {hideHeld && <style is:inline set:html=".held{display:none!important}" />}
+  </head>
+  <body class={legacy ? 'a-legacy' : 'a'}>
+    <AHeader />
+    <main id="main"><Fragment set:html={body} /></main>
+    <AFooter />
+  </body>
+</html>

@@ -1,0 +1,18 @@
+---
+// Numbered list rows ("What we do", "Often paired with"): number, name, one line, arrow.
+import type { Row } from '../../lib/a';
+import { rich, nn } from '../../lib/rich';
+interface Props { items: Row[]; level?: 'h2' | 'h3' }
+const { items, level = 'h3' } = Astro.props;
+const H = level;
+---
+<ul class="a-rows">
+  {items.map((r, i) => (
+    <li><a class="a-row" href={r.href}>
+      <span class="a-row__n">{r.n ?? nn(i + 1)}</span>
+      <H class="a-d a-row__name" set:html={rich(r.name)} />
+      <p class="a-row__line" set:html={rich(r.line)} />
+      <span class="a-row__go" aria-hidden="true">→</span>
+    </a></li>
+  ))}
+</ul>

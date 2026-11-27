@@ -1,0 +1,22 @@
+---
+// Direction A footer. The artboards' footer line ("Strategic thinking. Clean design. Built to perform." and
+// "Dunn Creative · Jackson, WY · chris@dunncreative.com"), above the live footer's link columns, so the
+// AI statement and Privacy links stay reachable from every page.
+import { SERVICE_AREAS, NAV, TALK, PLACE, EMAIL } from '../../lib/site';
+const studio = NAV.filter((n) => n.href !== '/services/');
+---
+<footer class="afoot"><div class="a-wrap">
+  <div class="a-foot-grid">
+    <div>
+      <img class="a-foot-logo" src="/v2/assets/dunn-creative-logo-black.png" alt="Dunn Creative" width="59" height="28" loading="lazy" />
+      <p>Strategic thinking. Clean design. Built to perform.</p>
+    </div>
+    <div><h2>Services</h2><ul>{SERVICE_AREAS.map((s) => <li><a href={s.href}>{s.label}</a></li>)}</ul></div>
+    <div><h2>Studio</h2><ul>{studio.map((s) => <li><a href={s.href}>{s.label}</a></li>)}</ul></div>
+    <div><h2>Contact</h2><ul><li><a href={TALK}>Let’s talk</a></li><li><a href={`mailto:${EMAIL}`}>{EMAIL}</a></li><li><a href="/ai-statement/">AI statement</a></li><li><a href="/privacy/">Privacy</a></li></ul></div>
+  </div>
+  <div class="a-foot-base">
+    <p>© 2026 Dunn Creative</p>
+    <p>Dunn Creative · {PLACE} · {EMAIL}</p>
+  </div>
+</div></footer>
