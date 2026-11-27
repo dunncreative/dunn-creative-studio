@@ -5,6 +5,72 @@ The working canvas is a Claude Design artifact Freeman owns: https://claude.ai/a
 (agents can't open it; the A artboards are exported as static pages in `public/explore/design-a/`, served at
 `/explore/design-a/` on every Deploy Preview).
 
+## FREEMAN'S PAGE PICKS — 27 Nov 2026 (LOCKED: build the development site from these)
+
+Freeman picked the pages below as the foundation of the new site: the web design, structure, voice and pages to
+build. PNGs of each are in Dropbox `/Dunn Creative Studio/Clients/Dunn Creative/00_Brand-Brain/112726-Dunn-Creative-Website-Page-Designs/`.
+The static source for each is in `public/explore/design-a/`. These replace the 24 Nov Page Explorations v2 picks
+(Home K, About E, ...) for every page listed here. Freeman will keep refining the master template, the section
+templates, copy, imagery and details, so build them as reusable components, not one-off pages.
+
+| Page | Canvas artboard (Dropbox PNG name) | Source in `/explore/design-a/` | Live route |
+| --- | --- | --- | --- |
+| Home | A · Home v2c (v2 hero, service list first) | `home-v2c.html` + headline "Big-studio craft. *Small-studio care.*", Selected work two per row | `/` |
+| Services hub | A · Services v2 (image hero, two-column cards) | `services-v2.html` (moon hero) | `/services/` |
+| Brand Identity | A · Brand Identity v2 (reworked offer and hero) | `brand-identity-offer-v2.html` | `/services/brand-identity/` |
+| Web & Digital | A · Web & Digital (area page) | `web-digital-v2.html` | `/services/web-digital/` |
+| Marketing Creative | A · Marketing Creative (area page) | `marketing-creative-v2.html` | `/services/marketing-creative/` |
+| AI Creative | A · AI Creative (area page) | `ai-creative-v2.html` | `/services/ai-creative/` |
+| AI for Teams | A · AI for Teams (area page) | `ai-for-teams-v2.html` | `/services/ai-for-teams/` |
+| Sprints | A · Sprints v2 (galaxy image hero) | `sprints-v2.html` (galaxy image 1) | `/sprints/` |
+| Brand Sprint | A · Brand Sprint (single sprint page) | `brand-sprint.html` (galaxy image 2) | `/sprints/brand-sprint/` |
+| Work | A · Work v3 (v2 + bigger closing CTA) | `work-v4.html` (six projects, two per row) | `/work/` |
+| Case study | A · Case study · Ironwood Homes | `case-ironwood-v2.html` (truck-door hero) | `/work/ironwood-homes/` |
+| Lab | A · Lab | `lab-v2.html` | `/lab/` |
+| Lab post | A · Lab post · Celtic triskele | `lab-post-celtic.html` | `/lab/celtic-triskele/` |
+| Contact | A · Contact (from the agents' contact-a) | `contact-a.html` (on PR #19's branch) | `/contact/` |
+
+Settled by the picks:
+- **Look:** Direction A everywhere. Image hero panel at the top of every page; grey offer cards with Includes
+  capsules on area pages; one black "How to buy it" panel; black closing CTA.
+- **Type (CONFIRMED by Freeman, 27 Nov; his Decision answer 'A' of 25 Nov):** type specimen option 1, Inter
+  Display Light headlines with tight tracking and one Instrument Serif italic accent word, Inter for body and UI,
+  self-hosted as built in PR #23 (task #45). The canvas artboards use Google's Inter Tight only as a web stand-in
+  for Inter Display; build with PR #23's self-hosted files, not Inter Tight.
+- **Brand Sprint rhythm:** check-ins on days 1, 3, 5, 8 and 10, as on the picked Sprints and Brand Sprint pages.
+- **Brand Identity offers (replaces the brief's locked list):** Brand strategy · Logo and identity system ·
+  Brand guidelines · Story and messaging · Branded imagery · Rebrand and refresh.
+- **Work page:** six projects only (the four case studies, Peace Park, GU Energy); the "More work" strip is gone.
+- **Not picked, keep as reference only:** the other Home, Services, Work, Brand Identity v1, AI Creative v2
+  (the AI story), Brand Sprint v2 and the agents' alternates.
+
+**Hero images (Freeman's, 27 Nov).** Source folder: Dropbox `00_Brand-Brain/112726-Dunn-Creative-Website-Page-Designs/Images/`.
+WebP copies in `public/explore/design-a/assets/heroes/`. All are AI-directed: tag every one "AI-directed image".
+The named ones are Freeman's; the rest are Claude's proposed mapping, which Freeman can swap.
+
+| Page | Image | Source file |
+| --- | --- | --- |
+| Home | `heroes/home-hero-cd-book.webp` (proposed) | `dunncreative-website-hero-image-1.PNG` |
+| Services | `services-hero-moons.webp` | `dc-services-hero-image.jpg` |
+| Brand Identity | `brand-identity-hero.webp` | (galaxy over trees, sent in chat) |
+| Web & Digital | `heroes/web-digital-hero-orbits.webp` (proposed) | `dc-alternate-hero-image-2.JPG` |
+| Marketing Creative | `heroes/marketing-creative-hero-hoverboard.webp` (proposed) | `Dunncreative-website hero image-25.JPG` |
+| AI Creative | `heroes/ai-creative-hero.webp` | `dc-ai-creative-hero-image.JPG` |
+| AI for Teams | `heroes/ai-for-teams-hero.webp` | `dc-ai-teams-hero-image.JPG` |
+| Sprints | `sprints-hero-galaxy.webp` | `dc-sprints-hero-image.JPG` |
+| Brand Sprint | `sprints-hero-galaxy-2.webp` | `dc-alternate-hero-image-5.JPG` |
+| Work | `heroes/work-hero-cd-armor.webp` (proposed) | `Dunn-Creative-Graphics-Armor-009-Wide.png` |
+| Contact | `heroes/contact-hero-cd-moon.webp` (proposed) | `dunncreative-website-hero-image-4.JPG` |
+| Spares | `heroes/spare-hero-galaxy-*.webp` | `dc-alternate-hero-image.JPG`, `-3`, `-4` |
+
+New portrait: `heroes/chris-dunn-portrait-5.webp` (`Images/Chris-Dunn-Portraits/Chris-Dunn-Portrait-5.jpg`), for About
+and the studio sections. Section and Lab graphics (stone, moss, frost, iron, molten metal, armor, cliff light, landscapes,
+about 35 files) are in `Images/Dunn-Creative-Lab-and-Section-Images/`: pull only the ones a section uses, convert to WebP
+at 2400px or less, and keep each page's media small.
+
+Still to come from Freeman (keep placeholders, don't invent): prices and terms; the Celtic post's own words; Ironwood project facts;
+the About page pick (not in this set: keep the live About until he picks).
+
 ## What's decided (Freeman)
 - Direction **A** for the whole site: white pages, wide margins, black rounded panels, light headlines with one
   italic accent word, colour only in the work, light nav (Work · Services · Sprints · Lab · About + "Let's talk").
@@ -23,6 +89,17 @@ The working canvas is a Claude Design artifact Freeman owns: https://claude.ai/a
   galaxy-over-trees image, labelled "AI-directed image"), framed `center 75% / 108% auto` so the galaxy fills the
   top half of the panel. Use it on `brand-identity.html`; the other area pages keep the placeholder until Freeman
   sends theirs.
+- Work, case study and Lab (26 Nov, Freeman's chat): `work-v2`, `case-ironwood-v2`, `lab-v2` and
+  `lab-post-celtic` refine the v04 · 14 pages. Work adds filter chips; the Ironwood case study uses the truck-door
+  mockup as its hero (labelled "AI-directed mockup"); the Lab hero and Celtic card use Freeman's Triskele Worlds art.
+  `lab-post-celtic` is the Lab post template, built around his 12 images in
+  `assets/lab/celtic/` (Triskele Worlds and Celtic Ink Spirals, all labelled AI-directed). Body copy there is
+  placeholder until Freeman writes it.
+- Area pages, 27 Nov (Freeman's chat): `brand-identity-offer-v1` (Freeman's own 'What we offer' text, eight
+  offers with Includes capsules), `brand-identity-offer-v2` (reworked to six offers, one per locked sub-service,
+  hero 'A brand that lasts.') and `web-digital-v2` (same layout: six offer cards, Mountain Mind, the Web Sprint
+  day plan). The 'What we offer' card grid replaces 'What's included' on area pages. Freeman still picks v1 or v2
+  for Brand Identity; this changes the brief's locked sub-service list, so don't touch the live routes until then.
 - The Deeper key art is **not** a hero image (it distorts). Mountain photo `/v2/assets/hero-mountain-ai.webp` is the
   placeholder elsewhere, labelled "Placeholder image · AI-directed".
 
@@ -38,10 +115,10 @@ The working canvas is a Claude Design artifact Freeman owns: https://claude.ai/a
 
 ## The page system (use it for every new page)
 1. **Image hero panel**: `border-radius:20px`, ~520–600px tall, image `cover`, gradient
-   `transparent 25% → .62 at 55% → rgba(11,12,13,.9)` (stronger at ≤760px; updated 25 Nov so hero text stays ≥4.5:1), eyebrow (13px caps), H1 in white at ~100px max with one italic word,
-   `transparent 45% → rgba(11,12,13,.85)`, eyebrow (13px caps), H1 in white at ~100px max with one italic word,
-   one line under it, two buttons (white solid + white outline) bottom right. Corner tag for any AI or placeholder
-   image. One image per page; never reuse the same crop on two pages.
+   `transparent 25% → .62 at 55% → rgba(11,12,13,.9)` (stronger at ≤760px, so hero text stays at 4.5:1 or better),
+   eyebrow (13px caps), H1 in white at ~100px max with one italic word, one line under it, two buttons (white solid
+   + white outline) bottom right. Corner tag for any AI or placeholder image. One image per page; never reuse the
+   same crop on two pages.
 2. Sections: 7 or fewer per page, intros under 25 words, card lines under 12 words.
 3. Cards: grey `#F4F4F3`, radius 20px, number, round arrow button, name, one line, sub-services as capsules. At
    most one dark card per grid.
@@ -50,8 +127,7 @@ The working canvas is a Claude Design artifact Freeman owns: https://claude.ai/a
 5. Teal only for small accents and the CTA button inside black panels. Logo black on light.
 6. Render-check 1440 and 390: no horizontal overflow (use `minmax(min(100%,340px),1fr)` grids), "Let's talk" visible in the
    header (at ≤760px the nav links fold into a "Menu" `<details>`; classes `ahdr`, `anav`, `amenu`, `acta`), and
-   hero text contrast ≥4.5:1 (body) and ≥3:1 (large) measured over the image.
-6. Render-check 1440 and 390: no horizontal overflow (use `minmax(min(100%,340px),1fr)` grids).
+   hero text contrast at 4.5:1 or better (body) and 3:1 or better (large), measured over the image.
 
 ## The area page template
 `brand-identity.html` is the template for all six area pages: hero → What's included (the locked sub-services

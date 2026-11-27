@@ -35,7 +35,9 @@ Owner and creative director: Freeman (Chris Dunn).
   replaces the old campaigns, print and decks pages, which redirect to it. Its lines "One brand, every channel.",
   the five How it runs steps and "Have a launch coming up?" are drafted and wait on Freeman's check. Don't rename
   or regroup the service areas until Freeman decides (see the Project Direction field).
-- `/explore/type/` (PR #12) is the type specimen. No page changes fonts until Freeman picks option 1 or 2.
+- Type is SETTLED (Freeman, 25 and 27 Nov): specimen option 1, Inter Display Light headlines with one Instrument
+  Serif italic accent word, Inter for body, self-hosted as in PR #23. The design-round artboards' Inter Tight is only
+  a stand-in for Inter Display.
 - Home and About use the portrait Freeman approved: `src/assets/studio/chris-dunn-portrait-bw.webp`.
 - Draft PR #7 (`feat/client-logo-bar`, Freeman's client logos in the homepage logo bar) stays parked. Freeman's
   chat session owns that branch. Studio runs don't push to it; send changes for it through the Notion Inbox.
@@ -43,9 +45,14 @@ Owner and creative director: Freeman (Chris Dunn).
   entry first), Dropbox `03_Work/dunncreative_clientzero_content-decisions_v03.md`, then Website Master Brief
   v04 (`01_Briefs/dunncreative_clientzero_website-brief_v04.md`). This week's priorities are the Notion Week
   Plan's "This week: 24–30 Nov" section. Creative Brief v03 and the 22–28 Nov week plan Doc are superseded.
+- **27 Nov: Freeman's page picks are LOCKED as the foundation for the development site.** Fourteen pages from
+  design round A (Home v2c, Services v2, the five area pages, Sprints v2, Brand Sprint, Work v3, Ironwood case
+  study, Lab, Lab post, Contact). The table is at the top of `docs/design-round-a/README.md`; PNGs in Dropbox
+  `00_Brand-Brain/112726-Dunn-Creative-Website-Page-Designs/`. They replace the 24 Nov picks for those pages.
+  Task v04 · 12 builds them onto the live routes.
 - **Design round A (24–25 Nov): Freeman picked Direction A (Unfold light).** Read `docs/design-round-a/README.md`
-  first for any page or design work. The A artboards are static pages at `/explore/design-a/`; Home and Services
-  versions, and fonts, still wait on Freeman's pick. New pages are built as A alternates there (tasks v04 · 12, 13).
+  first for any page or design work. The A artboards are static pages at `/explore/design-a/`; Freeman's 27 Nov picks and his
+  hero images are in the same README. New pages are built as A alternates there (tasks v04 · 12, 13).
 - `docs/duet/` holds Freeman's Claude Duet concepts (24 Nov): the sprint one-pager that `/sprints` builds
   from, the page layout explorations, and the buyer sentence Freeman settled. Read `docs/duet/README.md`.
 - The Notion board (Decisions, task handoff notes, Inbox) is the record of what's decided, including copy and

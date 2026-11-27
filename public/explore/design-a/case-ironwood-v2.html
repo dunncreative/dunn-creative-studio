@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Case study · Ironwood Homes · Design round A · Dunn Creative</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500&amp;family=Inter:wght@400;500&amp;family=Instrument+Serif:ital@1&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#0B0C0D}a:hover{color:#10777A}
+.pg{font-family:Inter,system-ui,sans-serif;color:#0B0C0D;background:#FFFFFF;width:100%}
+.wrap{max-width:1280px;margin:0 auto;padding:0 clamp(20px,4vw,48px);box-sizing:border-box}
+.d{font-family:'Inter Tight',Inter,sans-serif;font-weight:300;letter-spacing:-0.035em;margin:0}
+.it{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;letter-spacing:-0.01em}
+.lbl{font-size:13px;letter-spacing:0.08em;text-transform:uppercase;color:#6B6E72;margin:0}
+.mut{color:#6B6E72}
+.h2{font-size:clamp(40px,4.6vw,64px)}
+.h3{font-size:30px;font-weight:400}
+.body{margin:0;color:#6B6E72;font-size:17px;line-height:1.55}
+.btn{text-decoration:none;border-radius:10px;padding:14px 20px;font-size:15px;display:inline-block}
+.b-w{background:#FFFFFF;color:#0B0C0D}.b-wo{color:#FFFFFF;border:1px solid rgba(255,255,255,.6)}
+.b-t{background:#1AA6AA;color:#0B0C0D;font-weight:500}.b-do{color:#FFFFFF;border:1px solid #3A3C3E}
+.b-k{background:#0B0C0D;color:#FFFFFF}.b-ko{color:#0B0C0D;border:1px solid #0B0C0D}
+.btns{display:flex;gap:12px;flex-wrap:wrap}
+.head{display:flex;align-items:center;gap:32px;min-height:80px;flex-wrap:wrap}
+.head nav{display:flex;gap:28px;margin-left:auto;flex-wrap:wrap}
+.head nav a{text-decoration:none;color:#6B6E72;font-size:15px}.head nav a.on{color:#0B0C0D}
+.talk{text-decoration:none;font-size:15px;border:1px solid #0B0C0D;border-radius:10px;padding:10px 16px}
+.ahero{position:relative;border-radius:20px;overflow:hidden;min-height:560px;display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(28px,4.5vw,64px);color:#FFFFFF;box-sizing:border-box;background-color:#0B0C0D;background-image:url('/v2/assets/hero-mountain-ai.webp');background-repeat:no-repeat;background-size:cover}
+.ahero::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,12,13,0) 0%,rgba(11,12,13,0) 45%,rgba(11,12,13,.85) 100%)}
+.ahero>*:not(.atag){position:relative}
+.ahero h1{font-size:clamp(46px,6.9vw,100px);line-height:0.98;margin-top:20px}
+.ahero .row{display:flex;justify-content:space-between;align-items:flex-end;gap:28px;flex-wrap:wrap;margin-top:28px}
+.ahero .line{margin:0;font-size:clamp(16px,1.3vw,19px);line-height:1.5;color:#E6E6E3;max-width:54ch}
+.atag{position:absolute;right:20px;top:20px;font-size:12px;background:rgba(255,255,255,.92);color:#0B0C0D;border-radius:999px;padding:5px 10px;z-index:1}
+.pill{position:absolute;left:12px;bottom:12px;font-size:12px;background:rgba(255,255,255,.92);color:#0B0C0D;border-radius:999px;padding:5px 10px}
+.sec{padding-top:72px;padding-bottom:48px}
+.shead{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:40px}
+.shead p{margin:0;color:#6B6E72;font-size:17px;line-height:1.5;max-width:44ch}
+.g2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:20px}
+.g3{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:20px}
+.g4{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:20px}
+.card{background:#F4F4F3;border-radius:20px;padding:36px;display:flex;flex-direction:column;gap:12px;box-sizing:border-box;min-width:0}
+.card.dk{background:#0B0C0D;color:#FFFFFF}.card.dk .mut,.card.dk .body{color:#B9BBBE}
+.num{font-size:14px;color:#6B6E72}
+.caps{display:flex;flex-wrap:wrap;gap:8px}
+.caps span{font-size:14px;border:1px solid #DCDCD9;border-radius:999px;padding:7px 14px}
+.held{display:inline-block;font-size:13px;border:1px dashed #B9BBBE;border-radius:999px;padding:4px 10px;color:#6B6E72;background:#FFFFFF}
+.panel{background:#0B0C0D;border-radius:20px;padding:clamp(32px,6vw,80px);color:#FFFFFF}
+.panel .lbl{color:#B9BBBE}
+.steps{list-style:none;margin:48px 0 0;padding:0;display:flex;gap:28px;flex-wrap:wrap}
+.steps li{flex:1 1 200px;border-top:1px solid #3A3C3E;padding-top:16px}
+.steps .k{font-size:13px;color:#1AA6AA;margin:0}
+.steps h3,.steps h4{margin:8px 0 6px;color:#FFFFFF}
+.steps p{margin:0;color:#B9BBBE;font-size:15px;line-height:1.5}
+.cta{background:#0B0C0D;color:#FFFFFF;border-radius:20px;padding:clamp(32px,6vw,88px);display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap}
+.cta h2{font-size:clamp(40px,5vw,72px);line-height:1;max-width:16ch}
+.cta p{margin:16px 0 0;color:#B9BBBE;font-size:17px;line-height:1.5;max-width:46ch}
+.rowlink{text-decoration:none;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:16px;padding:28px 0;border-top:1px solid #E6E6E3;align-items:baseline}
+.media{position:relative;border-radius:20px;overflow:hidden;background:#F4F4F3}
+.media img{width:100%;height:100%;object-fit:cover;display:block}
+.ph{display:flex;align-items:center;justify-content:center;text-align:center;background:#E6E6E3;color:#6B6E72;font-size:14px;border-radius:20px;padding:16px;box-sizing:border-box}
+.ph.dk{background:#3A3C3E;color:#D9D9D9}
+figure{margin:0}figcaption{margin-top:10px;font-size:14px;color:#6B6E72}
+.foot{padding-top:48px;padding-bottom:48px;display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;border-top:1px solid #E6E6E3}
+.foot span{font-size:14px;color:#6B6E72}
+@media (max-width:640px){.rowlink{grid-template-columns:1fr;gap:6px}.rowlink>*{grid-column:auto!important;text-align:left!important}.card{padding:28px}}
+.ahero{background-position:40% 50%}@media (min-width:900px){.ahero{background-size:130% auto;background-position:45% 100%}}
+/* 390: a stronger hero scrim behind the text */
+/* Header (Direction A pattern, from PR #18 brand-identity.html): at phone width the nav links fold into a Menu so the logo and Let's talk stay on one row */
+.amenu{display:none;position:relative;margin-left:auto}
+.amenu>summary{list-style:none;cursor:pointer;font-size:15px;color:#0B0C0D;padding:12px 6px;min-height:44px;box-sizing:border-box;display:flex;align-items:center}
+.amenu>summary::-webkit-details-marker{display:none}
+.amenu>div{position:absolute;right:0;top:calc(100% + 6px);z-index:20;background:#FFFFFF;border:1px solid #E6E6E3;border-radius:14px;padding:8px;display:flex;flex-direction:column;min-width:180px;box-shadow:0 12px 32px rgba(11,12,13,.12)}
+.amenu>div a{padding:12px;text-decoration:none;font-size:15px;color:#0B0C0D}
+@media (max-width:760px){
+.ahdr{flex-wrap:nowrap!important;gap:12px!important;height:72px!important;min-height:0!important}
+.ahdr>.anav{display:none!important}
+.amenu{display:block}
+.ahdr>.acta{min-height:44px;box-sizing:border-box;display:inline-flex;align-items:center;white-space:nowrap}
+}
+@media (max-width:640px){.ahero::before{background:linear-gradient(180deg,rgba(11,12,13,.2) 0%,rgba(11,12,13,.58) 26%,rgba(11,12,13,.88) 52%,rgba(11,12,13,.92) 100%)}}
+</style>
+<style>.ahero{background-image:url('/work/ironwood-homes/mockup-truck-door.webp')!important;background-size:cover!important;background-position:center 40%!important}</style>
+</head>
+<body>
+<div class="pg"><header class="wrap head ahdr">
+<img src="/v2/assets/dunn-creative-logo-black.png" alt="Dunn Creative" style="height:30px;width:auto">
+<nav class="anav" aria-label="Main"><a href="work-a.html" class="on" aria-current="page">Work</a><a href="services-a.html">Services</a><a href="sprints-a2.html">Sprints</a><a href="lab-a.html">Lab</a><a href="about-a.html">About</a></nav>
+<details class="amenu"><summary aria-label="Menu">Menu</summary><div><a href="work-a.html" aria-current="page">Work</a><a href="services-a.html">Services</a><a href="sprints-a2.html">Sprints</a><a href="lab-a.html">Lab</a><a href="about-a.html">About</a></div></details>
+<a href="contact-a.html" class="talk acta">Let’s talk</a>
+</header>
+
+<section class="wrap" style="padding-top:28px;padding-bottom:24px">
+<div class="ahero">
+<span class="atag">AI-directed mockup</span>
+<p class="lbl" style="color:#D9D9D9">Work · Brand identity</p>
+<h1 class="d">Ironwood <span class="it">Homes</span></h1>
+<div class="row"><p class="line">A brand as enduring as the homes.</p><div class="btns"><a href="#project" class="btn b-w">Start reading ↓</a><a href="contact-a.html" class="btn b-wo">Let’s talk</a></div></div></div>
+</section>
+<section class="wrap sec" id="project">
+<figure style="min-width:0"><div class="media" style="aspect-ratio:1280/816"><img src="/work/ironwood-homes/mockup-entrance-sign.webp" alt="Ironwood Homes horizontal logo carved into a timber entrance sign on stone posts" loading="lazy"><span class="pill">AI-directed mockup</span></div></figure>
+<div style="display:flex;flex-wrap:wrap;gap:48px;margin-top:56px">
+<div style="flex:4 1 260px;min-width:0"><p class="lbl">01</p><h2 class="d h2" style="margin-top:12px">The <span class="it">project</span></h2>
+<dl style="margin:32px 0 0"><div style="border-top:1px solid #E6E6E3;padding:14px 0"><dt class="lbl" style="font-size:12px">Client</dt><dd style="margin:6px 0 0;font-size:16px">Ironwood Homes</dd></div><div style="border-top:1px solid #E6E6E3;padding:14px 0"><dt class="lbl" style="font-size:12px">Location</dt><dd style="margin:6px 0 0;font-size:16px">Afton, Wyoming</dd></div><div style="border-top:1px solid #E6E6E3;padding:14px 0"><dt class="lbl" style="font-size:12px">Industry</dt><dd style="margin:6px 0 0;font-size:16px">Custom home building</dd></div><div style="border-top:1px solid #E6E6E3;padding:14px 0"><dt class="lbl" style="font-size:12px">Brand words</dt><dd style="margin:6px 0 0;font-size:16px">Strong, Authentic, Premium, Enduring</dd></div></dl></div>
+<p style="flex:7 1 340px;min-width:0;margin:0;font-size:18px;line-height:1.65;color:#3A3C3E;max-width:62ch">Ironwood Homes is a custom home builder and general contractor based in Afton, Wyoming, building new homes and remodels across Star Valley with modern ranch design, honest materials and a real respect for each client’s budget. The team came to us with a strong visual concept: industrial, rustic, hand-forged and unmistakably Western. Our job was to turn it into a professional identity system that matches the homes behind the name. We built a flexible logo system around a primary vertical logo, with a horizontal lockup, an IH monogram and a circular badge, so it holds up at any size on any surface. Every color comes from the materials Ironwood builds with (iron, weathered steel, burnished bronze, timber and parchment), set in Crimson Pro and Work Sans. A quick-reference brand guide and production-ready files keep every touchpoint consistent, from business cards and letterhead to signage, trucks and a stitched hat.</p></div></section>
+<section class="wrap sec">
+<div class="shead" style="margin-bottom:28px"><div><p class="lbl">02</p><h2 class="d h2" style="margin-top:12px">The logo <span class="it">system</span></h2></div></div>
+<div style="display:grid;gap:20px">
+<figure style="min-width:0"><div class="media" style="aspect-ratio:2400/1500"><img src="/work/ironwood-homes/logo-suite-light.webp" alt="Ironwood Homes logo system on a light background: vertical logo, horizontal logo, IH monogram and circular badge" loading="lazy"></div><figcaption>Vertical (primary), horizontal, IH monogram and circular badge.</figcaption></figure>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:20px;align-items:start"><figure style="min-width:0"><div class="media" style="aspect-ratio:2400/1500"><img src="/work/ironwood-homes/logo-suite-dark.webp" alt="The same Ironwood Homes logo system reversed on a dark background" loading="lazy"></div><figcaption>The same system, reversed.</figcaption></figure><figure style="min-width:0"><div class="media" style="aspect-ratio:2400/1500"><img src="/work/ironwood-homes/logo-on-backgrounds.webp" alt="The vertical Ironwood Homes logo on six brand colors" loading="lazy"></div><figcaption>On the brand colors.</figcaption></figure></div>
+</div></section>
+<section class="wrap sec">
+<div class="shead" style="margin-bottom:28px"><div><p class="lbl">03</p><h2 class="d h2" style="margin-top:12px">In <span class="it">use</span></h2></div><p>Every scene in this chapter is an AI-directed mockup, made to show the identity on real touchpoints.</p></div>
+<div style="display:grid;gap:20px">
+<figure style="min-width:0"><div class="media" style="aspect-ratio:1280/720"><img src="/work/ironwood-homes/mockup-wood-wall.webp" alt="Ironwood Homes vertical logo in iron letters on a weathered wood wall" loading="lazy"><span class="pill">AI-directed mockup</span></div><figcaption>Wall sign.</figcaption></figure>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:20px;align-items:start"><figure style="min-width:0"><div class="media" style="aspect-ratio:1248/832"><img src="/work/ironwood-homes/mockup-truck-door.webp" alt="Ironwood Homes horizontal logo on the door of a dark pickup truck" loading="lazy"><span class="pill">AI-directed mockup</span></div><figcaption>Truck door.</figcaption></figure><figure style="min-width:0"><div class="media" style="aspect-ratio:1312/784"><img src="/work/ironwood-homes/mockup-embossed.webp" alt="Ironwood Homes vertical logo embossed on a dark textured surface" loading="lazy"><span class="pill">AI-directed mockup</span></div><figcaption>Embossed.</figcaption></figure></div>
+<figure style="min-width:0"><div class="media" style="aspect-ratio:2046/832"><img src="/work/ironwood-homes/mockup-monogram-materials.webp" alt="Three IH monograms: iron on wood, wood on steel, and burned into wood" loading="lazy"><span class="pill">AI-directed mockup</span></div><figcaption>The monogram in iron, timber and fire.</figcaption></figure>
+<figure style="min-width:0"><div class="media" style="aspect-ratio:2046/832"><img src="/work/ironwood-homes/mockup-merch.webp" alt="Ironwood Homes logo on a leather-patch trucker cap, an embroidered grey cap and a folded green tee" loading="lazy"><span class="pill">AI-directed mockup</span></div><figcaption>Caps and tee.</figcaption></figure>
+<figure style="min-width:0"><div class="media" style="aspect-ratio:2400/1300"><img src="/work/ironwood-homes/business-cards.webp" alt="Ironwood Homes business card, front and back" loading="lazy"><span class="pill">AI-directed mockup</span></div><figcaption>Business card, front and back.</figcaption></figure>
+</div></section>
+<section class="wrap sec">
+<div class="shead" style="margin-bottom:28px"><div><p class="lbl">04</p><h2 class="d h2" style="margin-top:12px">What we <span class="it">delivered</span></h2></div></div>
+<div class="caps"><span>Logo system</span><span>Color palette</span><span>Typography</span><span>Material inspiration</span><span>Business cards and letterhead</span><span>Brand guide</span><span>Production files (AI, EPS, SVG, PDF, PNG, JPG)</span></div></section>
+<section class="wrap sec">
+<p class="lbl" style="margin-bottom:24px">Next project</p>
+<a href="/work/asymbol/" style="text-decoration:none;display:flex;flex-wrap:wrap;gap:32px;align-items:center">
+<div class="media" style="flex:7 1 320px;min-width:0;aspect-ratio:4/3;background:#0B0C0D"><img src="/v2/assets/work/asymbol.webp" alt="Teaser image for the Asymbol × Union limited-edition binding, designed by Bryan Iguchi" loading="lazy" style="object-fit:contain"></div>
+<div style="flex:5 1 280px;min-width:0"><p class="lbl">Asymbol · Campaigns</p><h2 class="d" style="font-size:clamp(40px,4.4vw,60px);margin-top:16px"><span class="it">Asymbol</span></h2><p style="margin:18px 0 0;color:#6B6E72;font-size:18px;line-height:1.55;max-width:40ch">Ads, email, social and a binding launch with Union and Bryan Iguchi.</p><span style="display:inline-block;margin-top:28px;font-size:15px;border-bottom:1px solid #0B0C0D">View the case study →</span></div></a></section>
+<section class="wrap" style="padding-top:48px;padding-bottom:96px">
+<div class="cta"><div><h2 class="d">Have a project in <span class="it">mind</span>?</h2><p>Dunn Creative helps brands build identities, websites, content and campaigns that connect and perform.</p></div><div class="btns"><a href="contact-a.html" class="btn b-t">Start a project</a><a href="contact-a.html" class="btn b-do">Get a free audit</a></div></div></section>
+<footer class="wrap foot">
+<span>Strategic thinking. Clean design. Built to perform.</span>
+<span>Dunn Creative · Jackson, WY · chris@dunncreative.com</span></footer></div>
+</body>
+</html>
